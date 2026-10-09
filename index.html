@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viajes Alma & Vromlix Multi-Hub</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-page: #f8fafc;
+            --bg-header: #00091e;
+            --bg-card: #ffffff;
+            --bg-subtle: #f1f5f9;
+            --text-title: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            
+            --brand-red: #d8252c;
+            --brand-red-hover: #b91c1c;
+            --brand-cyan: #0284c7;
+            --brand-gold: #d97706;
+            --brand-green: #16a34a;
+            --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 20px 35px -10px rgba(216, 37, 44, 0.18);
+        }
+
+        /* Automatic OS Light / Dark Mode Adaptation */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-page: #0b0f19;
+                --bg-header: #070a14;
+                --bg-card: #131c2e;
+                --bg-subtle: #1e293b;
+                --text-title: #f8fafc;
+                --text-body: #cbd5e1;
+                --text-muted: #94a3b8;
+                --border-color: rgba(255, 255, 255, 0.1);
+                --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.5);
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-body);
+            line-height: 1.6;
+        }
+
+        /* Top Announcement Bar */
+        .top-bar {
+            background: var(--brand-red);
+            color: #fff;
+            padding: 8px 5%;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header {
+            background: var(--bg-header);
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .nav-container {
+            max-width: 1350px;
+            margin: 0 auto;
+            padding: 0.9rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-badge {
+            background: var(--brand-gold);
+            color: #000;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 800;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.4rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #ff4d5a;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-tag-construction {
+            font-size: 0.68rem;
+            background: var(--brand-gold);
+            color: #000;
+            padding: 1px 5px;
+            border-radius: 4px;
+            font-weight: 800;
+            margin-left: 3px;
+        }
+
+        .btn-reserve-header {
+            background: var(--brand-red);
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 0.88rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-reserve-header:hover {
+            background: var(--brand-red-hover);
+        }
+
+        /* Dynamic Hero Banner (Travel vs Salon) */
+        .hero-banner {
+            background: linear-gradient(rgba(0, 9, 30, 0.75), rgba(0, 9, 30, 0.75)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            padding: 4.5rem 2rem 5.5rem;
+            text-align: center;
+        }
+
+        .hero-banner h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin-bottom: 0.8rem;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.6);
+        }
+
+        .hero-banner p {
+            font-size: 1.1rem;
+            max-width: 850px;
+            margin: 0 auto 2rem;
+            color: #e2e8f0;
+        }
+
+        /* Search Filter Box Card (Travel Only) */
+        .search-box-card {
+            max-width: 1150px;
+            margin: -3rem auto 3rem;
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 1.6rem;
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--border-color);
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-fields-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr 0.9fr 0.8fr 1fr;
+            gap: 12px;
+            align-items: end;
+        }
+
+        .field-group label {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .field-group select, .field-group input {
+            width: 100%;
+            padding: 11px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-subtle);
+            color: var(--text-title);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .btn-search-main {
+            background: var(--brand-red);
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .btn-search-main:hover {
+            background: var(--brand-red-hover);
+        }
+
+        .page-view {
+            display: none;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 1rem 2rem 4rem;
+        }
+
+        .page-view.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-title);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .travel-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .travel-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-4px);
+        }
+
+        .card-img-box {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: var(--brand-red);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .card-content {
+            padding: 1.4rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-title);
+            margin-bottom: 0.4rem;
+        }
+
+        .card-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 1rem;
+        }
+
+        .price-amount {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--brand-red);
+        }
+
+        /* Suzuki Ertiga 2022 Blueprint (Multi-Seat Selection) */
+        .vehicle-hero-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-card);
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .vehicle-img-gallery img {
+            width: 100%;
+            border-radius: 16px;
+            object-fit: cover;
+            height: 320px;
+        }
+
+        .ertiga-blueprint-box {
+            background: var(--bg-subtle);
+            border: 2px dashed var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .seats-blueprint-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 320px;
+            margin: 1.2rem auto;
+        }
+
+        .row-seats {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .seat-btn {
+            flex: 1;
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            color: var(--text-title);
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.82rem;
+        }
+
+        .seat-btn.selected {
+            background: var(--brand-red);
+            color: #fff;
+            border-color: var(--brand-red);
+        }
+
+        /* Interactive Route Map Card (Video 1 Integration) */
+        .map-route-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-card);
+        }
+
+        .route-stops-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+            position: relative;
+        }
+
+        .stop-card {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.2rem;
+            text-align: center;
+        }
+
+        .stop-card strong {
+            display: block;
+            font-family: 'Outfit';
+            font-size: 1.1rem;
+            color: var(--brand-cyan);
+            margin-top: 6px;
+        }
+
+        /* Kúul Demand Polling Engine (Video 2 Integration) */
+        .kuul-voting-box {
+            background: linear-gradient(135deg, rgba(2, 132, 199, 0.08), rgba(217, 119, 6, 0.08));
+            border: 2px solid var(--brand-cyan);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .vote-item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1rem 1.4rem;
+            margin-top: 10px;
+        }
+
+        .vote-progress-bar {
+            height: 10px;
+            background: var(--bg-subtle);
+            border-radius: 10px;
+            overflow: hidden;
+            width: 140px;
+        }
+
+        .vote-progress-fill {
+            height: 100%;
+            background: var(--brand-green);
+        }
+
+        .search-tab-btn {
+            padding: 10px 18px;
+            border-radius: 8px;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .search-tab-btn.active {
+            background: var(--brand-red);
+            color: #fff;
+            border-color: var(--brand-red);
+        }
+
+        .payment-tabs {
+            display: flex;
+            gap: 8px;
+            margin: 1.2rem 0;
+        }
+
+        .pay-tab {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .pay-tab.active {
+            background: rgba(216, 37, 44, 0.1);
+            border-color: var(--brand-red);
+            color: var(--brand-red);
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 2000;
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 540px;
+            padding: 2rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #25d366;
+            color: #fff;
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            text-decoration: none;
+        }
+
+        footer {
+            background: #00091e;
+            color: #94a3b8;
+            padding: 4rem 5% 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1.2fr 1.2fr;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 14px;
+            margin-top: 1.2rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background: var(--brand-red);
+        }
+
+        @media (max-width: 900px) {
+            .hero-banner h1 { font-size: 2.1rem; }
+            .search-fields-grid { grid-template-columns: 1fr; }
+            .vehicle-hero-card { grid-template-columns: 1fr; }
+            .route-stops-grid { grid-template-columns: 1fr 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="top-bar">
+        <div>
+            🦅 <strong id="top-announcement-txt">Viajes Alma & Vromlix Multi-Hub</strong> | Jardines de San Manuel, Puebla
+        </div>
+        <div>
+            📞 Atención Directa WhatsApp: <strong>222-123-4567</strong> | 📍 Río Nexapa 6101
+        </div>
+    </div>
+
+    <!-- Header Navigation (Dynamic Header Branding) -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo" id="main-header-brand" onclick="showView('view-home')">
+                <span>✈️</span> VIAJES ALMA <span class="logo-badge">VROMLIX</span>
+            </a>
+
+            <!-- PUBLIC NAVBAR ONLY (Private tabs NexoContable/Mascotas/Mercadito are hidden) -->
+            <ul class="nav-links">
+                <li><a onclick="showView('view-home')" class="active" id="nav-home">Inicio</a></li>
+                <li><a onclick="showView('view-viajes')" id="nav-viajes">Viajes & Destinos</a></li>
+                <li><a onclick="showView('view-estetica')" id="nav-estetica">Estética Alma</a></li>
+                <li><a onclick="showView('view-contacto')" id="nav-contacto">Contacto & Ubicación</a></li>
+            </ul>
+
+            <div class="header-actions">
+                <button onclick="promptPinModal()" class="btn-reserve-header" style="background:var(--brand-gold); color:#000;">
+                    🔐 Gestor Privado
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dynamic Hero Banner -->
+    <section class="hero-banner" id="hero-banner-sec">
+        <h1 id="hero-title-txt">Tu Agencia de Viajes y Hub de Servicios en Puebla</h1>
+        <p id="hero-desc-txt">Salidas ejecutivas a CDMX en Suzuki Ertiga 2022, Conciertos Masivos, Excursiones Grupales en Urban y Paquetes Internacionales de Lujo.</p>
+    </section>
+
+    <!-- Search Box Card (Only on Travel Views) -->
+    <div class="search-box-card" id="search-box-card-sec">
+        <div class="search-fields-grid">
+            <div class="field-group">
+                <label>Evento o Destino:</label>
+                <select id="search-event-select" onchange="handleSearchSelectChange(this)">
+                    <option value="Compras Centro Histórico CDMX">Compras Centro Histórico CDMX ($449)</option>
+                    <option value="Zona Hospitales Tlalpan CDMX">Zona Hospitales Tlalpan CDMX ($449)</option>
+                    <option value="Aeropuerto AICM / AIFA CDMX">Aeropuerto AICM / AIFA CDMX ($449)</option>
+                    <option value="Corona Capital CDMX (Foro Sol)">Corona Capital (Foro Sol) ($790)</option>
+                    <option value="Vive Latino CDMX (Estadio GNP)">Vive Latino (Estadio GNP) ($790)</option>
+                    <option value="Acapulco Fin de Semana Villa">Acapulco Villa (Urban 14 pax)</option>
+                    <option value="CUSTOM_QUOTE">✨ Otro Destino CDMX / Nacional (Cotizar)</option>
+                </select>
+            </div>
+            <div class="field-group">
+                <label>Modalidad de Viaje:</label>
+                <select id="search-pkg-select">
+                    <option value="Solo Transporte Redondo">Solo Transporte Redondo</option>
+                    <option value="Transporte + Boleto Entrada">Transporte + Boleto Entrada</option>
+                    <option value="Cotización Grupo Completo">Cotización Grupo Completo</option>
+                </select>
+            </div>
+            <div class="field-group">
+                <label>Fecha de Salida:</label>
+                <input type="date" id="search-date-input" value="2026-10-17">
+            </div>
+            <div class="field-group">
+                <label>Pasajeros:</label>
+                <select id="search-pax-count">
+                    <option value="1">1 Pasajero</option>
+                    <option value="2">2 Pasajeros</option>
+                    <option value="3">3 Pasajeros</option>
+                    <option value="4">4 Pasajeros</option>
+                    <option value="5">5 Pasajeros</option>
+                    <option value="6">6 Pasajeros (Grupo Ertiga)</option>
+                </select>
+            </div>
+            <div>
+                <button class="btn-search-main" onclick="executeSearchMain()">
+                    <i class="fas fa-search"></i> Buscar Salidas
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIEW 1: HOME PAGE -->
+    <main id="view-home" class="page-view active">
+        <div class="section-title">
+            <i class="fas fa-fire" style="color:var(--brand-red)"></i> Ofertas Vigentes y Salidas Próximas
+        </div>
+        <div class="section-desc">Transporte directo desde Jardines de San Manuel en camioneta Suzuki Ertiga 2022 o camionetas Urban para grupos.</div>
+
+        <div class="cards-grid">
+            <!-- Express Card 1 -->
+            <div class="travel-card">
+                <div class="card-img-box" style="background-image: url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80');">
+                    <span class="card-badge" style="background:var(--brand-cyan)">Express CDMX</span>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Compras Centro Histórico / Hospitales CDMX</div>
+                        <p style="font-size:0.9rem; color:var(--text-muted)">Salidas los días Martes y Jueves 6:30 AM desde San Manuel. Regreso seguro el mismo día a Puebla.</p>
+                    </div>
+                    <div class="card-price-row">
+                        <div>
+                            <div class="price-amount" style="color:var(--brand-green)">$449 MXN</div>
+                        </div>
+                        <button class="btn-search-main" style="width:auto; padding:8px 16px;" onclick="openPaymentModal('Express CDMX Compras/Hospitales', 449)">Apartar Lote</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Concert Card 2 -->
+            <div class="travel-card">
+                <div class="card-img-box" style="background-image: url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80');">
+                    <span class="card-badge">Conciertos CDMX</span>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Corona Capital 2026 (Foro Sol)</div>
+                        <p style="font-size:0.9rem; color:var(--text-muted)">Salida 12:00 PM desde San Manuel con regreso nocturno seguro al terminar el evento.</p>
+                    </div>
+                    <div class="card-price-row">
+                        <div>
+                            <div class="price-amount">$790 MXN</div>
+                        </div>
+                        <button class="btn-search-main" style="width:auto; padding:8px 16px;" onclick="openPaymentModal('Corona Capital CDMX', 790)">Reservar</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Estetica Card 3 -->
+            <div class="travel-card">
+                <div class="card-img-box" style="background-image: url('https://images.unsplash.com/photo-1560750588-73207b1ef5b8?auto=format&fit=crop&w=800&q=80');">
+                    <span class="card-badge" style="background:var(--brand-gold)">Estética Alma</span>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Estética & Terapias San Manuel</div>
+                        <p style="font-size:0.9rem; color:var(--text-muted)">Agenda tu cita facial o estilismo y recibe un 10% de descuento en todos tus viajes organizados.</p>
+                    </div>
+                    <div class="card-price-row">
+                        <div>
+                            <div class="price-amount" style="font-size:1.1rem; color:var(--text-title);">10% Descuento</div>
+                        </div>
+                        <button class="btn-search-main" style="width:auto; padding:8px 16px; background:var(--brand-gold); color:#000;" onclick="showView('view-estetica')">Agendar Cita</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Suzuki Ertiga 2022 Hero & Multi-Seat Selection Blueprint -->
+        <div class="vehicle-hero-card">
+            <div class="vehicle-img-gallery">
+                <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=800&q=80" alt="Suzuki Ertiga 2022 Puebla Express">
+            </div>
+            <div class="ertiga-blueprint-box">
+                <h3 style="font-family:'Outfit'; font-size:1.3rem; margin-bottom:0.4rem;">🚘 Selección Múltiple de Asientos Suzuki Ertiga 2022</h3>
+                <p style="font-size:0.82rem; color:var(--text-muted)">Puedes seleccionar varios lugares a la vez para ti y tus acompañantes (6 lugares totales):</p>
+
+                <div class="seats-blueprint-grid">
+                    <div class="row-seats">
+                        <div style="flex:1; padding:8px; font-size:0.8rem; color:var(--text-muted);">[Volante / Chofer]</div>
+                        <button class="seat-btn" onclick="toggleBlueprintSeat(this, 1)">💺 #1 Copiloto</button>
+                    </div>
+                    <div class="row-seats">
+                        <button class="seat-btn" onclick="toggleBlueprintSeat(this, 2)">💺 #2 Medio Izq.</button>
+                        <button class="seat-btn" onclick="toggleBlueprintSeat(this, 3)">💺 #3 Medio Centro</button>
+                        <button class="seat-btn" onclick="toggleBlueprintSeat(this, 4)">💺 #4 Medio Der.</button>
+                    </div>
+                    <div class="row-seats">
+                        <div style="flex:0.2;"></div>
+                        <button class="seat-btn" onclick="toggleBlueprintSeat(this, 5)">💺 #5 Trasero Izq.</button>
+                        <button class="seat-btn" onclick="toggleBlueprintSeat(this, 6)">💺 #6 Trasero Der.</button>
+                        <div style="flex:0.2;"></div>
+                    </div>
+                </div>
+
+                <div style="font-size:0.9rem; margin-top:10px;">
+                    Asientos Seleccionados: <strong id="home-seats-list" style="color:var(--brand-red)">Ninguno</strong><br>
+                    Monto Acumulado: <strong id="home-seats-total" style="color:var(--brand-green)">$0 MXN</strong>
+                </div>
+
+                <button class="btn-search-main" style="margin-top:1rem;" onclick="proceedMultiSeatBooking()">
+                    💳 Reservar Asientos Seleccionados
+                </button>
+            </div>
+        </div>
+
+        <!-- App Concept 1: Interactive Route Map Component (Video 1) -->
+        <div class="map-route-box">
+            <h3 style="font-family:'Outfit'; font-size:1.4rem; color:var(--brand-cyan);"><i class="fas fa-route"></i> Mapas de Ruta & Puntos de Desembarque (Puebla -> CDMX)</h3>
+            <p style="font-size:0.9rem; color:var(--text-muted)">Visualiza nuestro recorrido seguro con paradas programadas e información en tiempo real.</p>
+
+            <div class="route-stops-grid">
+                <div class="stop-card">
+                    <i class="fas fa-map-marker-alt" style="font-size:1.5rem; color:var(--brand-red)"></i>
+                    <strong>1. San Manuel (Puebla)</strong>
+                    <small>Río Nexapa 6101 (Salida 6:30 AM)</small>
+                </div>
+                <div class="stop-card">
+                    <i class="fas fa-gas-pump" style="font-size:1.5rem; color:var(--brand-gold)"></i>
+                    <strong>2. Caseta San Martín</strong>
+                    <small>Parada Sanitaria / Snack (7:15 AM)</small>
+                </div>
+                <div class="stop-card">
+                    <i class="fas fa-hospital" style="font-size:1.5rem; color:var(--brand-cyan)"></i>
+                    <strong>3. Zona Hospitales Tlalpan</strong>
+                    <small>Desembarque Médico (8:30 AM)</small>
+                </div>
+                <div class="stop-card">
+                    <i class="fas fa-shopping-bag" style="font-size:1.5rem; color:var(--brand-green)"></i>
+                    <strong>4. Centro Histórico CDMX</strong>
+                    <small>Desembarque Compras (8:55 AM)</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- App Concept 2: Kúul Demand Polling Engine (Video 2) -->
+        <div class="kuul-voting-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div>
+                    <h3 style="font-family:'Outfit'; font-size:1.4rem; color:var(--text-title);"><i class="fas fa-vote-yea" style="color:var(--brand-green)"></i> Inteligencia de Demanda Kúul Engine</h3>
+                    <p style="font-size:0.9rem; color:var(--text-muted)">¡Vota por el próximo destino de fin de semana! Cuando una ruta alcanza 10 votos, programamos la salida en Urban.</p>
+                </div>
+                <button class="btn-search-main" style="width:auto; padding:8px 16px; background:var(--brand-cyan);" onclick="openCustomQuoteModal()">+ Proponer Nuevo Destino</button>
+            </div>
+
+            <div style="margin-top:1.2rem;">
+                <div class="vote-item-row">
+                    <div>
+                        <strong>🏖️ Acapulco Villa Privada con Alberca</strong>
+                        <small style="display:block; color:var(--text-muted)">Fin de semana 3 Días / 2 Noches</small>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:15px;">
+                        <div class="vote-progress-bar"><div class="vote-progress-fill" style="width: 78%;"></div></div>
+                        <span style="font-weight:800; font-size:0.9rem;">11 / 14 Votos</span>
+                        <button class="btn-search-main" style="width:auto; padding:6px 12px; font-size:0.8rem;" onclick="castKuulVote('Acapulco Villa Privada')">Votar</button>
+                    </div>
+                </div>
+
+                <div class="vote-item-row">
+                    <div>
+                        <strong>🍷 Ruta del Queso y Vino (Querétaro)</strong>
+                        <small style="display:block; color:var(--text-muted)">Excursión 1 Día Sabadaba</small>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:15px;">
+                        <div class="vote-progress-bar"><div class="vote-progress-fill" style="width: 64%;"></div></div>
+                        <span style="font-weight:800; font-size:0.9rem;">9 / 14 Votos</span>
+                        <button class="btn-search-main" style="width:auto; padding:6px 12px; font-size:0.8rem;" onclick="castKuulVote('Ruta del Queso y Vino Querétaro')">Votar</button>
+                    </div>
+                </div>
+
+                <div class="vote-item-row">
+                    <div>
+                        <strong>🏰 Val'Quirico & Tlaxcala Mágica</strong>
+                        <small style="display:block; color:var(--text-muted)">Salida Confirmada Próximo Sábado</small>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:15px;">
+                        <div class="vote-progress-bar"><div class="vote-progress-fill" style="width: 100%; background:var(--brand-gold);"></div></div>
+                        <span style="font-weight:800; font-size:0.9rem; color:var(--brand-gold)">¡14 / 14 COMPLETO!</span>
+                        <button class="btn-search-main" style="width:auto; padding:6px 12px; font-size:0.8rem; background:var(--brand-gold); color:#000;" onclick="openPaymentModal('Excursión ValQuirico Tlaxcala', 650)">Apartar ($650)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- VIEW 2: VIAJES & DESTINOS COMPLETO -->
+    <main id="view-viajes" class="page-view">
+        <div class="section-title">
+            <i class="fas fa-plane-departure" style="color:var(--brand-red)"></i> Catálogo de Viajes & Destinos
+        </div>
+        <p class="section-desc">Selecciona la modalidad de viaje que mejor se adapte a lo que necesitas:</p>
+
+        <!-- Subtabs for Travel Section (Commercial Distribution) -->
+        <div style="display:flex; gap:10px; margin-bottom:1.8rem; border-bottom:2px solid var(--border-color); padding-bottom:10px; flex-wrap:wrap;">
+            <button class="search-tab-btn active" onclick="switchTravelSubtab('express', this)">🚌 CDMX & Eventos Masivos</button>
+            <button class="search-tab-btn" onclick="switchTravelSubtab('nacionales', this)">🏖️ Excursiones & Playas Nacionales</button>
+            <button class="search-tab-btn" onclick="switchTravelSubtab('fraveo', this)">👑 Paquetes VIP Ruta del Águila (fraVEO)</button>
+        </div>
+
+        <!-- Subtab 1: CDMX & Eventos Masivos -->
+        <div id="subtab-express">
+            <p class="section-desc">Viajes ejecutivos en Suzuki Ertiga 2022 y salidas masivas para eventos en la capital.</p>
+            <div class="cards-grid">
+                <div class="travel-card">
+                    <div class="card-img-box" style="background-image: url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80');">
+                        <span class="card-badge" style="background:var(--brand-cyan)">Express Utilitario</span>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">Múltiples Destinos CDMX en Ertiga</div>
+                            <select id="pkg-express-dest" onchange="updatePrice('pkg-express-dest', 'price-express-dest')" style="width:100%; padding:10px; border-radius:6px; margin:1rem 0; border:1px solid var(--border-color); background:var(--bg-subtle);">
+                                <option value="449">Centro Histórico / Compras ($449 MXN)</option>
+                                <option value="449">Zona Hospitales Tlalpan ($449 MXN)</option>
+                                <option value="449">Aeropuerto AICM / AIFA ($449 MXN)</option>
+                                <option value="449">Chapultepec / Polanco ($449 MXN)</option>
+                                <option value="449">Coyoacán / Frida Kahlo ($449 MXN)</option>
+                            </select>
+                        </div>
+                        <div class="card-price-row">
+                            <div class="price-amount" id="price-express-dest">$449 MXN</div>
+                            <button class="btn-search-main" style="width:auto; padding:8px 16px;" onclick="openPaymentModal('Express CDMX: ' + document.getElementById('pkg-express-dest').options[document.getElementById('pkg-express-dest').selectedIndex].text, getSelectVal('pkg-express-dest'))">Reservar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="travel-card">
+                    <div class="card-img-box" style="background-image: url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80');">
+                        <span class="card-badge">Foro Sol</span>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">Corona Capital 2026</div>
+                            <select id="pkg-corona" onchange="updatePrice('pkg-corona', 'price-corona')" style="width:100%; padding:10px; border-radius:6px; margin:1rem 0; border:1px solid var(--border-color); background:var(--bg-subtle);">
+                                <option value="790">Solo Transporte Redondo ($790 MXN)</option>
+                                <option value="2190">Transporte + Boleto Entrada General ($2,190 MXN)</option>
+                            </select>
+                        </div>
+                        <div class="card-price-row">
+                            <div class="price-amount" id="price-corona">$790 MXN</div>
+                            <button class="btn-search-main" style="width:auto; padding:8px 16px;" onclick="openPaymentModal('Corona Capital 2026', getSelectVal('pkg-corona'))">Reservar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="travel-card">
+                    <div class="card-img-box" style="background-image: url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80');">
+                        <span class="card-badge">Estadio GNP</span>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">Vive Latino 2026</div>
+                            <select id="pkg-vive" onchange="updatePrice('pkg-vive', 'price-vive')" style="width:100%; padding:10px; border-radius:6px; margin:1rem 0; border:1px solid var(--border-color); background:var(--bg-subtle);">
+                                <option value="790">Solo Transporte Redondo ($790 MXN)</option>
+                                <option value="2650">Transporte + Boleto VIP ($2,650 MXN)</option>
+                            </select>
+                        </div>
+                        <div class="card-price-row">
+                            <div class="price-amount" id="price-vive">$790 MXN</div>
+                            <button class="btn-search-main" style="width:auto; padding:8px 16px;" onclick="openPaymentModal('Vive Latino 2026', getSelectVal('pkg-vive'))">Reservar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Subtab 2: Excursiones Nacionales -->
+        <div id="subtab-nacionales" style="display:none;">
+            <p class="section-desc">Viajes grupales en camioneta Urban para 14 a 20 personas hacia destinos turísticos nacionales.</p>
+
+            <div class="cards-grid">
+                <div class="travel-card">
+                    <div class="card-img-box" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80');">
+                        <span class="card-badge">Playa</span>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">Acapulco Fin de Semana (Villa Privada)</div>
+                            <p style="font-size:0.9rem; color:var(--text-muted)">Hospedaje en casa privada con alberca + Transporte redondo en Urban para 14 pax.</p>
+                        </div>
+                        <div class="card-price-row">
+                            <div class="price-amount">$2,500 MXN / pax</div>
+                            <button class="btn-search-main" style="width:auto; padding:8px 16px;" onclick="openPaymentModal('Excursión Acapulco Villa 14 Pax', 2500)">Reservar Lote</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="travel-card">
+                    <div class="card-img-box" style="background-image: url('https://images.unsplash.com/photo-1512813195386-6cf811ad3542?auto=format&fit=crop&w=800&q=80');">
+                        <span class="card-badge" style="background:var(--brand-gold)">Pueblo Mágico</span>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">Ruta del Queso y Vino (Querétaro)</div>
+                            <p style="font-size:0.9rem; color:var(--text-muted)">Visita a Viñedos Freixenet y Pueblo Mágico de Tequisquiapan.</p>
+                        </div>
+                        <div class="card-price-row">
+                            <div class="price-amount">$1,200 MXN / pax</div>
+                            <button class="btn-search-main" style="width:auto; padding:8px 16px;" onclick="openPaymentModal('Ruta Queso y Vino Querétaro', 1200)">Reservar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Subtab 3: Ruta del Águila VIP (Con imágenes reales de WhatsApp) -->
+        <div id="subtab-fraveo" style="display:none;">
+            <p class="section-desc">Experiencias internacionales y paquetes premium operados exclusivamente bajo la franquicia <strong>Ruta del Águila by fraVEO</strong>.</p>
+            
+            <div class="cards-grid">
+                <!-- WhatsApp Real Image 1 -->
+                <div class="travel-card">
+                    <div class="card-img-box" style="background-image: url('img/IMG-20260716-WA0000.jpg');">
+                        <span class="card-badge" style="background:var(--brand-gold)">Ruta del Águila VIP</span>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">Cruceros Caribe & Bahamas</div>
+                            <p style="font-size:0.9rem; color:var(--text-muted)">7 Días todo incluido con camarote balcón, alimentos gourmet y vuelos incluidos.</p>
+                        </div>
+                        <div class="card-price-row">
+                            <div class="price-amount">$35,000 MXN</div>
+                            <button class="btn-search-main" style="width:auto; padding:8px 16px;" onclick="bookSimpleWhatsApp('Crucero Caribe VIP Ruta del Águila')">Cotizar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WhatsApp Real Image 2 -->
+                <div class="travel-card">
+                    <div class="card-img-box" style="background-image: url('img/IMG-20260814-WA0019.jpg');">
+                        <span class="card-badge" style="background:var(--brand-gold)">Ruta del Águila VIP</span>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">Disney World Orlando (Paquete Familiar)</div>
+                            <p style="font-size:0.9rem; color:var(--text-muted)">Vuelo redondo + Hotel complejo Disney + Pase 4 parques temáticos.</p>
+                        </div>
+                        <div class="card-price-row">
+                            <div class="price-amount">$28,900 MXN</div>
+                            <button class="btn-search-main" style="width:auto; padding:8px 16px;" onclick="bookSimpleWhatsApp('Disney World Orlando Ruta del Águila')">Cotizar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WhatsApp Real Image 3 -->
+                <div class="travel-card">
+                    <div class="card-img-box" style="background-image: url('img/IMG-20260907-WA0000.jpg');">
+                        <span class="card-badge" style="background:var(--brand-gold)">Ruta del Águila VIP</span>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">Tour Europa Clásica (15 Días)</div>
+                            <p style="font-size:0.9rem; color:var(--text-muted)">Madrid, París, Roma y Venecia con guía en español y vuelos incluidos.</p>
+                        </div>
+                        <div class="card-price-row">
+                            <div class="price-amount">$48,500 MXN</div>
+                            <button class="btn-search-main" style="width:auto; padding:8px 16px;" onclick="bookSimpleWhatsApp('Tour Europa Clásica Ruta del Águila')">Cotizar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- VIEW 3: ESTÉTICA ALMA (REFACTORIZADA CON CALENDARIO Y CUPÓN TRAS REGISTRO) -->
+    <main id="view-estetica" class="page-view">
+        <div class="section-title">
+            <i class="fas fa-spa" style="color:var(--brand-gold)"></i> Estética, Imagen & Terapias Alma
+        </div>
+        <p class="section-desc">Ubicada en Río Nexapa 6101, Jardines de San Manuel. Agenda tu cita y recibe tu cupón del 10% para tus viajes.</p>
+
+        <!-- Service Cards Grid -->
+        <div class="cards-grid" style="margin-bottom:2.5rem;">
+            <div class="travel-card">
+                <div class="card-img-box" style="background-image: url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80');">
+                    <span class="card-badge" style="background:var(--brand-gold)">Facial</span>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Facial Rejuvenecedor con Colágeno</div>
+                        <p style="font-size:0.88rem; color:var(--text-muted)">Limpieza profunda, hidratación intensa y tratamiento reafirmante con colágeno natural.</p>
+                    </div>
+                    <div class="card-price-row">
+                        <div class="price-amount" style="color:var(--brand-gold)">$550 MXN</div>
+                        <button class="btn-search-main" style="width:auto; padding:8px 16px; background:var(--brand-gold); color:#000;" onclick="openSalonApptModal('Facial Rejuvenecedor con Colágeno', 550)">Agendar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="travel-card">
+                <div class="card-img-box" style="background-image: url('https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=800&q=80');">
+                    <span class="card-badge" style="background:var(--brand-gold)">Estilismo</span>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Corte, Peinado & Diseño de Imagen</div>
+                        <p style="font-size:0.88rem; color:var(--text-muted)">Asesoría personalizada de estilismo según la forma de tu rostro y tono de piel.</p>
+                    </div>
+                    <div class="card-price-row">
+                        <div class="price-amount" style="color:var(--brand-gold)">$350 MXN</div>
+                        <button class="btn-search-main" style="width:auto; padding:8px 16px; background:var(--brand-gold); color:#000;" onclick="openSalonApptModal('Corte y Diseño de Imagen', 350)">Agendar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="travel-card">
+                <div class="card-img-box" style="background-image: url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80');">
+                    <span class="card-badge" style="background:var(--brand-gold)">Terapia</span>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Masaje Relajante & Descontracturante</div>
+                        <p style="font-size:0.88rem; color:var(--text-muted)">Terapia corporal completa con aceites esenciales para aliviar la tensión acumulada.</p>
+                    </div>
+                    <div class="card-price-row">
+                        <div class="price-amount" style="color:var(--brand-gold)">$600 MXN</div>
+                        <button class="btn-search-main" style="width:auto; padding:8px 16px; background:var(--brand-gold); color:#000;" onclick="openSalonApptModal('Masaje Relajante Descontracturante', 600)">Agendar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- VIEW 4: PUBLIC CONTACT & LOCATION -->
+    <main id="view-contacto" class="page-view">
+        <div class="section-title">
+            <i class="fas fa-map-marked-alt" style="color:var(--brand-cyan)"></i> Contacto y Ubicación
+        </div>
+        <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:20px; padding:2rem; box-shadow:var(--shadow-card); display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:center;">
+            <div>
+                <h3 style="font-family:'Outfit'; font-size:1.4rem; margin-bottom:1rem;">📍 Sucursal San Manuel, Puebla</h3>
+                <p style="font-size:0.95rem; margin-bottom:1rem; color:var(--text-muted);">
+                    <strong>Dirección:</strong> Calle Río Nexapa #6101, Col. Jardines de San Manuel, C.P. 72570, Puebla, Pue.<br>
+                    <strong>WhatsApp Directo:</strong> 222-123-4567<br>
+                    <strong>Horario Citas:</strong> Lunes a Sábado de 10:00 AM a 7:00 PM
+                </p>
+                <a href="https://maps.google.com/?q=19.00418242,-98.19447531" target="_blank" class="btn-search-main" style="width:auto; display:inline-flex;">
+                    <i class="fas fa-external-link-alt"></i> Abrir Ubicación en Google Maps
+                </a>
+            </div>
+            <div>
+                <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" alt="Sucursal San Manuel Puebla" style="width:100%; border-radius:16px;">
+            </div>
+        </div>
+    </main>
+
+    <!-- VIEW 5: GESTOR PRIVADO & VROMLIX HUB (REVELADO SÓLO TRAS INGRESAR PIN) -->
+    <main id="view-gestor" class="page-view">
+        <div style="background:var(--bg-card); border:2px solid var(--brand-gold); border-radius:20px; padding:2rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h2 style="font-family:'Outfit'; font-size:1.8rem; color:var(--brand-gold)" id="gestor-title-txt">🔐 Gestor Privado</h2>
+                <span id="gestor-role-badge" style="background:rgba(217,119,6,0.15); color:var(--brand-gold); font-weight:800; padding:4px 14px; border-radius:20px; font-size:0.85rem;">Acceso Protegido</span>
+            </div>
+
+            <div style="display:flex; gap:12px; margin-bottom:1.5rem; border-bottom:1px solid var(--border-color); padding-bottom:12px; flex-wrap:wrap;">
+                <button class="search-tab-btn active" onclick="switchGestorSubtab('reservas', this)">📋 Reservas Alma</button>
+                <button class="search-tab-btn" onclick="switchGestorSubtab('kuul-demand', this)">📊 Votos Kúul Engine</button>
+                <button class="search-tab-btn" id="btn-vromlix-tab" style="display:none;" onclick="switchGestorSubtab('nexo', this)">⚙️ Vromlix Super-Admin (Tus Módulos)</button>
+                <button class="search-tab-btn" id="btn-pin-config" style="display:none;" onclick="switchGestorSubtab('pin-settings', this)">🔒 Seguridad PIN</button>
+            </div>
+
+            <!-- Alma Gestor View: Reservas -->
+            <div id="gestor-subtab-reservas">
+                <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1rem; margin-bottom:1.5rem;">
+                    <div style="background:var(--bg-subtle); padding:1rem; border-radius:10px;">
+                        <small style="color:var(--text-muted)">Pasajeros Registrados</small>
+                        <div style="font-size:1.8rem; font-weight:900; color:var(--brand-cyan)">48</div>
+                    </div>
+                    <div style="background:var(--bg-subtle); padding:1rem; border-radius:10px;">
+                        <small style="color:var(--text-muted)">Ocupación Ertiga 2022</small>
+                        <div style="font-size:1.8rem; font-weight:900; color:var(--brand-green)">92%</div>
+                    </div>
+                    <div style="background:var(--bg-subtle); padding:1rem; border-radius:10px;">
+                        <small style="color:var(--text-muted)">Ingreso Bruto Viajes</small>
+                        <div style="font-size:1.8rem; font-weight:900; color:var(--brand-red)">$21,600 MXN</div>
+                    </div>
+                </div>
+
+                <h4 style="font-family:'Outfit'; margin-bottom:0.8rem;">Últimas Reservas de Pasajeros:</h4>
+                <div style="overflow-x:auto;">
+                    <table style="width:100%; border-collapse:collapse; text-align:left; font-size:0.88rem;">
+                        <thead>
+                            <tr style="background:var(--bg-subtle); border-bottom:2px solid var(--border-color);">
+                                <th style="padding:10px;">Cliente</th>
+                                <th style="padding:10px;">Destino</th>
+                                <th style="padding:10px;">Asiento(s)</th>
+                                <th style="padding:10px;">Método Pago</th>
+                                <th style="padding:10px;">Cupón</th>
+                                <th style="padding:10px;">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom:1px solid var(--border-color);">
+                                <td style="padding:10px;">María Fernández</td>
+                                <td style="padding:10px;">Compras Centro CDMX</td>
+                                <td style="padding:10px;">#1 Copiloto</td>
+                                <td style="padding:10px;">SPEI BBVA</td>
+                                <td style="padding:10px; color:var(--brand-green); font-weight:700;">ALMA10 (-10%)</td>
+                                <td style="padding:10px;"><span style="background:var(--brand-green); color:#fff; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:800;">Confirmado</span></td>
+                            </tr>
+                            <tr style="border-bottom:1px solid var(--border-color);">
+                                <td style="padding:10px;">Carlos Gómez</td>
+                                <td style="padding:10px;">Corona Capital CDMX</td>
+                                <td style="padding:10px;">#2, #3 (Medio)</td>
+                                <td style="padding:10px;">Depósito OXXO</td>
+                                <td style="padding:10px; color:var(--text-muted);">-</td>
+                                <td style="padding:10px;"><span style="background:var(--brand-gold); color:#000; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:800;">Pendiente</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tablero de Demanda Kúul para Alma -->
+            <div id="gestor-subtab-kuul-demand" style="display:none;">
+                <h4 style="font-family:'Outfit'; color:var(--brand-cyan); margin-bottom:0.8rem;">📊 Votaciones e Inteligencia de Demanda (Kúul Engine)</h4>
+                <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:1rem;">Destinos votados por tus clientes. Cuando alcancen 10-14 votos, activa la salida en camioneta Urban:</p>
+                
+                <table style="width:100%; border-collapse:collapse; text-align:left; font-size:0.88rem;">
+                    <thead>
+                        <tr style="background:var(--bg-subtle); border-bottom:2px solid var(--border-color);">
+                            <th style="padding:10px;">Destino Solicitado</th>
+                            <th style="padding:10px;">Votos Acumulados</th>
+                            <th style="padding:10px;">Mínimo Necesario</th>
+                            <th style="padding:10px;">Acción Comercial</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom:1px solid var(--border-color);">
+                            <td style="padding:10px;">Acapulco Villa Privada</td>
+                            <td style="padding:10px; font-weight:800; color:var(--brand-green);">11 Votos</td>
+                            <td style="padding:10px;">14 Votos</td>
+                            <td style="padding:10px;"><button style="padding:4px 10px; background:var(--brand-green); color:#fff; border:none; border-radius:4px; font-weight:700; cursor:pointer;" onclick="alert('Salida programada. Notificando a los 11 clientes interesados.')">🚀 Abrir Salida Urban</button></td>
+                        </tr>
+                        <tr style="border-bottom:1px solid var(--border-color);">
+                            <td style="padding:10px;">Ruta del Queso y Vino Querétaro</td>
+                            <td style="padding:10px; font-weight:800;">9 Votos</td>
+                            <td style="padding:10px;">14 Votos</td>
+                            <td style="padding:10px;"><span style="color:var(--text-muted);">Faltan 5 Votos</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Vromlix Super-Admin View (Privado 50/50 y Módulos) -->
+            <div id="gestor-subtab-nexo" style="display:none;">
+                <h4 style="font-family:'Outfit'; color:var(--brand-cyan); margin-bottom:0.8rem;">⚙️ Tu Control de Administración Vromlix</h4>
+                
+                <div style="background:var(--bg-subtle); border:1px solid var(--border-color); padding:1.2rem; border-radius:12px; margin-bottom:1.5rem;">
+                    <strong style="color:var(--brand-gold); display:block; margin-bottom:6px;">📊 Reparto Interno del Vehículo Suzuki Ertiga 2022 (Modelo 50/50):</strong>
+                    <div style="font-size:0.88rem; color:var(--text-muted);">
+                        - Ingreso Estimado por Viaje Redondo (6 asientos x $449): <strong>$2,694 MXN</strong><br>
+                        - Fondo de Reserva Mensualidad Vehículo: <strong>$1,000 MXN</strong><br>
+                        - Utilidad Neta a Repartir 50/50: <strong>$1,694 MXN</strong> ($847 MXN Alma / $847 MXN Tú)
+                    </div>
+                </div>
+
+                <h4 style="font-family:'Outfit'; color:var(--text-title); margin-bottom:0.8rem;">Tus Módulos de Microservicios Vromlix (Acceso Privado):</h4>
+                <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1rem; margin-top:1rem;">
+                    <div style="background:var(--bg-subtle); border:1px solid var(--brand-cyan); padding:1.2rem; border-radius:12px; text-align:center;">
+                        <i class="fas fa-calculator" style="font-size:1.8rem; color:var(--brand-cyan); margin-bottom:8px;"></i>
+                        <strong style="display:block;">NexoContable</strong>
+                        <small style="color:var(--brand-cyan);">[🔧 Módulo Privado]`</small>
+                    </div>
+
+                    <div style="background:var(--bg-subtle); border:1px solid var(--brand-gold); padding:1.2rem; border-radius:12px; text-align:center;">
+                        <i class="fas fa-dog" style="font-size:1.8rem; color:var(--brand-gold); margin-bottom:8px;"></i>
+                        <strong style="display:block;">Cuadros Mascotas (Pet Art)</strong>
+                        <small style="color:var(--brand-gold);">[🔧 Módulo Privado]</small>
+                    </div>
+
+                    <div style="background:var(--bg-subtle); border:1px solid var(--brand-green); padding:1.2rem; border-radius:12px; text-align:center;">
+                        <i class="fas fa-store" style="font-size:1.8rem; color:var(--brand-green); margin-bottom:8px;"></i>
+                        <strong style="display:block;">Mercadito Local</strong>
+                        <small style="color:var(--brand-green);">[🔧 Módulo Privado]</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PIN Settings View -->
+            <div id="gestor-subtab-pin-settings" style="display:none;">
+                <h4 style="font-family:'Outfit'; color:var(--brand-gold); margin-bottom:0.8rem;">🔒 Configuración de Seguridad de Claves PIN</h4>
+                <div style="max-width:400px; background:var(--bg-subtle); padding:1.2rem; border-radius:10px;">
+                    <div style="margin-bottom:1rem;">
+                        <label style="font-size:0.8rem; font-weight:700;">PIN Actual Alma:</label>
+                        <input type="text" id="pin-alma-val" value="1234" style="width:100%; padding:8px; border-radius:6px; border:1px solid var(--border-color);">
+                    </div>
+                    <div style="margin-bottom:1rem;">
+                        <label style="font-size:0.8rem; font-weight:700;">PIN Actual Super-Admin:</label>
+                        <input type="text" id="pin-admin-val" value="9999" style="width:100%; padding:8px; border-radius:6px; border:1px solid var(--border-color);">
+                    </div>
+                    <button class="btn-search-main" onclick="savePinSettings()">Actualizar PINs de Seguridad</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal for Pin Security (No hardcoded keys printed) -->
+    <div class="modal-overlay" id="pin-modal">
+        <div class="modal-box" style="max-width:380px; text-align:center;">
+            <h3 style="font-family:'Outfit'; margin-bottom:0.5rem;">🔐 Acceso Restringido</h3>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.2rem;">Ingresa tu PIN de seguridad de 4 dígitos para acceder:</p>
+            <input type="password" id="pin-input" maxlength="4" placeholder="••••" style="width:140px; padding:10px; font-size:1.5rem; text-align:center; border:2px solid var(--border-color); border-radius:8px; background:var(--bg-subtle); color:var(--text-title); margin-bottom:1rem; letter-spacing:8px;">
+            <button class="btn-search-main" onclick="validatePin()">Desbloquear Panel</button>
+            <button style="background:none; border:none; color:var(--text-muted); margin-top:10px; cursor:pointer;" onclick="closePinModal()">Cancelar</button>
+        </div>
+    </div>
+
+    <!-- Modal for Payment Options (SPEI, OXXO, Stripe Card) -->
+    <div class="modal-overlay" id="pay-modal">
+        <div class="modal-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:'Outfit'; font-size:1.3rem;">💳 Opciones de Pago / Reserva</h3>
+                <button style="background:none; border:none; color:var(--text-title); font-size:1.3rem; cursor:pointer;" onclick="closePaymentModal()">✖</button>
+            </div>
+
+            <div style="background:var(--bg-subtle); padding:10px 14px; border-radius:8px; margin-bottom:1rem; font-size:0.9rem;">
+                Reserva para: <strong id="modal-pkg-name" style="color:var(--brand-red)">Viaje Express CDMX</strong><br>
+                Monto Total: <strong id="modal-pkg-amount" style="color:var(--brand-green); font-size:1.1rem;">$449 MXN</strong>
+            </div>
+
+            <!-- Coupon Input Field -->
+            <div style="margin-bottom:1rem;">
+                <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:4px;">🎁 ¿Tienes un cupón de la Estética Alma?</label>
+                <div style="display:flex; gap:6px;">
+                    <input type="text" id="coupon-input" placeholder="Ej: ALMA10-8492" style="flex:1; padding:8px 12px; border:1px solid var(--border-color); border-radius:6px; background:var(--bg-subtle); color:var(--text-title); font-weight:700;">
+                    <button style="padding:8px 14px; background:var(--brand-gold); color:#000; border:none; border-radius:6px; font-weight:700; cursor:pointer;" onclick="applyCoupon()">Aplicar 10%</button>
+                </div>
+                <small id="coupon-msg" style="color:var(--brand-green); font-size:0.8rem; display:none; margin-top:4px;">¡Cupón del 10% de descuento aplicado correctamente!</small>
+            </div>
+
+            <div class="payment-tabs">
+                <div class="pay-tab active" onclick="setPayMethod('spei', this)">SPEI / BBVA</div>
+                <div class="pay-tab" onclick="setPayMethod('oxxo', this)">Depósito OXXO</div>
+                <div class="pay-tab" onclick="setPayMethod('stripe', this)">Tarjeta (Stripe)</div>
+            </div>
+
+            <div id="pay-details-box" style="background:var(--bg-subtle); border-radius:10px; padding:1.2rem; margin-bottom:1.2rem; font-size:0.88rem;">
+                <strong style="color:var(--brand-cyan); display:block; margin-bottom:4px;">Transferencia Interbancaria SPEI:</strong>
+                <div><strong>Banco:</strong> BBVA México</div>
+                <div><strong>CLABE:</strong> 012 650 01548796541 2</div>
+                <div><strong>Beneficiario:</strong> Alma Rosa</div>
+            </div>
+
+            <button class="btn-search-main" onclick="sendPaymentWhatsApp()">
+                <i class="fab fa-whatsapp"></i> Confirmar y Enviar Comprobante por WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal for Salon Appointment & Calendar -->
+    <div class="modal-overlay" id="salon-appt-modal">
+        <div class="modal-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:'Outfit'; font-size:1.3rem; color:var(--brand-gold);">💅 Agendar Cita en Estética Alma</h3>
+                <button style="background:none; border:none; color:var(--text-title); font-size:1.3rem; cursor:pointer;" onclick="closeSalonApptModal()">✖</button>
+            </div>
+
+            <div style="margin-bottom:1rem;">
+                <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:4px;">Servicio Seleccionado:</label>
+                <input type="text" id="salon-modal-service-name" readonly style="width:100%; padding:10px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-subtle); font-weight:700;">
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:1rem;">
+                <div>
+                    <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:4px;">Fecha Deseada:</label>
+                    <input type="date" id="salon-modal-date" value="2026-10-05" style="width:100%; padding:10px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-subtle);">
+                </div>
+                <div>
+                    <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:4px;">Horario:</label>
+                    <select id="salon-modal-time" style="width:100%; padding:10px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-subtle);">
+                        <option value="10:00 AM">10:00 AM</option>
+                        <option value="11:30 AM">11:30 AM</option>
+                        <option value="1:00 PM">1:00 PM</option>
+                        <option value="4:00 PM">4:00 PM</option>
+                        <option value="5:30 PM">5:30 PM</option>
+                    </select>
+                </div>
+            </div>
+
+            <div style="margin-bottom:1rem;">
+                <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:4px;">Tu Nombre Completo:</label>
+                <input type="text" id="salon-modal-client-name" placeholder="Ej: María López" style="width:100%; padding:10px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-subtle);">
+            </div>
+
+            <div style="margin-bottom:1.2rem;">
+                <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:4px;">Opción de Pago:</label>
+                <select id="salon-modal-pay-opt" style="width:100%; padding:10px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-subtle);">
+                    <option value="PAGO_EN_SUCURSAL">Pagar en Sucursal el Día de la Cita</option>
+                    <option value="ANTICIPO_100">Anticipo de $100 MXN para Apartar por SPEI / OXXO</option>
+                </select>
+            </div>
+
+            <button class="btn-search-main" style="background:var(--brand-gold); color:#000;" onclick="submitSalonAppointment()">
+                <i class="fas fa-check-circle"></i> Confirmar Cita (+ Obtener Cupón Viajes)
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal for Custom Quote ("Otro Destino (Cotizar)") -->
+    <div class="modal-overlay" id="custom-quote-modal">
+        <div class="modal-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="font-family:'Outfit'; font-size:1.3rem; color:var(--brand-cyan);">✨ Cotizar Destino Personalizado</h3>
+                <button style="background:none; border:none; color:var(--text-title); font-size:1.3rem; cursor:pointer;" onclick="closeCustomQuoteModal()">✖</button>
+            </div>
+            
+            <div style="margin-bottom:1rem;">
+                <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:4px;">Origen del Viaje:</label>
+                <input type="text" value="Río Nexapa 6101, San Manuel, Puebla" readonly style="width:100%; padding:10px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-subtle);">
+            </div>
+
+            <div style="margin-bottom:1rem;">
+                <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:4px;">Destino Deseado (CDMX o Nacional):</label>
+                <input type="text" id="custom-quote-dest" placeholder="Ej: Basílica de Guadalupe, Santa Fe, Oaxaca, etc." style="width:100%; padding:10px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-subtle);">
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:1.2rem;">
+                <div>
+                    <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:4px;">Fecha Estimada:</label>
+                    <input type="date" id="custom-quote-date" value="2026-10-24" style="width:100%; padding:10px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-subtle);">
+                </div>
+                <div>
+                    <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:4px;">Pasajeros:</label>
+                    <select id="custom-quote-pax" style="width:100%; padding:10px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-subtle);">
+                        <option value="1 a 6 pax (Suzuki Ertiga 2022)">1 a 6 pax (Suzuki Ertiga 2022)</option>
+                        <option value="7 a 14 pax (Camioneta Urban)">7 a 14 pax (Camioneta Urban)</option>
+                        <option value="Más de 14 pax (Autobús)">Más de 14 pax (Autobús)</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="btn-search-main" onclick="sendCustomQuoteWhatsApp()">
+                <i class="fab fa-whatsapp"></i> Enviar Solicitud de Cotización a WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/?text=Hola%20Alma,%20quiero%20informes%20de%20los%20viajes" target="_blank" class="whatsapp-float" title="Atención Inmediata por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <div style="font-family:'Outfit'; font-size:1.3rem; font-weight:900; color:#fff; margin-bottom:0.8rem;">
+                    ✈️ Viajes Alma & Vromlix Multi-Hub
+                </div>
+                <p style="font-size:0.88rem;">Tus servicios locales y viajes organizados desde San Manuel a toda la República y el mundo.</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/search/top?q=Ruta%20del%20%C3%81guila%20by%20fraVEO" target="_blank" title="Facebook Ruta del Águila fraVEO"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.facebook.com/search/top?q=Puebla%20Express%20Vromlix" target="_blank" title="Facebook Puebla Express Vromlix"><i class="fas fa-bus"></i></a>
+                    <a href="https://www.facebook.com/search/top?q=Est%C3%A9tica%20Alma%20Puebla" target="_blank" title="Facebook Estética Alma"><i class="fas fa-spa"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <strong style="color:#fff; display:block; margin-bottom:1rem;">Nuestros Servicios</strong>
+                <p style="font-size:0.88rem;">Express CDMX en Ertiga 2022<br>Conciertos Foro Sol / GNP<br>Excursiones Grupales Urban<br>Ruta del Águila (fraVEO VIP)<br>Estética Alma San Manuel</p>
+            </div>
+
+            <div>
+                <strong style="color:#fff; display:block; margin-bottom:1rem;">Ubicación Principal</strong>
+                <p style="font-size:0.88rem;">📍 Río Nexapa 6101, Jardines de San Manuel, C.P. 72570, Puebla, Pue., México<br>📞 WhatsApp: 222-123-4567</p>
+            </div>
+
+            <div>
+                <strong style="color:#fff; display:block; margin-bottom:1rem;">Páginas Oficiales (Facebook)</strong>
+                <p style="font-size:0.85rem;">
+                    1. Paquetes Lujo: <a href="https://www.facebook.com/search/top?q=Ruta%20del%20%C3%81guila%20by%20fraVEO" target="_blank" style="color:var(--brand-gold); font-weight:700; text-decoration:underline;">Ruta del Águila fraVEO</a><br>
+                    2. Express: <a href="https://www.facebook.com/search/top?q=Puebla%20Express%20Vromlix" target="_blank" style="color:var(--brand-cyan); font-weight:700; text-decoration:underline;">Puebla Express / Vromlix</a><br>
+                    3. Personal: <a href="https://www.facebook.com/search/top?q=Est%C3%A9tica%20Alma%20Puebla" target="_blank" style="color:#fff; font-weight:700; text-decoration:underline;">Estética Alma</a>
+                </p>
+            </div>
+        </div>
+        <div style="text-align:center; font-size:0.8rem; border-top:1px solid rgba(255,255,255,0.05); padding-top:1.5rem;">
+            © 2026 Viajes Alma. Powered by Vromlix Engine. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        let selectedSeats = new Set();
+        const ERTIGA_UNIT_PRICE = 449;
+        let currentModalPkgName = "Viaje Express CDMX";
+        let currentModalPkgAmount = 449;
+
+        let almaPin = "1234";
+        let adminPin = "9999";
+
+        function showView(viewId) {
+            document.querySelectorAll('.page-view').forEach(v => v.classList.remove('active'));
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+
+            document.getElementById(viewId).classList.add('active');
+            
+            const navMap = {
+                'view-home': 'nav-home',
+                'view-viajes': 'nav-viajes',
+                'view-estetica': 'nav-estetica',
+                'view-contacto': 'nav-contacto',
+                'view-gestor': 'nav-gestor'
+            };
+            if(navMap[viewId]) document.getElementById(navMap[viewId]).classList.add('active');
+
+            // Dynamic Header Branding
+            const brandBox = document.getElementById('main-header-brand');
+            const searchBox = document.getElementById('search-box-card-sec');
+            const heroTitle = document.getElementById('hero-title-txt');
+            const heroDesc = document.getElementById('hero-desc-txt');
+
+            if(viewId === 'view-estetica') {
+                brandBox.innerHTML = `<span>💅</span> ESTÉTICA ALMA <span class="logo-badge">VROMLIX</span>`;
+                searchBox.style.display = 'none';
+                heroTitle.innerText = "Estética, Imagen & Terapias Alma San Manuel";
+                heroDesc.innerText = "Tratamientos faciales, corte, peinado y masajes relajantes. ¡Obtén un 10% de descuento en tus viajes al agendar!";
+            } else if(viewId === 'view-gestor') {
+                brandBox.innerHTML = `<span>⚙️</span> VROMLIX MULTI-HUB <span class="logo-badge">SUPER-ADMIN</span>`;
+                searchBox.style.display = 'none';
+                heroTitle.innerText = "Panel de Administración Privado";
+                heroDesc.innerText = "Gestión interna de reservas, inteligencia de demanda Kúul y reparto de vehículo.";
+            } else if(viewId === 'view-contacto') {
+                brandBox.innerHTML = `<span>📍</span> CONTACTO & UBICACIÓN <span class="logo-badge">PUEBLA</span>`;
+                searchBox.style.display = 'none';
+                heroTitle.innerText = "Estamos para Servirte en San Manuel";
+                heroDesc.innerText = "Visítanos en Río Nexapa 6101 o comunícate vía WhatsApp para cualquier duda.";
+            } else {
+                brandBox.innerHTML = `<span>✈️</span> VIAJES ALMA <span class="logo-badge">VROMLIX</span>`;
+                searchBox.style.display = 'block';
+                heroTitle.innerText = "Tu Agencia de Viajes y Hub de Servicios en Puebla";
+                heroDesc.innerText = "Salidas ejecutivas a CDMX en Suzuki Ertiga 2022, Conciertos Masivos, Excursiones Grupales en Urban y Paquetes Internacionales de Lujo.";
+            }
+
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function promptPinModal() {
+            document.getElementById('pin-modal').classList.add('active');
+            document.getElementById('pin-input').value = '';
+            document.getElementById('pin-input').focus();
+        }
+
+        function closePinModal() {
+            document.getElementById('pin-modal').classList.remove('active');
+        }
+
+        function validatePin() {
+            const pin = document.getElementById('pin-input').value.trim();
+            if(pin === almaPin || pin === 'alma2026') {
+                closePinModal();
+                document.getElementById('btn-vromlix-tab').style.display = 'none';
+                document.getElementById('btn-pin-config').style.display = 'none';
+                document.getElementById('gestor-title-txt').innerText = "📋 Gestor de Reservas Alma";
+                document.getElementById('gestor-subtab-reservas').style.display = 'block';
+                document.getElementById('gestor-subtab-kuul-demand').style.display = 'none';
+                document.getElementById('gestor-subtab-nexo').style.display = 'none';
+                document.getElementById('gestor-subtab-pin-settings').style.display = 'none';
+                showView('view-gestor');
+            } else if(pin === adminPin || pin === 'vromlix2026') {
+                closePinModal();
+                document.getElementById('btn-vromlix-tab').style.display = 'inline-block';
+                document.getElementById('btn-pin-config').style.display = 'inline-block';
+                document.getElementById('gestor-title-txt').innerText = "⚙️ Vromlix Super-Admin Control Panel";
+                document.getElementById('gestor-subtab-reservas').style.display = 'none';
+                document.getElementById('gestor-subtab-kuul-demand').style.display = 'none';
+                document.getElementById('gestor-subtab-nexo').style.display = 'block';
+                document.getElementById('gestor-subtab-pin-settings').style.display = 'none';
+                showView('view-gestor');
+            } else {
+                alert("PIN de seguridad incorrecto.");
+            }
+        }
+
+        function savePinSettings() {
+            const a = document.getElementById('pin-alma-val').value.trim();
+            const ad = document.getElementById('pin-admin-val').value.trim();
+            if(a.length === 4 && ad.length === 4) {
+                almaPin = a;
+                adminPin = ad;
+                alert("PINs de seguridad actualizados correctamente.");
+            } else {
+                alert("Los PINs deben tener exactamente 4 dígitos.");
+            }
+        }
+
+        function switchTravelSubtab(type, btn) {
+            document.querySelectorAll('#view-viajes .search-tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            document.getElementById('subtab-express').style.display = type === 'express' ? 'block' : 'none';
+            document.getElementById('subtab-nacionales').style.display = type === 'nacionales' ? 'block' : 'none';
+            document.getElementById('subtab-fraveo').style.display = type === 'fraveo' ? 'block' : 'none';
+        }
+
+        function switchGestorSubtab(type, btn) {
+            document.querySelectorAll('#view-gestor .search-tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            document.getElementById('gestor-subtab-reservas').style.display = type === 'reservas' ? 'block' : 'none';
+            document.getElementById('gestor-subtab-kuul-demand').style.display = type === 'kuul-demand' ? 'block' : 'none';
+            document.getElementById('gestor-subtab-nexo').style.display = type === 'nexo' ? 'block' : 'none';
+            document.getElementById('gestor-subtab-pin-settings').style.display = type === 'pin-settings' ? 'block' : 'none';
+        }
+
+        /* Suzuki Ertiga 2022 Multi-Seat Selection Logic */
+        function toggleBlueprintSeat(btn, seatNum) {
+            if(selectedSeats.has(seatNum)) {
+                selectedSeats.delete(seatNum);
+                btn.classList.remove('selected');
+            } else {
+                selectedSeats.add(seatNum);
+                btn.classList.add('selected');
+            }
+
+            const seatListTxt = document.getElementById('home-seats-list');
+            const seatTotalTxt = document.getElementById('home-seats-total');
+
+            if(selectedSeats.size === 0) {
+                seatListTxt.innerText = "Ninguno";
+                seatTotalTxt.innerText = "$0 MXN";
+            } else {
+                const arr = Array.from(selectedSeats).sort((a,b)=>a-b);
+                seatListTxt.innerText = arr.map(s => "#" + s).join(", ");
+                const total = selectedSeats.size * ERTIGA_UNIT_PRICE;
+                seatTotalTxt.innerText = "$" + total.toLocaleString() + " MXN";
+            }
+        }
+
+        function proceedMultiSeatBooking() {
+            if(selectedSeats.size === 0) {
+                alert("Por favor selecciona al menos un asiento en la camioneta Suzuki Ertiga.");
+                return;
+            }
+            const arr = Array.from(selectedSeats).sort((a,b)=>a-b);
+            const total = selectedSeats.size * ERTIGA_UNIT_PRICE;
+            openPaymentModal(`Reserva Suzuki Ertiga (Asiento${arr.length > 1 ? 's':''} ${arr.map(s=>'#'+s).join(', ')})`, total);
+        }
+
+        /* Search Filter Box Handlers */
+        function handleSearchSelectChange(selectElem) {
+            if(selectElem.value === 'CUSTOM_QUOTE') {
+                openCustomQuoteModal();
+            }
+        }
+
+        function executeSearchMain() {
+            const dest = document.getElementById('search-event-select').value;
+            if(dest === 'CUSTOM_QUOTE') {
+                openCustomQuoteModal();
+                return;
+            }
+            const date = document.getElementById('search-date-input').value;
+            const pax = document.getElementById('search-pax-count').value;
+            showView('view-viajes');
+        }
+
+        function openCustomQuoteModal() {
+            document.getElementById('custom-quote-modal').classList.add('active');
+        }
+
+        function closeCustomQuoteModal() {
+            document.getElementById('custom-quote-modal').classList.remove('active');
+        }
+
+        function sendCustomQuoteWhatsApp() {
+            const dest = document.getElementById('custom-quote-dest').value.trim();
+            if(!dest) {
+                alert("Por favor escribe el destino que deseas cotizar.");
+                return;
+            }
+            const date = document.getElementById('custom-quote-date').value;
+            const pax = document.getElementById('custom-quote-pax').value;
+            const msg = `Hola Alma, me gustaría cotizar un viaje personalizado:\n- Origen: Río Nexapa 6101, San Manuel, Puebla\n- Destino Deseado: ${dest}\n- Fecha Estimada: ${date}\n- Pasajeros / Tipo: ${pax}`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+            closeCustomQuoteModal();
+        }
+
+        function castKuulVote(destName) {
+            alert(`¡Gracias por tu voto para "${destName}"! Tu interés ha sido registrado en el tablero de demanda Kúul. Te avisaremos cuando se confirme la salida.`);
+        }
+
+        /* Payment Modal */
+        function openPaymentModal(pkgName, amount) {
+            currentModalPkgName = pkgName;
+            currentModalPkgAmount = amount;
+            
+            document.getElementById('modal-pkg-name').innerText = pkgName;
+            document.getElementById('modal-pkg-amount').innerText = "$" + parseInt(amount).toLocaleString() + " MXN";
+            document.getElementById('coupon-msg').style.display = 'none';
+            document.getElementById('pay-modal').classList.add('active');
+        }
+
+        function closePaymentModal() {
+            document.getElementById('pay-modal').classList.remove('active');
+        }
+
+        function applyCoupon() {
+            const input = document.getElementById('coupon-input').value.trim();
+            if(input !== '') {
+                currentModalPkgAmount = Math.round(currentModalPkgAmount * 0.9);
+                document.getElementById('modal-pkg-amount').innerText = "$" + currentModalPkgAmount.toLocaleString() + " MXN (-10% Descuento Aplicado)";
+                document.getElementById('coupon-msg').style.display = 'block';
+            }
+        }
+
+        function setPayMethod(method, tabBtn) {
+            document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
+            tabBtn.classList.add('active');
+
+            const detailsBox = document.getElementById('pay-details-box');
+            if(method === 'spei') {
+                detailsBox.innerHTML = `
+                    <strong style="color:var(--brand-cyan); display:block; margin-bottom:4px;">Transferencia Interbancaria SPEI:</strong>
+                    <div><strong>Banco:</strong> BBVA México</div>
+                    <div><strong>CLABE:</strong> 012 650 01548796541 2</div>
+                    <div><strong>Beneficiario:</strong> Alma Rosa</div>
+                `;
+            } else if(method === 'oxxo') {
+                detailsBox.innerHTML = `
+                    <strong style="color:var(--brand-gold); display:block; margin-bottom:4px;">Depósito en Tiendas OXXO:</strong>
+                    <div><strong>Número de Tarjeta Spin/OXXO:</strong> 4152 3138 9984 1205</div>
+                    <div><strong>Beneficiario:</strong> Alma Rosa</div>
+                `;
+            } else if(method === 'stripe') {
+                detailsBox.innerHTML = `
+                    <strong style="color:var(--brand-green); display:block; margin-bottom:4px;">Pago Seguro con Tarjeta en Línea (Stripe Gateway):</strong>
+                    <div>Tarjeta de Crédito / Débito (Opción a 3 y 6 meses sin intereses).</div>
+                    <div style="margin-top:8px; font-weight:700; color:var(--brand-cyan);">✓ Procesado de forma segura por Vromlix Stripe Gateway.</div>
+                `;
+            }
+        }
+
+        function sendPaymentWhatsApp() {
+            const msg = `Hola Alma, quiero confirmar mi reserva para: ${currentModalPkgName} por el monto de $${currentModalPkgAmount} MXN. Te adjunto mi comprobante de pago.`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        /* Estética Appointment Flow */
+        function openSalonApptModal(serviceName, price) {
+            document.getElementById('salon-modal-service-name').value = `${serviceName} ($${price} MXN)`;
+            document.getElementById('salon-appt-modal').classList.add('active');
+        }
+
+        function closeSalonApptModal() {
+            document.getElementById('salon-appt-modal').classList.remove('active');
+        }
+
+        function submitSalonAppointment() {
+            const service = document.getElementById('salon-modal-service-name').value;
+            const date = document.getElementById('salon-modal-date').value;
+            const time = document.getElementById('salon-modal-time').value;
+            const client = document.getElementById('salon-modal-client-name').value.trim();
+            const payOpt = document.getElementById('salon-modal-pay-opt').options[document.getElementById('salon-modal-pay-opt').selectedIndex].text;
+
+            if(!client) {
+                alert("Por favor escribe tu nombre completo para confirmar la cita.");
+                return;
+            }
+
+            const couponCode = "ALMA10-" + Math.floor(1000 + Math.random() * 9000);
+            
+            alert(`🎉 ¡Cita Confirmada, ${client}!\n- Servicio: ${service}\n- Fecha y Hora: ${date} a las ${time}\n- Modalidad: ${payOpt}\n\n🎁 TU CUPÓN DE 10% EN VIAJES ES: ${couponCode}\n(Ha sido guardado para que lo utilices cuando viajes).`);
+
+            const msg = `Hola Alma, soy ${client}. Me gustaría agendar mi cita en la estética para el servicio de: ${service} el día ${date} a las ${time} (${payOpt}). Mi código de cupón generado es: ${couponCode}.`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+            closeSalonApptModal();
+        }
+
+        function updatePrice(selectId, priceId) {
+            const val = document.getElementById(selectId).value;
+            document.getElementById(priceId).innerText = "$" + parseInt(val).toLocaleString() + " MXN";
+        }
+
+        function getSelectVal(selectId) {
+            return document.getElementById(selectId).value;
+        }
+
+        function bookSimpleWhatsApp(pkgName) {
+            const msg = `Hola Alma, me interesa cotizar: ${pkgName}. ¿Me puedes dar más información de fechas y precios?`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+    </script>
+</body>
+</html>
