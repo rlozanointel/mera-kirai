@@ -160,6 +160,42 @@ const DESTINOS_DB = [
         no_incluye: ["Gastos personales", "Estacionamientos adicionales"]
     },
     {
+        id: "expos-centro-citibanamex",
+        nombre: "Expos & Congresos CDMX: Centro Citibanamex & Expo Santa Fe",
+        categoria: "express",
+        subcategoria: "ejecutivo",
+        estado: "Ciudad de México",
+        precio: 499,
+        precio_texto: "$499 MXN",
+        tipo_transporte: "Suzuki Ertiga VIP (6 Pax)",
+        duracion: "Servicio Ejecutivo Redondo (Salida 06:00 / Retorno al cierre)",
+        distancia: "145 km desde Puebla",
+        tiempo_traslado: "2.1 hrs",
+        badge: "Corporativo & Expos",
+        imagen: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80",
+        descripcion: "Transporte ejecutivo directo para asistentes, conferencistas y expositores a congresos industriales, médicos y ferias en Centro Citibanamex (Hipódromo) y Expo Santa Fe. Clima, conectividad USB y facturación disponible.",
+        coordenadas: { lat: 19.4389, lng: -99.2227 },
+        ruta_puntos: [
+            { nombre: "Origen: San Manuel, Puebla", lat: 19.0186, lng: -98.1963 },
+            { nombre: "Punto CDMX: Periférico Poniente / Conscripto", lat: 19.4410, lng: -99.2200 },
+            { nombre: "Destino: Centro Citibanamex (Puerta Expos)", lat: 19.4389, lng: -99.2227 }
+        ],
+        itinerario: [
+            { hora: "06:00 AM", actividad: "Salida desde San Manuel (Suzuki Ertiga climatizada)." },
+            { hora: "08:15 AM", actividad: "Llegada directa al Centro Citibanamex antes del inicio del congreso." },
+            { hora: "08:30 AM", actividad: "Acceso al evento, networking y stands de negocios." },
+            { hora: "06:30 PM", actividad: "Abordaje en punto de encuentro asignado." },
+            { hora: "08:45 PM", actividad: "Arribo a Puebla capital." }
+        ],
+        incluye: [
+            "Transporte redondo ejecutivo para grupos de hasta 6 personas",
+            "Casetas y combustible de autopista",
+            "Seguro de cobertura amplia",
+            "Flexibilidad de horario coordinado"
+        ],
+        no_incluye: ["Boleto de acceso al congreso o expo", "Estacionamiento privado si se requiere dentro del recinto"]
+    },
+    {
         id: "ruta-cacao-tabasco",
         nombre: "Ruta Biocultural del Cacao: Haciendas Chocolateras y Comalcalco",
         categoria: "turismo_comunitario",
