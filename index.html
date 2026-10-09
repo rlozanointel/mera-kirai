@@ -3,13 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Viajes Alma & Vromlix Multi-Hub</title>
+    <title>Viajes Alma & Vromlix Multi-Hub | Turismo, Conciertos y Transporte VIP Puebla</title>
+    
+    <!-- OpenGraph SEO Meta Tags -->
+    <meta name="description" content="Salidas ejecutivas a CDMX en Suzuki Ertiga, transporte seguro a conciertos en Foro Sol / GNP, Pueblos Mágicos y experiencias comunitarias SECTUR desde Puebla.">
+    <meta property="og:title" content="Viajes Alma & Vromlix Multi-Hub | Turismo y Transporte VIP Puebla">
+    <meta property="og:description" content="Viajes ejecutivos a CDMX ($449 MXN), Conciertos Foro Sol ($549 MXN), Pueblos Mágicos y paquetes turísticos de lujo desde San Manuel, Puebla.">
+    <meta property="og:image" content="https://mera-kirai.com/img/IMG-20260814-WA0019.jpg">
+    <meta property="og:url" content="https://mera-kirai.com">
+    <meta property="og:type" content="website">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Leaflet 3D Map CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+    <!-- Motion Lux Design CSS (@santaia.lab standards) -->
+    <link rel="stylesheet" href="css/motion_lux.css">
     
     <style>
         :root {
@@ -890,14 +906,33 @@
     <!-- VIEW 2: VIAJES & DESTINOS COMPLETO -->
     <main id="view-viajes" class="page-view">
         <div class="section-title">
-            <i class="fas fa-plane-departure" style="color:var(--brand-red)"></i> Catálogo de Viajes & Destinos
+            <i class="fas fa-plane-departure" style="color:var(--brand-red)"></i> Catálogo de Viajes & Experiencias
         </div>
-        <p class="section-desc">Selecciona la modalidad de viaje que mejor se adapte a lo que necesitas:</p>
+        <p class="section-desc">Pueblos Mágicos, Rutas Comunitarias SECTUR, Conciertos CDMX y Salidas VIP en Ertiga desde San Manuel, Puebla.</p>
+
+        <!-- Motion Lux Category Filter Bar (@santaia.lab standards) -->
+        <div class="cat-pills-bar">
+            <button class="cat-pill-btn active" onclick="filterDestinosByCat('todas', this)"><i class="fas fa-compass"></i> Todos los Destinos</button>
+            <button class="cat-pill-btn" onclick="filterDestinosByCat('pueblo_magico', this)"><i class="fas fa-mountain"></i> Pueblos Mágicos</button>
+            <button class="cat-pill-btn" onclick="filterDestinosByCat('concierto', this)"><i class="fas fa-music"></i> Conciertos CDMX</button>
+            <button class="cat-pill-btn" onclick="filterDestinosByCat('express', this)"><i class="fas fa-car"></i> Express en Ertiga</button>
+            <button class="cat-pill-btn" onclick="filterDestinosByCat('turismo_comunitario', this)"><i class="fas fa-leaf"></i> Turismo Comunitario SECTUR</button>
+        </div>
+
+        <!-- Dynamic Cards Grid (With Crossfade & Magnification) -->
+        <div id="destinos-cards-grid" class="destinos-grid-wrapper" style="margin-bottom: 2.5rem;">
+            <!-- Cargado automáticamente por app_interactive.js -->
+        </div>
+
+        <div class="section-title" style="margin-top:2rem; font-size:1.4rem;">
+            <i class="fas fa-crown" style="color:var(--brand-gold)"></i> Paquetes de Alta Gama & Internacionales (Ruta del Águila)
+        </div>
+        <p class="section-desc">Cruceros, Disney y Tours Internacionales operados bajo franquicia fraVEO:</p>
 
         <!-- Subtabs for Travel Section (Commercial Distribution) -->
         <div style="display:flex; gap:10px; margin-bottom:1.8rem; border-bottom:2px solid var(--border-color); padding-bottom:10px; flex-wrap:wrap;">
-            <button class="search-tab-btn active" onclick="switchTravelSubtab('express', this)">🚌 CDMX & Eventos Masivos</button>
-            <button class="search-tab-btn" onclick="switchTravelSubtab('nacionales', this)">🏖️ Excursiones & Playas Nacionales</button>
+            <button class="search-tab-btn active" onclick="switchTravelSubtab('express', this)">🚌 CDMX Express & Conciertos</button>
+            <button class="search-tab-btn" onclick="switchTravelSubtab('nacionales', this)">🏖️ Playas & Circuitos Nacionales</button>
             <button class="search-tab-btn" onclick="switchTravelSubtab('fraveo', this)">👑 Paquetes VIP Ruta del Águila (fraVEO)</button>
         </div>
 
@@ -1439,6 +1474,79 @@
         </div>
     </div>
 
+    <!-- 1. MODAL DETALLE DE DESTINO CON SHARED ELEMENT EXPANSION -->
+    <div class="lux-modal-backdrop" id="destino-detail-modal">
+        <div class="lux-modal-card">
+            <button class="lux-modal-close" onclick="closeSharedElementModal()">✖</button>
+            <div style="position:relative; height:280px; overflow:hidden;">
+                <img id="modal-dest-img" src="" alt="" style="width:100%; height:100%; object-fit:cover;">
+                <span id="modal-dest-badge" class="destino-badge">Pueblo Mágico</span>
+            </div>
+            <div style="padding:1.8rem;">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; margin-bottom:0.8rem;">
+                    <div>
+                        <h2 id="modal-dest-title" style="font-family:'Outfit'; font-size:1.6rem; color:var(--text-title); margin-bottom:4px;">Nombre del Destino</h2>
+                        <span id="modal-dest-meta" style="font-size:0.85rem; color:var(--text-muted); font-weight:600;">Metadatos</span>
+                    </div>
+                    <div style="text-align:right;">
+                        <span id="modal-dest-price" class="price-pill" style="font-size:1.2rem;">$799 MXN</span>
+                    </div>
+                </div>
+
+                <p id="modal-dest-desc" style="font-size:0.95rem; color:var(--text-body); line-height:1.6; margin-bottom:1.5rem;">Descripción detallada</p>
+
+                <div style="display:grid; grid-template-columns:1.2fr 1fr; gap:1.5rem; margin-bottom:1.5rem;">
+                    <div>
+                        <h4 style="font-family:'Outfit'; color:var(--brand-cyan); margin-bottom:0.8rem;"><i class="fas fa-clock"></i> Itinerario Estimado</h4>
+                        <div id="modal-dest-itinerario" class="itin-box">
+                            <!-- Inyectado dinámicamente -->
+                        </div>
+                    </div>
+                    <div>
+                        <h4 style="font-family:'Outfit'; color:var(--brand-green); margin-bottom:0.8rem;"><i class="fas fa-shield-alt"></i> Qué Incluye tu Viaje</h4>
+                        <ul id="modal-dest-incluye" style="list-style:none; display:flex; flex-direction:column; gap:8px; font-size:0.88rem; color:var(--text-body);">
+                            <!-- Inyectado dinámicamente -->
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="display:flex; gap:12px; padding-top:1.2rem; border-top:1px solid var(--border-color); flex-wrap:wrap;">
+                    <button class="btn-search-main" style="flex:1; min-width:200px; padding:12px;" onclick="bookActiveDestinoWhatsApp()">
+                        <i class="fab fa-whatsapp"></i> Apartar Lugares por WhatsApp
+                    </button>
+                    <button class="btn-3d-motion" style="padding:12px 20px;" onclick="closeSharedElementModal(); openModoDios3D(activeDestino.id)">
+                        <i class="fas fa-globe-americas"></i> Abrir en Modo Dios 3D
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. MODAL MODO DIOS 3D ROUTE EXPLORER (OJO DE DIOS) -->
+    <div class="lux-modal-backdrop" id="modo-dios-modal">
+        <div class="lux-modal-card modo-dios-card">
+            <div class="modo-dios-header">
+                <div>
+                    <h3 id="modo-dios-title" style="font-family:'Outfit'; font-size:1.2rem; color:#38bdf8; margin-bottom:2px;">🌍 Modo Dios 3D: Ruta Turística</h3>
+                    <small id="modo-dios-status" style="color:#94a3b8; font-size:0.8rem;">Cargando relieve satelital...</small>
+                </div>
+                <button class="lux-modal-close" style="position:static;" onclick="closeModoDios3D()">✖</button>
+            </div>
+            
+            <div class="modo-dios-toolbar">
+                <button class="btn-3d-motion" style="padding:6px 14px; font-size:0.8rem;" onclick="flyOverRoute3D()">
+                    <i class="fas fa-paper-plane"></i> 🚀 Sobrevolar Ruta 3D
+                </button>
+                <span style="color:#64748b; font-size:0.8rem;">|</span>
+                <span style="color:#94a3b8; font-size:0.8rem;"><i class="fas fa-satellite"></i> Visualizador Satelital de Alta Precisión</span>
+            </div>
+
+            <div id="modo-dios-canvas-container" class="modo-dios-map-canvas">
+                <!-- Leaflet High-Res Satellite Map Render -->
+            </div>
+        </div>
+    </div>
+
     <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/?text=Hola%20Alma,%20quiero%20informes%20de%20los%20viajes" target="_blank" class="whatsapp-float" title="Atención Inmediata por WhatsApp">
         <i class="fab fa-whatsapp"></i>
@@ -1785,5 +1893,47 @@
             window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
         }
     </script>
+
+    <!-- 3. ASISTENTE IA DE VIAJES KÚUL (GEMINI POWERED ORB) -->
+    <div class="ai-orb-trigger" onclick="toggleAiChat()" title="Asistente de Viajes IA KÚUL">
+        <i class="fas fa-wand-magic-sparkles"></i>
+    </div>
+
+    <div class="ai-chat-window" id="ai-chat-window">
+        <div class="ai-chat-header">
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span style="font-size:1.3rem;">🐺</span>
+                <div>
+                    <strong style="font-family:'Outfit'; font-size:1rem; display:block;">KÚUL Asistente IA</strong>
+                    <small style="color:#38bdf8; font-size:0.75rem;">● En línea • Asesor de Viajes Puebla</small>
+                </div>
+            </div>
+            <button style="background:none; border:none; color:#fff; font-size:1.2rem; cursor:pointer;" onclick="toggleAiChat()">✖</button>
+        </div>
+
+        <div class="ai-chat-messages" id="ai-chat-messages">
+            <div class="ai-chat-bubble assistant">
+                ¡Hola! Soy <strong>KÚUL</strong>, tu asesor inteligente de <em>Viajes Alma & Vromlix Multi-Hub</em>.<br>
+                ¿A dónde te gustaría viajar o qué presupuesto tienes en mente para tu próxima salida?
+            </div>
+        </div>
+
+        <div class="ai-chat-chips">
+            <span class="ai-chip" onclick="askChipPrompt('¿Qué viaje me recomiendas para este fin de semana?')">🌿 Escapada fin de semana</span>
+            <span class="ai-chip" onclick="askChipPrompt('¿Cuánto cuesta el transporte a conciertos en CDMX?')">🎶 Conciertos CDMX</span>
+            <span class="ai-chip" onclick="askChipPrompt('¿Cómo funciona el servicio en la camioneta Suzuki Ertiga?')">🚗 Ertiga 6 Pax</span>
+            <span class="ai-chip" onclick="askChipPrompt('¿Qué incluye el viaje a Cuetzalan Mágico?')">Cascada Cuetzalan</span>
+        </div>
+
+        <div class="ai-chat-input-bar">
+            <input type="text" id="ai-chat-input" placeholder="Pregúntame sobre cualquier destino...">
+            <button onclick="sendChatMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- Leaflet JS & Motores Interactivos -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="js/destinos_data.js"></script>
+    <script src="js/app_interactive.js"></script>
 </body>
 </html>
