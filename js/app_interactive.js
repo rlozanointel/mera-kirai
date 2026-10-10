@@ -1,6 +1,6 @@
 /**
  * App Interactive Engine:
- * 1. Modo Dios 3D Route Explorer (Cesium / Leaflet 3D)
+ * 1. Simulador de Ruta Satelital 3D (Cesium / Leaflet 3D)
  * 2. Motion UI (Crossfade, Shared Element, Magnification, Blur)
  * 3. Asistente IA de Viajes (KÚUL Powered by Gemini)
  */
@@ -8,16 +8,237 @@
 let activeDestino = null;
 let leafletMapInstance = null;
 let mapRoutePolyline = null;
+let mapRouteGlow = null;
 let mapMarkers = [];
+let currentCoverflowIndex = 0;
+let currentCoverflowList = [];
+let wishlistActiveDest = null;
 
 document.addEventListener('DOMContentLoaded', () => {
+    initCoverflowShowcase('todas');
     renderDestinosCards('todas');
     setupMotionUI();
     initChatAssistant();
 });
 
 /* =========================================================================
-   1. CATÁLOGO INTERACTIVO CON MOTION UI (@santaia.lab)
+   1. MAGNIFICATION COVERFLOW 3D CAROUSEL (@santaia.lab standards)
+   ========================================================================= */
+
+function initCoverflowShowcase(categoriaFiltro = 'todas') {
+    const track = document.getElementById('coverflow-track');
+    const dotsContainer = document.getElementById('coverflow-dots');
+    if (!track) return;
+
+    currentCoverflowList = categoriaFiltro === 'todas'
+        ? DESTINOS_DB
+        : DESTINOS_DB.filter(d => d.categoria === categoriaFiltro || d.subcategoria === categoriaFiltro);
+
+    if (currentCoverflowList.length === 0) {
+        currentCoverflowList = DESTINOS_DB;
+    }
+
+    currentCoverflowIndex = Math.min(currentCoverflowIndex, currentCoverflowList.length - 1);
+    if (currentCoverflowIndex < 0) currentCoverflowIndex = 0;
+
+    track.innerHTML = '';
+    if (dotsContainer) dotsContainer.innerHTML = '';
+
+    currentCoverflowList.forEach((dest, idx) => {
+        const card = document.createElement('div');
+        card.className = `coverflow-card ${idx === currentCoverflowIndex ? 'active' : ''}`;
+        card.setAttribute('data-index', idx);
+        card.onclick = () => {
+            if (idx !== currentCoverflowIndex) {
+                goToCoverflowIndex(idx);
+            }
+        };
+
+        const localVotes = getStoredVotes(dest.id, dest.votos_comunidad || 15);
+
+        card.innerHTML = `
+            <div class="destino-img-box">
+                <img src="${dest.imagen}" alt="${dest.nombre}" loading="lazy" class="destino-img">
+                <span class="destino-badge">${dest.badge}</span>
+                <div class="destino-overlay-price">
+                    <span class="price-pill">${dest.precio_texto}</span>
+                </div>
+            </div>
+            <div class="destino-content">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                    <span class="destino-meta"><i class="fas fa-map-marker-alt"></i> ${dest.estado} • ${dest.duracion}</span>
+                    <span class="wishlist-pill-counter" id="badge-vote-${dest.id}">
+                        <i class="fas fa-heart" style="color:#ef4444;"></i> ${localVotes} votos
+                    </span>
+                </div>
+                <h3 class="destino-title">${dest.nombre}</h3>
+                <p class="destino-desc">${dest.descripcion.substring(0, 110)}...</p>
+                <div class="destino-tags">
+                    <span><i class="fas fa-shuttle-van"></i> ${dest.tipo_transporte.split('/')[0]}</span>
+                    <span><i class="fas fa-route"></i> ${dest.tiempo_traslado}</span>
+                </div>
+                <div class="destino-actions">
+                    <button class="btn-3d-motion" onclick="event.stopPropagation(); openRutaSatelital3D('${dest.id}')" title="Ver Ruta Satelital 3D">
+                        <i class="fas fa-satellite"></i> Ruta 3D
+                    </button>
+                    <button class="btn-wishlist-vote" onclick="event.stopPropagation(); openWishlistModal('${dest.id}')" title="Votar por este destino semanal">
+                        <i class="fas fa-heart"></i> Me interesa
+                    </button>
+                </div>
+            </div>
+        `;
+        track.appendChild(card);
+
+        if (dotsContainer) {
+            const dot = document.createElement('div');
+            dot.className = `coverflow-dot ${idx === currentCoverflowIndex ? 'active' : ''}`;
+            dot.onclick = () => goToCoverflowIndex(idx);
+            dotsContainer.appendChild(dot);
+        }
+    });
+
+    updateCoverflowPosition();
+}
+
+function updateCoverflowPosition() {
+    const track = document.getElementById('coverflow-track');
+    const viewport = document.getElementById('coverflow-viewport');
+    if (!track || !viewport) return;
+
+    const cards = track.querySelectorAll('.coverflow-card');
+    cards.forEach((c, idx) => {
+        if (idx === currentCoverflowIndex) {
+            c.classList.add('active');
+        } else {
+            c.classList.remove('active');
+        }
+    });
+
+    const dots = document.querySelectorAll('.coverflow-dot');
+    dots.forEach((d, idx) => {
+        if (idx === currentCoverflowIndex) {
+            d.classList.add('active');
+        } else {
+            d.classList.remove('active');
+        }
+    });
+
+    // Calcular desplazamiento para centrar la tarjeta activa
+    const cardWidth = 388; // 360px + margin
+    const offset = -(currentCoverflowIndex * cardWidth);
+    track.style.transform = `translateX(${offset}px)`;
+
+    const counterTxt = document.getElementById('coverflow-counter-txt');
+    if (counterTxt) {
+        counterTxt.innerText = `Destino ${currentCoverflowIndex + 1} de ${currentCoverflowList.length}`;
+    }
+}
+
+function prevCoverflow() {
+    if (currentCoverflowIndex > 0) {
+        currentCoverflowIndex--;
+        updateCoverflowPosition();
+    }
+}
+
+function nextCoverflow() {
+    if (currentCoverflowIndex < currentCoverflowList.length - 1) {
+        currentCoverflowIndex++;
+        updateCoverflowPosition();
+    }
+}
+
+function goToCoverflowIndex(idx) {
+    currentCoverflowIndex = idx;
+    updateCoverflowPosition();
+}
+
+function getStoredVotes(destId, defaultVotes) {
+    try {
+        const stored = localStorage.getItem(`viajes_votes_${destId}`);
+        return stored ? parseInt(stored, 10) : defaultVotes;
+    } catch (e) {
+        return defaultVotes;
+    }
+}
+
+/* =========================================================================
+   2. SISTEMA DE LISTA DE DESEOS Y VOTACIÓN DE LA COMUNIDAD
+   ========================================================================= */
+
+function openWishlistModal(destId) {
+    const dest = DESTINOS_DB.find(d => d.id === destId);
+    if (!dest) return;
+    wishlistActiveDest = dest;
+
+    const modal = document.getElementById('wishlist-vote-modal');
+    if (!modal) return;
+
+    document.getElementById('wishlist-modal-title').innerText = `¿Te gustaría viajar a ${dest.nombre}?`;
+    document.getElementById('wishlist-modal-dest-name').innerText = dest.nombre;
+    document.getElementById('wishlist-modal-dest-price').innerText = `Tarifa estimada: ${dest.precio_texto} redondo`;
+    
+    const votes = getStoredVotes(dest.id, dest.votos_comunidad || 15);
+    document.getElementById('wishlist-modal-vote-count').innerText = `${votes} personas han votado esta semana`;
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeWishlistModal() {
+    const modal = document.getElementById('wishlist-vote-modal');
+    if (modal) modal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function submitWishlistVote(e) {
+    if (e) e.preventDefault();
+    if (!wishlistActiveDest) return;
+
+    const nombre = document.getElementById('vote-user-name').value.trim();
+    const tel = document.getElementById('vote-user-phone').value.trim();
+    const plazas = document.getElementById('vote-user-seats').value;
+
+    if (!nombre || !tel) {
+        alert("Por favor ingresa tu nombre y WhatsApp para poder notificarte de la salida.");
+        return;
+    }
+
+    // Incrementar votos
+    const current = getStoredVotes(wishlistActiveDest.id, wishlistActiveDest.votos_comunidad || 15);
+    const newVotes = current + 1;
+    try {
+        localStorage.setItem(`viajes_votes_${wishlistActiveDest.id}`, newVotes);
+        
+        // Guardar registro de prospecto para Alma y Rogerman
+        const registros = JSON.parse(localStorage.getItem('viajes_prospectos') || '[]');
+        registros.push({
+            destino: wishlistActiveDest.nombre,
+            precio: wishlistActiveDest.precio_texto,
+            nombre,
+            telefono: tel,
+            plazas,
+            fecha: new Date().toLocaleDateString('es-MX')
+        });
+        localStorage.setItem('viajes_prospectos', JSON.stringify(registros));
+    } catch (err) {}
+
+    // Actualizar badge en UI
+    const badge = document.getElementById(`badge-vote-${wishlistActiveDest.id}`);
+    if (badge) badge.innerHTML = `<i class="fas fa-heart" style="color:#ef4444;"></i> ${newVotes} votos`;
+
+    closeWishlistModal();
+
+    // Confirmación y opción de WhatsApp directo
+    const msg = `¡Gracias ${nombre}! Tu interés por *${wishlistActiveDest.nombre}* (${plazas} lugares) ha sido registrado.\n\n¿Deseas enviar tu petición directamente a Alma por WhatsApp para asegurar prioridad de salida?`;
+    if (confirm(msg)) {
+        const waText = `Hola Alma, me interesa unirme a la salida grupal para: *${wishlistActiveDest.nombre}*. Somos *${plazas} personas*. Mi nombre es *${nombre}*. ¿Cuándo abren la próxima fecha?`;
+        window.open(`https://wa.me/?text=${encodeURIComponent(waText)}`, '_blank');
+    }
+}
+
+/* =========================================================================
+   3. CATÁLOGO INTERACTIVO CON MOTION UI (@santaia.lab)
    ========================================================================= */
 
 function renderDestinosCards(categoriaFiltro = 'todas') {
@@ -60,8 +281,8 @@ function renderDestinosCards(categoriaFiltro = 'todas') {
                         <button class="btn-detail-motion" onclick="openSharedElementModal('${dest.id}')">
                             <i class="fas fa-eye"></i> Ver Detalles
                         </button>
-                        <button class="btn-3d-motion" onclick="openModoDios3D('${dest.id}')" title="Explorar en Modo Dios 3D">
-                            <i class="fas fa-globe-americas"></i> Modo Dios 3D
+                        <button class="btn-3d-motion" onclick="openRutaSatelital3D('${dest.id}')" title="Explorar Ruta Satelital 3D">
+                            <i class="fas fa-satellite"></i> Ruta Satelital 3D
                         </button>
                     </div>
                 </div>
@@ -78,11 +299,12 @@ function renderDestinosCards(categoriaFiltro = 'todas') {
 function filterDestinosByCat(catId, btnElem) {
     document.querySelectorAll('.cat-pill-btn').forEach(b => b.classList.remove('active'));
     if (btnElem) btnElem.classList.add('active');
+    initCoverflowShowcase(catId);
     renderDestinosCards(catId);
 }
 
 /* =========================================================================
-   2. SHARED ELEMENT EXPANSION MODAL
+   4. SHARED ELEMENT EXPANSION MODAL
    ========================================================================= */
 
 function openSharedElementModal(destId) {
@@ -131,58 +353,83 @@ function bookActiveDestinoWhatsApp() {
 }
 
 /* =========================================================================
-   3. MODO DIOS 3D ROUTE EXPLORER (Cesium & Leaflet 3D Hybrid)
+   5. SIMULADOR DE RUTA SATELITAL 3D (VISTA AÉREA Y ALTIMETRÍA)
    ========================================================================= */
 
-function openModoDios3D(destId) {
+function openRutaSatelital3D(destId) {
     const dest = DESTINOS_DB.find(d => d.id === destId);
     if (!dest) return;
     activeDestino = dest;
 
-    const modal = document.getElementById('modo-dios-modal');
+    const modal = document.getElementById('simulador-satelital-modal') || document.getElementById('modo-dios-modal');
     if (!modal) return;
 
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
 
-    document.getElementById('modo-dios-title').innerText = `🌍 Modo Dios 3D: Ruta ${dest.nombre}`;
-    document.getElementById('modo-dios-status').innerText = `Trayecto Puebla -> ${dest.estado} (${dest.distancia} • ${dest.tiempo_traslado})`;
+    const titleEl = document.getElementById('simulador-satelital-title') || document.getElementById('modo-dios-title');
+    if (titleEl) titleEl.innerText = `🛰️ Simulador de Ruta Satelital 3D: ${dest.nombre}`;
 
-    // Inicializar o centrar mapa interactivo con relieve
+    const statusEl = document.getElementById('simulador-satelital-status') || document.getElementById('modo-dios-status');
+    if (statusEl) statusEl.innerText = `Ruta Puebla -> ${dest.estado} (${dest.distancia} • ${dest.tiempo_traslado})`;
+
+    // Rellenar barra de Altimetría
+    const altRibbon = document.getElementById('simulador-altimetria-ribbon');
+    if (altRibbon && dest.ruta_puntos) {
+        altRibbon.innerHTML = dest.ruta_puntos.map(p => `
+            <div class="altimetria-stop">
+                <span>📍 ${p.nombre}</span>
+                <span class="altimetria-badge">${p.altitud || '2,200 m'}</span>
+            </div>
+        `).join('<span style="color:#475569;">➔</span>');
+    }
+
     setTimeout(() => {
-        initModoDiosMap(dest);
+        initRutaSatelitalMap(dest);
     }, 250);
 }
 
-function closeModoDios3D() {
-    const modal = document.getElementById('modo-dios-modal');
+// Alias de compatibilidad
+function openModoDios3D(destId) {
+    openRutaSatelital3D(destId);
+}
+
+function closeRutaSatelital3D() {
+    const modal = document.getElementById('simulador-satelital-modal') || document.getElementById('modo-dios-modal');
     if (modal) modal.classList.remove('active');
     document.body.style.overflow = '';
 }
 
-function initModoDiosMap(dest) {
-    const mapContainer = document.getElementById('modo-dios-canvas-container');
+function closeModoDios3D() {
+    closeRutaSatelital3D();
+}
+
+function initRutaSatelitalMap(dest) {
+    const containerId = document.getElementById('simulador-satelital-canvas') ? 'simulador-satelital-canvas' : 'modo-dios-canvas-container';
+    const mapContainer = document.getElementById(containerId);
     if (!mapContainer) return;
 
     if (!leafletMapInstance) {
-        // Inicializar Leaflet con capa de relieve satelital estilo Ojo de Dios
-        leafletMapInstance = L.map('modo-dios-canvas-container', {
+        // Inicializar Leaflet con relieve satelital de alta resolución
+        leafletMapInstance = L.map(containerId, {
             zoomControl: true,
             attributionControl: false
         }).setView([19.0186, -98.1963], 8);
 
-        // Capa ESRI World Imagery (Satelital de alta resolución)
+        // ESRI World Imagery (Satelital fotorrealista)
         L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
             maxZoom: 19
         }).addTo(leafletMapInstance);
 
-        // Capa de etiquetas de ciudades y carreteras translúcida
+        // Capa de carreteras y referencias geográficas
         L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
             maxZoom: 19
         }).addTo(leafletMapInstance);
+    } else {
+        leafletMapInstance.invalidateSize();
     }
 
-    // Limpiar marcadores anteriores
+    // Limpiar marcadores y trayectorias anteriores
     if (mapMarkers.length) {
         mapMarkers.forEach(m => leafletMapInstance.removeLayer(m));
         mapMarkers = [];
@@ -190,39 +437,54 @@ function initModoDiosMap(dest) {
     if (mapRoutePolyline) {
         leafletMapInstance.removeLayer(mapRoutePolyline);
     }
+    if (mapRouteGlow) {
+        leafletMapInstance.removeLayer(mapRouteGlow);
+    }
 
-    // Puntos de la ruta
     const latlngs = dest.ruta_puntos.map(p => [p.lat, p.lng]);
 
-    // Dibujar línea de vuelo/trayectoria estilo cibernético luminoso
-    mapRoutePolyline = L.polyline(latlngs, {
-        color: '#00f2fe',
-        weight: 5,
-        opacity: 0.9,
-        dashArray: '10, 10',
+    // Resplandor exterior de la carretera
+    mapRouteGlow = L.polyline(latlngs, {
+        color: '#0284c7',
+        weight: 9,
+        opacity: 0.5,
         lineCap: 'round'
     }).addTo(leafletMapInstance);
 
-    // Añadir pines de las paradas
+    // Trazado de alta precisión en neón cian
+    mapRoutePolyline = L.polyline(latlngs, {
+        color: '#38bdf8',
+        weight: 4,
+        opacity: 0.95,
+        dashArray: '8, 8',
+        lineCap: 'round'
+    }).addTo(leafletMapInstance);
+
+    // Pines con indicador de altitud y parada
     dest.ruta_puntos.forEach((p, idx) => {
         const isStart = idx === 0;
         const isEnd = idx === dest.ruta_puntos.length - 1;
         const color = isStart ? '#10b981' : isEnd ? '#ef4444' : '#f59e0b';
 
         const customIcon = L.divIcon({
-            className: 'modo-dios-custom-pin',
-            html: `<div style="background:${color}; width:16px; height:16px; border-radius:50%; border:3px solid #fff; box-shadow:0 0 12px ${color};"></div>`,
-            iconSize: [20, 20]
+            className: 'satelital-custom-pin',
+            html: `<div style="background:${color}; width:18px; height:18px; border-radius:50%; border:3px solid #fff; box-shadow:0 0 14px ${color};"></div>`,
+            iconSize: [22, 22]
         });
 
         const marker = L.marker([p.lat, p.lng], { icon: customIcon })
-            .bindPopup(`<strong>${p.nombre}</strong><br><span style="font-size:0.8rem; color:#666;">Parada #${idx + 1} del itinerario</span>`)
+            .bindPopup(`
+                <div style="font-family:'Outfit', sans-serif;">
+                    <strong style="color:#0f172a; font-size:0.95rem;">${p.nombre}</strong><br>
+                    <span style="font-size:0.8rem; color:#0284c7; font-weight:700;">⛰️ Altitud: ${p.altitud || '2,200 m'}</span><br>
+                    <span style="font-size:0.75rem; color:#64748b;">Parada #${idx + 1} del trayecto</span>
+                </div>
+            `)
             .addTo(leafletMapInstance);
 
         mapMarkers.push(marker);
     });
 
-    // Ajustar zoom a la ruta
     leafletMapInstance.fitBounds(mapRoutePolyline.getBounds(), { padding: [50, 50] });
 }
 
@@ -242,6 +504,7 @@ function flyOverRoute3D() {
         step++;
     }, 2400);
 }
+
 
 /* =========================================================================
    4. ASISTENTE IA DE VIAJES (KÚUL ENGINE CON GEMINI)
@@ -337,10 +600,10 @@ Tu objetivo es asesorar a los clientes, recomendar el destino perfecto, dar prec
 Base de Datos de Paquetes y Salidas Disponibles:
 1. CDMX Express VIP (Suzuki Ertiga 6 pax): $449 MXN redondo diario. Salida 06:30 AM desde San Manuel, regreso 18:30 hrs.
 2. Conciertos Foro Sol / Estadio GNP / Palacio de los Deportes CDMX: $549 MXN redondo. Te dejamos en la puerta y te esperamos al terminar.
-3. Cuetzalan Mágico (Cascadas y café totonaca SECTUR): $799 MXN redondo.
+3. Cuetzalan Mágico (Cascadas y café totonaca tradicional): $799 MXN redondo.
 4. Zacatlán & Chignahuapan (Barranca de los Jilgueros y esferas): $749 MXN redondo.
 5. Oaxaca Mágico (Hierve el Agua y Tule): $1,899 MXN (2 días / 1 noche).
-6. Ruta Biocultural del Cacao Tabasco (SECTUR UNESCO): $3,499 MXN (3 días / 2 noches).
+6. Ruta Biocultural del Cacao Tabasco (Haciendas y Chocolateras): $3,499 MXN (3 días / 2 noches).
 Servicio extra: Estética Alma en San Manuel (al agendar cualquier servicio de estética obtienes 10% de descuento en tus viajes).
 Instrucciones: Responde siempre de forma amable, entusiasta, concisa, profesional y en español mexicano. Siempre invita a apartar sus asientos por WhatsApp o en la plataforma.`;
 

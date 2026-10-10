@@ -1,6 +1,6 @@
 /**
  * Base de Datos Maestra de Destinos y Experiencias Turísticas
- * Integración SECTUR (Pueblos Mágicos, Turismo Comunitario UNESCO y Eventos Masivos)
+ * Integración Patrimonio Comunitario (Pueblos Mágicos, Turismo Comunitario UNESCO y Eventos Masivos)
  * Agencia: Viajes Alma & Vromlix Multi-Hub
  */
 
@@ -199,7 +199,7 @@ const DESTINOS_DB = [
         id: "ruta-cacao-tabasco",
         nombre: "Ruta Biocultural del Cacao: Haciendas Chocolateras y Comalcalco",
         categoria: "turismo_comunitario",
-        subcategoria: "sectur_unesco",
+        subcategoria: "patrimonio_unesco",
         estado: "Tabasco",
         precio: 3499,
         precio_texto: "$3,499 MXN",
@@ -207,15 +207,18 @@ const DESTINOS_DB = [
         duracion: "3 Días / 2 Noches",
         distancia: "620 km",
         tiempo_traslado: "Ruta Turística Escénica",
-        badge: "SECTUR UNESCO",
+        badge: "Patrimonio Cultural",
+        votos_comunidad: 32,
         imagen: "https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=1200&q=80",
-        descripcion: "Directamente de los programas insignia de Turismo Comunitario presentados por SECTUR: Recorre las haciendas cacaoteras ancestrales de Tabasco, vive el proceso artesanal del chocolate criollo con productores mayas-chontales y conoce la zona arqueológica de Comalcalco.",
+        descripcion: "Recorre las haciendas cacaoteras ancestrales de Tabasco, vive el proceso artesanal del chocolate criollo con productores mayas-chontales y conoce la zona arqueológica de Comalcalco.",
         coordenadas: { lat: 18.2612, lng: -93.2057 },
         ruta_puntos: [
-            { nombre: "Puebla Capital", lat: 19.0186, lng: -98.1963 },
-            { nombre: "Veracruz Puerto (Escala)", lat: 19.1738, lng: -96.1342 },
-            { nombre: "Villahermosa, Tabasco", lat: 17.9895, lng: -92.9475 },
-            { nombre: "Comalcalco y Haciendas del Cacao", lat: 18.2612, lng: -93.2057 }
+            { nombre: "Puebla Capital (Salida San Manuel)", lat: 19.0186, lng: -98.1963, altitud: "2,160 m" },
+            { nombre: "Cumbres de Maltrata (Mirador)", lat: 18.8100, lng: -97.2800, altitud: "1,700 m" },
+            { nombre: "Veracruz Puerto (Escala Gastronómica)", lat: 19.1738, lng: -96.1342, altitud: "10 m" },
+            { nombre: "Coatzacoalcos (Puente Dovali)", lat: 18.1333, lng: -94.4500, altitud: "15 m" },
+            { nombre: "Villahermosa, Tabasco", lat: 17.9895, lng: -92.9475, altitud: "20 m" },
+            { nombre: "Comalcalco: Haciendas del Cacao", lat: 18.2612, lng: -93.2057, altitud: "18 m" }
         ],
         itinerario: [
             { hora: "Día 1", actividad: "Salida de Puebla rumbo a Villahermosa. Hospedaje y cena típica chontal." },
@@ -244,14 +247,17 @@ const DESTINOS_DB = [
         distancia: "340 km desde Puebla",
         tiempo_traslado: "4 hrs",
         badge: "Cultura & Sabor",
+        votos_comunidad: 47,
         imagen: "https://images.unsplash.com/photo-1512813195386-6cf811ad3542?auto=format&fit=crop&w=1200&q=80",
         descripcion: "Visita la majestuosa ciudad de Oaxaca, el imponente Árbol del Tule, las cascadas petrificadas de Hierve el Agua y vive la experiencia en un palenque de mezcal artesanal en Matatlán.",
         coordenadas: { lat: 17.0654, lng: -96.7236 },
         ruta_puntos: [
-            { nombre: "Salida: Puebla", lat: 19.0186, lng: -98.1963 },
-            { nombre: "Hierve el Agua", lat: 16.8660, lng: -96.2750 },
-            { nombre: "Santiago Matatlán (Cuna del Mezcal)", lat: 16.8631, lng: -96.3800 },
-            { nombre: "Oaxaca Centro Histórico", lat: 17.0654, lng: -96.7236 }
+            { nombre: "Salida: San Manuel, Puebla", lat: 19.0186, lng: -98.1963, altitud: "2,160 m" },
+            { nombre: "Tehuacán (Reserva de la Biósfera)", lat: 18.4633, lng: -97.3930, altitud: "1,676 m" },
+            { nombre: "Nochixtlán (Mixteca Alta)", lat: 17.4578, lng: -97.2256, altitud: "2,080 m" },
+            { nombre: "Oaxaca Centro Histórico", lat: 17.0654, lng: -96.7236, altitud: "1,555 m" },
+            { nombre: "Santiago Matatlán (Cuna del Mezcal)", lat: 16.8631, lng: -96.3800, altitud: "1,720 m" },
+            { nombre: "Hierve el Agua (Pozas Naturales)", lat: 16.8660, lng: -96.2750, altitud: "1,800 m" }
         ],
         itinerario: [
             { hora: "Sábado 05:00 AM", actividad: "Salida desde San Manuel, Puebla." },
@@ -270,14 +276,130 @@ const DESTINOS_DB = [
             "Cata de mezcales artesanales"
         ],
         no_incluye: ["Alimentos no detallados"]
+    },
+    {
+        id: "grutas-tolantongo",
+        nombre: "Grutas de Tolantongo: Pozas Termales, Túneles y Cañón",
+        categoria: "turismo_comunitario",
+        subcategoria: "ecoturismo",
+        estado: "Hidalgo",
+        precio: 890,
+        precio_texto: "$890 MXN",
+        tipo_transporte: "Suzuki Ertiga (6 Pax) / Urban (14 Pax)",
+        duracion: "1 Día Completo (05:00 a 22:00)",
+        distancia: "245 km desde Puebla",
+        tiempo_traslado: "3.2 hrs",
+        badge: "Paraíso Termal",
+        votos_comunidad: 58,
+        imagen: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+        descripcion: "Sumérgete en las impresionantes pozas escalonadas de aguas termales color turquesa, explora la gruta y túnel de vapor natural dentro de la montaña y camina por el río caliente de Tolantongo.",
+        coordenadas: { lat: 20.6481, lng: -98.9950 },
+        ruta_puntos: [
+            { nombre: "Salida: San Manuel, Puebla", lat: 19.0186, lng: -98.1963, altitud: "2,160 m" },
+            { nombre: "Arco Norte (Tramo San Martín - Pachuca)", lat: 19.7800, lng: -98.6500, altitud: "2,400 m" },
+            { nombre: "Ixmiquilpan (Valle del Mezquital)", lat: 20.4833, lng: -99.2167, altitud: "1,700 m" },
+            { nombre: "Cardonal & Cañón de Tolantongo", lat: 20.6481, lng: -98.9950, altitud: "1,280 m" }
+        ],
+        itinerario: [
+            { hora: "05:00 AM", actividad: "Salida puntual desde San Manuel, Puebla." },
+            { hora: "08:30 AM", actividad: "Llegada al cañón y acceso temprano a las pozas de la montaña." },
+            { hora: "11:30 AM", actividad: "Exploración de la gruta principal, cascada interna y túnel termal." },
+            { hora: "02:00 PM", actividad: "Comida campirana a orillas del río turquesa." },
+            { hora: "05:30 PM", actividad: "Reunión en transporte para emprender el regreso." },
+            { hora: "09:30 PM", actividad: "Llegada segura a San Manuel, Puebla." }
+        ],
+        incluye: [
+            "Transporte redondo con chofer y seguro",
+            "Casetas de autopista y combustible",
+            "Entrada general al parque y pozas termales",
+            "Acceso a grutas, río y cascadas"
+        ],
+        no_incluye: ["Tirolesa", "Alimentos"]
+    },
+    {
+        id: "valquirico-cacaxtla",
+        nombre: "Val'Quirico Medieval & Zona Arqueológica Cacaxtla",
+        categoria: "pueblo_magico",
+        subcategoria: "escapada_express",
+        estado: "Tlaxcala",
+        precio: 490,
+        precio_texto: "$490 MXN",
+        tipo_transporte: "Suzuki Ertiga 2022 (6 Pax)",
+        duracion: "Medio Día / Tarde (10:00 a 19:00)",
+        distancia: "26 km desde Puebla",
+        tiempo_traslado: "35 min",
+        badge: "Escapada Rápida",
+        votos_comunidad: 29,
+        imagen: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1200&q=80",
+        descripcion: "Pasea por el pueblo estilo toscano medieval más bello de la región. Callejones empedrados, arquitectura de piedra y madera, gastronomía europea y visita opcional a los murales prehispánicos de Cacaxtla.",
+        coordenadas: { lat: 19.2464, lng: -98.3189 },
+        ruta_puntos: [
+            { nombre: "Salida: San Manuel, Puebla", lat: 19.0186, lng: -98.1963, altitud: "2,160 m" },
+            { nombre: "Autopista México-Puebla (Km 110)", lat: 19.1800, lng: -98.3000, altitud: "2,180 m" },
+            { nombre: "Val'Quirico (Pueblo Toscano)", lat: 19.2464, lng: -98.3189, altitud: "2,210 m" }
+        ],
+        itinerario: [
+            { hora: "10:00 AM", actividad: "Salida desde San Manuel en camioneta Ertiga climatizada." },
+            { hora: "10:45 AM", actividad: "Llegada y recorrido fotográfico por los callejones de Val'Quirico." },
+            { hora: "01:30 PM", actividad: "Tiempo para comer en restaurantes de corte toscano/mexicano." },
+            { hora: "04:30 PM", actividad: "Café, música en vivo en las plazuelas y compras de autor." },
+            { hora: "06:30 PM", actividad: "Retorno hacia Puebla." },
+            { hora: "07:15 PM", actividad: "Llegada a San Manuel." }
+        ],
+        incluye: [
+            "Transporte redondo VIP en Suzuki Ertiga (máx 6 personas)",
+            "Acceso y estacionamiento en Val'Quirico",
+            "Seguro de viaje en carretera"
+        ],
+        no_incluye: ["Consumo en restaurantes"]
+    },
+    {
+        id: "huasca-prismas-basalticos",
+        nombre: "Huasca de Ocampo & Real del Monte: Prismas Basálticos y Pastes",
+        categoria: "pueblo_magico",
+        subcategoria: "ecoturismo",
+        estado: "Hidalgo",
+        precio: 790,
+        precio_texto: "$790 MXN",
+        tipo_transporte: "Suzuki Ertiga (6 Pax) / Urban (14 Pax)",
+        duracion: "1 Día Completo (06:30 a 20:30)",
+        distancia: "165 km desde Puebla",
+        tiempo_traslado: "2.3 hrs",
+        badge: "Primer Pueblo Mágico",
+        votos_comunidad: 41,
+        imagen: "https://images.unsplash.com/photo-1518638150340-f706e86654de?auto=format&fit=crop&w=1200&q=80",
+        descripcion: "Conoce el primer Pueblo Mágico de México. Admira las columnas geométricas de basalto bañadas por cuatro cascadas en los Prismas Basálticos, recorre la Hacienda Santa María Regla y prueba los auténticos pastes mineros de Real del Monte.",
+        coordenadas: { lat: 20.2039, lng: -98.5772 },
+        ruta_puntos: [
+            { nombre: "Salida: San Manuel, Puebla", lat: 19.0186, lng: -98.1963, altitud: "2,160 m" },
+            { nombre: "Arco Norte (Entronque Tulancingo)", lat: 19.9500, lng: -98.4000, altitud: "2,350 m" },
+            { nombre: "Real del Monte (Pueblo Minero)", lat: 20.1417, lng: -98.6722, altitud: "2,700 m" },
+            { nombre: "Prismas Basálticos de Huasca", lat: 20.2039, lng: -98.5772, altitud: "2,100 m" }
+        ],
+        itinerario: [
+            { hora: "06:30 AM", actividad: "Salida puntual desde San Manuel, Puebla." },
+            { hora: "09:00 AM", actividad: "Desayuno tradicional en Real del Monte: pastes mineros recién horneados." },
+            { hora: "11:00 AM", actividad: "Llegada a los Prismas Basálticos: puente colgante y senderos de cascadas." },
+            { hora: "02:30 PM", actividad: "Visita a los jardines de la Hacienda de Santa María Regla." },
+            { hora: "05:30 PM", actividad: "Salida rumbo a Puebla." },
+            { hora: "08:00 PM", actividad: "Llegada a San Manuel." }
+        ],
+        incluye: [
+            "Transporte redondo con combustible y casetas",
+            "Entrada general al parque Prismas Basálticos",
+            "Seguro de cobertura amplia",
+            "Visita guiada a Real del Monte"
+        ],
+        no_incluye: ["Alimentos"]
     }
 ];
 
-// Mapeo Rápido de Experiencias
+// Mapeo Rápido de Experiencias y Filtros
 const CATEGORIAS_EXPERIENCIAS = [
     { id: "todas", nombre: "Todos los Destinos", icono: "fas fa-compass" },
     { id: "pueblo_magico", nombre: "Pueblos Mágicos", icono: "fas fa-mountain" },
     { id: "concierto", nombre: "Conciertos CDMX", icono: "fas fa-music" },
-    { id: "express", nombre: "Express en Ertiga", icono: "fas fa-car" },
-    { id: "turismo_comunitario", nombre: "Turismo Comunitario SECTUR", icono: "fas fa-leaf" }
+    { id: "express", nombre: "Express en Ertiga / Expos", icono: "fas fa-car" },
+    { id: "turismo_comunitario", nombre: "Ecoturismo & Naturaleza", icono: "fas fa-leaf" }
 ];
+
