@@ -10,16 +10,38 @@ let leafletMapInstance = null;
 let mapRoutePolyline = null;
 let mapRouteGlow = null;
 let mapMarkers = [];
+let cesiumViewer = null;
+let currentMapEngine = 'cesium'; // 'cesium' (3D Globe Alejavi / Bilawal Sidhu) o 'leaflet' (2D HD)
 let currentCoverflowIndex = 0;
 let currentCoverflowList = [];
 let wishlistActiveDest = null;
 
 document.addEventListener('DOMContentLoaded', () => {
+    checkSubdomainRouting();
     initCoverflowShowcase('todas');
     renderDestinosCards('todas');
     setupMotionUI();
     initChatAssistant();
+
+    window.addEventListener('resize', () => {
+        updateCoverflowPosition();
+    });
 });
+
+/* =========================================================================
+   0. ENRUTADOR DINÁMICO DE SUBDOMINIOS
+   ========================================================================= */
+
+function checkSubdomainRouting() {
+    const host = window.location.hostname.toLowerCase();
+    if (host.startsWith('estetica.')) {
+        setTimeout(() => showView('view-estetica'), 100);
+    } else if (host.startsWith('admin.')) {
+        setTimeout(() => promptPinModal(), 200);
+    } else if (host.startsWith('nexocontable.')) {
+        setTimeout(() => showView('view-nexocontable'), 100);
+    }
+}
 
 /* =========================================================================
    1. MAGNIFICATION COVERFLOW 3D CAROUSEL (@santaia.lab standards)
@@ -97,7 +119,30 @@ function initCoverflowShowcase(categoriaFiltro = 'todas') {
         }
     });
 
+    setupCoverflowGestures();
     updateCoverflowPosition();
+}
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+function setupCoverflowGestures() {
+    const vp = document.getElementById('coverflow-viewport');
+    if (!vp || vp.dataset.gesturesBound) return;
+    vp.dataset.gesturesBound = "true";
+
+    vp.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    vp.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 45) {
+            if (diff > 0) nextCoverflow();
+            else prevCoverflow();
+        }
+    }, { passive: true });
 }
 
 function updateCoverflowPosition() {
@@ -109,8 +154,22 @@ function updateCoverflowPosition() {
     cards.forEach((c, idx) => {
         if (idx === currentCoverflowIndex) {
             c.classList.add('active');
+            c.style.transform = 'scale(1.06) perspective(1000px) rotateY(0deg) translateZ(40px)';
+            c.style.opacity = '1';
+            c.style.filter = 'blur(0px)';
+            c.style.zIndex = '10';
+        } else if (idx < currentCoverflowIndex) {
+            c.classList.remove('active');
+            c.style.transform = 'scale(0.85) perspective(1000px) rotateY(18deg)';
+            c.style.opacity = '0.55';
+            c.style.filter = 'blur(2px)';
+            c.style.zIndex = '1';
         } else {
             c.classList.remove('active');
+            c.style.transform = 'scale(0.85) perspective(1000px) rotateY(-18deg)';
+            c.style.opacity = '0.55';
+            c.style.filter = 'blur(2px)';
+            c.style.zIndex = '1';
         }
     });
 
@@ -123,10 +182,14 @@ function updateCoverflowPosition() {
         }
     });
 
-    // Calcular desplazamiento para centrar la tarjeta activa
-    const cardWidth = 388; // 360px + margin
-    const offset = -(currentCoverflowIndex * cardWidth);
-    track.style.transform = `translateX(${offset}px)`;
+    // Centrado matemático exacto en viewport
+    const activeCard = cards[currentCoverflowIndex];
+    if (activeCard) {
+        const viewportWidth = viewport.clientWidth;
+        const cardCenter = activeCard.offsetLeft + (activeCard.offsetWidth / 2);
+        const offset = (viewportWidth / 2) - cardCenter;
+        track.style.transform = `translateX(${offset}px)`;
+    }
 
     const counterTxt = document.getElementById('coverflow-counter-txt');
     if (counterTxt) {
@@ -384,9 +447,32 @@ function openRutaSatelital3D(destId) {
         `).join('<span style="color:#475569;">➔</span>');
     }
 
-    setTimeout(() => {
-        initRutaSatelitalMap(dest);
-    }, 250);
+    const cesiumCanvas = document.getElementById('simulador-cesium-canvas');
+    const leafletCanvas = document.getElementById('simulador-satelital-canvas');
+    const toggleBtn = document.getElementById('btn-toggle-engine');
+
+    // Por defecto inicializar en Modo Globo 3D Cesium (Motor Alejavi Rivera / Bilawal Sidhu)
+    if (currentMapEngine === 'cesium' && typeof Cesium !== 'undefined') {
+        if (cesiumCanvas) cesiumCanvas.style.display = 'block';
+        if (leafletCanvas) leafletCanvas.style.display = 'none';
+        if (toggleBtn) {
+            toggleBtn.innerHTML = '<i class="fas fa-map"></i> 🗺️ Cambiar a Mapa Satelital 2D (Leaflet)';
+            toggleBtn.style.background = 'linear-gradient(135deg, #0284c7, #0369a1)';
+        }
+        setTimeout(() => {
+            initCesium3DGlobe(dest);
+        }, 220);
+    } else {
+        if (cesiumCanvas) cesiumCanvas.style.display = 'none';
+        if (leafletCanvas) leafletCanvas.style.display = 'block';
+        if (toggleBtn) {
+            toggleBtn.innerHTML = '<i class="fas fa-globe-americas"></i> 🌍 Cambiar a Globo 3D Cesium (Orbital)';
+            toggleBtn.style.background = 'linear-gradient(135deg, #7c3aed, #4f46e5)';
+        }
+        setTimeout(() => {
+            initRutaSatelitalMap(dest);
+        }, 220);
+    }
 }
 
 // Alias de compatibilidad
@@ -404,24 +490,209 @@ function closeModoDios3D() {
     closeRutaSatelital3D();
 }
 
+/* =========================================================================
+   5A. MOTOR GLOBO 3D CESIUMJS (God's Eye View / Alejavi Rivera Architecture)
+   ========================================================================= */
+
+async function initCesium3DGlobe(dest) {
+    const cesiumContainer = document.getElementById('simulador-cesium-canvas');
+    if (!cesiumContainer || typeof Cesium === 'undefined') {
+        toggleMapEngineToLeaflet(dest);
+        return;
+    }
+
+    if (!cesiumViewer) {
+        try {
+            // Proveedor satelital ESRI ArcGIS World Imagery de alta resolución
+            let imageryProvider = null;
+            if (Cesium.ArcGisMapServerImageryProvider && Cesium.ArcGisMapServerImageryProvider.fromUrl) {
+                try {
+                    imageryProvider = await Cesium.ArcGisMapServerImageryProvider.fromUrl(
+                        'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer',
+                        { enablePickFeatures: false }
+                    );
+                } catch (e) {
+                    imageryProvider = null;
+                }
+            }
+
+            cesiumViewer = new Cesium.Viewer('simulador-cesium-canvas', {
+                imageryProvider: imageryProvider || undefined,
+                baseLayerPicker: false,
+                geocoder: false,
+                homeButton: false,
+                infoBox: false,
+                navigationHelpButton: false,
+                sceneModePicker: false,
+                timeline: false,
+                animation: false,
+                fullscreenButton: false,
+                selectionIndicator: false,
+                skyAtmosphere: new Cesium.SkyAtmosphere()
+            });
+
+            cesiumViewer.scene.globe.enableLighting = true;
+            cesiumViewer.scene.globe.depthTestAgainstTerrain = false;
+        } catch (err) {
+            console.warn("Cesium setup fallback:", err);
+            if (!cesiumViewer) {
+                try {
+                    cesiumViewer = new Cesium.Viewer('simulador-cesium-canvas', {
+                        baseLayerPicker: false,
+                        geocoder: false,
+                        homeButton: false,
+                        infoBox: false,
+                        timeline: false,
+                        animation: false
+                    });
+                } catch (e2) {
+                    toggleMapEngineToLeaflet(dest);
+                    return;
+                }
+            }
+        }
+    }
+
+    if (!cesiumViewer) return;
+
+    // Limpiar entidades anteriores
+    cesiumViewer.entities.removeAll();
+
+    const points = dest.ruta_puntos || [
+        { nombre: "San Manuel, Puebla", lat: 19.0186, lng: -98.1963, altitud: "2,160 m" },
+        { nombre: dest.nombre, lat: dest.coordenadas.lat, lng: dest.coordenadas.lng, altitud: "2,240 m" }
+    ];
+
+    // Preparar posiciones 3D (longitud, latitud, elevación)
+    const positions = [];
+    points.forEach((p, idx) => {
+        const altNum = parseInt(p.altitud ? p.altitud.replace(/[^0-9]/g, '') : '2200', 10) || 2200;
+        positions.push(p.lng, p.lat, altNum + 200);
+
+        const isStart = idx === 0;
+        const isEnd = idx === points.length - 1;
+        const pinColor = isStart
+            ? Cesium.Color.fromCssColorString('#10b981')
+            : isEnd
+            ? Cesium.Color.fromCssColorString('#ef4444')
+            : Cesium.Color.fromCssColorString('#f59e0b');
+
+        cesiumViewer.entities.add({
+            name: p.nombre,
+            position: Cesium.Cartesian3.fromDegrees(p.lng, p.lat, altNum + 350),
+            point: {
+                pixelSize: 14,
+                color: pinColor,
+                outlineColor: Cesium.Color.WHITE,
+                outlineWidth: 3
+            },
+            label: {
+                text: `${p.nombre}\n(${p.altitud || '2,200 m'})`,
+                font: '13px Outfit, sans-serif',
+                style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+                fillColor: Cesium.Color.WHITE,
+                outlineColor: Cesium.Color.BLACK,
+                outlineWidth: 3,
+                verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+                pixelOffset: new Cesium.Cartesian2(0, -18)
+            }
+        });
+    });
+
+    // Trazado 3D Resplandeciente Neón Cian (PolylineGlow)
+    cesiumViewer.entities.add({
+        name: `Ruta ${dest.nombre}`,
+        polyline: {
+            positions: Cesium.Cartesian3.fromDegreesArrayHeights(positions),
+            width: 7,
+            material: new Cesium.PolylineGlowMaterialProperty({
+                glowPower: 0.35,
+                taperPower: 0.8,
+                color: Cesium.Color.fromCssColorString('#38bdf8')
+            })
+        }
+    });
+
+    // Calcular centro y encuadrar cámara con vista cinematográfica inclinada 3D (Pitch -36 grados)
+    const centerLat = (points[0].lat + points[points.length - 1].lat) / 2;
+    const centerLng = (points[0].lng + points[points.length - 1].lng) / 2;
+    const distKm = parseFloat(dest.distancia ? dest.distancia.replace(/[^0-9.]/g, '') : '140') || 140;
+    const cameraAlt = Math.max(distKm * 2100, 160000);
+
+    cesiumViewer.camera.flyTo({
+        destination: Cesium.Cartesian3.fromDegrees(centerLng, centerLat - 0.32, cameraAlt),
+        orientation: {
+            heading: Cesium.Math.toRadians(0.0),
+            pitch: Cesium.Math.toRadians(-36.0),
+            roll: 0.0
+        },
+        duration: 2.2
+    });
+}
+
+function toggleMapEngine() {
+    const cesiumCanvas = document.getElementById('simulador-cesium-canvas');
+    const leafletCanvas = document.getElementById('simulador-satelital-canvas');
+    const toggleBtn = document.getElementById('btn-toggle-engine');
+
+    if (currentMapEngine === 'cesium') {
+        currentMapEngine = 'leaflet';
+        if (cesiumCanvas) cesiumCanvas.style.display = 'none';
+        if (leafletCanvas) leafletCanvas.style.display = 'block';
+        if (toggleBtn) {
+            toggleBtn.innerHTML = '<i class="fas fa-globe-americas"></i> 🌍 Cambiar a Globo 3D Cesium (Orbital)';
+            toggleBtn.style.background = 'linear-gradient(135deg, #7c3aed, #4f46e5)';
+        }
+        if (activeDestino) {
+            initRutaSatelitalMap(activeDestino);
+        }
+    } else {
+        currentMapEngine = 'cesium';
+        if (leafletCanvas) leafletCanvas.style.display = 'none';
+        if (cesiumCanvas) cesiumCanvas.style.display = 'block';
+        if (toggleBtn) {
+            toggleBtn.innerHTML = '<i class="fas fa-map"></i> 🗺️ Cambiar a Mapa Satelital 2D (Leaflet)';
+            toggleBtn.style.background = 'linear-gradient(135deg, #0284c7, #0369a1)';
+        }
+        if (activeDestino) {
+            initCesium3DGlobe(activeDestino);
+        }
+    }
+}
+
+function toggleMapEngineToLeaflet(dest) {
+    currentMapEngine = 'leaflet';
+    const cesiumCanvas = document.getElementById('simulador-cesium-canvas');
+    const leafletCanvas = document.getElementById('simulador-satelital-canvas');
+    const toggleBtn = document.getElementById('btn-toggle-engine');
+    if (cesiumCanvas) cesiumCanvas.style.display = 'none';
+    if (leafletCanvas) leafletCanvas.style.display = 'block';
+    if (toggleBtn) {
+        toggleBtn.innerHTML = '<i class="fas fa-globe-americas"></i> 🌍 Cambiar a Globo 3D Cesium (Orbital)';
+        toggleBtn.style.background = 'linear-gradient(135deg, #7c3aed, #4f46e5)';
+    }
+    initRutaSatelitalMap(dest);
+}
+
+/* =========================================================================
+   5B. MOTOR MAPA SATELITAL LEAFLET 2D HD (Relieve y Trayecto)
+   ========================================================================= */
+
 function initRutaSatelitalMap(dest) {
     const containerId = document.getElementById('simulador-satelital-canvas') ? 'simulador-satelital-canvas' : 'modo-dios-canvas-container';
     const mapContainer = document.getElementById(containerId);
     if (!mapContainer) return;
 
     if (!leafletMapInstance) {
-        // Inicializar Leaflet con relieve satelital de alta resolución
         leafletMapInstance = L.map(containerId, {
             zoomControl: true,
             attributionControl: false
         }).setView([19.0186, -98.1963], 8);
 
-        // ESRI World Imagery (Satelital fotorrealista)
         L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
             maxZoom: 19
         }).addTo(leafletMapInstance);
 
-        // Capa de carreteras y referencias geográficas
         L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
             maxZoom: 19
         }).addTo(leafletMapInstance);
@@ -429,7 +700,6 @@ function initRutaSatelitalMap(dest) {
         leafletMapInstance.invalidateSize();
     }
 
-    // Limpiar marcadores y trayectorias anteriores
     if (mapMarkers.length) {
         mapMarkers.forEach(m => leafletMapInstance.removeLayer(m));
         mapMarkers = [];
@@ -443,7 +713,6 @@ function initRutaSatelitalMap(dest) {
 
     const latlngs = dest.ruta_puntos.map(p => [p.lat, p.lng]);
 
-    // Resplandor exterior de la carretera
     mapRouteGlow = L.polyline(latlngs, {
         color: '#0284c7',
         weight: 9,
@@ -451,7 +720,6 @@ function initRutaSatelitalMap(dest) {
         lineCap: 'round'
     }).addTo(leafletMapInstance);
 
-    // Trazado de alta precisión en neón cian
     mapRoutePolyline = L.polyline(latlngs, {
         color: '#38bdf8',
         weight: 4,
@@ -460,7 +728,6 @@ function initRutaSatelitalMap(dest) {
         lineCap: 'round'
     }).addTo(leafletMapInstance);
 
-    // Pines con indicador de altitud y parada
     dest.ruta_puntos.forEach((p, idx) => {
         const isStart = idx === 0;
         const isEnd = idx === dest.ruta_puntos.length - 1;
@@ -489,20 +756,47 @@ function initRutaSatelitalMap(dest) {
 }
 
 function flyOverRoute3D() {
-    if (!activeDestino || !leafletMapInstance) return;
-    const points = activeDestino.ruta_puntos;
-    let step = 0;
+    if (!activeDestino) return;
 
-    const interval = setInterval(() => {
-        if (step >= points.length) {
-            clearInterval(interval);
-            return;
+    if (currentMapEngine === 'cesium' && cesiumViewer) {
+        const points = activeDestino.ruta_puntos || [];
+        if (points.length === 0) return;
+
+        let step = 0;
+        function flyNextCesium() {
+            if (step >= points.length) return;
+            const p = points[step];
+            const altNum = parseInt(p.altitud ? p.altitud.replace(/[^0-9]/g, '') : '2200', 10) || 2200;
+
+            cesiumViewer.camera.flyTo({
+                destination: Cesium.Cartesian3.fromDegrees(p.lng, p.lat - 0.04, altNum + 3500),
+                orientation: {
+                    heading: Cesium.Math.toRadians(0.0),
+                    pitch: Cesium.Math.toRadians(-32.0),
+                    roll: 0.0
+                },
+                duration: 2.2,
+                complete: () => {
+                    step++;
+                    setTimeout(flyNextCesium, 700);
+                }
+            });
         }
-        const p = points[step];
-        leafletMapInstance.flyTo([p.lat, p.lng], 13, { duration: 1.8, easeLinearity: 0.25 });
-        if (mapMarkers[step]) mapMarkers[step].openPopup();
-        step++;
-    }, 2400);
+        flyNextCesium();
+    } else if (leafletMapInstance) {
+        const points = activeDestino.ruta_puntos;
+        let step = 0;
+        const interval = setInterval(() => {
+            if (step >= points.length) {
+                clearInterval(interval);
+                return;
+            }
+            const p = points[step];
+            leafletMapInstance.flyTo([p.lat, p.lng], 13, { duration: 1.8, easeLinearity: 0.25 });
+            if (mapMarkers[step]) mapMarkers[step].openPopup();
+            step++;
+        }, 2400);
+    }
 }
 
 

@@ -24,6 +24,10 @@
     <!-- Leaflet 3D Map CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 
+    <!-- CesiumJS 3D Global Engine (God's Eye View / Alejavi Rivera Model) -->
+    <link href="https://cesium.com/downloads/cesiumjs/releases/1.121/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.121/Build/Cesium/Cesium.js"></script>
+
     <!-- Motion Lux Design CSS (@santaia.lab standards) -->
     <link rel="stylesheet" href="css/motion_lux.css">
     
@@ -1560,13 +1564,18 @@
                 <button class="btn-3d-motion" style="padding:6px 14px; font-size:0.8rem;" onclick="flyOverRoute3D()">
                     <i class="fas fa-paper-plane"></i> 🚀 Sobrevolar en Dron 3D
                 </button>
+                <button class="btn-3d-motion" id="btn-toggle-engine" style="padding:6px 14px; font-size:0.8rem; background:linear-gradient(135deg,#7c3aed,#4f46e5); color:#fff;" onclick="toggleMapEngine()">
+                    <i class="fas fa-globe-americas"></i> 🌍 Modo Globo 3D Cesium (Orbital)
+                </button>
                 <span style="color:#64748b; font-size:0.8rem;">|</span>
-                <span style="color:#94a3b8; font-size:0.8rem;"><i class="fas fa-satellite"></i> Relieve Satelital ESRI de Alta Precisión</span>
+                <span style="color:#94a3b8; font-size:0.8rem;"><i class="fas fa-satellite"></i> Relieve Satelital ESRI / Cesium 3D</span>
             </div>
 
-            <div id="simulador-satelital-canvas" class="simulador-satelital-map-canvas">
-                <!-- Leaflet High-Res Satellite Map Render -->
-            </div>
+            <!-- Cesium 3D Globe Container (Alejavi Rivera Model) -->
+            <div id="simulador-cesium-canvas" class="simulador-satelital-map-canvas" style="display:none; width:100%; height:100%;"></div>
+
+            <!-- Leaflet High-Res Satellite Map Render -->
+            <div id="simulador-satelital-canvas" class="simulador-satelital-map-canvas" style="width:100%; height:100%;"></div>
 
             <!-- Altimetría y Perfil de Elevación del Trayecto -->
             <div id="simulador-altimetria-ribbon" class="altimetria-profile-ribbon">
@@ -1999,8 +2008,9 @@
         </div>
     </div>
 
-    <!-- Leaflet JS & Motores Interactivos -->
+    <!-- Motores Geoespaciales, Base de Datos de Eventos CDMX y Motores Interactivos -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="js/cdmx_events_engine.js"></script>
     <script src="js/destinos_data.js"></script>
     <script src="js/app_interactive.js"></script>
 </body>

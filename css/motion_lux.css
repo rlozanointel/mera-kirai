@@ -71,25 +71,28 @@
 .coverflow-viewport {
     position: relative;
     width: 100%;
-    min-height: 520px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    min-height: 550px;
+    height: 550px;
     overflow: hidden;
     touch-action: pan-y;
 }
 
 .coverflow-track {
+    position: absolute;
+    top: 15px;
+    left: 0;
     display: flex;
     align-items: center;
     transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform;
+    perspective: 1200px;
 }
 
 .coverflow-card {
-    flex: 0 0 360px;
-    max-width: 88vw;
-    margin: 0 14px;
+    flex: 0 0 350px;
+    width: 350px;
+    max-width: 85vw;
+    margin: 0 16px;
     background: var(--bg-card);
     border-radius: 22px;
     border: 1px solid var(--border-color);
@@ -97,29 +100,34 @@
     display: flex;
     flex-direction: column;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    transform: scale(0.86);
+    transform: scale(0.85) perspective(1000px) rotateY(18deg);
     opacity: 0.55;
-    filter: blur(3px);
+    filter: blur(2.5px);
     transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, filter 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
     cursor: pointer;
     user-select: none;
+    transform-style: preserve-3d;
 }
 
 /* Tarjeta Central Ampliada (Magnified Focus Card) */
 .coverflow-card.active {
-    transform: scale(1.05);
+    transform: scale(1.06) perspective(1000px) rotateY(0deg) translateZ(40px);
     opacity: 1;
     filter: blur(0px);
-    box-shadow: 0 25px 50px -10px rgba(2, 132, 199, 0.35), 0 0 25px rgba(56, 189, 248, 0.2);
-    border-color: rgba(56, 189, 248, 0.7);
+    box-shadow: 0 25px 50px -10px rgba(2, 132, 199, 0.4), 0 0 30px rgba(56, 189, 248, 0.3);
+    border-color: rgba(56, 189, 248, 0.85);
     z-index: 10;
     cursor: default;
 }
 
+.coverflow-card.card-right {
+    transform: scale(0.85) perspective(1000px) rotateY(-18deg);
+}
+
 .coverflow-card:not(.active):hover {
-    opacity: 0.8;
-    filter: blur(1px);
-    transform: scale(0.9);
+    opacity: 0.85;
+    filter: blur(0.5px);
+    transform: scale(0.92);
 }
 
 .coverflow-nav-btn {

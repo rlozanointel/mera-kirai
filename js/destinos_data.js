@@ -399,7 +399,17 @@ const CATEGORIAS_EXPERIENCIAS = [
     { id: "todas", nombre: "Todos los Destinos", icono: "fas fa-compass" },
     { id: "pueblo_magico", nombre: "Pueblos Mágicos", icono: "fas fa-mountain" },
     { id: "concierto", nombre: "Conciertos CDMX", icono: "fas fa-music" },
-    { id: "express", nombre: "Express en Ertiga / Expos", icono: "fas fa-car" },
+    { id: "express", nombre: "Express Ertiga & Expos", icono: "fas fa-car" },
     { id: "turismo_comunitario", nombre: "Ecoturismo & Naturaleza", icono: "fas fa-leaf" }
 ];
+
+// Integrar automáticamente los eventos maestros de CDMX
+if (typeof EVENTOS_CDMX_MAESTRO !== 'undefined') {
+    EVENTOS_CDMX_MAESTRO.forEach(ev => {
+        if (!DESTINOS_DB.some(d => d.id === ev.id)) {
+            DESTINOS_DB.push(ev);
+        }
+    });
+}
+
 
