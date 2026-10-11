@@ -1,7 +1,11 @@
-# 🧭 PROJECT BLUEPRINT: Viajes Alma & Vromlix Multi-Hub
+# 🧭 PROJECT BLUEPRINT: Viajes La Ruta del Águila & fraVEO
 > **Única Fuente de Verdad (Single Source of Truth - SSOT)**  
-> **Dominio Oficial:** [https://mera-kirai.com](https://mera-kirai.com) | **Ubicación:** Río Nexapa 6101, Jardines de San Manuel, Puebla, Pue.  
-> **Última Actualización:** Octubre 2026
+> **Nombre Comercial Público:** Viajes La Ruta del Águila (by Alma Luis)  
+> **Alianza / Franquicia:** fraVEO (Paquetes Internacionales y Playas de Lujo)  
+> **Teléfono / WhatsApp Oficial:** 222 801 6244  
+> **Ubicación Base:** Río Nexapa 6101, Jardines de San Manuel, Puebla, Pue.  
+> **Dominio Oficial:** [https://mera-kirai.com](https://mera-kirai.com)  
+> **Última Actualización:** Octubre 2026  
 
 ---
 
@@ -9,63 +13,70 @@
 1. **NUNCA usar la palabra "SECTUR"** en ninguna sección pública, pestaña, badge o texto de la página. Los destinos y rutas se presentan por su valor cultural, natural y comunitario propio (*Pueblos Mágicos*, *Ecoturismo*, *Rutas Gastronómicas*).
 2. **NUNCA usar la frase "Modo Dios"** en la web. Por respeto a la comunidad de la iglesia de la hermana Alma y el público familiar, toda visualización 3D satelital se denomina:
    * **`Simulador de Ruta Satelital 3D`** o **`Vista Aérea Panorámica 3D`**.
-3. **Contextualización del Mapa 3D:** El visor 3D no debe estar aislado como un enlace genérico en el menú; debe invocarse **dentro de cada paquete o evento**, permitiendo al usuario ver la ruta exacta del viaje seleccionado.
-4. **Aislamiento Estricto de Privacidad:**
-   * La cara pública del cliente **SOLO** muestra Viajes, Expos/Conciertos, Simulador 3D y Estética Alma.
-   * NexoContable, Mascotas (Pet Art), Mercadito Local y el Reparto 50/50 del vehículo están **ocultos** y protegidos tras autenticación por PIN:
-     - **PIN 1234:** Hermana Alma (Lista de reservas, estados de pago OXXO/SPEI, tablero de demanda).
-     - **PIN 9999:** Super-Admin Rogerman (Módulos privados, control 50/50, configuración de seguridad).
+3. **Gestor Privado Estrictamente Oculto del Menú Público:**
+   * El botón "Gestor Privado" **NO DEBE** aparecer en la barra de navegación superior (header) de los clientes.
+   * Se accede únicamente mediante un enlace discreto en el pie de página (`footer`) o mediante URL/atajo directo:
+     - **PIN 1234:** Hermana Alma (Lista de reservas, control de pagos y prospectos).
+     - **PIN 9999:** Super-Admin Rogerman (Módulos privados, control de reparto 50/50 y seguridad).
+4. **Teléfono Unificado:** Todo botón de contacto, reserva, apartado y flotante de WhatsApp apunta al número **`222 801 6244`** (`+52 222 801 6244`).
 
 ---
 
-## 🚗 2. Operación de Flota, Precios y Estructura Financiera
+## 🌟 2. Portafolio de Salidas y Política Comercial de Apartados
+### A. Salidas Confirmadas Inmediatas (Estelares Octubre / Noviembre)
+1. **Expo Beauty Show (EBS 2026) en Centro Citibanamex:**
+   - Fechas: 24 al 26 de Octubre 2026
+   - Tarifa Redonda: **$790 MXN** p/p (Incluye transporte redondo ejecutivo + boleto oficial de acceso a salas B, C y D de EBS 2026).
+   - Apartado: **$200 MXN**.
+2. **La Llorona en Xochimilco (Obra Nocturna en Trajinera):**
+   - Fechas: Temporada de Día de Muertos (Fines de semana de Octubre y Noviembre).
+   - Tarifa Redonda: **$1,350 MXN** p/p (Incluye transporte redondo + paseo en trajinera al atardecer + boleto VIP de acceso a la obra teatral en la Laguna de Cuemanco).
+   - Apartado: **$300 MXN**.
+
+### B. Mecanismo Comercial: Apartado con Garantía de Reembolso
+* El cliente no desembolsa el 100% de inicio; aparta su asiento con **$200 MXN** (en Suzuki Ertiga) o **$300 MXN** (en Urban).
+* **Quórum Mínimo:** 5 pasajeros para la Suzuki Ertiga (capacidad de 6), 10 pasajeros para camionetas Urban (capacidad de 14).
+* **Garantía 100% Reembolsable:** Si 48 horas antes de la salida no se completa el cupo mínimo requerido, **se devuelve el 100% íntegro de su dinero de inmediato vía transferencia SPEI o efectivo**, o bien el cliente puede transferirlo a otra fecha sin penalización alguna.
+* Liquidan el saldo restante al momento de abordar en San Manuel.
+
+---
+
+## 🚗 3. Operación de Flota y Reparto Financiero 50/50
 ### A. Suzuki Ertiga 2022 (Servicio VIP Express - 6 Pasajeros)
 * **Distribución de Asientos:**
   - Asiento #1: Copiloto Ejecutivo
   - Asientos #2, #3, #4: Fila Media (Confort)
   - Asientos #5, #6: Fila Trasera (Panorámicos)
 * **Precios Psicológicos:**
-  - CDMX Express Diario (Centro / Polanco / Coyoacán / Hospitales): **$449 MXN** redondo.
+  - CDMX Express Diario (Centro / Polanco / Hospitales / Aeropuertos): **$449 MXN** redondo.
   - Expos & Congresos (Centro Citibanamex / Expo Santa Fe): **$499 MXN** redondo.
-  - Conciertos CDMX (Foro Sol / Estadio GNP / Palacio de los Deportes / Auditorio): **$549 MXN** redondo con espera nocturna.
-* **Modelo Financiero 50/50 (Por viaje lleno de 6 pasajeros a $449):**
+  - Conciertos CDMX (Foro Sol / Estadio GNP / Palacio Deportes / Auditorio): **$549 MXN** redondo con espera nocturna.
+* **Modelo Financiero 50/50 (Ejemplo viaje lleno de 6 pasajeros a $449):**
   - Ingreso Bruto: **$2,694 MXN**
-  - Costos Operativos Estimados (Gasolina $500 + Casetas $500): **$1,000 MXN**
+  - Costos Operativos (Gasolina $500 + Casetas $500): **$1,000 MXN**
   - Fondo de Reserva Mensual del Vehículo: **$500 MXN**
-  - Utilidad Neta a Repartir 50/50: **$1,194 MXN** ($597 MXN Alma / $597 MXN Rogerman).
+  - Utilidad Neta 50/50: **$1,194 MXN** ($597 MXN Alma / $597 MXN Rogerman).
 
-### B. Camionetas Urban (14 Pasajeros)
-* Circuitos Turísticos de Fin de Semana (Oaxaca, Tabasco, Cuetzalan, Zacatlán).
-* Salida garantizada con mínimo 10 pasajeros reservados.
-
----
-
-## 📅 3. Expos y Eventos CDMX: Actualización Diaria
-La plataforma mantiene una cartelera actualizada con eventos reales:
-* **Centro Citibanamex:** Expos industriales, médicas y convenciones empresariales.
-* **Expo Santa Fe:** Ferias de diseño, tecnología y eventos corporativos.
-* **Recintos de Conciertos:** Foro Sol / Estadio GNP Seguros, Auditorio Nacional, Arena CDMX, Palacio de los Deportes.
-* Cada evento cuenta con su tarjeta dedicada con fecha, hora de salida desde Puebla, punto de regreso seguro y cupos disponibles en la Ertiga.
+### B. Camionetas Urban (14 a 20 Pasajeros)
+* Circuitos Turísticos de Fin de Semana: Grutas de Tolantongo ($890), Zacatlán & Chignahuapan ($790), Querétaro & Freixenet ($950), Taxco & Cacahuamilpa ($920), Cuetzalan ($830), Orizaba ($780), Oaxaca ($1,950).
 
 ---
 
-## 🎴 4. Galería de Magnificación (Coverflow) & Inteligencia de Demanda
-* **Diseño UI/UX (@santaia.lab):**
-  - Los 290 destinos de México y experiencias comunitarias se muestran en un **carrusel de magnificación**.
-  - **Foco Central:** La tarjeta activa se agranda (`scale: 1.05`), mostrando fotografía inmersiva, precio sugerido y duración.
-  - **Tarjetas Laterales:** Se visualizan parcialmente en los bordes con menor escala (`scale: 0.88`) y ligero desenfoque (`blur(4px)`).
-* **Mecanismo de Votación / Lista de Deseos Semanal:**
-  - En cada tarjeta el usuario puede pulsar: *"❤️ Me interesa este destino"*.
-  - Registra Nombre + WhatsApp del cliente.
-  - El sistema contabiliza los destinos más votados cada semana para abrir la salida oficial una vez alcanzado el cupo.
+## 👑 4. Franquicia fraVEO: Paquetes de Alta Gama y Playas
+* Paquetes de lujo que incluyen vuelos, resorts All-Inclusive y tours premium:
+  - Cancún & Riviera Maya All-Inclusive ($8,990 MXN)
+  - Los Cabos & Arco de San Lucas ($10,490 MXN)
+  - Bahías de Huatulco & Puerto Escondido ($7,850 MXN)
+  - Chiapas Mágico & Cañón del Sumidero ($8,490 MXN)
+  - Europa Clásica y Disney World Orlando
+* Respaldados con el material gráfico oficial provisto por Alma Luis.
 
 ---
 
 ## 🌐 5. Infraestructura Cloud, Dominio y Subdominios
 * **Dominio Principal:** `https://mera-kirai.com`
-* **CDN y DNS:** Cloudflare (Modo Proxied con SSL Universal automático).
-* **Servidor Origen:** GitHub Pages (`rlozanointel/mera-kirai`).
-* **Subdominios Futuros:**
-  - `estetica.mera-kirai.com` -> Módulo de belleza y citas de Alma.
-  - `nexocontable.mera-kirai.com` -> Plataforma contable.
-  - `admin.mera-kirai.com` -> Panel de control privado.
+* **CDN / DNS:** Cloudflare (Modo Proxied con SSL Universal).
+* **Subdominios (Registros CNAME en Cloudflare hacia `rlozanointel.github.io`):**
+  - `estetica.mera-kirai.com` -> Redirige a la sección de Estética y Belleza de Alma.
+  - `admin.mera-kirai.com` -> Despliega el modal de PIN administrativo privado.
+  - `nexocontable.mera-kirai.com` -> Módulo contable.

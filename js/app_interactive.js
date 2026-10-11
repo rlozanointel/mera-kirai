@@ -70,9 +70,12 @@ function initCoverflowShowcase(categoriaFiltro = 'todas') {
         const card = document.createElement('div');
         card.className = `coverflow-card ${idx === currentCoverflowIndex ? 'active' : ''}`;
         card.setAttribute('data-index', idx);
+        card.style.cursor = 'pointer';
         card.onclick = () => {
             if (idx !== currentCoverflowIndex) {
                 goToCoverflowIndex(idx);
+            } else {
+                openSharedElementModal(dest.id);
             }
         };
 
@@ -296,7 +299,7 @@ function submitWishlistVote(e) {
     const msg = `¡Gracias ${nombre}! Tu interés por *${wishlistActiveDest.nombre}* (${plazas} lugares) ha sido registrado.\n\n¿Deseas enviar tu petición directamente a Alma por WhatsApp para asegurar prioridad de salida?`;
     if (confirm(msg)) {
         const waText = `Hola Alma, me interesa unirme a la salida grupal para: *${wishlistActiveDest.nombre}*. Somos *${plazas} personas*. Mi nombre es *${nombre}*. ¿Cuándo abren la próxima fecha?`;
-        window.open(`https://wa.me/?text=${encodeURIComponent(waText)}`, '_blank');
+        window.open(`https://wa.me/522228016244?text=${encodeURIComponent(waText)}`, '_blank');
     }
 }
 
@@ -323,6 +326,12 @@ function renderDestinosCards(categoriaFiltro = 'todas') {
             card.className = 'destino-card-motion';
             card.setAttribute('data-id', dest.id);
             card.style.animationDelay = `${index * 0.08}s`;
+            card.style.cursor = 'pointer';
+            card.onclick = (e) => {
+                if (!e.target.closest('button')) {
+                    openSharedElementModal(dest.id);
+                }
+            };
 
             card.innerHTML = `
                 <div class="destino-img-box">
@@ -412,7 +421,7 @@ function closeSharedElementModal() {
 function bookActiveDestinoWhatsApp() {
     if (!activeDestino) return;
     const msg = `Hola Alma, me interesa apartar mi lugar para: *${activeDestino.nombre}* (${activeDestino.precio_texto}). ¿Tienen disponibilidad para el próximo viaje saliendo de San Manuel?`;
-    window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+    window.open(`https://wa.me/522228016244?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
 /* =========================================================================

@@ -1,49 +1,128 @@
 /**
  * Base de Datos Maestra de Destinos y Experiencias Turísticas
- * Integración Patrimonio Comunitario (Pueblos Mágicos, Turismo Comunitario UNESCO y Eventos Masivos)
- * Agencia: Viajes Alma & Vromlix Multi-Hub
+ * Agencia: Viajes La Ruta del Águila (Alma Luis) & Alianza Fraveo
+ * Salidas directas desde: Río Nexapa 6101, Jardines de San Manuel, Puebla, Pue.
+ * Teléfono / WhatsApp oficial: 222 801 6244
  */
 
 const DESTINOS_DB = [
     {
-        id: "cuetzalan-magico",
-        nombre: "Cuetzalan del Progreso: Niebla, Cascadas y Café",
-        categoria: "pueblo_magico",
-        subcategoria: "turismo_comunitario",
-        estado: "Puebla",
-        precio: 799,
-        precio_texto: "$799 MXN",
-        tipo_transporte: "Suzuki Ertiga (6 Pax) / Urban (14 Pax)",
-        duracion: "1 Día Completo (06:00 a 21:00)",
-        distancia: "172 km desde Puebla",
-        tiempo_traslado: "2.5 hrs",
-        badge: "Pueblo Mágico #1",
-        imagen: "https://images.unsplash.com/photo-1518638150340-f706e86654de?auto=format&fit=crop&w=1200&q=80",
-        descripcion: "Adéntrate en la mágica Sierra Norte de Puebla. Arquitectura de teja roja, callejones empedrados, niebla mística y la impresionante cascada 'Las Brisas'. Experiencia comunitaria con cooperativas indígenas de café de altura.",
-        coordenadas: { lat: 20.0182, lng: -97.5218 },
+        id: "expo-beauty-show-citibanamex",
+        nombre: "Expo Beauty Show (EBS 2026) en Centro Citibanamex",
+        categoria: "destacado_confirmado",
+        subcategoria: "express",
+        estado: "Ciudad de México",
+        precio: 790,
+        precio_texto: "$790 MXN",
+        anticipo_apartado: "$200 MXN",
+        tipo_transporte: "Suzuki Ertiga VIP (6 Pax) / Sprinter",
+        duracion: "Día Completo (07:30 a 19:45)",
+        distancia: "145 km desde Puebla",
+        tiempo_traslado: "2.3 hrs directo a puerta",
+        badge: "Salida Confirmada 24-26 Octubre",
+        imagen: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=80",
+        descripcion: "El evento de belleza y estilismo más grande de América Latina en Centro Citibanamex. Acceso a salas B, C y D con lanzamientos de marcas profesionales, insumos a precio de mayoreo y shows de corte/peinado en vivo.",
+        coordenadas: { lat: 19.4389, lng: -99.2227 },
         ruta_puntos: [
-            { nombre: "Salida: San Manuel, Puebla", lat: 19.0186, lng: -98.1963 },
-            { nombre: "Parada Técnica: Zacapoaxtla", lat: 19.8711, lng: -97.5898 },
-            { nombre: "Llegada: Cuetzalan Centro", lat: 20.0182, lng: -97.5218 },
-            { nombre: "Ecoturismo: Cascada Las Brisas", lat: 20.0350, lng: -97.4950 }
+            { nombre: "Salida: San Manuel, Puebla", lat: 19.0186, lng: -98.1963, altitud: "2,160 m" },
+            { nombre: "Caseta San Martín Texmelucan", lat: 19.2842, lng: -98.4347, altitud: "2,260 m" },
+            { nombre: "Paso de Río Frío (Autopista)", lat: 19.3512, lng: -98.6738, altitud: "3,180 m" },
+            { nombre: "Centro Citibanamex (Puerta Expos)", lat: 19.4389, lng: -99.2227, altitud: "2,270 m" }
         ],
         itinerario: [
-            { hora: "06:00 AM", actividad: "Cita y abordaje en Río Nexapa 6101, San Manuel." },
-            { hora: "08:30 AM", actividad: "Desayuno serrano tradicional (tlayoyos y cecina de Zacapoaxtla)." },
-            { hora: "10:30 AM", actividad: "Visita guiada a la Cascada Las Brisas y poza de agua cristalina." },
-            { hora: "01:30 PM", actividad: "Recorrido por la Parroquia de San Francisco y tianguis dominical artesanal." },
-            { hora: "03:30 PM", actividad: "Cata y taller de café de sombra en cooperativa comunitaria totonaca." },
-            { hora: "06:00 PM", actividad: "Embarque de regreso a la ciudad de Puebla." },
-            { hora: "09:00 PM", actividad: "Llegada a San Manuel." }
+            { hora: "07:30 AM", actividad: "Cita y abordaje puntual en Río Nexapa 6101, San Manuel, Puebla." },
+            { hora: "10:00 AM", actividad: "Llegada directa al Centro Citibanamex (sin estrés de estacionamiento)." },
+            { hora: "10:15 AM - 15:30 PM", actividad: "Recorrido libre y compras en Expo Beauty Show (EBS 2026), salas B, C y D." },
+            { hora: "15:30 PM - 16:45 PM", actividad: "Comida en el área gastronómica del recinto o zona comercial." },
+            { hora: "17:00 PM", actividad: "Abordaje en la camioneta e inicio de regreso seguro a Puebla." },
+            { hora: "19:45 PM", actividad: "Arribo a Jardines de San Manuel, Puebla." }
         ],
         incluye: [
-            "Transporte redondo ejecutivo con chofer calificado",
-            "Seguro de viajero en carretera",
-            "Entrada a la Cascada Las Brisas",
-            "Degustación y cata de café artesanal",
-            "Tiempo libre para compras de artesanías y café"
+            "Transporte redondo ejecutivo garantizado",
+            "Boleto oficial de acceso a Expo Beauty Show 2026",
+            "Combustible, peajes de autopista y chofer calificado",
+            "Seguro de cobertura amplia de viajero"
         ],
-        no_incluye: ["Alimentos y bebidas no especificados", "Gastos personales"]
+        no_incluye: ["Alimentos y compras personales"]
+    },
+    {
+        id: "llorona-xochimilco-nocturna",
+        nombre: "La Llorona en Xochimilco: Obra Nocturna en Trajinera",
+        categoria: "destacado_confirmado",
+        subcategoria: "express",
+        estado: "Ciudad de México",
+        precio: 1350,
+        precio_texto: "$1,350 MXN",
+        anticipo_apartado: "$300 MXN",
+        tipo_transporte: "Suzuki Ertiga VIP (6 Pax) / Sprinter",
+        duracion: "Tarde - Noche (14:30 a 00:00)",
+        distancia: "130 km desde Puebla",
+        tiempo_traslado: "2 hrs",
+        badge: "Temporada Día de Muertos",
+        imagen: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80",
+        video_preview: "video/llorona_xochimilco.mp4",
+        descripcion: "Mística experiencia en los canales ancestrales de Xochimilco. Paseo en trajinera tradicional al atardecer por el Embarcadero Cuemanco y acceso al espectáculo multidisciplinario 'La Llorona' en el islote de la Laguna con danza prehispánica y música en vivo.",
+        coordenadas: { lat: 19.2882, lng: -99.1037 },
+        ruta_puntos: [
+            { nombre: "Salida: San Manuel, Puebla", lat: 19.0186, lng: -98.1963, altitud: "2,160 m" },
+            { nombre: "Autopista México-Puebla 150D", lat: 19.3512, lng: -98.6738, altitud: "3,180 m" },
+            { nombre: "Periférico Sur / Canal de Chalco", lat: 19.3050, lng: -99.0950, altitud: "2,240 m" },
+            { nombre: "Embarcadero Cuemanco (Xochimilco)", lat: 19.2882, lng: -99.1037, altitud: "2,240 m" }
+        ],
+        itinerario: [
+            { hora: "14:30 PM", actividad: "Salida puntual desde San Manuel, Puebla." },
+            { hora: "16:45 PM", actividad: "Llegada al Embarcadero Cuemanco. Tiempo libre para antojitos típicos." },
+            { hora: "17:45 PM - 18:45 PM", actividad: "Paseo nocturno en trajinera por los canales de Xochimilco." },
+            { hora: "19:00 PM - 21:00 PM", actividad: "Espectáculo en vivo 'La Llorona' en el islote de la laguna." },
+            { hora: "21:30 PM", actividad: "Abordaje en camioneta y retorno tranquilo a Puebla." },
+            { hora: "00:00 AM", actividad: "Llegada segura a San Manuel." }
+        ],
+        incluye: [
+            "Transporte redondo ejecutivo con chofer asignado",
+            "Paseo en trajinera tradicional",
+            "Boleto oficial de acceso VIP al espectáculo de La Llorona",
+            "Casetas, combustible y seguro de viajero"
+        ],
+        no_incluye: ["Consumos de alimentos y bebidas"]
+    },
+    {
+        id: "grutas-tolantongo",
+        nombre: "Grutas de Tolantongo: Pozas Termales de Hidalgo",
+        categoria: "pueblo_magico",
+        subcategoria: "turismo_comunitario",
+        estado: "Hidalgo",
+        precio: 890,
+        precio_texto: "$890 MXN",
+        anticipo_apartado: "$200 MXN",
+        tipo_transporte: "Suzuki Ertiga (6 Pax) / Urban (14 Pax)",
+        duracion: "Día Completo (05:30 a 20:00)",
+        distancia: "210 km desde Puebla",
+        tiempo_traslado: "3.5 hrs",
+        badge: "Ecoturismo & Salud",
+        imagen: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+        descripcion: "Maravilla natural de aguas termales a 36°C enclavadas en un cañón imponente. Incluye acceso completo a las pozas escalonadas de la montaña, la cueva de vapor termal y el río turquesa.",
+        coordenadas: { lat: 20.6481, lng: -98.9958 },
+        ruta_puntos: [
+            { nombre: "Salida: San Manuel, Puebla", lat: 19.0186, lng: -98.1963, altitud: "2,160 m" },
+            { nombre: "Autopista Arco Norte", lat: 19.5500, lng: -98.5000, altitud: "2,500 m" },
+            { nombre: "Ixmiquilpan / Cardonal", lat: 20.4800, lng: -99.2100, altitud: "1,750 m" },
+            { nombre: "Grutas de Tolantongo (Pozas)", lat: 20.6481, lng: -98.9958, altitud: "1,350 m" }
+        ],
+        itinerario: [
+            { hora: "05:30 AM", actividad: "Salida de Puebla por la Autopista Arco Norte." },
+            { hora: "09:00 AM", actividad: "Llegada al Parque Ecológico Tolantongo." },
+            { hora: "09:15 AM - 12:30 PM", actividad: "Disfrute de las Pozas Termales de la montaña en el acantilado." },
+            { hora: "12:30 PM - 14:30 PM", actividad: "Recorrido por la Cueva, Túnel de Vapor y baño en el Río Turquesa." },
+            { hora: "14:30 PM - 16:00 PM", actividad: "Comida campestre de barbacoa tradicional hidalguense." },
+            { hora: "16:15 PM", actividad: "Salida de Tolantongo con destino a Puebla." },
+            { hora: "20:00 PM", actividad: "Arribo a San Manuel." }
+        ],
+        incluye: [
+            "Transporte redondo con combustible y peajes Arco Norte",
+            "Entrada oficial al Parque Natural Tolantongo (pozas, cueva, río y túnel)",
+            "Seguro de cobertura amplia de viajero"
+        ],
+        no_incluye: ["Alimentos y tirolesa"]
     },
     {
         id: "chignahuapan-zacatlan",
@@ -51,359 +130,358 @@ const DESTINOS_DB = [
         categoria: "pueblo_magico",
         subcategoria: "escapada_express",
         estado: "Puebla",
-        precio: 749,
-        precio_texto: "$749 MXN",
-        tipo_transporte: "Suzuki Ertiga (6 Pax)",
-        duracion: "1 Día Completo (07:00 a 20:30)",
-        distancia: "128 km desde Puebla",
-        tiempo_traslado: "2 hrs",
-        badge: "Más Vendido",
-        imagen: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
-        descripcion: "Recorrido doble por dos de los pueblos más icónicos de Puebla. El Reloj Floral y mirador de cristal de la Barranca de los Jilgueros en Zacatlán, y los talleres artesanales de esferas navideñas en Chignahuapan.",
-        coordenadas: { lat: 19.9328, lng: -97.9602 },
-        ruta_puntos: [
-            { nombre: "Salida: San Manuel, Puebla", lat: 19.0186, lng: -98.1963 },
-            { nombre: "Parada 1: Chignahuapan Basílica & Talleres", lat: 19.8378, lng: -98.0317 },
-            { nombre: "Parada 2: Zacatlán Reloj Floral y Barranca", lat: 19.9328, lng: -97.9602 }
-        ],
-        itinerario: [
-            { hora: "07:00 AM", actividad: "Salida desde San Manuel (Suzuki Ertiga climatizada)." },
-            { hora: "09:00 AM", actividad: "Llegada a Chignahuapan: Visita a la Virgen Monumental y Castillo de la Esfera." },
-            { hora: "12:00 PM", actividad: "Traslado a Zacatlán: Mirador de cristal en la Barranca de los Jilgueros." },
-            { hora: "02:00 PM", actividad: "Comida en los portales (pan de queso tradicional y sidras artesanales)." },
-            { hora: "04:30 PM", actividad: "Visita al Reloj Floral monumental y fábrica de licores tradicionales." },
-            { hora: "06:30 PM", actividad: "Regreso hacia Puebla capital." },
-            { hora: "08:30 PM", actividad: "Llegada a San Manuel." }
-        ],
-        incluye: [
-            "Transporte redondo en Suzuki Ertiga (grupo VIP de 6)",
-            "Seguro de cobertura amplia",
-            "Visita a taller de esferas y fábrica de sidras",
-            "Guía local y degustación de licores artesanales"
-        ],
-        no_incluye: ["Comida principal", "Compras personales"]
-    },
-    {
-        id: "concierto-estadio-gnp",
-        nombre: "Conciertos CDMX: Foro Sol / Estadio GNP & Palacio de los Deportes",
-        categoria: "concierto",
-        subcategoria: "evento_vip",
-        estado: "Ciudad de México",
-        precio: 549,
-        precio_texto: "$549 MXN",
-        tipo_transporte: "Suzuki Ertiga VIP (6 Pax) / Urban Fan (14 Pax)",
-        duracion: "Tarde - Madrugada (Salida 13:00 / Retorno al terminar)",
-        distancia: "135 km desde Puebla",
-        tiempo_traslado: "2 hrs directo a puerta de acceso",
-        badge: "Transporte Seguro",
-        imagen: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80",
-        descripcion: "Despreocúpate del tráfico de la autopista México-Puebla, el estacionamiento carísimo o la inseguridad nocturna. Te llevamos directo a la puerta del evento y te esperamos en punto de reunión seguro al finalizar el concierto.",
-        coordenadas: { lat: 19.4063, lng: -99.0927 },
-        ruta_puntos: [
-            { nombre: "Punto de Partida: Jardines de San Manuel, Puebla", lat: 19.0186, lng: -98.1963 },
-            { nombre: "Escala Opcional: Caseta San Martín Texmelucan", lat: 19.2842, lng: -98.4347 },
-            { nombre: "Destino: Estadio GNP Seguros / Foro Sol CDMX", lat: 19.4063, lng: -99.0927 }
-        ],
-        itinerario: [
-            { hora: "01:00 PM", actividad: "Reunión y registro de pasajeros en San Manuel." },
-            { hora: "01:30 PM", actividad: "Salida puntual hacia CDMX (bebidas de cortesía a bordo)." },
-            { hora: "04:00 PM", actividad: "Llegada al recinto (Puerta asignada Estadio GNP / Palacio de los Deportes)." },
-            { hora: "04:30 PM", actividad: "Tiempo libre para acceso, mercancía oficial y disfrutar del concierto." },
-            { hora: "11:30 PM", actividad: "Punto de encuentro al término del show en vehículo seguro." },
-            { hora: "12:15 AM", actividad: "Retorno directo y seguro a Puebla." },
-            { hora: "02:30 AM", actividad: "Arribo a Puebla (entrega en punto convenido)." }
-        ],
-        incluye: [
-            "Viaje redondo con chofer profesional y relevo",
-            "Casetas autopista y combustible incluidos",
-            "Seguro de viajero",
-            "Espera completa del vehículo hasta el fin del evento",
-            "Coordinador de grupo vía WhatsApp en tiempo real"
-        ],
-        no_incluye: ["Boleto de acceso al concierto", "Alimentos dentro del recinto"]
-    },
-    {
-        id: "cdmx-express-shopping",
-        nombre: "CDMX Express VIP: Reforma, Bellas Artes, Polanco o Coyoacán",
-        categoria: "express",
-        subcategoria: "ejecutivo",
-        estado: "Ciudad de México",
-        precio: 449,
-        precio_texto: "$449 MXN",
-        tipo_transporte: "Suzuki Ertiga 2022 (Exclusivo 6 Pasajeros)",
-        duracion: "Servicio Diario Redondo (Salida 06:30 / Regreso 18:30)",
-        distancia: "130 km",
-        tiempo_traslado: "1.8 hrs",
-        badge: "Salida Diaria",
-        imagen: "https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?auto=format&fit=crop&w=1200&q=80",
-        descripcion: "Viaja con comodidad total en grupo pequeño (máximo 6 pasajeros). Aire acondicionado, asientos ergonómicos individuales, puertos de carga USB y paradas estratégicas en las mejores zonas de la Ciudad de México.",
-        coordenadas: { lat: 19.4326, lng: -99.1332 },
-        ruta_puntos: [
-            { nombre: "Origen: Río Nexapa 6101, San Manuel", lat: 19.0186, lng: -98.1963 },
-            { nombre: "Parada CDMX 1: Metro Aeropuerto / Calzada Ignacio Zaragoza", lat: 19.4147, lng: -99.0967 },
-            { nombre: "Parada CDMX 2: Bellas Artes / Monumento a la Revolución", lat: 19.4352, lng: -99.1412 },
-            { nombre: "Parada CDMX 3: Polanco / Auditorio Nacional", lat: 19.4259, lng: -99.1917 }
-        ],
-        itinerario: [
-            { hora: "06:30 AM", actividad: "Salida desde San Manuel, Puebla." },
-            { hora: "08:45 AM", actividad: "Llegada al Centro Histórico / Bellas Artes." },
-            { hora: "09:30 AM", actividad: "Tiempo libre para trámites, compras o museos." },
-            { hora: "06:30 PM", actividad: "Abordaje en punto de encuentro céntrico." },
-            { hora: "08:45 PM", actividad: "Llegada a Puebla capital." }
-        ],
-        incluye: [
-            "Asiento individual garantizado en camioneta Suzuki Ertiga",
-            "Casetas y seguro de autopista",
-            "Conexión USB para carga de celulares",
-            "Espacio para equipaje mediano o compras"
-        ],
-        no_incluye: ["Gastos personales", "Estacionamientos adicionales"]
-    },
-    {
-        id: "expos-centro-citibanamex",
-        nombre: "Expos & Congresos CDMX: Centro Citibanamex & Expo Santa Fe",
-        categoria: "express",
-        subcategoria: "ejecutivo",
-        estado: "Ciudad de México",
-        precio: 499,
-        precio_texto: "$499 MXN",
-        tipo_transporte: "Suzuki Ertiga VIP (6 Pax)",
-        duracion: "Servicio Ejecutivo Redondo (Salida 06:00 / Retorno al cierre)",
-        distancia: "145 km desde Puebla",
-        tiempo_traslado: "2.1 hrs",
-        badge: "Corporativo & Expos",
-        imagen: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80",
-        descripcion: "Transporte ejecutivo directo para asistentes, conferencistas y expositores a congresos industriales, médicos y ferias en Centro Citibanamex (Hipódromo) y Expo Santa Fe. Clima, conectividad USB y facturación disponible.",
-        coordenadas: { lat: 19.4389, lng: -99.2227 },
-        ruta_puntos: [
-            { nombre: "Origen: San Manuel, Puebla", lat: 19.0186, lng: -98.1963 },
-            { nombre: "Punto CDMX: Periférico Poniente / Conscripto", lat: 19.4410, lng: -99.2200 },
-            { nombre: "Destino: Centro Citibanamex (Puerta Expos)", lat: 19.4389, lng: -99.2227 }
-        ],
-        itinerario: [
-            { hora: "06:00 AM", actividad: "Salida desde San Manuel (Suzuki Ertiga climatizada)." },
-            { hora: "08:15 AM", actividad: "Llegada directa al Centro Citibanamex antes del inicio del congreso." },
-            { hora: "08:30 AM", actividad: "Acceso al evento, networking y stands de negocios." },
-            { hora: "06:30 PM", actividad: "Abordaje en punto de encuentro asignado." },
-            { hora: "08:45 PM", actividad: "Arribo a Puebla capital." }
-        ],
-        incluye: [
-            "Transporte redondo ejecutivo para grupos de hasta 6 personas",
-            "Casetas y combustible de autopista",
-            "Seguro de cobertura amplia",
-            "Flexibilidad de horario coordinado"
-        ],
-        no_incluye: ["Boleto de acceso al congreso o expo", "Estacionamiento privado si se requiere dentro del recinto"]
-    },
-    {
-        id: "ruta-cacao-tabasco",
-        nombre: "Ruta Biocultural del Cacao: Haciendas Chocolateras y Comalcalco",
-        categoria: "turismo_comunitario",
-        subcategoria: "patrimonio_unesco",
-        estado: "Tabasco",
-        precio: 3499,
-        precio_texto: "$3,499 MXN",
-        tipo_transporte: "Camioneta Turística Urban Ejecutiva",
-        duracion: "3 Días / 2 Noches",
-        distancia: "620 km",
-        tiempo_traslado: "Ruta Turística Escénica",
-        badge: "Patrimonio Cultural",
-        votos_comunidad: 32,
-        imagen: "https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=1200&q=80",
-        descripcion: "Recorre las haciendas cacaoteras ancestrales de Tabasco, vive el proceso artesanal del chocolate criollo con productores mayas-chontales y conoce la zona arqueológica de Comalcalco.",
-        coordenadas: { lat: 18.2612, lng: -93.2057 },
-        ruta_puntos: [
-            { nombre: "Puebla Capital (Salida San Manuel)", lat: 19.0186, lng: -98.1963, altitud: "2,160 m" },
-            { nombre: "Cumbres de Maltrata (Mirador)", lat: 18.8100, lng: -97.2800, altitud: "1,700 m" },
-            { nombre: "Veracruz Puerto (Escala Gastronómica)", lat: 19.1738, lng: -96.1342, altitud: "10 m" },
-            { nombre: "Coatzacoalcos (Puente Dovali)", lat: 18.1333, lng: -94.4500, altitud: "15 m" },
-            { nombre: "Villahermosa, Tabasco", lat: 17.9895, lng: -92.9475, altitud: "20 m" },
-            { nombre: "Comalcalco: Haciendas del Cacao", lat: 18.2612, lng: -93.2057, altitud: "18 m" }
-        ],
-        itinerario: [
-            { hora: "Día 1", actividad: "Salida de Puebla rumbo a Villahermosa. Hospedaje y cena típica chontal." },
-            { hora: "Día 2", actividad: "Visita a Hacienda Jesús María y Chocolates Cacep. Taller de molienda comunitaria y pirámides de Comalcalco." },
-            { hora: "Día 3", actividad: "Mercado tradicional de Villahermosa, cata de pozol y retorno a Puebla." }
-        ],
-        incluye: [
-            "Transporte turístico viaje redondo Puebla - Tabasco",
-            "2 noches de hospedaje en hotel categoría especial",
-            "Entrada a haciendas chocolateras y taller del cacao",
-            "Guías comunitarios certificados",
-            "Desayunos incluidos"
-        ],
-        no_incluye: ["Comidas y cenas no especificadas"]
-    },
-    {
-        id: "oaxaca-hierve-el-agua",
-        nombre: "Oaxaca Mágico: Cascadas Petrificadas, Mezcal y Monte Albán",
-        categoria: "pueblo_magico",
-        subcategoria: "cultural",
-        estado: "Oaxaca",
-        precio: 1899,
-        precio_texto: "$1,899 MXN",
-        tipo_transporte: "Camioneta Urban 14 Pax",
-        duracion: "Fin de Semana (2 Días / 1 Noche)",
-        distancia: "340 km desde Puebla",
-        tiempo_traslado: "4 hrs",
-        badge: "Cultura & Sabor",
-        votos_comunidad: 47,
-        imagen: "https://images.unsplash.com/photo-1512813195386-6cf811ad3542?auto=format&fit=crop&w=1200&q=80",
-        descripcion: "Visita la majestuosa ciudad de Oaxaca, el imponente Árbol del Tule, las cascadas petrificadas de Hierve el Agua y vive la experiencia en un palenque de mezcal artesanal en Matatlán.",
-        coordenadas: { lat: 17.0654, lng: -96.7236 },
-        ruta_puntos: [
-            { nombre: "Salida: San Manuel, Puebla", lat: 19.0186, lng: -98.1963, altitud: "2,160 m" },
-            { nombre: "Tehuacán (Reserva de la Biósfera)", lat: 18.4633, lng: -97.3930, altitud: "1,676 m" },
-            { nombre: "Nochixtlán (Mixteca Alta)", lat: 17.4578, lng: -97.2256, altitud: "2,080 m" },
-            { nombre: "Oaxaca Centro Histórico", lat: 17.0654, lng: -96.7236, altitud: "1,555 m" },
-            { nombre: "Santiago Matatlán (Cuna del Mezcal)", lat: 16.8631, lng: -96.3800, altitud: "1,720 m" },
-            { nombre: "Hierve el Agua (Pozas Naturales)", lat: 16.8660, lng: -96.2750, altitud: "1,800 m" }
-        ],
-        itinerario: [
-            { hora: "Sábado 05:00 AM", actividad: "Salida desde San Manuel, Puebla." },
-            { hora: "Sábado 10:00 AM", actividad: "Llegada y recorrido por las pozas de Hierve el Agua." },
-            { hora: "Sábado 02:00 PM", actividad: "Comida en Matatlán con degustación de mezcales de agave silvestre." },
-            { hora: "Sábado 05:00 PM", actividad: "Check-in en hotel céntrico de Oaxaca y noche libre en el Andador Turístico." },
-            { hora: "Domingo 09:00 AM", actividad: "Visita a zona arqueológica de Monte Albán." },
-            { hora: "Domingo 02:00 PM", actividad: "Comida en Mercado 20 de Noviembre (Pasillo de Humo)." },
-            { hora: "Domingo 05:00 PM", actividad: "Retorno hacia Puebla." },
-            { hora: "Domingo 09:30 PM", actividad: "Llegada a San Manuel." }
-        ],
-        incluye: [
-            "Transporte redondo con seguro de viajero",
-            "1 noche de hotel céntrico en Oaxaca",
-            "Entradas a Hierve el Agua y Monte Albán",
-            "Cata de mezcales artesanales"
-        ],
-        no_incluye: ["Alimentos no detallados"]
-    },
-    {
-        id: "grutas-tolantongo",
-        nombre: "Grutas de Tolantongo: Pozas Termales, Túneles y Cañón",
-        categoria: "turismo_comunitario",
-        subcategoria: "ecoturismo",
-        estado: "Hidalgo",
-        precio: 890,
-        precio_texto: "$890 MXN",
-        tipo_transporte: "Suzuki Ertiga (6 Pax) / Urban (14 Pax)",
-        duracion: "1 Día Completo (05:00 a 22:00)",
-        distancia: "245 km desde Puebla",
-        tiempo_traslado: "3.2 hrs",
-        badge: "Paraíso Termal",
-        votos_comunidad: 58,
-        imagen: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
-        descripcion: "Sumérgete en las impresionantes pozas escalonadas de aguas termales color turquesa, explora la gruta y túnel de vapor natural dentro de la montaña y camina por el río caliente de Tolantongo.",
-        coordenadas: { lat: 20.6481, lng: -98.9950 },
-        ruta_puntos: [
-            { nombre: "Salida: San Manuel, Puebla", lat: 19.0186, lng: -98.1963, altitud: "2,160 m" },
-            { nombre: "Arco Norte (Tramo San Martín - Pachuca)", lat: 19.7800, lng: -98.6500, altitud: "2,400 m" },
-            { nombre: "Ixmiquilpan (Valle del Mezquital)", lat: 20.4833, lng: -99.2167, altitud: "1,700 m" },
-            { nombre: "Cardonal & Cañón de Tolantongo", lat: 20.6481, lng: -98.9950, altitud: "1,280 m" }
-        ],
-        itinerario: [
-            { hora: "05:00 AM", actividad: "Salida puntual desde San Manuel, Puebla." },
-            { hora: "08:30 AM", actividad: "Llegada al cañón y acceso temprano a las pozas de la montaña." },
-            { hora: "11:30 AM", actividad: "Exploración de la gruta principal, cascada interna y túnel termal." },
-            { hora: "02:00 PM", actividad: "Comida campirana a orillas del río turquesa." },
-            { hora: "05:30 PM", actividad: "Reunión en transporte para emprender el regreso." },
-            { hora: "09:30 PM", actividad: "Llegada segura a San Manuel, Puebla." }
-        ],
-        incluye: [
-            "Transporte redondo con chofer y seguro",
-            "Casetas de autopista y combustible",
-            "Entrada general al parque y pozas termales",
-            "Acceso a grutas, río y cascadas"
-        ],
-        no_incluye: ["Tirolesa", "Alimentos"]
-    },
-    {
-        id: "valquirico-cacaxtla",
-        nombre: "Val'Quirico Medieval & Zona Arqueológica Cacaxtla",
-        categoria: "pueblo_magico",
-        subcategoria: "escapada_express",
-        estado: "Tlaxcala",
-        precio: 490,
-        precio_texto: "$490 MXN",
-        tipo_transporte: "Suzuki Ertiga 2022 (6 Pax)",
-        duracion: "Medio Día / Tarde (10:00 a 19:00)",
-        distancia: "26 km desde Puebla",
-        tiempo_traslado: "35 min",
-        badge: "Escapada Rápida",
-        votos_comunidad: 29,
-        imagen: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1200&q=80",
-        descripcion: "Pasea por el pueblo estilo toscano medieval más bello de la región. Callejones empedrados, arquitectura de piedra y madera, gastronomía europea y visita opcional a los murales prehispánicos de Cacaxtla.",
-        coordenadas: { lat: 19.2464, lng: -98.3189 },
-        ruta_puntos: [
-            { nombre: "Salida: San Manuel, Puebla", lat: 19.0186, lng: -98.1963, altitud: "2,160 m" },
-            { nombre: "Autopista México-Puebla (Km 110)", lat: 19.1800, lng: -98.3000, altitud: "2,180 m" },
-            { nombre: "Val'Quirico (Pueblo Toscano)", lat: 19.2464, lng: -98.3189, altitud: "2,210 m" }
-        ],
-        itinerario: [
-            { hora: "10:00 AM", actividad: "Salida desde San Manuel en camioneta Ertiga climatizada." },
-            { hora: "10:45 AM", actividad: "Llegada y recorrido fotográfico por los callejones de Val'Quirico." },
-            { hora: "01:30 PM", actividad: "Tiempo para comer en restaurantes de corte toscano/mexicano." },
-            { hora: "04:30 PM", actividad: "Café, música en vivo en las plazuelas y compras de autor." },
-            { hora: "06:30 PM", actividad: "Retorno hacia Puebla." },
-            { hora: "07:15 PM", actividad: "Llegada a San Manuel." }
-        ],
-        incluye: [
-            "Transporte redondo VIP en Suzuki Ertiga (máx 6 personas)",
-            "Acceso y estacionamiento en Val'Quirico",
-            "Seguro de viaje en carretera"
-        ],
-        no_incluye: ["Consumo en restaurantes"]
-    },
-    {
-        id: "huasca-prismas-basalticos",
-        nombre: "Huasca de Ocampo & Real del Monte: Prismas Basálticos y Pastes",
-        categoria: "pueblo_magico",
-        subcategoria: "ecoturismo",
-        estado: "Hidalgo",
         precio: 790,
         precio_texto: "$790 MXN",
-        tipo_transporte: "Suzuki Ertiga (6 Pax) / Urban (14 Pax)",
-        duracion: "1 Día Completo (06:30 a 20:30)",
-        distancia: "165 km desde Puebla",
-        tiempo_traslado: "2.3 hrs",
-        badge: "Primer Pueblo Mágico",
-        votos_comunidad: 41,
-        imagen: "https://images.unsplash.com/photo-1518638150340-f706e86654de?auto=format&fit=crop&w=1200&q=80",
-        descripcion: "Conoce el primer Pueblo Mágico de México. Admira las columnas geométricas de basalto bañadas por cuatro cascadas en los Prismas Basálticos, recorre la Hacienda Santa María Regla y prueba los auténticos pastes mineros de Real del Monte.",
-        coordenadas: { lat: 20.2039, lng: -98.5772 },
+        anticipo_apartado: "$200 MXN",
+        tipo_transporte: "Suzuki Ertiga (6 Pax)",
+        duracion: "Día Completo (06:30 a 20:30)",
+        distancia: "128 km desde Puebla",
+        tiempo_traslado: "2 hrs",
+        badge: "Más Vendido Familiar",
+        imagen: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80",
+        descripcion: "Recorrido doble por dos de los pueblos más icónicos de Puebla. Mirador de cristal en la Barranca de los Jilgueros, fábrica de sidras y Reloj Floral en Zacatlán, junto con los talleres artesanales de esferas y aguas termales en Chignahuapan.",
+        coordenadas: { lat: 19.9328, lng: -97.9602 },
         ruta_puntos: [
             { nombre: "Salida: San Manuel, Puebla", lat: 19.0186, lng: -98.1963, altitud: "2,160 m" },
-            { nombre: "Arco Norte (Entronque Tulancingo)", lat: 19.9500, lng: -98.4000, altitud: "2,350 m" },
-            { nombre: "Real del Monte (Pueblo Minero)", lat: 20.1417, lng: -98.6722, altitud: "2,700 m" },
-            { nombre: "Prismas Basálticos de Huasca", lat: 20.2039, lng: -98.5772, altitud: "2,100 m" }
+            { nombre: "Zacatlán (Barranca y Reloj)", lat: 19.9328, lng: -97.9602, altitud: "2,040 m" },
+            { nombre: "Chignahuapan (Talleres y Termales)", lat: 19.8378, lng: -98.0317, altitud: "2,260 m" }
         ],
         itinerario: [
-            { hora: "06:30 AM", actividad: "Salida puntual desde San Manuel, Puebla." },
-            { hora: "09:00 AM", actividad: "Desayuno tradicional en Real del Monte: pastes mineros recién horneados." },
-            { hora: "11:00 AM", actividad: "Llegada a los Prismas Basálticos: puente colgante y senderos de cascadas." },
-            { hora: "02:30 PM", actividad: "Visita a los jardines de la Hacienda de Santa María Regla." },
-            { hora: "05:30 PM", actividad: "Salida rumbo a Puebla." },
-            { hora: "08:00 PM", actividad: "Llegada a San Manuel." }
+            { hora: "06:30 AM", actividad: "Salida de Puebla por la Autopista Tlaxco-Chignahuapan." },
+            { hora: "08:45 AM", actividad: "Llegada a Zacatlán. Desayuno tradicional con pan de queso artesanal." },
+            { hora: "09:30 AM - 11:30 AM", actividad: "Paseo por el Mirador de Cristal y fábrica de sidras artesanales." },
+            { hora: "12:15 PM - 14:00 PM", actividad: "Chignahuapan: Visita a la Virgen Monumental y taller de esferas navideñas." },
+            { hora: "14:00 PM - 15:15 PM", actividad: "Comida de barbacoa tradicional de borrego." },
+            { hora: "15:30 PM - 18:00 PM", actividad: "Relajación en los Baños Termales de Chignahuapan (38°C)." },
+            { hora: "18:15 PM", actividad: "Retorno hacia Puebla. Llegada 20:30 PM." }
+        ],
+        incluye: [
+            "Transporte redondo ejecutivo con chofer",
+            "Entrada a los Baños Termales de Chignahuapan",
+            "Visita guiada a taller de esferas y fábrica de sidras",
+            "Seguro de cobertura amplia"
+        ],
+        no_incluye: ["Alimentos y compras personales"]
+    },
+    {
+        id: "queretaro-bernal-freixenet",
+        nombre: "Querétaro Mágico, Peña de Bernal & Cavas Freixenet",
+        categoria: "pueblo_magico",
+        subcategoria: "express",
+        estado: "Querétaro",
+        precio: 950,
+        precio_texto: "$950 MXN",
+        anticipo_apartado: "$200 MXN",
+        tipo_transporte: "Suzuki Ertiga VIP (6 Pax)",
+        duracion: "Día Completo (06:00 a 21:00)",
+        distancia: "260 km desde Puebla",
+        tiempo_traslado: "3.5 hrs",
+        badge: "Ruta del Queso y Vino",
+        imagen: "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=1200&q=80",
+        descripcion: "Tour exclusivo de vino espumoso en Finca Sala Vivé (Freixenet) con recorrido subterráneo a 25 metros de profundidad. Comida típica en Bernal frente al tercer monolito más grande del mundo y paseo por el Centro Histórico de Querétaro.",
+        coordenadas: { lat: 20.7397, lng: -99.9404 },
+        ruta_puntos: [
+            { nombre: "Salida: San Manuel, Puebla", lat: 19.0186, lng: -98.1963, altitud: "2,160 m" },
+            { nombre: "Arco Norte - Autopista 57", lat: 19.8500, lng: -99.2000, altitud: "2,350 m" },
+            { nombre: "Cavas Freixenet (Ezequiel Montes)", lat: 20.6500, lng: -99.8900, altitud: "1,980 m" },
+            { nombre: "Peña de Bernal", lat: 20.7397, lng: -99.9404, altitud: "2,080 m" }
+        ],
+        itinerario: [
+            { hora: "06:00 AM", actividad: "Salida de Puebla por la Autopista Arco Norte." },
+            { hora: "09:30 AM", actividad: "Llegada a Cavas Freixenet en Ezequiel Montes, Querétaro." },
+            { hora: "09:45 AM - 11:30 AM", actividad: "Tour guiado por cavas subterráneas y cata de vino espumoso." },
+            { hora: "11:45 AM - 15:00 PM", actividad: "Visita a Bernal. Comida de gorditas de maíz quebrado y caminata fotográfica." },
+            { hora: "15:30 PM - 17:30 PM", actividad: "Paseo por el Centro Histórico de Querétaro y Acueducto monumental." },
+            { hora: "17:30 PM", actividad: "Retorno a Puebla. Arribo estimado 21:00 PM." }
+        ],
+        incluye: [
+            "Transporte redondo con peajes Arco Norte incluidos",
+            "Tour guiado oficial por cavas subterráneas Freixenet con degustación",
+            "Visita a Bernal y Centro Histórico de Querétaro",
+            "Seguro de viajero"
+        ],
+        no_incluye: ["Comida y compras de vino/queso"]
+    },
+    {
+        id: "taxco-cacahuamilpa",
+        nombre: "Taxco de Alarcón & Grutas de Cacahuamilpa",
+        categoria: "pueblo_magico",
+        subcategoria: "express",
+        estado: "Guerrero",
+        precio: 920,
+        precio_texto: "$920 MXN",
+        anticipo_apartado: "$200 MXN",
+        tipo_transporte: "Suzuki Ertiga (6 Pax) / Urban (14 Pax)",
+        duracion: "Día Completo (05:30 a 21:00)",
+        distancia: "195 km desde Puebla",
+        tiempo_traslado: "3 hrs",
+        badge: "Plata 925 & Cuevas",
+        imagen: "https://images.unsplash.com/photo-1512813195386-6cf811ad3542?auto=format&fit=crop&w=1200&q=80",
+        descripcion: "Exploración de los inmensos salones subterráneos de estalactitas en el Parque Nacional Grutas de Cacahuamilpa, seguido del pueblo platero de Taxco con su majestuosa Parroquia de Santa Prisca y tianguis tradicional de plata 925.",
+        coordenadas: { lat: 18.5564, lng: -99.6050 },
+        ruta_puntos: [
+            { nombre: "Salida: San Manuel, Puebla", lat: 19.0186, lng: -98.1963, altitud: "2,160 m" },
+            { nombre: "Autopista Siglo XXI / Cuautla", lat: 18.8100, lng: -98.9500, altitud: "1,450 m" },
+            { nombre: "Grutas de Cacahuamilpa", lat: 18.6690, lng: -99.5080, altitud: "1,150 m" },
+            { nombre: "Taxco de Alarcón Centro", lat: 18.5564, lng: -99.6050, altitud: "1,770 m" }
+        ],
+        itinerario: [
+            { hora: "05:30 AM", actividad: "Salida de Puebla por Autopista Siglo XXI." },
+            { hora: "08:45 AM", actividad: "Llegada al Parque Nacional Grutas de Cacahuamilpa." },
+            { hora: "09:15 AM - 11:45 AM", actividad: "Recorrido subterráneo guiado por 2 km de salones naturales." },
+            { hora: "12:15 PM - 13:00 PM", actividad: "Traslado al Pueblo Mágico de Taxco de Alarcón." },
+            { hora: "13:00 PM - 15:00 PM", actividad: "Comida en restaurante panorámico frente a Santa Prisca." },
+            { hora: "15:00 PM - 17:15 PM", actividad: "Recorrido por platerías, Santa Prisca y Cristo Monumental." },
+            { hora: "17:30 PM", actividad: "Retorno a Puebla. Llegada a San Manuel 21:00 PM." }
+        ],
+        incluye: [
+            "Transporte redondo con casetas Siglo XXI",
+            "Boleto oficial de acceso a Grutas de Cacahuamilpa con guía",
+            "Visita a Taxco y tiempo libre para compras",
+            "Seguro de viajero"
+        ],
+        no_incluye: ["Alimentos y compras de platería"]
+    },
+    {
+        id: "cuetzalan-magico",
+        nombre: "Cuetzalan del Progreso: Niebla, Cascadas y Café",
+        categoria: "pueblo_magico",
+        subcategoria: "turismo_comunitario",
+        estado: "Puebla",
+        precio: 830,
+        precio_texto: "$830 MXN",
+        anticipo_apartado: "$200 MXN",
+        tipo_transporte: "Suzuki Ertiga (6 Pax) / Urban (14 Pax)",
+        duracion: "Día Completo (06:00 a 20:15)",
+        distancia: "172 km desde Puebla",
+        tiempo_traslado: "2.5 hrs",
+        badge: "Pueblo Mágico #1",
+        imagen: "https://images.unsplash.com/photo-1518638150340-f706e86654de?auto=format&fit=crop&w=1200&q=80",
+        descripcion: "Sierra Norte de Puebla: callejones empedrados, niebla y la impresionante Cascada Las Brisas. Danza de los Voladores en el atrio parroquial y taller de café de sombra en cooperativa totonaca.",
+        coordenadas: { lat: 20.0182, lng: -97.5218 },
+        ruta_puntos: [
+            { nombre: "Salida: San Manuel, Puebla", lat: 19.0186, lng: -98.1963, altitud: "2,160 m" },
+            { nombre: "Zacapoaxtla", lat: 19.8711, lng: -97.5898, altitud: "1,820 m" },
+            { nombre: "Cuetzalan Centro", lat: 20.0182, lng: -97.5218, altitud: "1,000 m" }
+        ],
+        itinerario: [
+            { hora: "06:00 AM", actividad: "Salida puntual desde San Manuel, Puebla." },
+            { hora: "09:15 AM", actividad: "Llegada a Cuetzalan. Desayuno con café de altura y tlayoyos." },
+            { hora: "09:45 AM - 12:00 PM", actividad: "Parroquia de San Francisco y espectáculo de Voladores de Cuetzalan." },
+            { hora: "12:30 PM - 15:00 PM", actividad: "Visita a la Cascada Las Brisas y taller artesanal de telares." },
+            { hora: "15:00 PM - 16:30 PM", actividad: "Comida tradicional serrana (cecina ahumada y yolixpa)." },
+            { hora: "16:45 PM", actividad: "Regreso hacia Puebla. Llegada 20:15 PM." }
         ],
         incluye: [
             "Transporte redondo con combustible y casetas",
-            "Entrada general al parque Prismas Basálticos",
-            "Seguro de cobertura amplia",
-            "Visita guiada a Real del Monte"
+            "Entrada a la Cascada Las Brisas",
+            "Degustación de café artesanal",
+            "Seguro de cobertura amplia"
         ],
+        no_incluye: ["Alimentos"]
+    },
+    {
+        id: "orizaba-cordoba-teleferico",
+        nombre: "Orizaba Pueblo Mágico (Teleférico) & Córdoba",
+        categoria: "pueblo_magico",
+        subcategoria: "express",
+        estado: "Veracruz",
+        precio: 780,
+        precio_texto: "$780 MXN",
+        anticipo_apartado: "$200 MXN",
+        tipo_transporte: "Suzuki Ertiga (6 Pax)",
+        duracion: "Día Completo (06:30 a 20:00)",
+        distancia: "135 km desde Puebla",
+        tiempo_traslado: "2 hrs",
+        badge: "Teleférico & Café",
+        imagen: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+        descripcion: "Ascenso en el Teleférico de Orizaba hacia el Cerro del Borrego con vista panorámica al Pico de Orizaba. Visita al Palacio de Hierro diseñado por Gustave Eiffel y cata de café en los portales coloniales de Córdoba.",
+        coordenadas: { lat: 18.8497, lng: -97.1036 },
+        ruta_puntos: [
+            { nombre: "Salida: San Manuel, Puebla", lat: 19.0186, lng: -98.1963, altitud: "2,160 m" },
+            { nombre: "Autopista Puebla-Orizaba", lat: 18.8500, lng: -97.3000, altitud: "1,500 m" },
+            { nombre: "Orizaba (Teleférico y Palacio de Hierro)", lat: 18.8497, lng: -97.1036, altitud: "1,230 m" }
+        ],
+        itinerario: [
+            { hora: "06:30 AM", actividad: "Salida de Puebla por la Autopista 150D." },
+            { hora: "08:45 AM", actividad: "Llegada a Orizaba. Desayuno de picadas jarochas y pambazos." },
+            { hora: "09:45 AM - 12:00 PM", actividad: "Ascenso en el Teleférico de Orizaba al Cerro del Borrego." },
+            { hora: "12:00 PM - 13:45 PM", actividad: "Paseo del Río y Palacio de Hierro de Eiffel." },
+            { hora: "14:00 PM - 15:30 PM", actividad: "Comida en Portales de Córdoba y Museo del Café." },
+            { hora: "17:15 PM", actividad: "Retorno a Puebla. Arribo a San Manuel 20:00 PM." }
+        ],
+        incluye: [
+            "Transporte redondo con peajes incluidos",
+            "Boleto oficial de ascenso en Teleférico de Orizaba",
+            "Visita a Orizaba y Córdoba",
+            "Seguro de viajero"
+        ],
+        no_incluye: ["Alimentos y consumos"]
+    },
+    {
+        id: "oaxaca-magico-2dias",
+        nombre: "Oaxaca Mágico (2 Días / 1 Noche): Monte Albán & Mitla",
+        categoria: "pueblo_magico",
+        subcategoria: "express",
+        estado: "Oaxaca",
+        precio: 1950,
+        precio_texto: "$1,950 MXN",
+        anticipo_apartado: "$500 MXN",
+        tipo_transporte: "Suzuki Ertiga / Sprinter",
+        duracion: "Fin de Semana (2 Días / 1 Noche)",
+        distancia: "340 km desde Puebla",
+        tiempo_traslado: "4 hrs",
+        badge: "Cultura & Gastronomía",
+        imagen: "https://images.unsplash.com/photo-1512813195386-6cf811ad3542?auto=format&fit=crop&w=1200&q=80",
+        descripcion: "Viaje inolvidable a la capital gastronómica de México. Pasillo del Humo, Zona Arqueológica de Monte Albán, taller de alebrijes en San Martín Tilcajete, Árbol del Tule, Mitla y degustación de mezcal artesanal.",
+        coordenadas: { lat: 17.0654, lng: -96.7236 },
+        ruta_puntos: [
+            { nombre: "Salida: San Manuel, Puebla", lat: 19.0186, lng: -98.1963, altitud: "2,160 m" },
+            { nombre: "Tehuacán - Cuacnopalan", lat: 18.4600, lng: -97.4000, altitud: "1,670 m" },
+            { nombre: "Oaxaca de Juárez Centro", lat: 17.0654, lng: -96.7236, altitud: "1,550 m" }
+        ],
+        itinerario: [
+            { hora: "Día 1 - 05:30 AM", actividad: "Salida desde Puebla hacia Oaxaca." },
+            { hora: "Día 1 - 09:30 AM", actividad: "Llegada al Pasillo del Humo en Mercado 20 de Noviembre." },
+            { hora: "Día 1 - 11:00 AM", actividad: "Zona Arqueológica de Monte Albán con guía." },
+            { hora: "Día 1 - 15:00 PM", actividad: "Taller artesanal de alebrijes en Tilcajete." },
+            { hora: "Día 1 - 17:00 PM", actividad: "Templo de Santo Domingo y noche libre en el Centro." },
+            { hora: "Día 2 - 08:30 AM", actividad: "Visita al milenario Árbol del Tule." },
+            { hora: "Día 2 - 10:30 AM", actividad: "Zona Arqueológica de Mitla y mezcalera tradicional." },
+            { hora: "Día 2 - 16:00 PM", actividad: "Retorno hacia Puebla. Llegada estimada 21:00 PM." }
+        ],
+        incluye: [
+            "Transporte redondo ejecutivo con todas las casetas",
+            "Entradas a zonas arqueológicas Monte Albán y Mitla",
+            "Visita guiada a taller de alebrijes y fábrica mezcalera",
+            "Seguro de cobertura amplia de viajero"
+        ],
+        no_incluye: ["Hospedaje (opcional base doble +$900 MXN) y alimentos"]
+    },
+    // PAQUETES FRAVEO (ALTA GAMA & PLAYA CON IMÁGENES OFICIALES)
+    {
+        id: "fraveo-cancun-riviera",
+        nombre: "Cancún & Riviera Maya All-Inclusive (Fraveo VIP)",
+        categoria: "fraveo_lujo",
+        subcategoria: "playa_internacional",
+        estado: "Quintana Roo",
+        precio: 8990,
+        precio_texto: "$8,990 MXN",
+        anticipo_apartado: "$1,500 MXN",
+        tipo_transporte: "Vuelo Redondo + Traslado Aeropuerto",
+        duracion: "4 Días / 3 Noches",
+        distancia: "Caribe Mexicano",
+        tiempo_traslado: "Vuelo directo",
+        badge: "Franquicia Fraveo VIP",
+        imagen: "img/IMG-20260926-WA0004.jpg",
+        descripcion: "Hospedaje de lujo frente al mar en plan Todo Incluido con alimentos, bebidas ilimitadas, deportes acuáticos no motorizados y traslados privados aeropuerto-hotel.",
+        coordenadas: { lat: 21.1619, lng: -86.8515 },
+        ruta_puntos: [
+            { nombre: "Puebla a AICM / AIFA", lat: 19.0186, lng: -98.1963, altitud: "2,160 m" },
+            { nombre: "Cancún Aeropuerto", lat: 21.0365, lng: -86.8771, altitud: "10 m" }
+        ],
+        itinerario: [
+            { hora: "Día 1", actividad: "Vuelo a Cancún y traslado ejecutivo al resort. Check-in y cóctel de bienvenida." },
+            { hora: "Día 2", actividad: "Día completo de playa, albercas infinitas y gastronomía internacional." },
+            { hora: "Día 3", actividad: "Excursión opcional a Isla Mujeres o cenotes sagrados." },
+            { hora: "Día 4", actividad: "Check-out, compras de souvenirs y traslado al aeropuerto de regreso." }
+        ],
+        incluye: ["Vuelos redondos", "Resort 4 o 5 estrellas All-Inclusive", "Traslado privado", "Impuestos hoteleros"],
+        no_incluye: ["Tours opcionales", "Propinas"]
+    },
+    {
+        id: "fraveo-los-cabos",
+        nombre: "Los Cabos & El Arco de San Lucas (Fraveo VIP)",
+        categoria: "fraveo_lujo",
+        subcategoria: "playa_internacional",
+        estado: "Baja California Sur",
+        precio: 10490,
+        precio_texto: "$10,490 MXN",
+        anticipo_apartado: "$1,500 MXN",
+        tipo_transporte: "Vuelo Redondo + Traslados",
+        duracion: "4 Días / 3 Noches",
+        distancia: "Pacífico & Mar de Cortés",
+        tiempo_traslado: "Vuelo",
+        badge: "Playas de Lujo",
+        imagen: "img/IMG-20260926-WA0005.jpg",
+        descripcion: "Descubre el punto donde se une el Mar de Cortés con el Océano Pacífico. Paseo en barco con fondo de cristal hacia el Arco de Cabo San Lucas y Playa del Amor.",
+        coordenadas: { lat: 22.8905, lng: -109.9167 },
+        ruta_puntos: [
+            { nombre: "San Manuel a Aeropuerto", lat: 19.0186, lng: -98.1963, altitud: "2,160 m" },
+            { nombre: "Los Cabos Centro", lat: 22.8905, lng: -109.9167, altitud: "15 m" }
+        ],
+        itinerario: [
+            { hora: "Día 1", actividad: "Llegada a San José del Cabo y traslado al hotel." },
+            { hora: "Día 2", actividad: "Tour en catamarán al Arco de Cabo San Lucas y avistamiento marino." },
+            { hora: "Día 3", actividad: "Recorrido por el corredor turístico y atardecer en Todos Santos." },
+            { hora: "Día 4", actividad: "Mañana de compras y vuelo de retorno a Puebla/CDMX." }
+        ],
+        incluye: ["Vuelo redondo", "Hospedaje de lujo", "Paseo en barco al Arco", "Desayunos"],
+        no_incluye: ["Gastos personales"]
+    },
+    {
+        id: "fraveo-huatulco-playas",
+        nombre: "Bahías de Huatulco & Puerto Escondido (Fraveo VIP)",
+        categoria: "fraveo_lujo",
+        subcategoria: "playa_internacional",
+        estado: "Oaxaca",
+        precio: 7850,
+        precio_texto: "$7,850 MXN",
+        anticipo_apartado: "$1,000 MXN",
+        tipo_transporte: "Transporte Terrestre Ejecutivo / Vuelo",
+        duracion: "4 Días / 3 Noches",
+        distancia: "Costa de Oaxaca",
+        tiempo_traslado: "Vuelo / Terrestre",
+        badge: "Playas del Pacífico",
+        imagen: "img/IMG-20260926-WA0006.jpg",
+        descripcion: "Navegación por las 9 bahías vírgenes de Huatulco, esnórquel en arrecifes coralinos, visita a fincas cafetaleras de la sierra y atardecer en Puerto Escondido.",
+        coordenadas: { lat: 15.7667, lng: -96.1333 },
+        ruta_puntos: [
+            { nombre: "Puebla", lat: 19.0186, lng: -98.1963, altitud: "2,160 m" },
+            { nombre: "Bahías de Huatulco", lat: 15.7667, lng: -96.1333, altitud: "20 m" }
+        ],
+        itinerario: [
+            { hora: "Día 1", actividad: "Llegada a Bahías de Huatulco. Tarde libre en Playa Chahué." },
+            { hora: "Día 2", actividad: "Paseo en yate por las 9 bahías con esnórquel en Bahía La Entrega." },
+            { hora: "Día 3", actividad: "Visita a telares y cata de café de la sierra oaxaqueña." },
+            { hora: "Día 4", actividad: "Desayuno frente al mar y regreso." }
+        ],
+        incluye: ["Hospedaje 4 estrellas", "Paseo en yate por las bahías", "Desayunos incluidos"],
+        no_incluye: ["Alimentos no especificados"]
+    },
+    {
+        id: "fraveo-chiapas-canon",
+        nombre: "Chiapas Mágico & Cañón del Sumidero (Fraveo VIP)",
+        categoria: "fraveo_lujo",
+        subcategoria: "playa_internacional",
+        estado: "Chiapas",
+        precio: 8490,
+        precio_texto: "$8,490 MXN",
+        anticipo_apartado: "$1,200 MXN",
+        tipo_transporte: "Vuelo / Terrestre Ejecutivo",
+        duracion: "4 Días / 3 Noches",
+        distancia: "Sureste Mexicano",
+        tiempo_traslado: "Circuito",
+        badge: "Naturaleza Viva",
+        imagen: "img/IMG-20260926-WA0007.jpg",
+        descripcion: "Navegación por el imponente Cañón del Sumidero en lancha rápida, pueblos coloniales de San Cristóbal de las Casas y Chiapa de Corzo, y cascadas El Chiflón.",
+        coordenadas: { lat: 16.7370, lng: -92.6376 },
+        ruta_puntos: [
+            { nombre: "Puebla", lat: 19.0186, lng: -98.1963, altitud: "2,160 m" },
+            { nombre: "San Cristóbal de las Casas", lat: 16.7370, lng: -92.6376, altitud: "2,200 m" }
+        ],
+        itinerario: [
+            { hora: "Día 1", actividad: "Llegada a Tuxtla y recorrido en lancha por el Cañón del Sumidero." },
+            { hora: "Día 2", actividad: "Pueblos indígenas de San Juan Chamula y Zinacantán." },
+            { hora: "Día 3", actividad: "Cascadas El Chiflón y Lagunas de Montebello." },
+            { hora: "Día 4", actividad: "San Cristóbal Centro y vuelo de regreso." }
+        ],
+        incluye: ["Hospedaje con encanto", "Lancha en el Cañón", "Entradas a parques naturales", "Guía certificado"],
         no_incluye: ["Alimentos"]
     }
 ];
 
-// Mapeo Rápido de Experiencias y Filtros
-const CATEGORIAS_EXPERIENCIAS = [
-    { id: "todas", nombre: "Todos los Destinos", icono: "fas fa-compass" },
-    { id: "pueblo_magico", nombre: "Pueblos Mágicos", icono: "fas fa-mountain" },
-    { id: "concierto", nombre: "Conciertos CDMX", icono: "fas fa-music" },
-    { id: "express", nombre: "Express Ertiga & Expos", icono: "fas fa-car" },
-    { id: "turismo_comunitario", nombre: "Ecoturismo & Naturaleza", icono: "fas fa-leaf" }
-];
-
-// Integrar automáticamente los eventos maestros de CDMX
+// Integrar automáticamente los eventos maestros de CDMX (Conciertos y Festivales)
 if (typeof EVENTOS_CDMX_MAESTRO !== 'undefined') {
     EVENTOS_CDMX_MAESTRO.forEach(ev => {
         if (!DESTINOS_DB.some(d => d.id === ev.id)) {
@@ -411,5 +489,3 @@ if (typeof EVENTOS_CDMX_MAESTRO !== 'undefined') {
         }
     });
 }
-
-
