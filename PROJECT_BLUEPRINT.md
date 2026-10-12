@@ -74,9 +74,27 @@
 ---
 
 ## 🌐 5. Infraestructura Cloud, Dominio y Subdominios
-* **Dominio Principal:** `https://mera-kirai.com`
+* **Dominio Principal / Viajes:** `https://mera-kirai.com` o `https://viajes.mera-kirai.com`
 * **CDN / DNS:** Cloudflare (Modo Proxied con SSL Universal).
-* **Subdominios (Registros CNAME en Cloudflare hacia `rlozanointel.github.io`):**
-  - `estetica.mera-kirai.com` -> Redirige a la sección de Estética y Belleza de Alma.
-  - `admin.mera-kirai.com` -> Despliega el modal de PIN administrativo privado.
-  - `nexocontable.mera-kirai.com` -> Módulo contable.
+* **Target CNAME:** `rlozanointel.github.io` (apunta las peticiones a la infraestructura de GitHub Pages con certificado SSL administrado por Cloudflare).
+* **Subdominios Separados:**
+  - `viajes.mera-kirai.com` -> Portal exclusivo de Viajes La Ruta del Águila y fraVEO.
+  - `estetica.mera-kirai.com` -> Portal independiente de Estética Alma (Corte, color, tratamientos, citas).
+  - `nexocontable.mera-kirai.com` -> Módulo contable de Rogerman.
+  - `admin.mera-kirai.com` -> Acceso administrativo por PIN.
+
+---
+
+## 🎨 6. Principios de Diseño Minimalista y Experiencia de Usuario (UX)
+1. **Slogan Oficial de 3 Palabras:** *"Cómodo. Seguro. Directo."*
+2. **Hero Minimalista de Alta Gama:**
+   - Sin videos pesados o fuera de contexto.
+   - Sin buscadores saturados de formularios o listas abultadas.
+   - Enfoque visual en calma, tipografía prémium y llamada a la acción con el Asistente IA KÚUL.
+3. **Desacoplamiento Estricto de Negocios:** La estética NO se mezcla en la página de viajes; cada servicio vive en su respectivo subdominio.
+4. **Flujo de Asientos en la Compra (Modal Checkout):**
+   - La página de inicio permanece limpia y despejada.
+   - El selector de los 6 asientos de la Suzuki Ertiga se despliega **únicamente dentro del modal de reserva**, acompañado de la imagen real de corte interior (`img/ertiga_efrain.jpg`).
+5. **Retiro de Herramientas Satelitales Pesadas:** CesiumJS y simuladores satelitales que ralentizan la carga fueron removidos de la vista pública.
+6. **Carrusel Fluido y Responsivo:** Navegación táctil y por flechas con ampliación limpia al hacer clic en cualquier tarjeta.
+

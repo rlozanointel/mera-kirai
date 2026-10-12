@@ -21,13 +21,6 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Leaflet 3D Map CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-
-    <!-- CesiumJS 3D Global Engine (God's Eye View / Alejavi Rivera Model) -->
-    <link href="https://cesium.com/downloads/cesiumjs/releases/1.121/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
-    <script src="https://cesium.com/downloads/cesiumjs/releases/1.121/Build/Cesium/Cesium.js"></script>
-
     <!-- Motion Lux Design CSS (@santaia.lab standards) -->
     <link rel="stylesheet" href="css/motion_lux.css">
     
@@ -639,104 +632,81 @@
 </head>
 <body>
 
-    <!-- Top Announcement Bar -->
-    <div class="top-bar">
-        <div>
-            🦅 <strong id="top-announcement-txt">Viajes La Ruta del Águila (by Alma Luis)</strong> | Salidas desde Jardines de San Manuel, Puebla
-        </div>
-        <div>
-            📞 Atención Directa WhatsApp: <a href="https://wa.me/522228016244" target="_blank" style="color:#fff; text-decoration:underline;"><strong>222 801 6244</strong></a> | 📍 Río Nexapa 6101
-        </div>
-    </div>
-
-    <!-- Header Navigation -->
-    <header>
-        <div class="nav-container">
-            <a href="#bloque-hero" class="logo" id="main-header-brand">
-                <span>🦅</span> VIAJES LA RUTA DEL ÁGUILA <span class="logo-badge">BY ALMA LUIS</span>
+    <!-- Luxury Minimalist Navigation -->
+    <header class="lux-navbar">
+        <div class="lux-nav-inner">
+            <a href="#bloque-hero" class="lux-brand">
+                <div class="lux-brand-icon">🦅</div>
+                <div class="lux-brand-text">
+                    LA RUTA DEL ÁGUILA
+                    <small>Viajes & Transporte Ejecutivo</small>
+                </div>
             </a>
 
-            <!-- PUBLIC NAVBAR ONLY (Navegación enfocada a conversión sin Gestor Privado) -->
-            <ul class="nav-links">
-                <li><a href="#bloque-confirmados" class="active">🌟 Confirmados</a></li>
-                <li><a href="#bloque-conciertos">🎶 Conciertos CDMX</a></li>
-                <li><a href="#bloque-pueblos">🏞️ Pueblos Mágicos</a></li>
-                <li><a href="#bloque-fraveo">👑 fraVEO VIP</a></li>
-                <li><a href="#bloque-flota">🚗 Camioneta Ertiga</a></li>
-                <li><a href="#bloque-estetica">💅 Estética</a></li>
-                <li><a href="#bloque-contacto">📍 Contacto</a></li>
+            <ul class="lux-nav-links">
+                <li><a href="#bloque-confirmados">Salidas Confirmadas</a></li>
+                <li><a href="#bloque-conciertos">Conciertos CDMX</a></li>
+                <li><a href="#bloque-pueblos">Pueblos Mágicos</a></li>
+                <li><a href="#bloque-fraveo">fraVEO VIP</a></li>
+                <li><a href="#bloque-flota">Unidad Ertiga</a></li>
+                <li><a href="#bloque-contacto">Contacto</a></li>
             </ul>
 
-            <div class="header-actions">
-                <a href="https://wa.me/522228016244?text=Hola%20Alma,%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20las%20pr%C3%B3ximas%20salidas" target="_blank" class="btn-reserve-header">
-                    <i class="fab fa-whatsapp"></i> Reservar: 222 801 6244
+            <div class="lux-nav-actions">
+                <button class="btn-nav-ai" onclick="toggleAiChat()">
+                    <i class="fas fa-wand-magic-sparkles"></i> Asistente IA
+                </button>
+                <a href="https://wa.me/522228016244?text=Hola%20Alma,%20quiero%20cotizar%20un%20viaje%20con%20La%20Ruta%20del%20%C3%81guila" target="_blank" class="btn-nav-phone">
+                    <i class="fab fa-whatsapp"></i> 222 801 6244
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- Motion Hero Banner con Video de Fondo -->
-    <section class="hero-banner" id="bloque-hero">
-        <video class="hero-video-bg" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=80">
-            <source src="video/banner_motion.mp4" type="video/mp4">
-        </video>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="hero-badge-tag">
-                <span>🦅</span> AGENCIA DE VIAJES & TRANSPORTE EJECUTIVO PUEBLA
+    <!-- Luxury Minimalist Hero Banner -->
+    <section class="lux-hero-section" id="bloque-hero">
+        <div class="lux-hero-overlay"></div>
+        <div class="lux-hero-inner">
+            <div class="lux-hero-pill">
+                <span>🦅</span> Transporte Ejecutivo Directo Desde San Manuel, Puebla
             </div>
-            <h1 id="hero-title-txt">Viajes La Ruta del Águila</h1>
-            <p class="hero-slogan" id="hero-slogan-txt">"Tu salida directa, cómoda y segura desde San Manuel hacia los mejores eventos, conciertos y destinos de México."</p>
-            <p class="hero-sub" id="hero-desc-txt">Salidas ejecutivas en Suzuki Ertiga VIP (6 Pasajeros) y camionetas de turismo. Aparta tu lugar con solo $200 MXN con 100% de reembolso garantizado si no se completa el cupo mínimo.</p>
-            <div class="hero-cta-group">
-                <a href="#bloque-confirmados" class="btn-hero-primary"><i class="fas fa-fire"></i> Ver Salidas Confirmadas</a>
-                <a href="https://wa.me/522228016244?text=Hola%20Alma,%20quiero%20cotizar%20un%20viaje%20con%20La%20Ruta%20del%20%C3%81guila" target="_blank" class="btn-hero-wa"><i class="fab fa-whatsapp"></i> WhatsApp Directo: 222 801 6244</a>
+            <h1 class="lux-hero-title">Viajes La Ruta del Águila</h1>
+            <div class="lux-hero-slogan">"Cómodo. Seguro. Directo."</div>
+            <p class="lux-hero-desc">
+                Salidas ejecutivas a conciertos en CDMX, grandes exposiciones y los destinos más bellos de México. Viaja seguro en camioneta privada Suzuki Ertiga VIP.
+            </p>
+            <div class="lux-hero-actions">
+                <a href="#bloque-confirmados" class="btn-lux-primary">
+                    <i class="fas fa-compass"></i> Explorar Salidas
+                </a>
+                <button class="btn-lux-ai" onclick="toggleAiChat()">
+                    <i class="fas fa-wand-magic-sparkles"></i> Consultar Asistente IA KÚUL
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- Search Box Card (Only on Travel Views) -->
-    <div class="search-box-card" id="search-box-card-sec">
-        <div class="search-fields-grid">
-            <div class="field-group">
-                <label>Evento o Destino:</label>
-                <select id="search-event-select" onchange="handleSearchSelectChange(this)">
-                    <option value="Compras Centro Histórico CDMX">Compras Centro Histórico CDMX ($449)</option>
-                    <option value="Zona Hospitales Tlalpan CDMX">Zona Hospitales Tlalpan CDMX ($449)</option>
-                    <option value="Aeropuerto AICM / AIFA CDMX">Aeropuerto AICM / AIFA CDMX ($449)</option>
-                    <option value="Corona Capital CDMX (Foro Sol)">Corona Capital (Foro Sol) ($790)</option>
-                    <option value="Vive Latino CDMX (Estadio GNP)">Vive Latino (Estadio GNP) ($790)</option>
-                    <option value="Acapulco Fin de Semana Villa">Acapulco Villa (Urban 14 pax)</option>
-                    <option value="CUSTOM_QUOTE">✨ Otro Destino CDMX / Nacional (Cotizar)</option>
-                </select>
+    <!-- Minimalist Trust Bar -->
+    <div class="lux-trust-bar">
+        <div class="trust-item">
+            <div class="trust-icon"><i class="fas fa-location-dot"></i></div>
+            <div class="trust-text">
+                <strong>Salida Directa San Manuel</strong>
+                <small>Río Nexapa 6101, Puebla (Sin escalas de terminal)</small>
             </div>
-            <div class="field-group">
-                <label>Modalidad de Viaje:</label>
-                <select id="search-pkg-select">
-                    <option value="Solo Transporte Redondo">Solo Transporte Redondo</option>
-                    <option value="Transporte + Boleto Entrada">Transporte + Boleto Entrada</option>
-                    <option value="Cotización Grupo Completo">Cotización Grupo Completo</option>
-                </select>
+        </div>
+        <div class="trust-item">
+            <div class="trust-icon"><i class="fas fa-shield-halved"></i></div>
+            <div class="trust-text">
+                <strong>Apartado 100% Protegido</strong>
+                <small>Aparta con $200 MXN. Reembolso íntegro garantizado</small>
             </div>
-            <div class="field-group">
-                <label>Fecha de Salida:</label>
-                <input type="date" id="search-date-input" value="2026-10-17">
-            </div>
-            <div class="field-group">
-                <label>Pasajeros:</label>
-                <select id="search-pax-count">
-                    <option value="1">1 Pasajero</option>
-                    <option value="2">2 Pasajeros</option>
-                    <option value="3">3 Pasajeros</option>
-                    <option value="4">4 Pasajeros</option>
-                    <option value="5">5 Pasajeros</option>
-                    <option value="6">6 Pasajeros (Grupo Ertiga)</option>
-                </select>
-            </div>
-            <div>
-                <button class="btn-search-main" onclick="executeSearchMain()">
-                    <i class="fas fa-search"></i> Buscar Salidas
-                </button>
+        </div>
+        <div class="trust-item">
+            <div class="trust-icon"><i class="fas fa-car-side"></i></div>
+            <div class="trust-text">
+                <strong>Suzuki Ertiga VIP (6 Pax)</strong>
+                <small>Grupos reducidos, aire acondicionado y chofer certificado</small>
             </div>
         </div>
     </div>
@@ -837,386 +807,436 @@
         </section>
 
         <!-- BLOQUE 2: 📅 CARTELERA DE CONCIERTOS & FESTIVALES CDMX -->
-        <section id="bloque-conciertos" style="margin-bottom: 4rem;">
-            <div class="section-title">
-                <i class="fas fa-music" style="color:var(--brand-cyan)"></i> 📅 Cartelera de Conciertos & Festivales CDMX
-            </div>
-            <div class="section-desc">
-                Transporte redondo seguro con espera nocturna hasta el término del show. Salida directa desde San Manuel hacia los recintos de CDMX.
-            </div>
-
-            <!-- CUADRO DE GARANTÍA COMERCIAL DE APARTADO Y REEMBOLSO -->
-            <div class="commercial-guarantee-box">
-                <div class="guarantee-icon">
-                    <i class="fas fa-shield-halved"></i>
+        <section id="bloque-conciertos" style="margin-bottom: 4.5rem;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:1.5rem; flex-wrap:wrap; gap:12px;">
+                <div>
+                    <div class="section-title" style="margin-bottom:0.3rem;">
+                        <i class="fas fa-music" style="color:var(--brand-cyan)"></i> Conciertos & Festivales CDMX
+                    </div>
+                    <div class="section-desc" style="margin-bottom:0;">
+                        Transporte redondo seguro con espera nocturna hasta el término del show. Salida directa desde San Manuel.
+                    </div>
                 </div>
-                <div class="guarantee-text">
-                    <h4>🛡️ Garantía de Reserva 100% Protegida y Reembolsable</h4>
-                    <p>
-                        Aparta tu asiento para cualquier concierto con solo <strong>$200 MXN</strong>. Si a 48 horas del evento no se completa el cupo mínimo requerido (5 personas en Suzuki Ertiga o 12 en Camioneta Urban), <strong>te reembolsamos el 100% íntegro de tu dinero sin penalizaciones de inmediato vía transferencia SPEI o efectivo</strong>, o puedes transferirlo a otra fecha. ¡Cero riesgo para ti!
-                    </p>
+                <div style="font-size:0.85rem; color:var(--brand-green); font-weight:700;">
+                    <i class="fas fa-shield-halved"></i> Aparta con $200 MXN (100% Reembolsable)
                 </div>
             </div>
 
-            <!-- Cards de Conciertos CDMX -->
-            <div class="cards-grid">
-                <!-- Shakira -->
-                <div class="travel-card" style="cursor:pointer;" onclick="openSharedElementModal('shakira-estadio-gnp')">
-                    <div class="card-img-box" style="background-image: url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80');">
-                        <span class="card-badge" style="background:var(--brand-cyan)">Estadio GNP</span>
-                    </div>
-                    <div class="card-content">
-                        <div>
-                            <span style="font-size:0.8rem; font-weight:700; color:var(--brand-gold);">📅 MARZO 2026 • CDMX</span>
-                            <div class="card-title">Shakira: Las Mujeres Ya No Lloran Tour</div>
-                            <p style="font-size:0.88rem; color:var(--text-muted)">Salida 14:00 PM desde San Manuel. Espera nocturna en el recinto y retorno seguro a Puebla al terminar.</p>
+            <!-- Slider Horizontal Conciertos -->
+            <div class="slider-wrapper">
+                <button class="slider-ctrl-btn left" onclick="scrollSlider('slider-conciertos', -340)" aria-label="Anterior">❮</button>
+                <div class="slider-track" id="slider-conciertos">
+                    
+                    <!-- Shakira -->
+                    <div class="slider-card" onclick="openSharedElementModal('shakira-estadio-gnp')">
+                        <div class="slider-card-img" style="background-image: url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80');">
+                            <span class="slider-badge" style="background:var(--brand-cyan)">Estadio GNP</span>
                         </div>
-                        <div class="card-price-row">
-                            <div>
-                                <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">TRANSPORTE REDONDO</span>
-                                <div class="price-amount">$549 MXN</div>
+                        <div class="slider-card-body">
+                            <div class="slider-card-date">📅 MARZO 2026 • CDMX</div>
+                            <div class="slider-card-title">Shakira: Las Mujeres Ya No Lloran Tour</div>
+                            <div class="slider-card-desc">Salida 14:00 PM desde San Manuel. Espera nocturna en el recinto y retorno seguro.</div>
+                            <div class="slider-card-footer">
+                                <div>
+                                    <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">TRANSPORTE REDONDO</span>
+                                    <div class="slider-price">$549 MXN</div>
+                                </div>
+                                <button class="slider-card-btn" onclick="event.stopPropagation(); openPaymentModal('Transporte Shakira Estadio GNP', 549)">
+                                    Apartar ($200)
+                                </button>
                             </div>
-                            <button class="btn-search-main" style="width:auto; padding:8px 16px;" onclick="event.stopPropagation(); openPaymentModal('Transporte Shakira Estadio GNP', 549)">Apartar ($200)</button>
                         </div>
                     </div>
-                </div>
 
-                <!-- Oasis -->
-                <div class="travel-card" style="cursor:pointer;" onclick="openSharedElementModal('oasis-estadio-gnp')">
-                    <div class="card-img-box" style="background-image: url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80');">
-                        <span class="card-badge" style="background:var(--brand-red)">Estadio GNP</span>
-                    </div>
-                    <div class="card-content">
-                        <div>
-                            <span style="font-size:0.8rem; font-weight:700; color:var(--brand-gold);">📅 SEPTIEMBRE 2026 • CDMX</span>
-                            <div class="card-title">Oasis Live '25: Gira de Reencuentro</div>
-                            <p style="font-size:0.88rem; color:var(--text-muted)">El regreso de los hermanos Gallagher. Salida ejecutiva y retorno nocturno seguro a San Manuel.</p>
+                    <!-- Oasis -->
+                    <div class="slider-card" onclick="openSharedElementModal('oasis-estadio-gnp')">
+                        <div class="slider-card-img" style="background-image: url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80');">
+                            <span class="slider-badge" style="background:var(--brand-red)">Estadio GNP</span>
                         </div>
-                        <div class="card-price-row">
-                            <div>
-                                <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">TRANSPORTE REDONDO</span>
-                                <div class="price-amount">$549 MXN</div>
+                        <div class="slider-card-body">
+                            <div class="slider-card-date">📅 SEPTIEMBRE 2026 • CDMX</div>
+                            <div class="slider-card-title">Oasis Live '25: Gira Reencuentro</div>
+                            <div class="slider-card-desc">El regreso histórico de los Gallagher. Traslado ejecutivo y retorno nocturno.</div>
+                            <div class="slider-card-footer">
+                                <div>
+                                    <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">TRANSPORTE REDONDO</span>
+                                    <div class="slider-price">$549 MXN</div>
+                                </div>
+                                <button class="slider-card-btn" onclick="event.stopPropagation(); openPaymentModal('Transporte Oasis Estadio GNP', 549)">
+                                    Apartar ($200)
+                                </button>
                             </div>
-                            <button class="btn-search-main" style="width:auto; padding:8px 16px;" onclick="event.stopPropagation(); openPaymentModal('Transporte Oasis Estadio GNP', 549)">Apartar ($200)</button>
                         </div>
                     </div>
-                </div>
 
-                <!-- Corona Capital -->
-                <div class="travel-card" style="cursor:pointer;" onclick="openSharedElementModal('corona-capital-autodromo')">
-                    <div class="card-img-box" style="background-image: url('https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=800&q=80');">
-                        <span class="card-badge" style="background:var(--brand-gold); color:#000;">Autódromo Hnos. Rodríguez</span>
-                    </div>
-                    <div class="card-content">
-                        <div>
-                            <span style="font-size:0.8rem; font-weight:700; color:var(--brand-gold);">📅 NOVIEMBRE 2026 • CDMX</span>
-                            <div class="card-title">Corona Capital 2026 (Festival)</div>
-                            <p style="font-size:0.88rem; color:var(--text-muted)">Tres días del mejor rock y pop internacional. Salidas individuales por día o abono fin de semana.</p>
+                    <!-- Corona Capital -->
+                    <div class="slider-card" onclick="openSharedElementModal('corona-capital-autodromo')">
+                        <div class="slider-card-img" style="background-image: url('https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=800&q=80');">
+                            <span class="slider-badge" style="background:var(--brand-gold); color:#000;">Autódromo Hnos. R.</span>
                         </div>
-                        <div class="card-price-row">
-                            <div>
-                                <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">POR DÍA REDONDO</span>
-                                <div class="price-amount">$549 MXN</div>
+                        <div class="slider-card-body">
+                            <div class="slider-card-date">📅 NOVIEMBRE 2026 • CDMX</div>
+                            <div class="slider-card-title">Corona Capital 2026 (Festival)</div>
+                            <div class="slider-card-desc">Tres días del mejor rock internacional. Salidas individuales por día o abono.</div>
+                            <div class="slider-card-footer">
+                                <div>
+                                    <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">POR DÍA REDONDO</span>
+                                    <div class="slider-price">$549 MXN</div>
+                                </div>
+                                <button class="slider-card-btn" onclick="event.stopPropagation(); openPaymentModal('Transporte Corona Capital CDMX', 549)">
+                                    Apartar ($200)
+                                </button>
                             </div>
-                            <button class="btn-search-main" style="width:auto; padding:8px 16px;" onclick="event.stopPropagation(); openPaymentModal('Transporte Corona Capital CDMX', 549)">Apartar ($200)</button>
                         </div>
                     </div>
-                </div>
 
-                <!-- EDC México -->
-                <div class="travel-card" style="cursor:pointer;" onclick="openSharedElementModal('edc-mexico-autodromo')">
-                    <div class="card-img-box" style="background-image: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80');">
-                        <span class="card-badge" style="background:#a855f7;">Autódromo Hnos. Rodríguez</span>
-                    </div>
-                    <div class="card-content">
-                        <div>
-                            <span style="font-size:0.8rem; font-weight:700; color:var(--brand-gold);">📅 FEBRERO 2026 • CDMX</span>
-                            <div class="card-title">EDC México 2026 (Electric Daisy)</div>
-                            <p style="font-size:0.88rem; color:var(--text-muted)">El mayor festival de música electrónica. Transporte redondo con chofer esperando en zona designada.</p>
+                    <!-- EDC México -->
+                    <div class="slider-card" onclick="openSharedElementModal('edc-mexico-autodromo')">
+                        <div class="slider-card-img" style="background-image: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80');">
+                            <span class="slider-badge" style="background:#a855f7;">Autódromo Hnos. R.</span>
                         </div>
-                        <div class="card-price-row">
-                            <div>
-                                <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">POR DÍA REDONDO</span>
-                                <div class="price-amount">$549 MXN</div>
+                        <div class="slider-card-body">
+                            <div class="slider-card-date">📅 FEBRERO 2026 • CDMX</div>
+                            <div class="slider-card-title">EDC México 2026 (Electric Daisy)</div>
+                            <div class="slider-card-desc">El festival cumbre de electrónica. Chofer esperando en zona designada.</div>
+                            <div class="slider-card-footer">
+                                <div>
+                                    <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">POR DÍA REDONDO</span>
+                                    <div class="slider-price">$549 MXN</div>
+                                </div>
+                                <button class="slider-card-btn" onclick="event.stopPropagation(); openPaymentModal('Transporte EDC México', 549)">
+                                    Apartar ($200)
+                                </button>
                             </div>
-                            <button class="btn-search-main" style="width:auto; padding:8px 16px;" onclick="event.stopPropagation(); openPaymentModal('Transporte EDC México', 549)">Apartar ($200)</button>
                         </div>
                     </div>
-                </div>
 
-                <!-- Chayanne -->
-                <div class="travel-card" style="cursor:pointer;" onclick="openSharedElementModal('chayanne-palacio-deportes')">
-                    <div class="card-img-box" style="background-image: url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80');">
-                        <span class="card-badge" style="background:var(--brand-red);">Palacio de los Deportes</span>
-                    </div>
-                    <div class="card-content">
-                        <div>
-                            <span style="font-size:0.8rem; font-weight:700; color:var(--brand-gold);">📅 NOVIEMBRE 2026 • CDMX</span>
-                            <div class="card-title">Chayanne: Bailemos Otra Vez Tour</div>
-                            <p style="font-size:0.88rem; color:var(--text-muted)">Transporte de puerta a puerta para disfrutar sin preocupaciones de estacionamiento o tráfico.</p>
+                    <!-- Chayanne -->
+                    <div class="slider-card" onclick="openSharedElementModal('chayanne-palacio-deportes')">
+                        <div class="slider-card-img" style="background-image: url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80');">
+                            <span class="slider-badge" style="background:var(--brand-red);">Palacio Deportes</span>
                         </div>
-                        <div class="card-price-row">
-                            <div>
-                                <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">TRANSPORTE REDONDO</span>
-                                <div class="price-amount">$549 MXN</div>
+                        <div class="slider-card-body">
+                            <div class="slider-card-date">📅 NOVIEMBRE 2026 • CDMX</div>
+                            <div class="slider-card-title">Chayanne: Bailemos Otra Vez</div>
+                            <div class="slider-card-desc">Transporte directo sin líos de estacionamiento ni tráfico nocturno.</div>
+                            <div class="slider-card-footer">
+                                <div>
+                                    <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">TRANSPORTE REDONDO</span>
+                                    <div class="slider-price">$549 MXN</div>
+                                </div>
+                                <button class="slider-card-btn" onclick="event.stopPropagation(); openPaymentModal('Transporte Chayanne Palacio Deportes', 549)">
+                                    Apartar ($200)
+                                </button>
                             </div>
-                            <button class="btn-search-main" style="width:auto; padding:8px 16px;" onclick="event.stopPropagation(); openPaymentModal('Transporte Chayanne Palacio Deportes', 549)">Apartar ($200)</button>
                         </div>
                     </div>
-                </div>
 
-                <!-- Luis Miguel -->
-                <div class="travel-card" style="cursor:pointer;" onclick="openSharedElementModal('luis-miguel-arena-cdmx')">
-                    <div class="card-img-box" style="background-image: url('https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?auto=format&fit=crop&w=800&q=80');">
-                        <span class="card-badge" style="background:var(--brand-gold); color:#000;">Arena CDMX</span>
-                    </div>
-                    <div class="card-content">
-                        <div>
-                            <span style="font-size:0.8rem; font-weight:700; color:var(--brand-gold);">📅 DICIEMBRE 2026 • CDMX</span>
-                            <div class="card-title">Luis Miguel: Gira Monumental</div>
-                            <p style="font-size:0.88rem; color:var(--text-muted)">El Sol de México en Arena CDMX. Salida cómoda desde San Manuel y regreso al concluir el concierto.</p>
+                    <!-- Luis Miguel -->
+                    <div class="slider-card" onclick="openSharedElementModal('luis-miguel-arena-cdmx')">
+                        <div class="slider-card-img" style="background-image: url('https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?auto=format&fit=crop&w=800&q=80');">
+                            <span class="slider-badge" style="background:var(--brand-gold); color:#000;">Arena CDMX</span>
                         </div>
-                        <div class="card-price-row">
-                            <div>
-                                <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">TRANSPORTE REDONDO</span>
-                                <div class="price-amount">$549 MXN</div>
+                        <div class="slider-card-body">
+                            <div class="slider-card-date">📅 DICIEMBRE 2026 • CDMX</div>
+                            <div class="slider-card-title">Luis Miguel: Gira Monumental</div>
+                            <div class="slider-card-desc">El Sol de México en Arena CDMX. Salida cómoda desde San Manuel.</div>
+                            <div class="slider-card-footer">
+                                <div>
+                                    <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">TRANSPORTE REDONDO</span>
+                                    <div class="slider-price">$549 MXN</div>
+                                </div>
+                                <button class="slider-card-btn" onclick="event.stopPropagation(); openPaymentModal('Transporte Luis Miguel Arena CDMX', 549)">
+                                    Apartar ($200)
+                                </button>
                             </div>
-                            <button class="btn-search-main" style="width:auto; padding:8px 16px;" onclick="event.stopPropagation(); openPaymentModal('Transporte Luis Miguel Arena CDMX', 549)">Apartar ($200)</button>
                         </div>
                     </div>
+
                 </div>
+                <button class="slider-ctrl-btn right" onclick="scrollSlider('slider-conciertos', 340)" aria-label="Siguiente">❯</button>
             </div>
         </section>
 
         <!-- BLOQUE 3: 🏞️ PUEBLOS MÁGICOS & ECOTURISMO -->
-        <section id="bloque-pueblos" style="margin-bottom: 4rem;">
-            <div class="section-title">
-                <i class="fas fa-mountain" style="color:var(--brand-green)"></i> 🏞️ Pueblos Mágicos & Ecoturismo de Fin de Semana
-            </div>
-            <div class="section-desc">
-                Aguas termales, cascadas, viñedos y arquitectura virreinal saliendo desde Puebla en grupos reducidos con máxima comodidad.
-            </div>
-
-            <!-- Filtros interactivos -->
-            <div class="cat-pills-bar">
-                <button class="cat-pill-btn active" onclick="filterDestinosByCat('todas', this)"><i class="fas fa-compass"></i> Todos los Destinos</button>
-                <button class="cat-pill-btn" onclick="filterDestinosByCat('pueblo_magico', this)"><i class="fas fa-mountain"></i> Pueblos Mágicos</button>
-                <button class="cat-pill-btn" onclick="filterDestinosByCat('turismo_comunitario', this)"><i class="fas fa-leaf"></i> Ecoturismo & Termales</button>
-                <button class="cat-pill-btn" onclick="filterDestinosByCat('concierto', this)"><i class="fas fa-music"></i> Conciertos CDMX</button>
-                <button class="cat-pill-btn" onclick="filterDestinosByCat('express', this)"><i class="fas fa-car"></i> Salidas Confirmadas</button>
-            </div>
-
-            <!-- Visualizador Coverflow 3D -->
-            <div class="coverflow-showcase-box">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.8rem; flex-wrap:wrap; gap:10px;">
-                    <div>
-                        <span style="font-size:0.75rem; font-weight:800; color:var(--brand-cyan); text-transform:uppercase; letter-spacing:1px;">✨ Visualizador 3D Panorámico</span>
-                        <h3 style="font-family:'Outfit'; font-size:1.35rem; color:var(--text-title); margin:2px 0 0;">Haz Clic en Cualquier Tarjeta para Ver Itinerario Completo</h3>
+        <section id="bloque-pueblos" style="margin-bottom: 4.5rem;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:1.5rem; flex-wrap:wrap; gap:12px;">
+                <div>
+                    <div class="section-title" style="margin-bottom:0.3rem;">
+                        <i class="fas fa-mountain" style="color:var(--brand-green)"></i> Pueblos Mágicos & Ecoturismo
                     </div>
-                    <div id="coverflow-counter-txt" style="font-size:0.85rem; color:var(--text-muted); font-weight:700;">Cargando...</div>
-                </div>
-
-                <div class="coverflow-viewport" id="coverflow-viewport">
-                    <button class="coverflow-nav-btn prev" onclick="prevCoverflow()" aria-label="Destino Anterior">❮</button>
-                    <div class="coverflow-track" id="coverflow-track">
-                        <!-- Inyectado dinámicamente por app_interactive.js -->
+                    <div class="section-desc" style="margin-bottom:0;">
+                        Aguas termales, cascadas, viñedos y arquitectura virreinal en viajes relajados de fin de semana.
                     </div>
-                    <button class="coverflow-nav-btn next" onclick="nextCoverflow()" aria-label="Destino Siguiente">❯</button>
                 </div>
-
-                <div class="coverflow-counter-indicator" id="coverflow-dots">
-                    <!-- Dots inyectados dinámicamente -->
+                <div class="cat-pills-bar" style="margin-bottom:0;">
+                    <button class="cat-pill-btn active" onclick="filterSliderDestinos('todos', this)"><i class="fas fa-compass"></i> Todos</button>
+                    <button class="cat-pill-btn" onclick="filterSliderDestinos('pueblo', this)"><i class="fas fa-mountain"></i> Pueblos</button>
+                    <button class="cat-pill-btn" onclick="filterSliderDestinos('termales', this)"><i class="fas fa-water"></i> Termales</button>
                 </div>
             </div>
 
-            <!-- Cuadrícula Dinámica de Tarjetas -->
-            <div id="destinos-cards-grid" class="destinos-grid-wrapper" style="margin-bottom: 2.5rem;">
-                <!-- Cargado automáticamente por app_interactive.js -->
+            <!-- Slider Horizontal Pueblos Mágicos -->
+            <div class="slider-wrapper">
+                <button class="slider-ctrl-btn left" onclick="scrollSlider('slider-pueblos', -340)" aria-label="Anterior">❮</button>
+                <div class="slider-track" id="slider-pueblos">
+
+                    <!-- Tolantongo -->
+                    <div class="slider-card" data-cat="termales" onclick="openSharedElementModal('grutas-tolantongo')">
+                        <div class="slider-card-img" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80');">
+                            <span class="slider-badge" style="background:var(--brand-cyan)">Aguas Termales</span>
+                        </div>
+                        <div class="slider-card-body">
+                            <div class="slider-card-date">POZAS NATURALES • HIDALGO</div>
+                            <div class="slider-card-title">Grutas de Tolantongo</div>
+                            <div class="slider-card-desc">Pozas termales escalonadas en el cañón, túnel de vapor y cascadas naturales.</div>
+                            <div class="slider-card-footer">
+                                <div>
+                                    <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">TRANSPORTE REDONDO</span>
+                                    <div class="slider-price">$790 MXN</div>
+                                </div>
+                                <button class="slider-card-btn" onclick="event.stopPropagation(); openPaymentModal('Grutas de Tolantongo', 790)">
+                                    Apartar ($200)
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Zacatlán y Chignahuapan -->
+                    <div class="slider-card" data-cat="pueblo" onclick="openSharedElementModal('zacatlan-chignahuapan')">
+                        <div class="slider-card-img" style="background-image: url('https://images.unsplash.com/photo-1518638150340-f706e86654de?auto=format&fit=crop&w=800&q=80');">
+                            <span class="slider-badge" style="background:var(--brand-green)">Sierra Norte</span>
+                        </div>
+                        <div class="slider-card-body">
+                            <div class="slider-card-date">PUEBLO MÁGICO • PUEBLA</div>
+                            <div class="slider-card-title">Zacatlán & Chignahuapan</div>
+                            <div class="slider-card-desc">Puente de cristal en la barranca, esferas navideñas, sidra artesanal y cascadas.</div>
+                            <div class="slider-card-footer">
+                                <div>
+                                    <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">TRANSPORTE REDONDO</span>
+                                    <div class="slider-price">$650 MXN</div>
+                                </div>
+                                <button class="slider-card-btn" onclick="event.stopPropagation(); openPaymentModal('Zacatlán y Chignahuapan', 650)">
+                                    Apartar ($200)
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Querétaro Queso y Vino -->
+                    <div class="slider-card" data-cat="pueblo" onclick="openSharedElementModal('queretaro-queso-vino')">
+                        <div class="slider-card-img" style="background-image: url('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80');">
+                            <span class="slider-badge" style="background:var(--brand-gold); color:#000;">Viñedos & Peña</span>
+                        </div>
+                        <div class="slider-card-body">
+                            <div class="slider-card-date">RUTA ENOLÓGICA • QUERÉTARO</div>
+                            <div class="slider-card-title">Ruta del Queso, Vino & Bernal</div>
+                            <div class="slider-card-desc">Recorrido por cavas Freixenet, degustación de quesos artesanales y Peña de Bernal.</div>
+                            <div class="slider-card-footer">
+                                <div>
+                                    <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">TRANSPORTE REDONDO</span>
+                                    <div class="slider-price">$890 MXN</div>
+                                </div>
+                                <button class="slider-card-btn" onclick="event.stopPropagation(); openPaymentModal('Ruta Queso y Vino Querétaro', 890)">
+                                    Apartar ($200)
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Taxco de Alarcón -->
+                    <div class="slider-card" data-cat="pueblo" onclick="openSharedElementModal('taxco-alarcon')">
+                        <div class="slider-card-img" style="background-image: url('https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=800&q=80');">
+                            <span class="slider-badge" style="background:var(--brand-cyan)">Ciudad de la Plata</span>
+                        </div>
+                        <div class="slider-card-body">
+                            <div class="slider-card-date">PUEBLO MÁGICO • GUERRERO</div>
+                            <div class="slider-card-title">Taxco de Alarcón & Platerías</div>
+                            <div class="slider-card-desc">Callejones empedrados, Parroquia de Santa Prisca, talleres de plata y teleférico.</div>
+                            <div class="slider-card-footer">
+                                <div>
+                                    <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">TRANSPORTE REDONDO</span>
+                                    <div class="slider-price">$790 MXN</div>
+                                </div>
+                                <button class="slider-card-btn" onclick="event.stopPropagation(); openPaymentModal('Taxco de Alarcón Platería', 790)">
+                                    Apartar ($200)
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cuetzalan Mágico -->
+                    <div class="slider-card" data-cat="pueblo" onclick="openSharedElementModal('cuetzalan-magico')">
+                        <div class="slider-card-img" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80');">
+                            <span class="slider-badge" style="background:var(--brand-green)">Niebla & Tradición</span>
+                        </div>
+                        <div class="slider-card-body">
+                            <div class="slider-card-date">PUEBLO MÁGICO • PUEBLA</div>
+                            <div class="slider-card-title">Cuetzalan del Progreso</div>
+                            <div class="slider-card-desc">Cascadas Las Brisas, danza de los voladores, café de altura y mercado dominical.</div>
+                            <div class="slider-card-footer">
+                                <div>
+                                    <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">TRANSPORTE REDONDO</span>
+                                    <div class="slider-price">$820 MXN</div>
+                                </div>
+                                <button class="slider-card-btn" onclick="event.stopPropagation(); openPaymentModal('Cuetzalan del Progreso', 820)">
+                                    Apartar ($200)
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <button class="slider-ctrl-btn right" onclick="scrollSlider('slider-pueblos', 340)" aria-label="Siguiente">❯</button>
             </div>
         </section>
 
         <!-- BLOQUE 4: 👑 PAQUETES VIP & PLAYAS INTERNACIONALES (fraVEO) -->
-        <section id="bloque-fraveo" style="margin-bottom: 4rem;">
-            <div class="section-title">
-                <i class="fas fa-crown" style="color:var(--brand-gold)"></i> 👑 Franquicia fraVEO: Paquetes VIP & Playas de Lujo
+        <section id="bloque-fraveo" style="margin-bottom: 4.5rem;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:1.5rem; flex-wrap:wrap; gap:12px;">
+                <div>
+                    <div class="section-title" style="margin-bottom:0.3rem;">
+                        <i class="fas fa-crown" style="color:var(--brand-gold)"></i> Franquicia fraVEO: Paquetes VIP & Playas
+                    </div>
+                    <div class="section-desc" style="margin-bottom:0;">
+                        Cruceros internacionales, Cancún, Disney World y circuitos europeos operados bajo la franquicia oficial Ruta del Águila by fraVEO.
+                    </div>
+                </div>
             </div>
-            <div class="section-desc">
-                Cruceros internacionales, Disney World, Cancún y circuitos por Europa operados bajo la prestigiosa franquicia oficial <strong>Ruta del Águila by fraVEO</strong>.
-            </div>
 
-            <div class="cards-grid">
-                <!-- Flyer WhatsApp 1: Cruceros Caribe -->
-                <div class="travel-card">
-                    <div class="card-img-box" style="background-image: url('img/IMG-20260926-WA0004.jpg');">
-                        <span class="card-badge" style="background:var(--brand-gold); color:#000;">fraVEO Premium</span>
-                    </div>
-                    <div class="card-content">
-                        <div>
-                            <div class="card-title">Cruceros por el Caribe & Bahamas</div>
-                            <p style="font-size:0.88rem; color:var(--text-muted)">7 Días todo incluido con camarote balcón, alimentos gourmet, shows y vuelos incluidos.</p>
-                        </div>
-                        <div class="card-price-row">
-                            <div class="price-amount" style="font-size:1.2rem; color:var(--brand-gold);">$35,000 MXN</div>
-                            <button class="btn-search-main" style="width:auto; padding:8px 16px; background:var(--brand-gold); color:#000;" onclick="bookSimpleWhatsApp('Crucero Caribe fraVEO VIP')">Cotizar por WhatsApp</button>
-                        </div>
-                    </div>
-                </div>
+            <!-- Slider Horizontal fraVEO -->
+            <div class="slider-wrapper">
+                <button class="slider-ctrl-btn left" onclick="scrollSlider('slider-fraveo', -340)" aria-label="Anterior">❮</button>
+                <div class="slider-track" id="slider-fraveo">
 
-                <!-- Flyer WhatsApp 2: Cancún All-Inclusive -->
-                <div class="travel-card">
-                    <div class="card-img-box" style="background-image: url('img/IMG-20260926-WA0005.jpg');">
-                        <span class="card-badge" style="background:var(--brand-gold); color:#000;">fraVEO Playas</span>
-                    </div>
-                    <div class="card-content">
-                        <div>
-                            <div class="card-title">Cancún & Riviera Maya All-Inclusive</div>
-                            <p style="font-size:0.88rem; color:var(--text-muted)">Vuelo redondo + Hotel 5 estrellas Todo Incluido + Traslados aeropuerto-hotel.</p>
+                    <!-- Crucero Caribe -->
+                    <div class="slider-card" onclick="bookSimpleWhatsApp('Crucero Caribe fraVEO VIP')">
+                        <div class="slider-card-img" style="background-image: url('img/IMG-20260926-WA0004.jpg');">
+                            <span class="slider-badge" style="background:var(--brand-gold); color:#000;">fraVEO Premium</span>
                         </div>
-                        <div class="card-price-row">
-                            <div class="price-amount" style="font-size:1.2rem; color:var(--brand-gold);">$8,990 MXN</div>
-                            <button class="btn-search-main" style="width:auto; padding:8px 16px; background:var(--brand-gold); color:#000;" onclick="bookSimpleWhatsApp('Cancún Todo Incluido fraVEO')">Cotizar por WhatsApp</button>
+                        <div class="slider-card-body">
+                            <div class="slider-card-date">TODO INCLUIDO • 7 DÍAS</div>
+                            <div class="slider-card-title">Cruceros por el Caribe & Bahamas</div>
+                            <div class="slider-card-desc">Camarote con balcón privado, cenas gourmet, espectáculos nocturnos y vuelos.</div>
+                            <div class="slider-card-footer">
+                                <div>
+                                    <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">DESDE</span>
+                                    <div class="slider-price" style="color:var(--brand-gold);">$35,000 MXN</div>
+                                </div>
+                                <button class="slider-card-btn" style="background:var(--brand-gold); color:#000;">
+                                    Cotizar WhatsApp
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Flyer WhatsApp 3: Disney Orlando -->
-                <div class="travel-card">
-                    <div class="card-img-box" style="background-image: url('img/IMG-20260926-WA0006.jpg');">
-                        <span class="card-badge" style="background:var(--brand-gold); color:#000;">fraVEO Familiar</span>
-                    </div>
-                    <div class="card-content">
-                        <div>
-                            <div class="card-title">Disney World Orlando (Paquete Familiar)</div>
-                            <p style="font-size:0.88rem; color:var(--text-muted)">Vuelo redondo + Hotel dentro del complejo Disney + Entradas para 4 parques temáticos.</p>
+                    <!-- Cancún All Inclusive -->
+                    <div class="slider-card" onclick="bookSimpleWhatsApp('Cancún Todo Incluido fraVEO')">
+                        <div class="slider-card-img" style="background-image: url('img/IMG-20260926-WA0005.jpg');">
+                            <span class="slider-badge" style="background:var(--brand-gold); color:#000;">fraVEO Playas</span>
                         </div>
-                        <div class="card-price-row">
-                            <div class="price-amount" style="font-size:1.2rem; color:var(--brand-gold);">$28,900 MXN</div>
-                            <button class="btn-search-main" style="width:auto; padding:8px 16px; background:var(--brand-gold); color:#000;" onclick="bookSimpleWhatsApp('Disney World Orlando fraVEO')">Cotizar por WhatsApp</button>
+                        <div class="slider-card-body">
+                            <div class="slider-card-date">VUELO + HOTEL 5 ESTRELLAS</div>
+                            <div class="slider-card-title">Cancún & Riviera Maya All-Inclusive</div>
+                            <div class="slider-card-desc">Vuelo redondo saliendo de Puebla/CDMX, traslados y hotel frente al mar turquesa.</div>
+                            <div class="slider-card-footer">
+                                <div>
+                                    <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">DESDE</span>
+                                    <div class="slider-price" style="color:var(--brand-gold);">$8,990 MXN</div>
+                                </div>
+                                <button class="slider-card-btn" style="background:var(--brand-gold); color:#000;">
+                                    Cotizar WhatsApp
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Flyer WhatsApp 4: Europa Clásica -->
-                <div class="travel-card">
-                    <div class="card-img-box" style="background-image: url('img/IMG-20260926-WA0007.jpg');">
-                        <span class="card-badge" style="background:var(--brand-gold); color:#000;">fraVEO Internacional</span>
-                    </div>
-                    <div class="card-content">
-                        <div>
-                            <div class="card-title">Tour Europa Clásica (15 Días)</div>
-                            <p style="font-size:0.88rem; color:var(--text-muted)">Madrid, París, Roma y Venecia con guía en español, hoteles céntricos y vuelos incluidos.</p>
+                    <!-- Disney World Orlando -->
+                    <div class="slider-card" onclick="bookSimpleWhatsApp('Disney World Orlando fraVEO')">
+                        <div class="slider-card-img" style="background-image: url('img/IMG-20260926-WA0006.jpg');">
+                            <span class="slider-badge" style="background:var(--brand-gold); color:#000;">fraVEO Familiar</span>
                         </div>
-                        <div class="card-price-row">
-                            <div class="price-amount" style="font-size:1.2rem; color:var(--brand-gold);">$48,500 MXN</div>
-                            <button class="btn-search-main" style="width:auto; padding:8px 16px; background:var(--brand-gold); color:#000;" onclick="bookSimpleWhatsApp('Tour Europa Clásica fraVEO')">Cotizar por WhatsApp</button>
+                        <div class="slider-card-body">
+                            <div class="slider-card-date">PARQUES TEMÁTICOS • FLORIDA</div>
+                            <div class="slider-card-title">Disney World Orlando Familiar</div>
+                            <div class="slider-card-desc">Vuelo redondo + Hotel dentro del complejo Disney + Entradas para 4 parques temáticos.</div>
+                            <div class="slider-card-footer">
+                                <div>
+                                    <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">DESDE</span>
+                                    <div class="slider-price" style="color:var(--brand-gold);">$28,900 MXN</div>
+                                </div>
+                                <button class="slider-card-btn" style="background:var(--brand-gold); color:#000;">
+                                    Cotizar WhatsApp
+                                </button>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Tour Europa Clásica -->
+                    <div class="slider-card" onclick="bookSimpleWhatsApp('Tour Europa Clásica fraVEO')">
+                        <div class="slider-card-img" style="background-image: url('img/IMG-20260926-WA0007.jpg');">
+                            <span class="slider-badge" style="background:var(--brand-gold); color:#000;">fraVEO Internacional</span>
+                        </div>
+                        <div class="slider-card-body">
+                            <div class="slider-card-date">CIRCUITO 15 DÍAS • EUROPA</div>
+                            <div class="slider-card-title">Tour Europa Clásica (Madrid, París, Roma)</div>
+                            <div class="slider-card-desc">Guía en español durante todo el viaje, hoteles céntricos, desayunos y vuelos incluidos.</div>
+                            <div class="slider-card-footer">
+                                <div>
+                                    <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">DESDE</span>
+                                    <div class="slider-price" style="color:var(--brand-gold);">$48,500 MXN</div>
+                                </div>
+                                <button class="slider-card-btn" style="background:var(--brand-gold); color:#000;">
+                                    Cotizar WhatsApp
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+                <button class="slider-ctrl-btn right" onclick="scrollSlider('slider-fraveo', 340)" aria-label="Siguiente">❯</button>
             </div>
         </section>
 
         <!-- BLOQUE 5: 🚘 FLOTA EJECUTIVA SUZUKI ERTIGA 2022 -->
-        <section id="bloque-flota" style="margin-bottom: 4rem;">
+        <section id="bloque-flota" style="margin-bottom: 4.5rem;">
             <div class="section-title">
-                <i class="fas fa-car" style="color:var(--brand-cyan)"></i> 🚘 Flota Ejecutiva: Camioneta Suzuki Ertiga VIP (6 Pax)
+                <i class="fas fa-car" style="color:var(--brand-cyan)"></i> Flota Ejecutiva Suzuki Ertiga VIP (6 Pasajeros)
             </div>
             <div class="section-desc">
-                Viaja en privado o en grupo pequeño con aire acondicionado, asientos ergonómicos y chofer certificado de total confianza.
+                Comodidad prémium, aire acondicionado integral bizona y chofer certificado. Salida directa de puerta a puerta desde San Manuel.
             </div>
 
-            <div class="vehicle-hero-card">
-                <div class="vehicle-img-gallery">
-                    <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=800&q=80" alt="Camioneta Suzuki Ertiga Puebla">
+            <!-- Caja minimalista de la unidad con foto real de Efraín -->
+            <div class="lux-vehicle-box">
+                <div>
+                    <img src="img/ertiga_efrain.jpg" alt="Corte Interior Suzuki Ertiga 6 Asientos Pasajeros" class="vehicle-cutaway-img">
                 </div>
-                <div class="ertiga-blueprint-box">
-                    <h3 style="font-family:'Outfit'; font-size:1.3rem; margin-bottom:0.4rem;">💺 Selección Interactiva de Asientos (6 Lugares)</h3>
-                    <p style="font-size:0.82rem; color:var(--text-muted)">Elige los lugares que deseas apartar para ti y tus acompañantes:</p>
-
-                    <div class="seats-blueprint-grid">
-                        <div class="row-seats">
-                            <div style="flex:1; padding:8px; font-size:0.8rem; color:var(--text-muted);">[Volante / Chofer]</div>
-                            <button class="seat-btn" onclick="toggleBlueprintSeat(this, 1)">💺 #1 Copiloto</button>
-                        </div>
-                        <div class="row-seats">
-                            <button class="seat-btn" onclick="toggleBlueprintSeat(this, 2)">💺 #2 Medio Izq.</button>
-                            <button class="seat-btn" onclick="toggleBlueprintSeat(this, 3)">💺 #3 Medio Centro</button>
-                            <button class="seat-btn" onclick="toggleBlueprintSeat(this, 4)">💺 #4 Medio Der.</button>
-                        </div>
-                        <div class="row-seats">
-                            <div style="flex:0.2;"></div>
-                            <button class="seat-btn" onclick="toggleBlueprintSeat(this, 5)">💺 #5 Trasero Izq.</button>
-                            <button class="seat-btn" onclick="toggleBlueprintSeat(this, 6)">💺 #6 Trasero Der.</button>
-                            <div style="flex:0.2;"></div>
-                        </div>
+                <div>
+                    <div style="font-size:0.82rem; font-weight:800; color:var(--brand-cyan); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">
+                        DISEÑO ESPACIOSO & CONFORT
                     </div>
+                    <h3 style="font-family:'Outfit'; font-size:1.6rem; color:var(--text-title); margin-bottom:0.8rem;">
+                        Distribución en 3 Filas para 6 Pasajeros
+                    </h3>
+                    <p style="font-size:0.95rem; color:var(--text-muted); line-height:1.6;">
+                        Nuestra unidad Suzuki Ertiga 2022 ofrece una configuración privada y holgada. Puedes apartar asientos individuales para eventos o reservar la camioneta completa para ti y tus acompañantes.
+                    </p>
 
-                    <div style="font-size:0.9rem; margin-top:10px;">
-                        Asientos Seleccionados: <strong id="home-seats-list" style="color:var(--brand-red)">Ninguno</strong><br>
-                        Monto Acumulado: <strong id="home-seats-total" style="color:var(--brand-green)">$0 MXN</strong>
-                    </div>
+                    <ul class="vehicle-spec-list">
+                        <li><i class="fas fa-check-circle"></i> <strong>6 Asientos ergonómicos</strong> con reclinación y cinturón de 3 puntos.</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Aire acondicionado integral</strong> con ventilas en 2da y 3ra fila.</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Cajuela modulable</strong> con espacio suficiente para equipaje personal.</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Salida directa desde San Manuel</strong> sin escalas en terminales públicas.</li>
+                    </ul>
 
-                    <button class="btn-search-main" style="margin-top:1rem;" onclick="proceedMultiSeatBooking()">
-                        💳 Reservar Asientos Seleccionados
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- BLOQUE 6: 💅 ESTÉTICA ALMA SAN MANUEL -->
-        <section id="bloque-estetica" style="margin-bottom: 4rem;">
-            <div class="section-title">
-                <i class="fas fa-spa" style="color:var(--brand-gold)"></i> 💅 Estética, Imagen & Terapias Alma (San Manuel)
-            </div>
-            <div class="section-desc">
-                Cuidado personal, tratamientos faciales y estilismo en Río Nexapa 6101. ¡Al agendar tu cita obtienes un cupón de 10% de descuento en tus viajes!
-            </div>
-
-            <div class="cards-grid">
-                <div class="travel-card">
-                    <div class="card-img-box" style="background-image: url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80');">
-                        <span class="card-badge" style="background:var(--brand-gold); color:#000;">Facial</span>
-                    </div>
-                    <div class="card-content">
-                        <div>
-                            <div class="card-title">Facial Rejuvenecedor con Colágeno</div>
-                            <p style="font-size:0.88rem; color:var(--text-muted)">Limpieza profunda, hidratación intensa y tratamiento reafirmante con colágeno natural.</p>
-                        </div>
-                        <div class="card-price-row">
-                            <div class="price-amount" style="color:var(--brand-gold)">$550 MXN</div>
-                            <button class="btn-search-main" style="width:auto; padding:8px 16px; background:var(--brand-gold); color:#000;" onclick="openSalonApptModal('Facial Rejuvenecedor con Colágeno', 550)">Agendar (+ Cupón 10%)</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="travel-card">
-                    <div class="card-img-box" style="background-image: url('https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=800&q=80');">
-                        <span class="card-badge" style="background:var(--brand-gold); color:#000;">Estilismo</span>
-                    </div>
-                    <div class="card-content">
-                        <div>
-                            <div class="card-title">Corte, Peinado & Diseño de Imagen</div>
-                            <p style="font-size:0.88rem; color:var(--text-muted)">Asesoría personalizada de estilismo según la forma de tu rostro y tono de piel.</p>
-                        </div>
-                        <div class="card-price-row">
-                            <div class="price-amount" style="color:var(--brand-gold)">$350 MXN</div>
-                            <button class="btn-search-main" style="width:auto; padding:8px 16px; background:var(--brand-gold); color:#000;" onclick="openSalonApptModal('Corte y Diseño de Imagen', 350)">Agendar (+ Cupón 10%)</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="travel-card">
-                    <div class="card-img-box" style="background-image: url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80');">
-                        <span class="card-badge" style="background:var(--brand-gold); color:#000;">Terapia</span>
-                    </div>
-                    <div class="card-content">
-                        <div>
-                            <div class="card-title">Masaje Relajante & Descontracturante</div>
-                            <p style="font-size:0.88rem; color:var(--text-muted)">Terapia corporal completa con aceites esenciales para aliviar la tensión acumulada.</p>
-                        </div>
-                        <div class="card-price-row">
-                            <div class="price-amount" style="color:var(--brand-gold)">$600 MXN</div>
-                            <button class="btn-search-main" style="width:auto; padding:8px 16px; background:var(--brand-gold); color:#000;" onclick="openSalonApptModal('Masaje Relajante Descontracturante', 600)">Agendar (+ Cupón 10%)</button>
-                        </div>
+                    <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+                        <button class="btn-search-main" style="width:auto; padding:12px 24px;" onclick="openPaymentModal('Camioneta Completa Suzuki Ertiga VIP (6 Pax)', 2694)">
+                            <i class="fas fa-chair"></i> Ver Asientos y Reservar
+                        </button>
+                        <a href="https://wa.me/522228016244?text=Hola%20Alma,%20quiero%20cotizar%20la%20camioneta%20Suzuki%20Ertiga%20privada" target="_blank" style="color:var(--text-title); font-weight:700; font-size:0.9rem; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                            <i class="fab fa-whatsapp" style="color:#25d366;"></i> Cotizar Viaje Privado
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1416,27 +1436,66 @@
         </div>
     </div>
 
-    <!-- Modal for Payment Options (SPEI, OXXO, Stripe Card) -->
+    <!-- Modal for Payment Options & Seat Picker (SPEI, OXXO, Stripe Card) -->
     <div class="modal-overlay" id="pay-modal">
-        <div class="modal-box">
+        <div class="modal-box" style="max-width:540px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
-                <h3 style="font-family:'Outfit'; font-size:1.3rem;">💳 Opciones de Pago / Reserva</h3>
+                <h3 style="font-family:'Outfit'; font-size:1.3rem;"><i class="fas fa-ticket-alt" style="color:var(--brand-gold);"></i> Reserva & Apartado de Asiento</h3>
                 <button style="background:none; border:none; color:var(--text-title); font-size:1.3rem; cursor:pointer;" onclick="closePaymentModal()">✖</button>
             </div>
 
-            <div style="background:var(--bg-subtle); padding:10px 14px; border-radius:8px; margin-bottom:1rem; font-size:0.9rem;">
+            <div style="background:var(--bg-subtle); padding:10px 14px; border-radius:10px; margin-bottom:1rem; font-size:0.9rem;">
                 Reserva para: <strong id="modal-pkg-name" style="color:var(--brand-red)">Viaje Express CDMX</strong><br>
-                Monto Total: <strong id="modal-pkg-amount" style="color:var(--brand-green); font-size:1.1rem;">$449 MXN</strong>
+                Precio Total del Paquete: <strong id="modal-pkg-amount" style="color:var(--brand-green); font-size:1.05rem;">$549 MXN</strong>
             </div>
 
-            <!-- Coupon Input Field -->
-            <div style="margin-bottom:1rem;">
-                <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:4px;">🎁 ¿Tienes un cupón de la Estética Alma?</label>
-                <div style="display:flex; gap:6px;">
-                    <input type="text" id="coupon-input" placeholder="Ej: ALMA10-8492" style="flex:1; padding:8px 12px; border:1px solid var(--border-color); border-radius:6px; background:var(--bg-subtle); color:var(--text-title); font-weight:700;">
-                    <button style="padding:8px 14px; background:var(--brand-gold); color:#000; border:none; border-radius:6px; font-weight:700; cursor:pointer;" onclick="applyCoupon()">Aplicar 10%</button>
+            <!-- SEAT PICKER INTEGRATED DIRECTLY IN CHECKOUT -->
+            <div class="seat-picker-modal-box">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                    <strong style="font-size:0.88rem; color:var(--text-title);">
+                        <i class="fas fa-chair" style="color:var(--brand-cyan);"></i> Elige tus Asientos (Suzuki Ertiga VIP)
+                    </strong>
+                    <span style="font-size:0.75rem; background:rgba(22,163,74,0.12); color:var(--brand-green); padding:2px 8px; border-radius:12px; font-weight:800;">
+                        $200 Apartado c/u
+                    </span>
                 </div>
-                <small id="coupon-msg" style="color:var(--brand-green); font-size:0.8rem; display:none; margin-top:4px;">¡Cupón del 10% de descuento aplicado correctamente!</small>
+                <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;">
+                    Selecciona en el diagrama los lugares exactos que prefieres para tu viaje:
+                </p>
+
+                <!-- 3 Filas de Asientos Ertiga -->
+                <div class="seat-row-layout">
+                    <div style="flex:1; padding:8px; font-size:0.8rem; color:var(--text-muted); text-align:center; background:var(--bg-card); border-radius:8px; border:1px dashed var(--border-color); display:flex; align-items:center; justify-content:center;">
+                        🚘 [Chofer]
+                    </div>
+                    <button type="button" class="seat-option-btn selected" id="seat-btn-1" onclick="toggleModalSeat(1)">
+                        💺 #1 Copiloto
+                    </button>
+                </div>
+                <div class="seat-row-layout">
+                    <button type="button" class="seat-option-btn" id="seat-btn-2" onclick="toggleModalSeat(2)">
+                        💺 #2 Medio Izq
+                    </button>
+                    <button type="button" class="seat-option-btn" id="seat-btn-3" onclick="toggleModalSeat(3)">
+                        💺 #3 Medio Centro
+                    </button>
+                    <button type="button" class="seat-option-btn" id="seat-btn-4" onclick="toggleModalSeat(4)">
+                        💺 #4 Medio Der
+                    </button>
+                </div>
+                <div class="seat-row-layout">
+                    <button type="button" class="seat-option-btn" id="seat-btn-5" onclick="toggleModalSeat(5)">
+                        💺 #5 Trasero Izq
+                    </button>
+                    <button type="button" class="seat-option-btn" id="seat-btn-6" onclick="toggleModalSeat(6)">
+                        💺 #6 Trasero Der
+                    </button>
+                </div>
+
+                <div style="font-size:0.85rem; margin-top:10px; padding-top:8px; border-top:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                    <div>Asientos: <strong id="modal-seats-chosen-txt" style="color:var(--brand-cyan);">#1 (1 Asiento)</strong></div>
+                    <div>Apartado a Pagar Hoy: <strong id="modal-seats-deposit-txt" style="color:var(--brand-green); font-size:1.05rem;">$200 MXN</strong></div>
+                </div>
             </div>
 
             <div class="payment-tabs">
@@ -1453,56 +1512,7 @@
             </div>
 
             <button class="btn-search-main" onclick="sendPaymentWhatsApp()">
-                <i class="fab fa-whatsapp"></i> Confirmar y Enviar Comprobante por WhatsApp
-            </button>
-        </div>
-    </div>
-
-    <!-- Modal for Salon Appointment & Calendar -->
-    <div class="modal-overlay" id="salon-appt-modal">
-        <div class="modal-box">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
-                <h3 style="font-family:'Outfit'; font-size:1.3rem; color:var(--brand-gold);">💅 Agendar Cita en Estética Alma</h3>
-                <button style="background:none; border:none; color:var(--text-title); font-size:1.3rem; cursor:pointer;" onclick="closeSalonApptModal()">✖</button>
-            </div>
-
-            <div style="margin-bottom:1rem;">
-                <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:4px;">Servicio Seleccionado:</label>
-                <input type="text" id="salon-modal-service-name" readonly style="width:100%; padding:10px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-subtle); font-weight:700;">
-            </div>
-
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:1rem;">
-                <div>
-                    <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:4px;">Fecha Deseada:</label>
-                    <input type="date" id="salon-modal-date" value="2026-10-05" style="width:100%; padding:10px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-subtle);">
-                </div>
-                <div>
-                    <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:4px;">Horario:</label>
-                    <select id="salon-modal-time" style="width:100%; padding:10px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-subtle);">
-                        <option value="10:00 AM">10:00 AM</option>
-                        <option value="11:30 AM">11:30 AM</option>
-                        <option value="1:00 PM">1:00 PM</option>
-                        <option value="4:00 PM">4:00 PM</option>
-                        <option value="5:30 PM">5:30 PM</option>
-                    </select>
-                </div>
-            </div>
-
-            <div style="margin-bottom:1rem;">
-                <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:4px;">Tu Nombre Completo:</label>
-                <input type="text" id="salon-modal-client-name" placeholder="Ej: María López" style="width:100%; padding:10px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-subtle);">
-            </div>
-
-            <div style="margin-bottom:1.2rem;">
-                <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:4px;">Opción de Pago:</label>
-                <select id="salon-modal-pay-opt" style="width:100%; padding:10px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-subtle);">
-                    <option value="PAGO_EN_SUCURSAL">Pagar en Sucursal el Día de la Cita</option>
-                    <option value="ANTICIPO_100">Anticipo de $100 MXN para Apartar por SPEI / OXXO</option>
-                </select>
-            </div>
-
-            <button class="btn-search-main" style="background:var(--brand-gold); color:#000;" onclick="submitSalonAppointment()">
-                <i class="fas fa-check-circle"></i> Confirmar Cita (+ Obtener Cupón Viajes)
+                <i class="fab fa-whatsapp"></i> Confirmar Asientos y Enviar Comprobante por WhatsApp
             </button>
         </div>
     </div>
@@ -1586,45 +1596,10 @@
                     <button class="btn-search-main" style="flex:1; min-width:200px; padding:12px;" onclick="bookActiveDestinoWhatsApp()">
                         <i class="fab fa-whatsapp"></i> Apartar Lugares por WhatsApp
                     </button>
-                    <button class="btn-3d-motion" style="padding:12px 20px;" onclick="closeSharedElementModal(); openRutaSatelital3D(activeDestino.id)">
-                        <i class="fas fa-satellite"></i> 🛰️ Ver Ruta Satelital 3D
+                    <button class="btn-search-main" style="width:auto; padding:12px 20px; background:var(--bg-subtle); color:var(--text-title); border:1px solid var(--border-color);" onclick="closeSharedElementModal()">
+                        <i class="fas fa-times"></i> Cerrar Itinerario
                     </button>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 2. MODAL SIMULADOR DE RUTA SATELITAL 3D -->
-    <div class="lux-modal-backdrop" id="simulador-satelital-modal">
-        <div class="lux-modal-card simulador-satelital-card">
-            <div class="simulador-satelital-header">
-                <div>
-                    <h3 id="simulador-satelital-title" style="font-family:'Outfit'; font-size:1.2rem; color:#38bdf8; margin-bottom:2px;">🛰️ Simulador de Ruta Satelital 3D</h3>
-                    <small id="simulador-satelital-status" style="color:#94a3b8; font-size:0.8rem;">Cargando relieve satelital...</small>
-                </div>
-                <button class="lux-modal-close" style="position:static;" onclick="closeRutaSatelital3D()">✖</button>
-            </div>
-            
-            <div class="simulador-satelital-toolbar">
-                <button class="btn-3d-motion" style="padding:6px 14px; font-size:0.8rem;" onclick="flyOverRoute3D()">
-                    <i class="fas fa-paper-plane"></i> 🚀 Sobrevolar en Dron 3D
-                </button>
-                <button class="btn-3d-motion" id="btn-toggle-engine" style="padding:6px 14px; font-size:0.8rem; background:linear-gradient(135deg,#7c3aed,#4f46e5); color:#fff;" onclick="toggleMapEngine()">
-                    <i class="fas fa-globe-americas"></i> 🌍 Modo Globo 3D Cesium (Orbital)
-                </button>
-                <span style="color:#64748b; font-size:0.8rem;">|</span>
-                <span style="color:#94a3b8; font-size:0.8rem;"><i class="fas fa-satellite"></i> Relieve Satelital ESRI / Cesium 3D</span>
-            </div>
-
-            <!-- Cesium 3D Globe Container (Alejavi Rivera Model) -->
-            <div id="simulador-cesium-canvas" class="simulador-satelital-map-canvas" style="display:none; width:100%; height:100%;"></div>
-
-            <!-- Leaflet High-Res Satellite Map Render -->
-            <div id="simulador-satelital-canvas" class="simulador-satelital-map-canvas" style="width:100%; height:100%;"></div>
-
-            <!-- Altimetría y Perfil de Elevación del Trayecto -->
-            <div id="simulador-altimetria-ribbon" class="altimetria-profile-ribbon">
-                <!-- Inyectado dinámicamente con altitudes -->
             </div>
         </div>
     </div>
@@ -1728,10 +1703,10 @@
 
     <!-- JavaScript Logic -->
     <script>
-        let selectedSeats = new Set();
-        const ERTIGA_UNIT_PRICE = 449;
+        let selectedModalSeats = new Set([1]); // Copiloto por defecto
+        const DEPOSIT_PER_SEAT = 200;
         let currentModalPkgName = "Viaje Express CDMX";
-        let currentModalPkgAmount = 449;
+        let currentModalPkgAmount = 549;
 
         let almaPin = "1234";
         let adminPin = "9999";
@@ -1740,44 +1715,8 @@
             document.querySelectorAll('.page-view').forEach(v => v.classList.remove('active'));
             document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
 
-            document.getElementById(viewId).classList.add('active');
-            
-            const navMap = {
-                'view-home': 'nav-home',
-                'view-viajes': 'nav-viajes',
-                'view-estetica': 'nav-estetica',
-                'view-contacto': 'nav-contacto',
-                'view-gestor': 'nav-gestor'
-            };
-            if(navMap[viewId]) document.getElementById(navMap[viewId]).classList.add('active');
-
-            // Dynamic Header Branding
-            const brandBox = document.getElementById('main-header-brand');
-            const searchBox = document.getElementById('search-box-card-sec');
-            const heroTitle = document.getElementById('hero-title-txt');
-            const heroDesc = document.getElementById('hero-desc-txt');
-
-            if(viewId === 'view-estetica') {
-                brandBox.innerHTML = `<span>💅</span> ESTÉTICA ALMA <span class="logo-badge">VROMLIX</span>`;
-                searchBox.style.display = 'none';
-                heroTitle.innerText = "Estética, Imagen & Terapias Alma San Manuel";
-                heroDesc.innerText = "Tratamientos faciales, corte, peinado y masajes relajantes. ¡Obtén un 10% de descuento en tus viajes al agendar!";
-            } else if(viewId === 'view-gestor') {
-                brandBox.innerHTML = `<span>⚙️</span> VROMLIX MULTI-HUB <span class="logo-badge">SUPER-ADMIN</span>`;
-                searchBox.style.display = 'none';
-                heroTitle.innerText = "Panel de Administración Privado";
-                heroDesc.innerText = "Gestión interna de reservas, inteligencia de demanda Kúul y reparto de vehículo.";
-            } else if(viewId === 'view-contacto') {
-                brandBox.innerHTML = `<span>📍</span> CONTACTO & UBICACIÓN <span class="logo-badge">PUEBLA</span>`;
-                searchBox.style.display = 'none';
-                heroTitle.innerText = "Estamos para Servirte en San Manuel";
-                heroDesc.innerText = "Visítanos en Río Nexapa 6101 o comunícate vía WhatsApp para cualquier duda.";
-            } else {
-                brandBox.innerHTML = `<span>✈️</span> VIAJES ALMA <span class="logo-badge">VROMLIX</span>`;
-                searchBox.style.display = 'block';
-                heroTitle.innerText = "Tu Agencia de Viajes y Hub de Servicios en Puebla";
-                heroDesc.innerText = "Salidas ejecutivas a CDMX en Suzuki Ertiga 2022, Conciertos Masivos, Excursiones Grupales en Urban y Paquetes Internacionales de Lujo.";
-            }
+            const targetView = document.getElementById(viewId);
+            if(targetView) targetView.classList.add('active');
 
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
@@ -1831,15 +1770,6 @@
             }
         }
 
-        function switchTravelSubtab(type, btn) {
-            document.querySelectorAll('#view-viajes .search-tab-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            
-            document.getElementById('subtab-express').style.display = type === 'express' ? 'block' : 'none';
-            document.getElementById('subtab-nacionales').style.display = type === 'nacionales' ? 'block' : 'none';
-            document.getElementById('subtab-fraveo').style.display = type === 'fraveo' ? 'block' : 'none';
-        }
-
         function switchGestorSubtab(type, btn) {
             document.querySelectorAll('#view-gestor .search-tab-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
@@ -1850,105 +1780,66 @@
             document.getElementById('gestor-subtab-pin-settings').style.display = type === 'pin-settings' ? 'block' : 'none';
         }
 
-        /* Suzuki Ertiga 2022 Multi-Seat Selection Logic */
-        function toggleBlueprintSeat(btn, seatNum) {
-            if(selectedSeats.has(seatNum)) {
-                selectedSeats.delete(seatNum);
-                btn.classList.remove('selected');
+        /* --- SEAT PICKER INSIDE MODAL --- */
+        function toggleModalSeat(seatNum) {
+            const btn = document.getElementById(`seat-btn-${seatNum}`);
+            if(selectedModalSeats.has(seatNum)) {
+                if(selectedModalSeats.size > 1) {
+                    selectedModalSeats.delete(seatNum);
+                    btn.classList.remove('selected');
+                } else {
+                    // Mantener al menos 1 asiento
+                    return;
+                }
             } else {
-                selectedSeats.add(seatNum);
+                selectedModalSeats.add(seatNum);
                 btn.classList.add('selected');
             }
 
-            const seatListTxt = document.getElementById('home-seats-list');
-            const seatTotalTxt = document.getElementById('home-seats-total');
-
-            if(selectedSeats.size === 0) {
-                seatListTxt.innerText = "Ninguno";
-                seatTotalTxt.innerText = "$0 MXN";
-            } else {
-                const arr = Array.from(selectedSeats).sort((a,b)=>a-b);
-                seatListTxt.innerText = arr.map(s => "#" + s).join(", ");
-                const total = selectedSeats.size * ERTIGA_UNIT_PRICE;
-                seatTotalTxt.innerText = "$" + total.toLocaleString() + " MXN";
-            }
+            updateModalSeatDisplay();
         }
 
-        function proceedMultiSeatBooking() {
-            if(selectedSeats.size === 0) {
-                alert("Por favor selecciona al menos un asiento en la camioneta Suzuki Ertiga.");
-                return;
-            }
-            const arr = Array.from(selectedSeats).sort((a,b)=>a-b);
-            const total = selectedSeats.size * ERTIGA_UNIT_PRICE;
-            openPaymentModal(`Reserva Suzuki Ertiga (Asiento${arr.length > 1 ? 's':''} ${arr.map(s=>'#'+s).join(', ')})`, total);
+        function updateModalSeatDisplay() {
+            const sorted = Array.from(selectedModalSeats).sort((a,b)=>a-b);
+            const seatNames = {
+                1: "#1 Copiloto",
+                2: "#2 Medio Izq",
+                3: "#3 Medio Centro",
+                4: "#4 Medio Der",
+                5: "#5 Trasero Izq",
+                6: "#6 Trasero Der"
+            };
+            const namesStr = sorted.map(s => seatNames[s] || `#${s}`).join(', ');
+            const totalDeposit = sorted.length * DEPOSIT_PER_SEAT;
+
+            document.getElementById('modal-seats-chosen-txt').innerText = `${namesStr} (${sorted.length} Asiento${sorted.length > 1 ? 's':''})`;
+            document.getElementById('modal-seats-deposit-txt').innerText = `$${totalDeposit.toLocaleString()} MXN`;
         }
 
-        /* Search Filter Box Handlers */
-        function handleSearchSelectChange(selectElem) {
-            if(selectElem.value === 'CUSTOM_QUOTE') {
-                openCustomQuoteModal();
-            }
-        }
-
-        function executeSearchMain() {
-            const dest = document.getElementById('search-event-select').value;
-            if(dest === 'CUSTOM_QUOTE') {
-                openCustomQuoteModal();
-                return;
-            }
-            const date = document.getElementById('search-date-input').value;
-            const pax = document.getElementById('search-pax-count').value;
-            showView('view-viajes');
-        }
-
-        function openCustomQuoteModal() {
-            document.getElementById('custom-quote-modal').classList.add('active');
-        }
-
-        function closeCustomQuoteModal() {
-            document.getElementById('custom-quote-modal').classList.remove('active');
-        }
-
-        function sendCustomQuoteWhatsApp() {
-            const dest = document.getElementById('custom-quote-dest').value.trim();
-            if(!dest) {
-                alert("Por favor escribe el destino que deseas cotizar.");
-                return;
-            }
-            const date = document.getElementById('custom-quote-date').value;
-            const pax = document.getElementById('custom-quote-pax').value;
-            const msg = `Hola Alma, me gustaría cotizar un viaje personalizado:\n- Origen: Río Nexapa 6101, San Manuel, Puebla\n- Destino Deseado: ${dest}\n- Fecha Estimada: ${date}\n- Pasajeros / Tipo: ${pax}`;
-            window.open(`https://wa.me/522228016244?text=${encodeURIComponent(msg)}`, '_blank');
-            closeCustomQuoteModal();
-        }
-
-        function castKuulVote(destName) {
-            alert(`¡Gracias por tu voto para "${destName}"! Tu interés ha sido registrado en el tablero de demanda Kúul. Te avisaremos cuando se confirme la salida.`);
-        }
-
-        /* Payment Modal */
+        /* Payment Modal Open / Close */
         function openPaymentModal(pkgName, amount) {
             currentModalPkgName = pkgName;
             currentModalPkgAmount = amount;
             
             document.getElementById('modal-pkg-name').innerText = pkgName;
             document.getElementById('modal-pkg-amount').innerText = "$" + parseInt(amount).toLocaleString() + " MXN";
-            document.getElementById('coupon-msg').style.display = 'none';
+            
+            // Reset seats a #1 por defecto
+            selectedModalSeats = new Set([1]);
+            for(let i=1; i<=6; i++) {
+                const b = document.getElementById(`seat-btn-${i}`);
+                if(b) {
+                    if(i === 1) b.classList.add('selected');
+                    else b.classList.remove('selected');
+                }
+            }
+            updateModalSeatDisplay();
+
             document.getElementById('pay-modal').classList.add('active');
         }
 
         function closePaymentModal() {
             document.getElementById('pay-modal').classList.remove('active');
-        }
-
-        function applyCoupon() {
-            const input = document.getElementById('coupon-input').value.trim();
-            if(input !== '') {
-                currentModalPkgAmount = Math.round(currentModalPkgAmount * 0.9);
-                document.getElementById('modal-pkg-amount').innerText = "$" + currentModalPkgAmount.toLocaleString() + " MXN (-10% Descuento Aplicado)";
-                document.getElementById('coupon-msg').style.display = 'block';
-            }
         }
 
         function setPayMethod(method, tabBtn) {
@@ -1973,59 +1864,69 @@
                 detailsBox.innerHTML = `
                     <strong style="color:var(--brand-green); display:block; margin-bottom:4px;">Pago Seguro con Tarjeta en Línea (Stripe Gateway):</strong>
                     <div>Tarjeta de Crédito / Débito (Opción a 3 y 6 meses sin intereses).</div>
-                    <div style="margin-top:8px; font-weight:700; color:var(--brand-cyan);">✓ Procesado de forma segura por Vromlix Stripe Gateway.</div>
+                    <div style="margin-top:8px; font-weight:700; color:var(--brand-cyan);">✓ Procesado de forma protegida.</div>
                 `;
             }
         }
 
         function sendPaymentWhatsApp() {
-            const msg = `Hola Alma, quiero confirmar mi reserva para: ${currentModalPkgName} por el monto de $${currentModalPkgAmount} MXN. Te adjunto mi comprobante de pago.`;
+            const sorted = Array.from(selectedModalSeats).sort((a,b)=>a-b);
+            const totalDeposit = sorted.length * DEPOSIT_PER_SEAT;
+            const seatsStr = sorted.map(s => `#${s}`).join(', ');
+
+            const msg = `Hola Alma, quiero apartar mi lugar para: ${currentModalPkgName}.\n- Asiento(s) Seleccionado(s): ${seatsStr} (${sorted.length} asiento${sorted.length > 1 ? 's':''})\n- Monto de Apartado a Pagar Hoy: $${totalDeposit} MXN (Garantía 100% reembolsable)\nTe adjunto mi comprobante de pago.`;
             window.open(`https://wa.me/522228016244?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
-        /* Estética Appointment Flow */
-        function openSalonApptModal(serviceName, price) {
-            document.getElementById('salon-modal-service-name').value = `${serviceName} ($${price} MXN)`;
-            document.getElementById('salon-appt-modal').classList.add('active');
+        /* Cotización Personalizada */
+        function openCustomQuoteModal() {
+            document.getElementById('custom-quote-modal').classList.add('active');
         }
 
-        function closeSalonApptModal() {
-            document.getElementById('salon-appt-modal').classList.remove('active');
+        function closeCustomQuoteModal() {
+            document.getElementById('custom-quote-modal').classList.remove('active');
         }
 
-        function submitSalonAppointment() {
-            const service = document.getElementById('salon-modal-service-name').value;
-            const date = document.getElementById('salon-modal-date').value;
-            const time = document.getElementById('salon-modal-time').value;
-            const client = document.getElementById('salon-modal-client-name').value.trim();
-            const payOpt = document.getElementById('salon-modal-pay-opt').options[document.getElementById('salon-modal-pay-opt').selectedIndex].text;
-
-            if(!client) {
-                alert("Por favor escribe tu nombre completo para confirmar la cita.");
+        function sendCustomQuoteWhatsApp() {
+            const dest = document.getElementById('custom-quote-dest').value.trim();
+            if(!dest) {
+                alert("Por favor escribe el destino que deseas cotizar.");
                 return;
             }
-
-            const couponCode = "ALMA10-" + Math.floor(1000 + Math.random() * 9000);
-            
-            alert(`🎉 ¡Cita Confirmada, ${client}!\n- Servicio: ${service}\n- Fecha y Hora: ${date} a las ${time}\n- Modalidad: ${payOpt}\n\n🎁 TU CUPÓN DE 10% EN VIAJES ES: ${couponCode}\n(Ha sido guardado para que lo utilices cuando viajes).`);
-
-            const msg = `Hola Alma, soy ${client}. Me gustaría agendar mi cita en la estética para el servicio de: ${service} el día ${date} a las ${time} (${payOpt}). Mi código de cupón generado es: ${couponCode}.`;
+            const date = document.getElementById('custom-quote-date').value;
+            const pax = document.getElementById('custom-quote-pax').value;
+            const msg = `Hola Alma, me gustaría cotizar un viaje personalizado:\n- Origen: Río Nexapa 6101, San Manuel, Puebla\n- Destino Deseado: ${dest}\n- Fecha Estimada: ${date}\n- Pasajeros / Tipo: ${pax}`;
             window.open(`https://wa.me/522228016244?text=${encodeURIComponent(msg)}`, '_blank');
-            closeSalonApptModal();
-        }
-
-        function updatePrice(selectId, priceId) {
-            const val = document.getElementById(selectId).value;
-            document.getElementById(priceId).innerText = "$" + parseInt(val).toLocaleString() + " MXN";
-        }
-
-        function getSelectVal(selectId) {
-            return document.getElementById(selectId).value;
+            closeCustomQuoteModal();
         }
 
         function bookSimpleWhatsApp(pkgName) {
             const msg = `Hola Alma, me interesa cotizar: ${pkgName}. ¿Me puedes dar más información de fechas y precios?`;
             window.open(`https://wa.me/522228016244?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        /* Horizontal Slider Navigation Helper */
+        function scrollSlider(sliderId, offset) {
+            const el = document.getElementById(sliderId);
+            if(el) {
+                el.scrollBy({ left: offset, behavior: 'smooth' });
+            }
+        }
+
+        /* Filter Pueblos Slider */
+        function filterSliderDestinos(category, btn) {
+            document.querySelectorAll('#bloque-pueblos .cat-pill-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const cards = document.querySelectorAll('#slider-pueblos .slider-card');
+            cards.forEach(card => {
+                const c = card.getAttribute('data-cat');
+                if(category === 'todos' || c === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
         }
     </script>
 
@@ -2048,8 +1949,8 @@
 
         <div class="ai-chat-messages" id="ai-chat-messages">
             <div class="ai-chat-bubble assistant">
-                ¡Hola! Soy <strong>KÚUL</strong>, tu asesor inteligente de <em>Viajes Alma & Vromlix Multi-Hub</em>.<br>
-                ¿A dónde te gustaría viajar o qué presupuesto tienes en mente para tu próxima salida?
+                ¡Hola! Soy <strong>KÚUL</strong>, tu asesor inteligente de <em>Viajes La Ruta del Águila</em>.<br>
+                ¿A dónde te gustaría viajar o qué concierto o festival de CDMX tienes en mente?
             </div>
         </div>
 
@@ -2066,8 +1967,7 @@
         </div>
     </div>
 
-    <!-- Motores Geoespaciales, Base de Datos de Eventos CDMX y Motores Interactivos -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- Base de Datos de Eventos CDMX y Motores Interactivos -->
     <script src="js/cdmx_events_engine.js"></script>
     <script src="js/destinos_data.js"></script>
     <script src="js/app_interactive.js"></script>
