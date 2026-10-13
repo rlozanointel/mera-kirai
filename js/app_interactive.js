@@ -434,7 +434,7 @@ function flyOverRoute3D() {}
 
 
 /* =========================================================================
-   4. ASISTENTE IA DE VIAJES (KÚUL ENGINE CON GEMINI)
+   4. ASISTENTE IA DE VIAJES: ALMA (LA RUTA DEL ÁGUILA)
    ========================================================================= */
 
 const GEMINI_API_KEY_POOL = "AIzaSyCgJpWoUlVX9iP9BiIvmK-XZrAf02KFr8k";
@@ -481,14 +481,13 @@ async function sendChatMessage() {
     const typingId = showTypingIndicator();
 
     try {
-        // Enviar a Gemini API
         const responseText = await callGeminiAgent(msg);
         removeTypingIndicator(typingId);
         appendChatMessage('assistant', responseText);
     } catch (err) {
-        console.warn("Fallo en Gemini API, usando motor de respuesta local KÚUL:", err);
+        console.warn("Fallo en Gemini API, usando motor de respuesta local Alma:", err);
         removeTypingIndicator(typingId);
-        const fallbackAnswer = generateLocalKuulResponse(msg);
+        const fallbackAnswer = generateLocalAlmaResponse(msg);
         appendChatMessage('assistant', fallbackAnswer);
     }
 }
@@ -510,7 +509,7 @@ function showTypingIndicator() {
     const div = document.createElement('div');
     div.className = 'ai-chat-bubble assistant typing';
     div.id = id;
-    div.innerHTML = `<span class="dot"></span><span class="dot"></span><span class="dot"></span> Analizando destinos...`;
+    div.innerHTML = `<span class="dot"></span><span class="dot"></span><span class="dot"></span> Consultando salidas...`;
     body.appendChild(div);
     body.scrollTop = body.scrollHeight;
     return id;
@@ -522,17 +521,13 @@ function removeTypingIndicator(id) {
 }
 
 async function callGeminiAgent(userQuestion) {
-    const systemPrompt = `Eres KÚUL, el Asistente Inteligente de Viajes de 'Viajes Alma & Vromlix Multi-Hub' en Jardines de San Manuel, Puebla.
-Tu objetivo es asesorar a los clientes, recomendar el destino perfecto, dar precios exactos y animarlos a apartar lugares.
-Base de Datos de Paquetes y Salidas Disponibles:
-1. CDMX Express VIP (Suzuki Ertiga 6 pax): $449 MXN redondo diario. Salida 06:30 AM desde San Manuel, regreso 18:30 hrs.
-2. Conciertos Foro Sol / Estadio GNP / Palacio de los Deportes CDMX: $549 MXN redondo. Te dejamos en la puerta y te esperamos al terminar.
-3. Cuetzalan Mágico (Cascadas y café totonaca tradicional): $799 MXN redondo.
-4. Zacatlán & Chignahuapan (Barranca de los Jilgueros y esferas): $749 MXN redondo.
-5. Oaxaca Mágico (Hierve el Agua y Tule): $1,899 MXN (2 días / 1 noche).
-6. Ruta Biocultural del Cacao Tabasco (Haciendas y Chocolateras): $3,499 MXN (3 días / 2 noches).
-Servicio extra: Estética Alma en San Manuel (al agendar cualquier servicio de estética obtienes 10% de descuento en tus viajes).
-Instrucciones: Responde siempre de forma amable, entusiasta, concisa, profesional y en español mexicano. Siempre invita a apartar sus asientos por WhatsApp o en la plataforma.`;
+    const systemPrompt = `Eres Alma, la Asesora Personal de Viajes de 'Viajes La Ruta del Águila' en Río Nexapa 6101, Jardines de San Manuel, Puebla (WhatsApp 222 801 6244).
+Preséntate siempre amablemente como Alma al iniciar la conversación. Tu objetivo es orientar con calidez y precisión a los clientes según sus intereses:
+1. Conciertos y Eventos CDMX (Jóvenes / Estudiantes): Transporte redondo cómodo y seguro con espera nocturna hasta el término del evento (Estadio GNP, Foro Sol, Palacio de los Deportes, Citibanamex, Auditorio Nacional, Estadio Azteca) desde $549 MXN.
+2. Excursiones Nacionales (Familias / Adultos / Jubilados): Pueblos Mágicos, aguas termales y descanso en cómodas unidades (Cacahuamilpa y Taxco $1,160 MXN, Tolantongo $790 MXN, Zacatlán $650 MXN, Cuetzalan $820 MXN, Acapulco $980 MXN).
+3. Destinos VIP (Alianza fraVEO): Circuitos internacionales de alta gama (Inglaterra al Completo $1,909 USD, Vietnam y Camboya $2,265 USD, Guatemala $1,300 USD, Tailandia $1,432 USD, Safari en Kenia $2,135 USD, El Clásico Europa $5,790 USD, Cancún All-Inclusive $8,990 MXN).
+Garantía comercial: Se aparta con $200 MXN reembolsable si no se reúne el quórum 48 hrs antes.
+Responde siempre de forma amable, entusiasta, concisa y en español mexicano profesional. Invita a apartar o contactar por WhatsApp al 222 801 6244.`;
 
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY_POOL}`;
 
@@ -560,45 +555,160 @@ Instrucciones: Responde siempre de forma amable, entusiasta, concisa, profesiona
     return reply;
 }
 
-function generateLocalKuulResponse(question) {
+function generateLocalAlmaResponse(question) {
     const q = question.toLowerCase();
 
-    if (q.includes('concierto') || q.includes('foro sol') || q.includes('gnp') || q.includes('estadio')) {
-        return `🎶 ¡Claro que sí! Contamos con **Transporte Seguro a Conciertos en CDMX** (Estadio GNP / Foro Sol / Palacio de los Deportes).
-- Tarifa Redonda: **$549 MXN**.
-- Salida desde San Manuel, Puebla.
-- Te dejamos en la puerta y el vehículo te espera hasta que finalice el evento.
-¿Te gustaría apartar tus lugares con $500 MXN para tu evento?`;
+    if (q.includes('concierto') || q.includes('foro sol') || q.includes('gnp') || q.includes('karol') || q.includes('estadio') || q.includes('shakira') || q.includes('f1')) {
+        return `🎶 ¡Hola! Soy **Alma**. Contamos con **Transporte Seguro a Conciertos y Eventos en CDMX** con salida y regreso directo a San Manuel:
+- Tarifa Redonda: desde **$549 MXN**.
+- Te dejamos en la puerta del recinto y nuestra unidad te espera hasta que termina el evento para que regreses tranquilo.
+- Aparta tu lugar con solo **$200 MXN** (100% reembolsable).
+¿A qué evento te gustaría asistir?`;
     }
 
-    if (q.includes('cuetzalan') || q.includes('cascada') || q.includes('café') || q.includes('naturaleza')) {
-        return `🌿 Te recomendamos nuestra excursión a **Cuetzalan del Progreso**:
-- Tarifa Redonda: **$799 MXN** por persona.
-- Incluye: Transporte ejecutivo, entrada a la Cascada Las Brisas y cata de café artesanal totonaca.
-- Salida 06:00 AM desde San Manuel.
-¿Deseas apartar tus asientos en la camioneta?`;
+    if (q.includes('taxco') || q.includes('cacahuamilpa') || q.includes('grutas')) {
+        return `✨ ¡Hola! Soy **Alma**. Nuestra excursión a **Grutas de Cacahuamilpa & Taxco** sale el sábado 17 de octubre:
+- Tarifa Redonda: **$1,160 MXN** p/p.
+- Incluye: Transporte ejecutivo con casetas, boleto a las Grutas y visita guiada a Taxco.
+- Salida 05:30 AM desde Río Nexapa 6101, San Manuel.
+¿Te gustaría apartar tus lugares?`;
     }
 
-    if (q.includes('barato') || q.includes('presupuesto') || q.includes('menor') || q.includes('1000') || q.includes('500')) {
-        return `💰 Para un presupuesto accesible te recomiendo:
-1. **CDMX Express VIP en Suzuki Ertiga**: **$449 MXN** redondo diario.
-2. **Conciertos CDMX**: **$549 MXN** redondo.
-3. **Zacatlán & Chignahuapan**: **$749 MXN** día completo.
-¡Además, si agendas un corte o tratamiento en Estética Alma, recibes un 10% de descuento adicional!`;
+    if (q.includes('tolantongo') || q.includes('termas') || q.includes('pozas')) {
+        return `🌿 ¡Hola! Soy **Alma**. Te recomiendo nuestras salidas a **Grutas de Tolantongo**:
+- Tarifa Redonda: **$790 MXN** por persona.
+- Disfruta de las pozas termales a 36°C, el túnel de vapor y el río turquesa en un día completo de relajación.
+¿Cuántos lugares buscas para esta escapada?`;
     }
 
-    if (q.includes('ertiga') || q.includes('camioneta') || q.includes('asiento') || q.includes('vehiculo')) {
-        return `🚗 Nuestro servicio VIP en **Suzuki Ertiga 2022** es exclusivo para **máximo 6 pasajeros**.
-Viajas con clima, asientos independientes ergonómicos y cargadores USB. Puedes seleccionar tus asientos específicos en la maqueta interactiva del inicio. Tarifa desde **$449 MXN**.`;
+    if (q.includes('vip') || q.includes('internacional') || q.includes('europa') || q.includes('inglaterra') || q.includes('asia') || q.includes('fraveo')) {
+        return `👑 ¡Hola! Soy **Alma**. A través de nuestra alianza **fraVEO** contamos con paquetes internacionales de alta gama:
+- **Inglaterra al Completo 2026**: desde $1,909 USD.
+- **Vietnam y Camboya**: $2,265 USD.
+- **Tailandia 2027**: $1,432 USD.
+- **Kenia Safari Masai Mara**: $2,135 USD.
+- **El Clásico Real Madrid vs Barcelona + Europa**: $5,790 USD.
+Todos incluyen vuelos, hoteles 4-5 estrellas y guías en español. ¿Qué destino internacional te interesa cotizar?`;
     }
 
-    return `✈️ ¡Hola! Soy **KÚUL**, tu asesor de viajes en San Manuel, Puebla.
-Tenemos salidas ejecutivas diarias a CDMX ($449 MXN), transporte a conciertos masivos ($549 MXN), Pueblos Mágicos como Cuetzalan y Zacatlán ($749-$799 MXN) y tours de fin de semana a Oaxaca y Tabasco.
-¿Para cuántas personas buscas viajar o qué tipo de experiencia tienes en mente?`;
+    return `🦅 ¡Hola! Soy **Alma**, tu asesora de viajes en *La Ruta del Águila* (San Manuel, Puebla).
+Tenemos 3 opciones ideales para ti:
+1. **Conciertos y Eventos CDMX** con espera nocturna (desde $549 MXN).
+2. **Excursiones Nacionales** para descansar en familia (Taxco, Tolantongo, Zacatlán, Cuetzalan).
+3. **Destinos VIP Internacionales** de alta gama (Europa, Asia, África).
+Apartas cualquier viaje con solo $200 MXN. ¿Qué tipo de experiencia tienes en mente?`;
+}
+
+/* =========================================================================
+   5. BÚSQUEDA GLOBAL RÁPIDA (FILTRADO EN VIVO)
+   ========================================================================= */
+
+function handleLiveGlobalSearch(query) {
+    const q = (query || '').trim().toLowerCase();
+    const clearBtn = document.getElementById('btn-clear-search');
+    if (clearBtn) clearBtn.style.display = q ? 'inline-block' : 'none';
+
+    const cards = document.querySelectorAll('.slider-card, .confirmed-trip-card');
+    cards.forEach(card => {
+        if (!q) {
+            card.style.display = card.classList.contains('confirmed-trip-card') ? 'flex' : 'flex';
+            return;
+        }
+        const text = card.innerText.toLowerCase();
+        if (text.includes(q)) {
+            card.style.display = card.classList.contains('confirmed-trip-card') ? 'flex' : 'flex';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+function clearLiveGlobalSearch() {
+    const input = document.getElementById('main-live-search');
+    if (input) {
+        input.value = '';
+        handleLiveGlobalSearch('');
+        input.focus();
+    }
+}
+
+/* =========================================================================
+   6. MODAL CATÁLOGO NACIONAL DE MÉXICO (290 DESTINOS)
+   ========================================================================= */
+
+let catalogoNacionalFiltroCat = 'todos';
+
+function openCatalogoNacionalModal() {
+    const modal = document.getElementById('modal-catalogo-nacional');
+    if (!modal) return;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    renderCatalogoNacionalGrid();
+}
+
+function closeCatalogoNacionalModal() {
+    const modal = document.getElementById('modal-catalogo-nacional');
+    if (modal) modal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function filterCatalogoCat(cat, btn) {
+    catalogoNacionalFiltroCat = cat;
+    document.querySelectorAll('.catalogo-filter-pill').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    renderCatalogoNacionalGrid();
+}
+
+function renderCatalogoNacionalGrid() {
+    const container = document.getElementById('catalogo-grid-container');
+    const searchInput = document.getElementById('catalogo-modal-search');
+    if (!container) return;
+
+    const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+    const lista = typeof CATALOGO_NACIONAL_290 !== 'undefined' ? CATALOGO_NACIONAL_290 : [];
+
+    const filtrados = lista.filter(item => {
+        const coincideCat = catalogoNacionalFiltroCat === 'todos' || item.cat === catalogoNacionalFiltroCat;
+        const coincideTxt = !query || item.nombre.toLowerCase().includes(query) || item.estado.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
+        return coincideCat && coincideTxt;
+    });
+
+    const countLabel = document.getElementById('catalogo-count-label');
+    if (countLabel) countLabel.innerText = `${filtrados.length} destinos disponibles`;
+
+    if (filtrados.length === 0) {
+        container.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align:center; padding:3rem; color:var(--text-muted);">
+                <i class="fas fa-search" style="font-size:2rem; margin-bottom:1rem; display:block;"></i>
+                <p>No se encontraron destinos que coincidan con tu búsqueda.</p>
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = filtrados.map(d => `
+        <div style="background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:14px; padding:1.2rem; display:flex; flex-direction:column; justify-content:space-between; transition:all 0.2s ease;">
+            <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                    <span style="font-size:0.75rem; font-weight:800; background:rgba(22,163,74,0.12); color:var(--brand-green); padding:3px 8px; border-radius:12px;">📍 ${d.estado}</span>
+                    <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">${d.cat}</span>
+                </div>
+                <h4 style="font-family:'Outfit'; font-size:1.1rem; font-weight:800; color:var(--text-title); margin-bottom:0.4rem;">${d.nombre}</h4>
+                <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5; margin-bottom:1rem;">${d.desc}</p>
+            </div>
+            <button onclick="bookDirectWhatsAppDestino('${d.nombre}', '${d.estado}')" style="background:var(--brand-red); color:#fff; border:none; padding:8px 14px; border-radius:8px; font-weight:700; font-size:0.82rem; cursor:pointer; width:100%; display:flex; align-items:center; justify-content:center; gap:6px;">
+                <i class="fab fa-whatsapp"></i> Cotizar Salida
+            </button>
+        </div>
+    `).join('');
+}
+
+function bookDirectWhatsAppDestino(nombre, estado) {
+    const msg = `Hola Alma, me interesa cotizar una salida para el destino: *${nombre}* (${estado}) saliendo desde San Manuel, Puebla. ¿Tienen fechas próximas disponibles?`;
+    window.open(`https://wa.me/522228016244?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
 function setupMotionUI() {
-    // Escuchar scroll para micro-interacciones suaves
     window.addEventListener('scroll', () => {
         const header = document.querySelector('.main-header');
         if (header) {
@@ -612,3 +722,4 @@ function setupMotionUI() {
         }
     });
 }
+
