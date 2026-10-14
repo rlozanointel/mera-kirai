@@ -470,133 +470,53 @@ function askChipPrompt(promptText) {
 
 async function sendChatMessage() {
     const input = document.getElementById('ai-chat-input');
-    const msg = input.value.trim();
+    const msg = (input ? input.value : '').trim();
     if (!msg) return;
 
-    // Agregar mensaje del usuario
     appendChatMessage('user', msg);
-    input.value = '';
+    if (input) input.value = '';
 
-    // Mostrar indicador de escritura
     const typingId = showTypingIndicator();
 
-    try {
-        const responseText = await callGeminiAgent(msg);
+    setTimeout(() => {
         removeTypingIndicator(typingId);
-        appendChatMessage('assistant', responseText);
-    } catch (err) {
-        console.warn("Fallo en Gemini API, usando motor de respuesta local Alma:", err);
-        removeTypingIndicator(typingId);
-        const fallbackAnswer = generateLocalAlmaResponse(msg);
-        appendChatMessage('assistant', fallbackAnswer);
-    }
-}
-
-function appendChatMessage(role, text) {
-    const body = document.getElementById('ai-chat-messages');
-    if (!body) return;
-
-    const div = document.createElement('div');
-    div.className = `ai-chat-bubble ${role}`;
-    div.innerHTML = text.replace(/\n/g, '<br>');
-    body.appendChild(div);
-    body.scrollTop = body.scrollHeight;
-}
-
-function showTypingIndicator() {
-    const body = document.getElementById('ai-chat-messages');
-    const id = 'typing-' + Date.now();
-    const div = document.createElement('div');
-    div.className = 'ai-chat-bubble assistant typing';
-    div.id = id;
-    div.innerHTML = `<span class="dot"></span><span class="dot"></span><span class="dot"></span> Consultando salidas...`;
-    body.appendChild(div);
-    body.scrollTop = body.scrollHeight;
-    return id;
-}
-
-function removeTypingIndicator(id) {
-    const el = document.getElementById(id);
-    if (el) el.remove();
-}
-
-async function callGeminiAgent(userQuestion) {
-    const systemPrompt = `Eres Alma, la Asesora Personal de Viajes de 'Viajes La Ruta del Águila' en Río Nexapa 6101, Jardines de San Manuel, Puebla (WhatsApp 222 801 6244).
-Preséntate siempre amablemente como Alma al iniciar la conversación. Tu objetivo es orientar con calidez y precisión a los clientes según sus intereses:
-1. Conciertos y Eventos CDMX (Jóvenes / Estudiantes): Transporte redondo cómodo y seguro con espera nocturna hasta el término del evento (Estadio GNP, Foro Sol, Palacio de los Deportes, Citibanamex, Auditorio Nacional, Estadio Azteca) desde $549 MXN.
-2. Excursiones Nacionales (Familias / Adultos / Jubilados): Pueblos Mágicos, aguas termales y descanso en cómodas unidades (Cacahuamilpa y Taxco $1,160 MXN, Tolantongo $790 MXN, Zacatlán $650 MXN, Cuetzalan $820 MXN, Acapulco $980 MXN).
-3. Destinos VIP (Alianza fraVEO): Circuitos internacionales de alta gama (Inglaterra al Completo $1,909 USD, Vietnam y Camboya $2,265 USD, Guatemala $1,300 USD, Tailandia $1,432 USD, Safari en Kenia $2,135 USD, El Clásico Europa $5,790 USD, Cancún All-Inclusive $8,990 MXN).
-Garantía comercial: Se aparta con $200 MXN reembolsable si no se reúne el quórum 48 hrs antes.
-Responde siempre de forma amable, entusiasta, concisa y en español mexicano profesional. Invita a apartar o contactar por WhatsApp al 222 801 6244.`;
-
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY_POOL}`;
-
-    const res = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            contents: [
-                { role: 'user', parts: [{ text: `${systemPrompt}\n\nPregunta del cliente: ${userQuestion}` }] }
-            ],
-            generationConfig: {
-                temperature: 0.7,
-                maxOutputTokens: 350
-            }
-        })
-    });
-
-    if (!res.ok) {
-        throw new Error(`HTTP Error ${res.status}`);
-    }
-
-    const data = await res.json();
-    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
-    if (!reply) throw new Error("Sin respuesta del modelo");
-    return reply;
+        const reply = generateLocalAlmaResponse(msg);
+        appendChatMessage('assistant', reply);
+    }, 350);
 }
 
 function generateLocalAlmaResponse(question) {
-    const q = question.toLowerCase();
+    const q = (question || '').toLowerCase();
 
-    if (q.includes('concierto') || q.includes('foro sol') || q.includes('gnp') || q.includes('karol') || q.includes('estadio') || q.includes('shakira') || q.includes('f1')) {
-        return `🎶 ¡Hola! Soy **Alma**. Contamos con **Transporte Seguro a Conciertos y Eventos en CDMX** con salida y regreso directo a San Manuel:
-- Tarifa Redonda: desde **$549 MXN**.
-- Te dejamos en la puerta del recinto y nuestra unidad te espera hasta que termina el evento para que regreses tranquilo.
-- Aparta tu lugar con solo **$200 MXN** (100% reembolsable).
-¿A qué evento te gustaría asistir?`;
+    if (q.includes('estetica') || q.includes('estética') || q.includes('salon') || q.includes('salón') || q.includes('cabello') || q.includes('corte') || q.includes('cupon') || q.includes('cupón') || q.includes('descuento')) {
+        return `🌸 ¡Hola! Soy **Alma**. Nuestro salón hermano **Estética Alma** se ubica en Río Nexapa 6101, San Manuel:\n- Servicios: Cortes de vanguardia, colorimetría, keratina brasileña y manicure.\n- 🎁 **Promoción Exclusiva**: Si te atiendes en el salón, usa el cupón **ESTETICA10** para obtener **10% de descuento directo** en cualquiera de nuestras salidas y excursiones de viaje.\n- Puedes agendar tu cita al **222 801 6244** o visitar [Estética Alma](estetica.html).`;
     }
 
-    if (q.includes('taxco') || q.includes('cacahuamilpa') || q.includes('grutas')) {
-        return `✨ ¡Hola! Soy **Alma**. Nuestra excursión a **Grutas de Cacahuamilpa & Taxco** sale el sábado 17 de octubre:
-- Tarifa Redonda: **$1,160 MXN** p/p.
-- Incluye: Transporte ejecutivo con casetas, boleto a las Grutas y visita guiada a Taxco.
-- Salida 05:30 AM desde Río Nexapa 6101, San Manuel.
-¿Te gustaría apartar tus lugares?`;
+    if (q.includes('xochimilco') || q.includes('llorona') || q.includes('trajinera') || q.includes('muertos')) {
+        return `🎭 ¡Hola! Soy **Alma**. Nuestra salida confirmada a **La Llorona en Xochimilco (Cuemanco)** opera los fines de semana de Octubre y Noviembre (Temporada Día de Muertos):\n- **Paquete Completo**: **$1,350 MXN** (incluye transporte ejecutivo redondo desde San Manuel, paseo en trajinera iluminada y boleto para la obra teatral en vivo en el islote).\n- *Opción solo transporte redondo*: $650 MXN.\n- Horario: 14:30 hrs a 00:00 hrs.\n- Apartas con solo **$200 MXN**. ¿Te gustaría reservar tus lugares?`;
     }
 
-    if (q.includes('tolantongo') || q.includes('termas') || q.includes('pozas')) {
-        return `🌿 ¡Hola! Soy **Alma**. Te recomiendo nuestras salidas a **Grutas de Tolantongo**:
-- Tarifa Redonda: **$790 MXN** por persona.
-- Disfruta de las pozas termales a 36°C, el túnel de vapor y el río turquesa en un día completo de relajación.
-¿Cuántos lugares buscas para esta escapada?`;
+    if (q.includes('expo') || q.includes('beauty') || q.includes('ebs') || q.includes('citibanamex')) {
+        return `💄 ¡Hola! Soy **Alma**. Tenemos salida ejecutiva directa a la **Expo Beauty Show (EBS 2026)** en Centro Citibanamex (24 al 26 Octubre 2026):\n- Tarifa Redonda: **$790 MXN**.\n- **Incluye boleto oficial de acceso** a salas B, C y D, transporte redondo en van con seguro y casetas (07:30 a 19:45 hrs).\n- Aparta con solo **$200 MXN**. ¿Para cuántos estilistas o acompañantes deseas apartar?`;
     }
 
-    if (q.includes('vip') || q.includes('internacional') || q.includes('europa') || q.includes('inglaterra') || q.includes('asia') || q.includes('fraveo')) {
-        return `👑 ¡Hola! Soy **Alma**. A través de nuestra alianza **fraVEO** contamos con paquetes internacionales de alta gama:
-- **Inglaterra al Completo 2026**: desde $1,909 USD.
-- **Vietnam y Camboya**: $2,265 USD.
-- **Tailandia 2027**: $1,432 USD.
-- **Kenia Safari Masai Mara**: $2,135 USD.
-- **El Clásico Real Madrid vs Barcelona + Europa**: $5,790 USD.
-Todos incluyen vuelos, hoteles 4-5 estrellas y guías en español. ¿Qué destino internacional te interesa cotizar?`;
+    if (q.includes('concierto') || q.includes('foro sol') || q.includes('gnp') || q.includes('karol') || q.includes('estadio') || q.includes('shakira') || q.includes('f1') || q.includes('cisne') || q.includes('chapultepec') || q.includes('nfl')) {
+        return `🎶 ¡Hola! Soy **Alma**. Contamos con **Transporte Seguro a Conciertos y Eventos en CDMX** con salida y regreso directo a San Manuel:\n- Tarifa Redonda: desde **$549 MXN** (Karol G $549, Cisne Negro Chapultepec $690, NFL $750).\n- Te dejamos en la puerta del recinto y nuestra unidad te espera hasta que termina el evento para que regreses tranquilo y seguro de noche.\n- Aparta tu lugar con solo **$200 MXN** (100% reembolsable si no se cubre cupo).\n¿A qué evento te gustaría asistir?`;
     }
 
-    return `🦅 ¡Hola! Soy **Alma**, tu asesora de viajes en *La Ruta del Águila* (San Manuel, Puebla).
-Tenemos 3 opciones ideales para ti:
-1. **Conciertos y Eventos CDMX** con espera nocturna (desde $549 MXN).
-2. **Excursiones Nacionales** para descansar en familia (Taxco, Tolantongo, Zacatlán, Cuetzalan).
-3. **Destinos VIP Internacionales** de alta gama (Europa, Asia, África).
-Apartas cualquier viaje con solo $200 MXN. ¿Qué tipo de experiencia tienes en mente?`;
+    if (q.includes('taxco') || q.includes('cacahuamilpa') || q.includes('grutas') || q.includes('tolantongo') || q.includes('zacatlan') || q.includes('cuetzalan') || q.includes('excursion') || q.includes('excursión') || q.includes('nacional') || q.includes('pueblo')) {
+        return `🌿 ¡Hola! Soy **Alma**. Nuestras excursiones familiares y de descanso incluyen:\n- **Grutas de Tolantongo**: $790 MXN (pozas termales a 36°C, túnel de vapor y río turquesa).\n- **Grutas de Cacahuamilpa & Taxco**: $1,160 MXN (17 Octubre 2026, platería virreinal).\n- **Zacatlán & Chignahuapan**: $650 MXN (mirador de cristal, esferas y sidra).\n- **Cuetzalan del Progreso**: $820 MXN (cascadas, voladores y café de altura).\n- **Bahías de Acapulco**: $980 MXN (escapada de fin de semana).\nTodas salen desde Río Nexapa 6101, San Manuel y apartas con **$200 MXN**. ¿Cuál te llama más la atención?`;
+    }
+
+    if (q.includes('vip') || q.includes('internacional') || q.includes('europa') || q.includes('inglaterra') || q.includes('asia') || q.includes('fraveo') || q.includes('lujo') || q.includes('safari') || q.includes('kenia') || q.includes('tailandia')) {
+        return `👑 ¡Hola! Soy **Alma**. A través de nuestra franquicia autorizada **fraVEO** operamos circuitos internacionales de alta gama:\n- **Inglaterra al Completo 2026**: desde $1,909 USD (8 días: Londres, Stonehenge, Bath, Oxford).\n- **Guatemala al Completo**: $1,300 USD (Antigua colonial y Lago Atitlán).\n- **Vietnam y Camboya**: $2,265 USD (Bahía de Halong y templos de Angkor Wat).\n- **Tailandia 2027**: $1,432 USD (Bangkok, Chiang Mai y playas exóticas).\n- **Kenia Safari Masai Mara**: $2,135 USD (Lago Nakuru y vida salvaje).\n- **El Clásico Real Madrid vs Barcelona + Europa**: $5,790 USD.\nTodos incluyen vuelos, hoteles 4-5 estrellas y concierge privado. ¿Qué destino internacional sueñas visitar?`;
+    }
+
+    if (q.includes('apartar') || q.includes('pago') || q.includes('precio') || q.includes('costo') || q.includes('200') || q.includes('garantia') || q.includes('garantía') || q.includes('spei') || q.includes('oxxo')) {
+        return `🛡️ ¡Hola! Soy **Alma**. En *La Ruta del Águila* tu dinero está protegido:\n- **Apartado Mínimo**: Apartas tu asiento con solo **$200 MXN**.\n- **Garantía 100% Reembolsable**: Si no se cubre el cupo mínimo requerido 48 horas antes de la salida, te devolvemos el 100% de tu dinero de inmediato.\n- **Métodos de Pago**: Transferencia SPEI (BBVA), depósito en cualquier tienda OXXO o tarjeta en línea.\n- Si gustas apartar ahora, contáctame al **222 801 6244** o selecciona tu asiento en la pantalla.`;
+    }
+
+    return `🦅 ¡Hola! Soy **Alma**, tu asesora de viajes en *La Ruta del Águila* (San Manuel, Puebla).\nTenemos 3 opciones preparadas para ti:\n1. **Conciertos y Eventos CDMX** con retorno seguro nocturno (desde $549 MXN).\n2. **Excursiones Nacionales** para descansar en familia (Tolantongo, Taxco, Zacatlán, Cuetzalan).\n3. **Destinos VIP Internacionales** (Europa, Asia, África con fraVEO).\nApartas cualquier viaje con solo **$200 MXN**. Además, si eres cliente de *Estética Alma*, tienes 10% con el cupón **ESTETICA10**. ¿Qué tipo de viaje estás planeando?`;
 }
 
 /* =========================================================================
@@ -606,30 +526,115 @@ Apartas cualquier viaje con solo $200 MXN. ¿Qué tipo de experiencia tienes en 
 function handleLiveGlobalSearch(query) {
     const q = (query || '').trim().toLowerCase();
     const clearBtn = document.getElementById('btn-clear-search');
+    const dropdown = document.getElementById('live-search-results-dropdown');
     if (clearBtn) clearBtn.style.display = q ? 'inline-block' : 'none';
 
-    const cards = document.querySelectorAll('.slider-card, .confirmed-trip-card');
-    cards.forEach(card => {
-        if (!q) {
-            card.style.display = card.classList.contains('confirmed-trip-card') ? 'flex' : 'flex';
-            return;
-        }
-        const text = card.innerText.toLowerCase();
-        if (text.includes(q)) {
-            card.style.display = card.classList.contains('confirmed-trip-card') ? 'flex' : 'flex';
-        } else {
-            card.style.display = 'none';
-        }
-    });
+    if (!dropdown) return;
+
+    if (!q) {
+        dropdown.style.display = 'none';
+        dropdown.innerHTML = '';
+        return;
+    }
+
+    const matches = [];
+    if (typeof DESTINOS_DB !== 'undefined') {
+        DESTINOS_DB.forEach(d => {
+            if (d.nombre.toLowerCase().includes(q) || d.descripcion.toLowerCase().includes(q) || d.estado.toLowerCase().includes(q) || d.categoria.toLowerCase().includes(q)) {
+                matches.push({
+                    id: d.id,
+                    nombre: d.nombre,
+                    imagen: d.imagen,
+                    precio: d.precio_texto,
+                    badge: d.badge,
+                    meta: `${d.estado} • ${d.duracion}`
+                });
+            }
+        });
+    }
+
+    if (matches.length === 0) {
+        dropdown.style.display = 'block';
+        dropdown.innerHTML = `
+            <div style="padding:1.5rem; text-align:center; color:var(--text-muted); font-size:0.9rem;">
+                <i class="fas fa-search" style="font-size:1.5rem; margin-bottom:8px; display:block; color:var(--brand-cyan);"></i>
+                No se encontraron salidas directas para "<strong>${escapeHtml(q)}</strong>".<br>
+                <button onclick="bookCustomSearchWhatsApp('${escapeHtml(q)}')" style="margin-top:10px; background:#25d366; color:#000; border:none; padding:8px 16px; border-radius:8px; font-weight:700; cursor:pointer;">
+                    <i class="fab fa-whatsapp"></i> Preguntar a Alma por esta salida
+                </button>
+            </div>
+        `;
+        return;
+    }
+
+    dropdown.style.display = 'block';
+    dropdown.innerHTML = `
+        <div style="font-size:0.75rem; font-weight:800; color:var(--text-muted); text-transform:uppercase; padding:6px 12px 10px; letter-spacing:0.5px;">
+            Encontramos ${matches.length} salidas disponibles:
+        </div>
+        ${matches.slice(0, 6).map(m => `
+            <div class="live-search-item" onclick="openSharedElementModal('${m.id}'); clearLiveGlobalSearch();">
+                <img src="${m.imagen}" alt="${m.nombre}" style="width:48px; height:48px; border-radius:10px; object-fit:cover; flex-shrink:0;">
+                <div style="flex:1; min-width:0;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <strong style="font-size:0.92rem; color:var(--text-title); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${m.nombre}</strong>
+                        <span style="font-weight:800; color:var(--brand-red); font-size:0.9rem; flex-shrink:0;">${m.precio}</span>
+                    </div>
+                    <div style="font-size:0.78rem; color:var(--text-muted);">${m.meta} • <span style="color:var(--brand-cyan); font-weight:700;">${m.badge}</span></div>
+                </div>
+            </div>
+        `).join('')}
+    `;
 }
 
 function clearLiveGlobalSearch() {
     const input = document.getElementById('main-live-search');
-    if (input) {
-        input.value = '';
-        handleLiveGlobalSearch('');
-        input.focus();
+    const dropdown = document.getElementById('live-search-results-dropdown');
+    if (input) input.value = '';
+    if (dropdown) {
+        dropdown.style.display = 'none';
+        dropdown.innerHTML = '';
     }
+    const clearBtn = document.getElementById('btn-clear-search');
+    if (clearBtn) clearBtn.style.display = 'none';
+}
+
+function focusMainSearch() {
+    const input = document.getElementById('main-live-search');
+    if (input) {
+        input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => input.focus(), 350);
+    }
+}
+
+function bookCustomSearchWhatsApp(term) {
+    const msg = `Hola Alma, estoy buscando informes sobre la salida a: *${term}* desde San Manuel, Puebla. ¿Tienen fechas disponibles?`;
+    window.open(`https://wa.me/522228016244?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+function escapeHtml(str) {
+    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+}
+
+/* --- TECLA ESCAPE PARA CERRAR TODOS LOS MODALES --- */
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' || e.key === 'Esc') {
+        closeAllModals();
+    }
+});
+
+function closeAllModals() {
+    const dropdown = document.getElementById('live-search-results-dropdown');
+    if (dropdown) dropdown.style.display = 'none';
+
+    document.querySelectorAll('.lux-modal-backdrop, .modal-overlay').forEach(m => {
+        m.classList.remove('active');
+    });
+
+    const aiWin = document.getElementById('ai-chat-window');
+    if (aiWin) aiWin.classList.remove('active');
+
+    document.body.style.overflow = '';
 }
 
 /* =========================================================================
@@ -723,3 +728,24 @@ function setupMotionUI() {
     });
 }
 
+let activeCouponDiscount = 0;
+let appliedCouponCode = '';
+
+function applyCheckoutCoupon() {
+    const input = document.getElementById('checkout-coupon-input');
+    const msg = document.getElementById('coupon-feedback-msg');
+    if (!input || !msg) return;
+    const code = (input.value || '').trim().toUpperCase();
+    if (code === 'ESTETICA10' || code === 'ALMA10') {
+        activeCouponDiscount = 0.10;
+        appliedCouponCode = code;
+        msg.style.display = 'block';
+        msg.style.color = 'var(--brand-green)';
+        msg.innerHTML = `✅ ¡Cupón <strong>${code}</strong> aplicado! 10% de descuento en tu viaje.`;
+        if (typeof updateModalSeatDisplay === 'function') updateModalSeatDisplay();
+    } else if (code) {
+        msg.style.display = 'block';
+        msg.style.color = 'var(--brand-red)';
+        msg.innerHTML = `❌ El cupón <strong>${escapeHtml(code)}</strong> no es válido o ha expirado.`;
+    }
+}

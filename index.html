@@ -22,7 +22,45 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Motion Lux Design CSS (@santaia.lab standards) -->
-    <link rel="stylesheet" href="css/motion_lux.css">
+    <link rel="stylesheet" href="css/motion_lux.css?v=20261014">
+
+    <!-- Schema.org JSON-LD Structured Data for Local Travel Agency SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TravelAgency",
+      "name": "Viajes La Ruta del Águila",
+      "alternateName": "Viajes Alma",
+      "image": "https://mera-kirai.com/img/xochimilco_clean_card.jpg",
+      "url": "https://mera-kirai.com",
+      "telephone": "+522228016244",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Calle Río Nexapa #6101",
+        "addressLocality": "Jardines de San Manuel",
+        "addressRegion": "Puebla",
+        "postalCode": "72570",
+        "addressCountry": "MX"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 19.0142,
+        "longitude": -98.1975
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+        ],
+        "opens": "08:00",
+        "closes": "20:00"
+      },
+      "sameAs": [
+        "https://www.facebook.com/share/p/1HvfxPsivZ/"
+      ]
+    }
+    </script>
     
     <style>
         :root {
@@ -633,14 +671,14 @@
 <body>
 
     <!-- Top Utility / Sister Brand Announcement -->
-    <div style="background: linear-gradient(90deg, #18181b, #27272a); color: #e4e4e7; padding: 7px 5%; font-size: 0.82rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); z-index: 1001; position: relative;">
+    <div style="background: linear-gradient(90deg, #18181b, #27272a); color: #e4e4e7; padding: 7px 5%; font-size: 0.82rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); z-index: 1001; position: relative; flex-wrap: wrap; gap: 8px;">
         <div style="display: flex; align-items: center; gap: 8px;">
             <span style="color: #fb7185;">🌸</span>
-            <span>¿Buscas salón de belleza o spa capilar en San Manuel? Conoce <strong>Estética Alma</strong></span>
+            <span>¿Cliente de <strong>Estética Alma</strong>? Usa tu cupón <code style="background:rgba(244,63,94,0.25); color:#fda4af; padding:2px 7px; border-radius:4px; font-weight:800; letter-spacing:0.5px;">ESTETICA10</code> para 10% de descuento en cualquier viaje.</span>
         </div>
-        <div>
+        <div style="display: flex; align-items: center; gap: 10px;">
             <a href="estetica.html" style="color: #fda4af; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 5px; padding: 3px 12px; border-radius: 12px; background: rgba(244,63,94,0.14); border: 1px solid rgba(244,63,94,0.3);">
-                Ver Servicios & Citas <i class="fas fa-arrow-right" style="font-size: 0.7rem;"></i>
+                Ver Salón & Citas <i class="fas fa-arrow-right" style="font-size: 0.7rem;"></i>
             </a>
         </div>
     </div>
@@ -687,12 +725,9 @@
             <h1 class="lux-hero-title">Viajes La Ruta del Águila</h1>
             <div class="lux-hero-slogan">"Cómodo. Seguro. Directo."</div>
             <div class="lux-hero-actions">
-                <a href="#bloque-confirmados" class="btn-lux-primary" title="Ir a próximas fechas confirmadas">
-                    <i class="fas fa-compass"></i> Explorar Salidas
+                <a href="#bloque-conciertos" class="btn-lux-primary" title="Ver Cartelera de Conciertos y Salidas">
+                    <i class="fas fa-compass"></i> Explorar Salidas & Conciertos
                 </a>
-                <button class="btn-lux-ai" onclick="toggleAiChat()" title="Consultar dudas con el Asistente">
-                    <i class="fas fa-wand-magic-sparkles"></i> Asistente
-                </button>
             </div>
         </div>
     </section>
@@ -709,6 +744,8 @@
                 📍 San Manuel
             </span>
         </div>
+        <!-- Live Instant Search Dropdown Container -->
+        <div id="live-search-results-dropdown" style="display:none; position:absolute; top:calc(100% + 8px); left:1.5rem; right:1.5rem; background:var(--bg-card); border:1px solid var(--border-color); border-radius:16px; box-shadow:0 15px 40px rgba(0,0,0,0.25); max-height:420px; overflow-y:auto; padding:12px; z-index:100;"></div>
     </div>
 
     <!-- =========================================================================
@@ -768,37 +805,38 @@
             <!-- Salida Confirmada 2: La Llorona en Xochimilco -->
             <div class="confirmed-trip-card">
                 <div class="confirmed-img-side">
-                    <img src="img/IMG-20260926-WA0004.jpg" alt="La Llorona en Xochimilco" style="width:100%; height:100%; object-fit:cover;">
+                    <img src="img/xochimilco_clean_card.jpg" alt="La Llorona en Xochimilco" style="width:100%; height:100%; object-fit:cover;">
                     <span class="card-badge" style="background:var(--brand-gold); color:#000; font-size:0.85rem; padding:6px 16px;">🎭 Temporada Día de Muertos</span>
                 </div>
                 <div class="confirmed-info-side">
                     <div>
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem; flex-wrap:wrap; gap:8px;">
                             <span style="font-size:0.85rem; font-weight:700; color:var(--brand-cyan);"><i class="fas fa-water"></i> Canales de Cuemanco, Xochimilco</span>
-                            <span style="background:rgba(217,119,6,0.15); color:var(--brand-gold); padding:4px 12px; border-radius:20px; font-weight:800; font-size:0.82rem;">🛶 Trajinera + Obra VIP</span>
+                            <span style="background:rgba(217,119,6,0.15); color:var(--brand-gold); padding:4px 12px; border-radius:20px; font-weight:800; font-size:0.82rem;">🛶 Trajinera + Obra Incluida</span>
                         </div>
                         <h3 style="font-family:'Outfit'; font-size:1.45rem; font-weight:800; color:var(--text-title); margin-bottom:0.4rem;">La Llorona en Xochimilco</h3>
                         <p style="font-size:0.92rem; color:var(--text-muted); margin-bottom:0.8rem;">
-                            Travesía mística en trajinera al atardecer y función teatral en el islote de la Laguna de Tlilac.
+                            Travesía mística en trajinera al atardecer y función teatral en el islote de la Laguna de Tlilac. Fechas: Fines de semana (Viernes, Sábados y Domingos de Octubre y Noviembre).
                         </p>
                         <ul style="list-style:none; padding:0; margin:0 0 1rem; font-size:0.88rem; color:var(--text-body); display:grid; gap:4px;">
                             <li><i class="fas fa-check-circle" style="color:var(--brand-gold); margin-right:6px;"></i> Paseo en trajinera tradicional iluminada</li>
-                            <li><i class="fas fa-check-circle" style="color:var(--brand-gold); margin-right:6px;"></i> Boleto preferente para la obra teatral en vivo</li>
-                            <li><i class="fas fa-check-circle" style="color:var(--brand-gold); margin-right:6px;"></i> Transporte redondo seguro desde San Manuel (14:30 a 00:00 hrs)</li>
+                            <li><i class="fas fa-check-circle" style="color:var(--brand-gold); margin-right:6px;"></i> Boleto oficial para la obra teatral en vivo en el islote</li>
+                            <li><i class="fas fa-check-circle" style="color:var(--brand-gold); margin-right:6px;"></i> Transporte redondo ejecutivo desde San Manuel (14:30 a 00:00 hrs)</li>
+                            <li><i class="fas fa-info-circle" style="color:var(--brand-cyan); margin-right:6px;"></i> <em>Opción solo transporte redondo disponible a $650 MXN</em></li>
                         </ul>
                     </div>
 
                     <div style="display:flex; justify-content:space-between; align-items:center; padding-top:1rem; border-top:1px solid var(--border-color); flex-wrap:wrap; gap:12px;">
                         <div>
-                            <span style="font-size:0.75rem; color:var(--text-muted); display:block; font-weight:700;">PAQUETE COMPLETO</span>
-                            <div class="price-amount" style="font-size:1.6rem; color:var(--brand-red);">$1,350 MXN <small style="font-size:0.8rem; color:var(--brand-gold); font-weight:800;">(Aparta con $300)</small></div>
+                            <span style="font-size:0.75rem; color:var(--text-muted); display:block; font-weight:700;">PAQUETE COMPLETO CON BOLETO</span>
+                            <div class="price-amount" style="font-size:1.6rem; color:var(--brand-red);">$1,350 MXN <small style="font-size:0.8rem; color:var(--brand-gold); font-weight:800;">(Aparta con $200)</small></div>
                         </div>
                         <div style="display:flex; gap:10px; flex-wrap:wrap;">
                             <button class="btn-search-main" style="width:auto; padding:9px 18px; background:var(--bg-subtle); color:var(--text-title); border:1px solid var(--border-color); font-size:0.88rem;" onclick="openSharedElementModal('llorona-xochimilco-nocturna')">
                                 <i class="fas fa-eye"></i> Ver Itinerario
                             </button>
                             <button class="btn-search-main" style="width:auto; padding:9px 20px; background:var(--brand-gold); color:#000; font-size:0.88rem;" onclick="openPaymentModal('La Llorona en Xochimilco Trajinera VIP', 1350)">
-                                <i class="fas fa-ticket-alt"></i> Apartar Lugar ($300)
+                                <i class="fas fa-ticket-alt"></i> Apartar Lugar ($200)
                             </button>
                         </div>
                     </div>
@@ -1115,15 +1153,15 @@
         <section id="bloque-vip" style="margin-bottom: 4.5rem; scroll-margin-top: 90px;">
             <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:1.5rem; flex-wrap:wrap; gap:12px;">
                 <div>
-                    <div class="section-title" style="margin-bottom:0.3rem;">
-                        <i class="fas fa-crown" style="color:var(--brand-gold)"></i> Destinos VIP
+                    <div class="section-title gold-shimmer-title" style="margin-bottom:0.3rem;">
+                        <i class="fas fa-crown" style="color:#fde047"></i> Destinos VIP Internacionales
                     </div>
                     <div class="section-desc" style="margin-bottom:0;">
-                        Circuitos internacionales, safaris y cruceros operados bajo franquicia autorizada.
+                        Circuitos mundiales de lujo, safaris y cruceros operados bajo franquicia autorizada fraVEO.
                     </div>
                 </div>
                 <div style="display:flex; align-items:center; gap:16px;">
-                    <a href="https://wa.me/522228016244?text=Hola%20Alma,%20me%20interesa%20un%20circuito%20internacional%20VIP" target="_blank" style="font-size:0.85rem; color:var(--brand-gold); font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                    <a href="https://wa.me/522228016244?text=Hola%20Alma,%20me%20interesa%20un%20circuito%20internacional%20VIP" target="_blank" style="font-size:0.85rem; color:#fde047; font-weight:800; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
                         <i class="fas fa-gem"></i> Concierge Privado VIP
                     </a>
                     <div class="slider-header-controls">
@@ -1139,20 +1177,20 @@
                 <div class="slider-track" id="slider-fraveo">
 
                     <!-- Inglaterra al Completo -->
-                    <div class="slider-card" onclick="openSharedElementModal('inglaterra-completo')">
+                    <div class="slider-card gold-card-vip" onclick="openSharedElementModal('inglaterra-completo')">
                         <div class="slider-card-img" style="background-image: url('img/IMG-20260926-WA0005.jpg');">
-                            <span class="slider-badge" style="background:var(--brand-gold); color:#000;">Reino Unido</span>
+                            <span class="slider-badge" style="background:linear-gradient(135deg, #fde047, #ca8a04); color:#000; font-weight:800;">Reino Unido</span>
                         </div>
                         <div class="slider-card-body">
-                            <div class="slider-card-date">8 DÍAS • LONDRES Y OXFORD</div>
+                            <div class="slider-card-date" style="color:#fde047;">8 DÍAS • LONDRES Y OXFORD</div>
                             <div class="slider-card-title">Inglaterra al Completo 2026</div>
                             <div class="slider-card-desc">Londres, Stonehenge, Bath, Bristol, Oxford y campiña inglesa.</div>
                             <div class="slider-card-footer">
                                 <div>
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">DESDE</span>
-                                    <div class="slider-price" style="color:var(--brand-gold);">$1,909 USD</div>
+                                    <div class="slider-price" style="color:#fde047;">$1,909 USD</div>
                                 </div>
-                                <button class="slider-card-btn" style="background:var(--brand-gold); color:#000;">
+                                <button class="slider-card-btn btn-gold-vip">
                                     Cotizar WhatsApp
                                 </button>
                             </div>
@@ -1160,20 +1198,20 @@
                     </div>
 
                     <!-- Guatemala al Completo -->
-                    <div class="slider-card" onclick="openSharedElementModal('guatemala-completo')">
+                    <div class="slider-card gold-card-vip" onclick="openSharedElementModal('guatemala-completo')">
                         <div class="slider-card-img" style="background-image: url('img/IMG-20260926-WA0007.jpg');">
-                            <span class="slider-badge" style="background:var(--brand-gold); color:#000;">Centroamérica</span>
+                            <span class="slider-badge" style="background:linear-gradient(135deg, #fde047, #ca8a04); color:#000; font-weight:800;">Centroamérica</span>
                         </div>
                         <div class="slider-card-body">
-                            <div class="slider-card-date">8 DÍAS • ANTIGUA Y ATITLÁN</div>
+                            <div class="slider-card-date" style="color:#fde047;">8 DÍAS • ANTIGUA Y ATITLÁN</div>
                             <div class="slider-card-title">Guatemala al Completo 2026</div>
                             <div class="slider-card-desc">Antigua colonial, Lago Atitlán, Chichicastenango y cultura maya.</div>
                             <div class="slider-card-footer">
                                 <div>
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">DESDE</span>
-                                    <div class="slider-price" style="color:var(--brand-gold);">$1,300 USD</div>
+                                    <div class="slider-price" style="color:#fde047;">$1,300 USD</div>
                                 </div>
-                                <button class="slider-card-btn" style="background:var(--brand-gold); color:#000;">
+                                <button class="slider-card-btn btn-gold-vip">
                                     Cotizar WhatsApp
                                 </button>
                             </div>
@@ -1181,20 +1219,20 @@
                     </div>
 
                     <!-- Vietnam y Camboya -->
-                    <div class="slider-card" onclick="openSharedElementModal('vietnam-camboya')">
+                    <div class="slider-card gold-card-vip" onclick="openSharedElementModal('vietnam-camboya')">
                         <div class="slider-card-img" style="background-image: url('img/IMG-20260926-WA0006.jpg');">
-                            <span class="slider-badge" style="background:var(--brand-gold); color:#000;">Sureste Asiático</span>
+                            <span class="slider-badge" style="background:linear-gradient(135deg, #fde047, #ca8a04); color:#000; font-weight:800;">Sureste Asiático</span>
                         </div>
                         <div class="slider-card-body">
-                            <div class="slider-card-date">11 DÍAS • HALONG Y ANGKOR</div>
+                            <div class="slider-card-date" style="color:#fde047;">11 DÍAS • HALONG Y ANGKOR</div>
                             <div class="slider-card-title">Vietnam y Camboya al Completo</div>
                             <div class="slider-card-desc">Bahía de Halong, templos de Angkor Wat, Hanoi y Siem Reap.</div>
                             <div class="slider-card-footer">
                                 <div>
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">DESDE</span>
-                                    <div class="slider-price" style="color:var(--brand-gold);">$2,265 USD</div>
+                                    <div class="slider-price" style="color:#fde047;">$2,265 USD</div>
                                 </div>
-                                <button class="slider-card-btn" style="background:var(--brand-gold); color:#000;">
+                                <button class="slider-card-btn btn-gold-vip">
                                     Cotizar WhatsApp
                                 </button>
                             </div>
@@ -1202,20 +1240,20 @@
                     </div>
 
                     <!-- Tailandia al Completo -->
-                    <div class="slider-card" onclick="openSharedElementModal('tailandia-completo')">
+                    <div class="slider-card gold-card-vip" onclick="openSharedElementModal('tailandia-completo')">
                         <div class="slider-card-img" style="background-image: url('img/IMG-20260926-WA0025.jpg');">
-                            <span class="slider-badge" style="background:var(--brand-gold); color:#000;">Asia Exótica</span>
+                            <span class="slider-badge" style="background:linear-gradient(135deg, #fde047, #ca8a04); color:#000; font-weight:800;">Asia Exótica</span>
                         </div>
                         <div class="slider-card-body">
-                            <div class="slider-card-date">8 DÍAS • BANGKOK Y PLAYAS</div>
+                            <div class="slider-card-date" style="color:#fde047;">8 DÍAS • BANGKOK Y PLAYAS</div>
                             <div class="slider-card-title">Tailandia al Completo 2027</div>
                             <div class="slider-card-desc">Templos dorados de Bangkok, Ayutthaya, Chiang Mai y playas de ensueño.</div>
                             <div class="slider-card-footer">
                                 <div>
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">DESDE</span>
-                                    <div class="slider-price" style="color:var(--brand-gold);">$1,432 USD</div>
+                                    <div class="slider-price" style="color:#fde047;">$1,432 USD</div>
                                 </div>
-                                <button class="slider-card-btn" style="background:var(--brand-gold); color:#000;">
+                                <button class="slider-card-btn btn-gold-vip">
                                     Cotizar WhatsApp
                                 </button>
                             </div>
@@ -1223,20 +1261,20 @@
                     </div>
 
                     <!-- Kenia Safari -->
-                    <div class="slider-card" onclick="openSharedElementModal('breve-kenia')">
+                    <div class="slider-card gold-card-vip" onclick="openSharedElementModal('breve-kenia')">
                         <div class="slider-card-img" style="background-image: url('img/IMG-20260926-WA0024.jpg');">
-                            <span class="slider-badge" style="background:var(--brand-gold); color:#000;">África Salvaje</span>
+                            <span class="slider-badge" style="background:linear-gradient(135deg, #fde047, #ca8a04); color:#000; font-weight:800;">África Salvaje</span>
                         </div>
                         <div class="slider-card-body">
-                            <div class="slider-card-date">6 DÍAS • SAFARI MASAI MARA</div>
+                            <div class="slider-card-date" style="color:#fde047;">6 DÍAS • SAFARI MASAI MARA</div>
                             <div class="slider-card-title">Breve Kenia & Safari 2027</div>
                             <div class="slider-card-desc">Nairobi, Lago Nakuru, fauna salvaje en Reserva Nacional Masai Mara.</div>
                             <div class="slider-card-footer">
                                 <div>
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">DESDE</span>
-                                    <div class="slider-price" style="color:var(--brand-gold);">$2,135 USD</div>
+                                    <div class="slider-price" style="color:#fde047;">$2,135 USD</div>
                                 </div>
-                                <button class="slider-card-btn" style="background:var(--brand-gold); color:#000;">
+                                <button class="slider-card-btn btn-gold-vip">
                                     Cotizar WhatsApp
                                 </button>
                             </div>
@@ -1244,20 +1282,20 @@
                     </div>
 
                     <!-- Tanzania Esencial -->
-                    <div class="slider-card" onclick="openSharedElementModal('tanzania-esencial')">
+                    <div class="slider-card gold-card-vip" onclick="openSharedElementModal('tanzania-esencial')">
                         <div class="slider-card-img" style="background-image: url('img/IMG-20260926-WA0028.jpg');">
-                            <span class="slider-badge" style="background:var(--brand-gold); color:#000;">Cráter Ngorongoro</span>
+                            <span class="slider-badge" style="background:linear-gradient(135deg, #fde047, #ca8a04); color:#000; font-weight:800;">Cráter Ngorongoro</span>
                         </div>
                         <div class="slider-card-body">
-                            <div class="slider-card-date">7 DÍAS • LAGO MANYARA</div>
+                            <div class="slider-card-date" style="color:#fde047;">7 DÍAS • LAGO MANYARA</div>
                             <div class="slider-card-title">Tanzania Esencial 2027</div>
                             <div class="slider-card-desc">Cráter del Ngorongoro, flamencos en Lago Manyara y safaris privados.</div>
                             <div class="slider-card-footer">
                                 <div>
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">DESDE</span>
-                                    <div class="slider-price" style="color:var(--brand-gold);">$3,565 USD</div>
+                                    <div class="slider-price" style="color:#fde047;">$3,565 USD</div>
                                 </div>
-                                <button class="slider-card-btn" style="background:var(--brand-gold); color:#000;">
+                                <button class="slider-card-btn btn-gold-vip">
                                     Cotizar WhatsApp
                                 </button>
                             </div>
@@ -1265,20 +1303,20 @@
                     </div>
 
                     <!-- El Clásico Real Madrid vs Barcelona -->
-                    <div class="slider-card" onclick="openSharedElementModal('clasico-espana-europa')">
+                    <div class="slider-card gold-card-vip" onclick="openSharedElementModal('clasico-espana-europa')">
                         <div class="slider-card-img" style="background-image: url('img/IMG-20260926-WA0018.jpg');">
-                            <span class="slider-badge" style="background:var(--brand-gold); color:#000;">Fútbol & Europa</span>
+                            <span class="slider-badge" style="background:linear-gradient(135deg, #fde047, #ca8a04); color:#000; font-weight:800;">Fútbol & Europa</span>
                         </div>
                         <div class="slider-card-body">
-                            <div class="slider-card-date">18 DÍAS • 4 PAÍSES</div>
+                            <div class="slider-card-date" style="color:#fde047;">18 DÍAS • 4 PAÍSES</div>
                             <div class="slider-card-title">El Clásico & Tour Europa 2027</div>
                             <div class="slider-card-desc">Entrada al Clásico en Bernabéu + España, Francia, Italia y Alemania.</div>
                             <div class="slider-card-footer">
                                 <div>
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">DESDE</span>
-                                    <div class="slider-price" style="color:var(--brand-gold);">$5,790 USD</div>
+                                    <div class="slider-price" style="color:#fde047;">$5,790 USD</div>
                                 </div>
-                                <button class="slider-card-btn" style="background:var(--brand-gold); color:#000;">
+                                <button class="slider-card-btn btn-gold-vip">
                                     Cotizar WhatsApp
                                 </button>
                             </div>
@@ -1286,20 +1324,20 @@
                     </div>
 
                     <!-- Cancún All Inclusive -->
-                    <div class="slider-card" onclick="openSharedElementModal('cancun-all-inclusive')">
+                    <div class="slider-card gold-card-vip" onclick="openSharedElementModal('cancun-all-inclusive')">
                         <div class="slider-card-img" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80');">
-                            <span class="slider-badge" style="background:var(--brand-gold); color:#000;">Caribe Mexicano</span>
+                            <span class="slider-badge" style="background:linear-gradient(135deg, #fde047, #ca8a04); color:#000; font-weight:800;">Caribe Mexicano</span>
                         </div>
                         <div class="slider-card-body">
-                            <div class="slider-card-date">VUELO + HOTEL 5 ESTRELLAS</div>
+                            <div class="slider-card-date" style="color:#fde047;">VUELO + HOTEL 5 ESTRELLAS</div>
                             <div class="slider-card-title">Cancún & Riviera Maya All-Inclusive</div>
                             <div class="slider-card-desc">Vuelo redondo, traslados y resort todo incluido frente al mar turquesa.</div>
                             <div class="slider-card-footer">
                                 <div>
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">DESDE</span>
-                                    <div class="slider-price" style="color:var(--brand-gold);">$8,990 MXN</div>
+                                    <div class="slider-price" style="color:#fde047;">$8,990 MXN</div>
                                 </div>
-                                <button class="slider-card-btn" style="background:var(--brand-gold); color:#000;">
+                                <button class="slider-card-btn btn-gold-vip">
                                     Cotizar WhatsApp
                                 </button>
                             </div>
@@ -1328,7 +1366,7 @@
                         <a href="https://wa.me/522228016244?text=Hola%20Alma,%20quiero%20información%20de%20los%20viajes" target="_blank" class="btn-lux-primary" style="background:#25d366; color:#000; font-weight:800; padding:11px 22px; font-size:0.92rem;">
                             <i class="fab fa-whatsapp"></i> Chat WhatsApp (222 801 6244)
                         </a>
-                        <a href="https://www.facebook.com/search/top?q=Ruta%20del%20%C3%81guila%20by%20fraVEO" target="_blank" rel="noopener noreferrer" aria-label="Visitar página oficial de Facebook de La Ruta del Águila" class="btn-lux-primary" style="background:#1877f2; color:#fff; font-weight:700; padding:11px 20px; font-size:0.92rem;">
+                        <a href="https://www.facebook.com/share/p/1HvfxPsivZ/" target="_blank" rel="noopener noreferrer" aria-label="Visitar página oficial de Facebook de La Ruta del Águila" class="btn-lux-primary" style="background:#1877f2; color:#fff; font-weight:700; padding:11px 20px; font-size:0.92rem;">
                             <i class="fab fa-facebook-f"></i> Facebook Oficial
                         </a>
                     </div>
@@ -1567,6 +1605,18 @@
                 </div>
             </div>
 
+            <!-- CUPÓN DE DESCUENTO (ALMA / ESTÉTICA) -->
+            <div style="margin-bottom:1rem; background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:12px; padding:10px 14px;">
+                <div style="font-size:0.8rem; font-weight:700; color:var(--text-muted); margin-bottom:6px;">
+                    ¿Tienes cupón de descuento? (ej. <span style="color:var(--brand-red);">ESTETICA10</span>)
+                </div>
+                <div style="display:flex; gap:8px;">
+                    <input type="text" id="checkout-coupon-input" placeholder="Ingresa código..." style="flex:1; padding:8px 12px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-card); color:var(--text-title); font-size:0.88rem; font-weight:700; text-transform:uppercase;">
+                    <button type="button" onclick="applyCheckoutCoupon()" style="padding:8px 14px; background:var(--bg-card); border:1px solid var(--border-color); border-radius:8px; font-weight:800; cursor:pointer; font-size:0.85rem; color:var(--text-title);">Aplicar</button>
+                </div>
+                <div id="coupon-feedback-msg" style="display:none; font-size:0.8rem; margin-top:6px; font-weight:700;"></div>
+            </div>
+
             <div class="payment-tabs">
                 <div class="pay-tab active" onclick="setPayMethod('spei', this)">SPEI / BBVA</div>
                 <div class="pay-tab" onclick="setPayMethod('oxxo', this)">Depósito OXXO</div>
@@ -1711,6 +1761,7 @@
                 </button>
             </form>
         </div>
+    </div>
 
     <!-- 4. MODAL CATÁLOGO NACIONAL DE MÉXICO (290 DESTINOS) -->
     <div class="lux-modal-backdrop" id="modal-catalogo-nacional">
@@ -1761,7 +1812,7 @@
                 </div>
                 <p style="font-size:0.88rem;">Tu salida directa, cómoda y segura desde San Manuel hacia los mejores eventos, conciertos y destinos de México.</p>
                 <div class="social-links" style="display:flex; gap:10px; margin-top:12px;">
-                    <a href="https://www.facebook.com/search/top?q=Ruta%20del%20%C3%81guila%20by%20fraVEO" target="_blank" rel="noopener noreferrer" aria-label="Facebook Ruta del Águila fraVEO" title="Facebook Ruta del Águila fraVEO" style="width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; color:#fff; text-decoration:none;"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.facebook.com/share/p/1HvfxPsivZ/" target="_blank" rel="noopener noreferrer" aria-label="Facebook Oficial de La Ruta del Águila" title="Facebook Oficial" style="width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; color:#fff; text-decoration:none;"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://wa.me/522228016244" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Oficial" title="WhatsApp 222 801 6244" style="width:36px; height:36px; border-radius:50%; background:rgba(37,211,102,0.15); color:#25d366; display:flex; align-items:center; justify-content:center; text-decoration:none;"><i class="fab fa-whatsapp"></i></a>
                     <a href="estetica.html" title="Estética Alma (San Manuel)" aria-label="Estética Alma" style="width:36px; height:36px; border-radius:50%; background:rgba(244,63,94,0.15); color:#fda4af; display:flex; align-items:center; justify-content:center; text-decoration:none;"><i class="fas fa-spa"></i></a>
                 </div>
@@ -1978,8 +2029,9 @@
             const sorted = Array.from(selectedModalSeats).sort((a,b)=>a-b);
             const totalDeposit = sorted.length * DEPOSIT_PER_SEAT;
             const seatsStr = sorted.map(s => `#${s}`).join(', ');
+            let couponStr = appliedCouponCode ? `\n- Cupón de Descuento: ${appliedCouponCode} (-10% aplicado al total)` : '';
 
-            const msg = `Hola Alma, quiero apartar mi lugar para: ${currentModalPkgName}.\n- Asiento(s) Seleccionado(s): ${seatsStr} (${sorted.length} asiento${sorted.length > 1 ? 's':''})\n- Monto de Apartado a Pagar Hoy: $${totalDeposit} MXN (Garantía 100% reembolsable)\nTe adjunto mi comprobante de pago.`;
+            const msg = `Hola Alma, quiero apartar mi lugar para: ${currentModalPkgName}.\n- Asiento(s) Seleccionado(s): ${seatsStr} (${sorted.length} asiento${sorted.length > 1 ? 's':''})\n- Monto de Apartado a Pagar Hoy: $${totalDeposit} MXN (Garantía 100% reembolsable)${couponStr}\nTe adjunto mi comprobante de pago.`;
             window.open(`https://wa.me/522228016244?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
@@ -2035,9 +2087,12 @@
         }
     </script>
 
-    <!-- ASISTENTE IA DE VIAJES: ALMA (ORB DISCRETO) -->
-    <div class="ai-orb-trigger" onclick="toggleAiChat()" title="Asistente de Viajes">
-        <span style="font-size:1.35rem;">🦅</span>
+    <!-- ASISTENTE IA DE VIAJES: ALMA (ORB FLOTANTE ELEGANTE) -->
+    <div class="ai-orb-trigger" onclick="toggleAiChat()" title="Consultar con Asistente Alma" aria-label="Abrir asistente de viajes">
+        <div class="ai-orb-inner" style="position:relative; display:flex; align-items:center; justify-content:center;">
+            <i class="fas fa-comment-dots" style="font-size:1.45rem;"></i>
+            <span class="ai-orb-pulse" style="position:absolute; top:-4px; right:-4px; width:10px; height:10px; background:#22c55e; border-radius:50%; border:2px solid #fff;"></span>
+        </div>
     </div>
 
     <div class="ai-chat-window" id="ai-chat-window">
@@ -2073,8 +2128,8 @@
     </div>
 
     <!-- Base de Datos de Eventos CDMX y Motores Interactivos -->
-    <script src="js/cdmx_events_engine.js"></script>
-    <script src="js/destinos_data.js"></script>
-    <script src="js/app_interactive.js"></script>
+    <script src="js/cdmx_events_engine.js?v=20261014"></script>
+    <script src="js/destinos_data.js?v=20261014"></script>
+    <script src="js/app_interactive.js?v=20261014"></script>
 </body>
 </html>
