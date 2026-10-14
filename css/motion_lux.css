@@ -1107,17 +1107,18 @@
     min-height: 100%;
     width: auto;
     height: auto;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(1.08); /* Oculta marcas de agua en bordes */
     object-fit: cover;
     z-index: 1;
-    opacity: 0.38;
+    opacity: 0.88; /* Video luminoso y nítido */
     pointer-events: none;
 }
 
 .lux-hero-overlay {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(180deg, rgba(5, 10, 24, 0.72) 0%, rgba(5, 10, 24, 0.94) 100%);
+    /* Scrim cinemático: no apaga el video, solo da contraste en el texto */
+    background: linear-gradient(180deg, rgba(5, 10, 24, 0.20) 0%, rgba(5, 10, 24, 0.45) 55%, rgba(5, 10, 24, 0.94) 100%);
     pointer-events: none;
     z-index: 1;
 }
@@ -1431,34 +1432,45 @@
     color: #fff;
 }
 
-.slider-ctrl-btn {
-    position: absolute;
-    top: 45%;
-    transform: translateY(-50%);
-    width: 44px;
-    height: 44px;
+.slider-header-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.slider-header-btn {
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background: var(--bg-card);
     border: 1px solid var(--border-color);
     color: var(--text-title);
-    font-size: 1.1rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 1rem;
     cursor: pointer;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-    z-index: 10;
     transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
 
-.slider-ctrl-btn:hover {
-    background: var(--brand-red);
-    color: #fff;
-    border-color: var(--brand-red);
+.slider-header-btn:hover {
+    background: var(--brand-cyan);
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(6, 182, 212, 0.3);
 }
 
-.slider-ctrl-btn.left { left: -16px; }
-.slider-ctrl-btn.right { right: -16px; }
+.slider-header-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Ocultar botones antiguos que chocaban contra las tarjetas */
+.slider-ctrl-btn {
+    display: none !important;
+}
 
 /* --- 5. VEHICLE SHOWCASE BOX (MINIMAL) --- */
 .lux-vehicle-box {

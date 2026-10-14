@@ -632,6 +632,19 @@
 </head>
 <body>
 
+    <!-- Top Utility / Sister Brand Announcement -->
+    <div style="background: linear-gradient(90deg, #18181b, #27272a); color: #e4e4e7; padding: 7px 5%; font-size: 0.82rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); z-index: 1001; position: relative;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="color: #fb7185;">🌸</span>
+            <span>¿Buscas salón de belleza o spa capilar en San Manuel? Conoce <strong>Estética Alma</strong></span>
+        </div>
+        <div>
+            <a href="estetica.html" style="color: #fda4af; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 5px; padding: 3px 12px; border-radius: 12px; background: rgba(244,63,94,0.14); border: 1px solid rgba(244,63,94,0.3);">
+                Ver Servicios & Citas <i class="fas fa-arrow-right" style="font-size: 0.7rem;"></i>
+            </a>
+        </div>
+    </div>
+
     <!-- Minimalist Executive Navigation -->
     <header class="lux-navbar">
         <div class="lux-nav-inner">
@@ -664,17 +677,20 @@
     <!-- Clean Motion Hero Banner -->
     <section class="lux-hero-section" id="bloque-hero">
         <video autoplay loop muted playsinline class="lux-hero-video-bg">
-            <source src="video/banner_motion.mp4" type="video/mp4">
+            <source src="video/banner_horizontal.mp4" type="video/mp4">
         </video>
         <div class="lux-hero-overlay"></div>
         <div class="lux-hero-inner">
+            <span class="lux-hero-chip">
+                <i class="fas fa-shield-alt"></i> Salidas Ejecutivas Directas desde San Manuel, Puebla
+            </span>
             <h1 class="lux-hero-title">Viajes La Ruta del Águila</h1>
             <div class="lux-hero-slogan">"Cómodo. Seguro. Directo."</div>
             <div class="lux-hero-actions">
-                <a href="#bloque-conciertos" class="btn-lux-primary">
+                <a href="#bloque-confirmados" class="btn-lux-primary" title="Ir a próximas fechas confirmadas">
                     <i class="fas fa-compass"></i> Explorar Salidas
                 </a>
-                <button class="btn-lux-ai" onclick="toggleAiChat()">
+                <button class="btn-lux-ai" onclick="toggleAiChat()" title="Consultar dudas con el Asistente">
                     <i class="fas fa-wand-magic-sparkles"></i> Asistente
                 </button>
             </div>
@@ -791,7 +807,7 @@
         </section>
 
         <!-- BLOQUE 2: 📅 CARTELERA DE CONCIERTOS & EVENTOS CDMX -->
-        <section id="bloque-conciertos" style="margin-bottom: 4.5rem;">
+        <section id="bloque-conciertos" style="margin-bottom: 4.5rem; scroll-margin-top: 90px;">
             <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:1.5rem; flex-wrap:wrap; gap:12px;">
                 <div>
                     <div class="section-title" style="margin-bottom:0.3rem;">
@@ -801,8 +817,14 @@
                         Transporte redondo directo con espera nocturna hasta el término del show. Salida desde San Manuel.
                     </div>
                 </div>
-                <div style="font-size:0.85rem; color:var(--brand-green); font-weight:700;">
-                    <i class="fas fa-shield-halved"></i> Aparta con $200 MXN (100% Reembolsable)
+                <div style="display:flex; align-items:center; gap:16px;">
+                    <div style="font-size:0.85rem; color:var(--brand-green); font-weight:700;">
+                        <i class="fas fa-shield-halved"></i> Aparta con $200 MXN
+                    </div>
+                    <div class="slider-header-controls">
+                        <button class="slider-header-btn" onclick="scrollSlider('slider-conciertos', -340)" aria-label="Ver conciertos anteriores"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-header-btn" onclick="scrollSlider('slider-conciertos', 340)" aria-label="Ver siguientes conciertos"><i class="fas fa-chevron-right"></i></button>
+                    </div>
                 </div>
             </div>
 
@@ -922,7 +944,7 @@
         </section>
 
         <!-- BLOQUE 3: 🏞️ EXCURSIONES NACIONALES -->
-        <section id="bloque-excursiones" style="margin-bottom: 4.5rem;">
+        <section id="bloque-excursiones" style="margin-bottom: 4.5rem; scroll-margin-top: 90px;">
             <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:1.5rem; flex-wrap:wrap; gap:12px;">
                 <div>
                     <div class="section-title" style="margin-bottom:0.3rem;">
@@ -932,11 +954,17 @@
                         Pueblos Mágicos, aguas termales, cascadas y rutas en cómodas unidades de 14 a 20 pasajeros.
                     </div>
                 </div>
-                <div class="cat-pills-bar" style="margin-bottom:0;">
-                    <button class="cat-pill-btn active" onclick="filterSliderDestinos('todos', this)"><i class="fas fa-compass"></i> Todos</button>
-                    <button class="cat-pill-btn" onclick="filterSliderDestinos('pueblo', this)"><i class="fas fa-mountain"></i> Pueblos Mágicos</button>
-                    <button class="cat-pill-btn" onclick="filterSliderDestinos('termales', this)"><i class="fas fa-water"></i> Termales</button>
-                    <button class="cat-pill-btn" onclick="filterSliderDestinos('aventura', this)"><i class="fas fa-tree"></i> Cascadas</button>
+                <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+                    <div class="cat-pills-bar" style="margin-bottom:0;">
+                        <button class="cat-pill-btn active" onclick="filterSliderDestinos('todos', this)"><i class="fas fa-compass"></i> Todos</button>
+                        <button class="cat-pill-btn" onclick="filterSliderDestinos('pueblo', this)"><i class="fas fa-mountain"></i> Pueblos</button>
+                        <button class="cat-pill-btn" onclick="filterSliderDestinos('termales', this)"><i class="fas fa-water"></i> Termales</button>
+                        <button class="cat-pill-btn" onclick="filterSliderDestinos('aventura', this)"><i class="fas fa-tree"></i> Cascadas</button>
+                    </div>
+                    <div class="slider-header-controls">
+                        <button class="slider-header-btn" onclick="scrollSlider('slider-pueblos', -340)" aria-label="Ver excursiones anteriores"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-header-btn" onclick="scrollSlider('slider-pueblos', 340)" aria-label="Ver siguientes excursiones"><i class="fas fa-chevron-right"></i></button>
+                    </div>
                 </div>
             </div>
 
@@ -1084,7 +1112,7 @@
         </section>
 
         <!-- BLOQUE 4: 👑 DESTINOS VIP (ALIANZA fraVEO) -->
-        <section id="bloque-vip" style="margin-bottom: 4.5rem;">
+        <section id="bloque-vip" style="margin-bottom: 4.5rem; scroll-margin-top: 90px;">
             <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:1.5rem; flex-wrap:wrap; gap:12px;">
                 <div>
                     <div class="section-title" style="margin-bottom:0.3rem;">
@@ -1092,6 +1120,15 @@
                     </div>
                     <div class="section-desc" style="margin-bottom:0;">
                         Circuitos internacionales, safaris y cruceros operados bajo franquicia autorizada.
+                    </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:16px;">
+                    <a href="https://wa.me/522228016244?text=Hola%20Alma,%20me%20interesa%20un%20circuito%20internacional%20VIP" target="_blank" style="font-size:0.85rem; color:var(--brand-gold); font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                        <i class="fas fa-gem"></i> Concierge Privado VIP
+                    </a>
+                    <div class="slider-header-controls">
+                        <button class="slider-header-btn" onclick="scrollSlider('slider-fraveo', -340)" aria-label="Ver destinos anteriores"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-header-btn" onclick="scrollSlider('slider-fraveo', 340)" aria-label="Ver siguientes destinos"><i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -1288,16 +1325,16 @@
                         🕒 <strong>Atención:</strong> Lunes a Domingo de 8:00 AM a 8:00 PM
                     </p>
                     <div style="display:flex; gap:12px; flex-wrap:wrap;">
-                        <a href="https://maps.google.com/?q=19.00418242,-98.19447531" target="_blank" class="btn-lux-primary" style="background:var(--bg-subtle); color:var(--text-title); border:1px solid var(--border-color); padding:10px 20px; font-size:0.9rem;">
-                            <i class="fas fa-location-arrow"></i> Cómo llegar en Google Maps
+                        <a href="https://wa.me/522228016244?text=Hola%20Alma,%20quiero%20información%20de%20los%20viajes" target="_blank" class="btn-lux-primary" style="background:#25d366; color:#000; font-weight:800; padding:11px 22px; font-size:0.92rem;">
+                            <i class="fab fa-whatsapp"></i> Chat WhatsApp (222 801 6244)
                         </a>
-                        <a href="https://wa.me/522228016244?text=Hola%20Alma,%20quiero%20información%20de%20los%20viajes" target="_blank" class="btn-lux-primary" style="background:#25d366; padding:10px 20px; font-size:0.9rem;">
-                            <i class="fab fa-whatsapp"></i> Chat WhatsApp Directo
+                        <a href="https://www.facebook.com/search/top?q=Ruta%20del%20%C3%81guila%20by%20fraVEO" target="_blank" rel="noopener noreferrer" aria-label="Visitar página oficial de Facebook de La Ruta del Águila" class="btn-lux-primary" style="background:#1877f2; color:#fff; font-weight:700; padding:11px 20px; font-size:0.92rem;">
+                            <i class="fab fa-facebook-f"></i> Facebook Oficial
                         </a>
                     </div>
                 </div>
                 <div style="border-radius:16px; overflow:hidden; border:1px solid var(--border-color); height:280px;">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.8687258380816!2d-98.19705022417724!3d19.004187454245648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cfc0bf72461a29%3A0xe5e13d9ea72960f5!2sR%C3%ADo%20Nexapa%206101%2C%20Jardines%20de%20San%20Manuel%2C%2072570%20Heroica%20Puebla%20de%20Zaragoza%2C%20Pue.!5e0!3m2!1ses-419!2smx!4v1727390000000!5m2!1ses-419!2smx" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <iframe title="Ubicación oficial de salidas: Calle Río Nexapa 6101, San Manuel, Puebla" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.8687258380816!2d-98.19705022417724!3d19.004187454245648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cfc0bf72461a29%3A0xe5e13d9ea72960f5!2sR%C3%ADo%20Nexapa%206101%2C%20Jardines%20de%20San%20Manuel%2C%2072570%20Heroica%20Puebla%20de%20Zaragoza%2C%20Pue.!5e0!3m2!1ses-419!2smx!4v1727390000000!5m2!1ses-419!2smx" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </section>
@@ -1723,20 +1760,22 @@
                     🦅 Viajes La Ruta del Águila
                 </div>
                 <p style="font-size:0.88rem;">Tu salida directa, cómoda y segura desde San Manuel hacia los mejores eventos, conciertos y destinos de México.</p>
-                <div class="social-links">
-                    <a href="https://www.facebook.com/search/top?q=Ruta%20del%20%C3%81guila%20by%20fraVEO" target="_blank" title="Facebook Ruta del Águila fraVEO"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.facebook.com/search/top?q=Est%C3%A9tica%20Alma%20Puebla" target="_blank" title="Facebook Estética Alma"><i class="fas fa-spa"></i></a>
+                <div class="social-links" style="display:flex; gap:10px; margin-top:12px;">
+                    <a href="https://www.facebook.com/search/top?q=Ruta%20del%20%C3%81guila%20by%20fraVEO" target="_blank" rel="noopener noreferrer" aria-label="Facebook Ruta del Águila fraVEO" title="Facebook Ruta del Águila fraVEO" style="width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; color:#fff; text-decoration:none;"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/522228016244" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Oficial" title="WhatsApp 222 801 6244" style="width:36px; height:36px; border-radius:50%; background:rgba(37,211,102,0.15); color:#25d366; display:flex; align-items:center; justify-content:center; text-decoration:none;"><i class="fab fa-whatsapp"></i></a>
+                    <a href="estetica.html" title="Estética Alma (San Manuel)" aria-label="Estética Alma" style="width:36px; height:36px; border-radius:50%; background:rgba(244,63,94,0.15); color:#fda4af; display:flex; align-items:center; justify-content:center; text-decoration:none;"><i class="fas fa-spa"></i></a>
                 </div>
             </div>
 
             <div>
                 <strong style="color:#fff; display:block; margin-bottom:1rem;">Nuestras Modalidades</strong>
-                <p style="font-size:0.88rem;">
+                <p style="font-size:0.88rem; line-height:1.9;">
                     • Salidas Confirmadas (EBS 2026 & Xochimilco)<br>
                     • Conciertos CDMX (Foro Sol / GNP / Palacio)<br>
                     • Pueblos Mágicos & Ecoturismo<br>
                     • Franquicia fraVEO (Playas & Lujo)<br>
-                    • Suzuki Ertiga VIP (6 Pasajeros)
+                    • Suzuki Ertiga VIP (6 Pasajeros)<br>
+                    • Salón Hermano: <a href="estetica.html" style="color:#fda4af; text-decoration:underline;">🌸 Estética Alma</a>
                 </p>
             </div>
 
