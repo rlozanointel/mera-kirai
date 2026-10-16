@@ -471,11 +471,48 @@ async function sendChatMessage() {
 
     const typingId = showTypingIndicator();
 
-    setTimeout(() => {
-        removeTypingIndicator(typingId);
-        const reply = generateLocalAlmaResponse(msg);
-        appendChatMessage('assistant', reply);
-    }, 350);
+    // 1. Consultar Cloud AI Worker en Cloudflare Edge (24/7 en la nube, <300ms)
+    const endpoints = [
+        '/api/chat',
+        'https://mera-kirai.com/api/chat',
+        'https://alma-ai-assistant.mera-kirai-cloud.workers.dev'
+    ];
+
+    let cloudReply = null;
+    for (const url of endpoints) {
+        try {
+            const resp = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    message: msg,
+                    history: chatHistory.slice(-8)
+                })
+            });
+            if (resp.ok) {
+                const data = await resp.json();
+                if (data && data.reply) {
+                    cloudReply = data.reply;
+                    break;
+                }
+            }
+        } catch (err) {
+            // Intenta siguiente endpoint o respaldo en navegador
+        }
+    }
+
+    removeTypingIndicator(typingId);
+    const finalReply = cloudReply || generateLocalAlmaResponse(msg);
+    chatHistory.push({ role: 'user', content: msg });
+    chatHistory.push({ role: 'assistant', content: finalReply });
+    appendChatMessage('assistant', finalReply);
+}
+
+function formatChatMarkdown(text) {
+    return String(text || '')
+        .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+        .replace(/\n/g, '<br>');
 }
 
 function appendChatMessage(role, text) {
@@ -484,7 +521,7 @@ function appendChatMessage(role, text) {
 
     const div = document.createElement('div');
     div.className = `ai-chat-bubble ${role}`;
-    div.innerHTML = text.replace(/\n/g, '<br>');
+    div.innerHTML = role === 'assistant' ? formatChatMarkdown(text) : escapeHtml(text).replace(/\n/g, '<br>');
     body.appendChild(div);
     body.scrollTop = body.scrollHeight;
 }
@@ -496,7 +533,7 @@ function showTypingIndicator() {
     const div = document.createElement('div');
     div.className = 'ai-chat-bubble assistant typing';
     div.id = id;
-    div.innerHTML = `<span class="dot"></span><span class="dot"></span><span class="dot"></span> Consultando cartelera oficial...`;
+    div.innerHTML = `<span class="dot"></span><span class="dot"></span><span class="dot"></span> Consultando con Alma IA en la nube...`;
     body.appendChild(div);
     body.scrollTop = body.scrollHeight;
     return id;
@@ -518,79 +555,68 @@ function generateLocalAlmaResponse(question) {
     const asksHorariosLlegada = q.includes('tres de la tarde') || q.includes('3 de la tarde') || q.includes('3 pm') || q.includes('3:00') || q.includes('llegar tarde') || q.includes('llegar a las') || q.includes('punto de reunion') || q.includes('punto de reunión') || q.includes('hora de salida');
     const asksCancelacion = q.includes('si no voy') || q.includes('cancelar') || q.includes('cancelo') || q.includes('a la mera hora') || q.includes('devuelven el dinero') || q.includes('politica de cancelacion') || q.includes('no-show');
 
-    // Si el usuario hace una combinación de dudas logísticas comunes:
     if ((asksHospedaje ? 1 : 0) + (asksMasApartado ? 1 : 0) + (asksHorariosLlegada ? 1 : 0) >= 2) {
         let resp = `✨ ¡Hola! Con gusto resuelvo tus dudas punto por punto:\n\n`;
         let count = 1;
         if (asksHospedaje) {
-            resp += `${count}. **¿Incluye hospedaje?**: Para nuestras salidas de día o noche como **Xochimilco La Llorona** y **Conciertos CDMX**, no se requiere hospedaje porque son **viajes redondos el mismo día** (salimos en la tarde y regresamos a Puebla al terminar el evento de madrugada). Para circuitos de varios días (Oaxaca, Chiapas o circuitos VIP fraVEO), el hotel 4 o 5 estrellas sí está incluido al 100%.\n\n`;
+            resp += `${count}. **¿Incluye hospedaje?**: Para nuestras salidas de 1 día o noche como **Xochimilco La Llorona** y **Conciertos CDMX**, no se requiere hospedaje porque son **viajes redondos el mismo día** (salimos en la tarde y regresamos a Puebla al terminar el evento). Para circuitos de varios días o destinos VIP fraVEO, el hotel sí está incluido.\n\n`;
             count++;
         }
         if (asksMasApartado) {
-            resp += `${count}. **¿Puedes dar más de apartado?**: ¡Claro que sí! Los **$200 MXN** son únicamente el anticipo mínimo para asegurar tu asiento en la unidad ejecutiva. Puedes apartar con $500, $1,000 o liquidar la totalidad de tu viaje desde el inicio si lo prefieres (vía transferencia SPEI, OXXO o tarjeta).\n\n`;
+            resp += `${count}. **¿Puedes dar más de apartado?**: ¡Claro que sí! Los **$200 MXN** son únicamente el anticipo mínimo por persona. Puedes abonar un monto mayor o liquidar desde el inicio si lo prefieres.\n\n`;
             count++;
         }
         if (asksHorariosLlegada) {
-            resp += `${count}. **¿Puedes llegar a las 3:00 PM al punto de reunión?**: No es recomendable. La salida oficial desde **Calle Río Nexapa #6101 en San Manuel** para Xochimilco es a las **14:00 hrs puntuales** para llegar con suficiente tiempo antes del anochecer y abordar la trajinera sin filas. Si llegas a las 3:00 PM la camioneta ya estará en la autopista rumbo a CDMX. Te citamos a las 13:45 hrs para abordar con calma.\n\n`;
+            resp += `${count}. **¿Puedes llegar a las 3:00 PM al punto de reunión?**: La salida oficial desde **Calle Río Nexapa #6101 en San Manuel** para Xochimilco es a las **14:30 hrs puntuales** (con 15 minutos de tolerancia máxima). Te recomendamos llegar a tiempo para no perder el abordaje.\n\n`;
             count++;
         }
         resp += `¿Te gustaría apartar tus asientos para la próxima fecha disponible?`;
         return resp;
     }
 
-    // 2. ARTISTAS ESPECÍFICOS Y CARTELERA CDMX
+    // 2. ARTISTAS FALLECIDOS (José José, Juan Gabriel, Jenni Rivera, etc.)
+    if (q.includes('jose jose') || q.includes('josé josé') || q.includes('juan gabriel') || q.includes('jenni rivera') || q.includes('valentin elizalde') || q.includes('joan sebastian')) {
+        return `🕊️ ¡Hola! Soy **Alma** de *La Ruta del Águila*.\nLamentablemente ese gran artista ya falleció, por lo que no existen conciertos en vivo suyos. Sin embargo, cuando se presentan **homenajes sinfónicos oficiales o tributos en CDMX** (en recintos como el Auditorio Nacional, Bellas Artes o Teatro Metropólitan), organizamos **transporte ejecutivo redondo desde San Manuel, Puebla** desde **$549 MXN**.\n\n¿Te gustaría que te avise cuando haya un concierto sinfónico u homenaje en CDMX?`;
+    }
+
+    // 3. SHOWS INFANTILES Y FAMILIARES (Tatiana, Bely y Beto, Luli Pampín)
+    if (q.includes('tatiana') || q.includes('bely') || q.includes('luli pampin') || q.includes('infantil') || q.includes('niños')) {
+        return `🎠 ¡Hola! Soy **Alma** de *La Ruta del Águila*.\n¡Claro que sí! Para los shows familiares e infantiles como **Tatiana** en **Arena CDMX, Auditorio Nacional o Teatro Metropólitan**, organizamos salidas ejecutivas seguras desde San Manuel, Puebla (transporte redondo desde **$549 a $580 MXN** por persona con seguro de viajero y espera al terminar la función, o bien en **modalidad privada familiar**).\n\nRecuerda que apartas con **$200 MXN** y puedes usar el cupón **ESTETICA10** (10% de descuento). ¿Para qué fecha o cuántos lugares familiares te gustaría cotizar?`;
+    }
+
     if (q.includes('veronica castro') || q.includes('verónica castro')) {
-        return `🎭 ¡Hola! Soy **Alma** de *La Ruta del Águila*.\nActualmente **Verónica Castro** no tiene presentaciones de teatro ni conciertos confirmados en la cartelera oficial de CDMX (se encuentra retirada temporalmente de los escenarios y giras).\n\nSin embargo, en cuanto se anuncie cualquier obra, homenaje o gala en recintos de CDMX (como Bellas Artes o Teatro de los Insurgentes), contaremos con **salida ejecutiva redonda** desde San Manuel, Puebla.\n¿Te gustaría consultar por alguna otra obra de teatro o concierto en CDMX?`;
+        return `🎭 ¡Hola! Soy **Alma** de *La Ruta del Águila*.\nActualmente **Verónica Castro** no tiene presentaciones de teatro ni conciertos confirmados en la cartelera oficial de CDMX (se encuentra retirada temporalmente de los escenarios y giras).\n\nSin embargo, en cuanto se anuncie cualquier obra, homenaje o gala en recintos de CDMX, contaremos con **salida ejecutiva redonda** desde San Manuel, Puebla.\n¿Te gustaría consultar por alguna otra obra de teatro o concierto en CDMX?`;
     }
 
     if (q.includes('luis miguel') || q.includes('luismiguel') || q.includes('el sol')) {
-        return `☀️ ¡Hola! Soy **Alma** de *La Ruta del Águila*.\nActualmente en la cartelera oficial de recintos CDMX (Arena CDMX, Estadio GNP, Auditorio Nacional) no hay fechas próximas confirmadas para Luis Miguel (sus fechas recientes en Arena CDMX ya concluyeron con lleno total).\n\nSin embargo, en cuanto se anuncie una nueva fecha o preventa, organizaremos **transporte ejecutivo redondo** desde San Manuel, Puebla (tarifa redonda desde **$549 MXN** con seguro y chofer sobrio que te espera hasta que termina el concierto).\nApartas tu lugar con solo **$200 MXN**. ¿Te gustaría que te avisemos en cuanto se confirme una nueva fecha?`;
+        return `☀️ ¡Hola! Soy **Alma** de *La Ruta del Águila*.\nActualmente en la cartelera oficial de recintos CDMX (Arena CDMX, Estadio GNP, Auditorio Nacional) no hay fechas próximas confirmadas para Luis Miguel (sus fechas recientes en Arena CDMX ya concluyeron).\n\nEn cuanto se anuncie una nueva fecha o preventa, organizaremos **transporte ejecutivo redondo** desde San Manuel, Puebla (desde **$549 MXN**). ¿Te gustaría que te registremos en la lista prioritaria por WhatsApp?`;
     }
 
-    if (q.includes('shakira') || q.includes('chayanne') || q.includes('temerarios') || q.includes('morat') || q.includes('paul mccartney') || q.includes('bruno mars')) {
-        return `🎶 ¡Hola! Soy **Alma**. Para los grandes conciertos en el **Estadio GNP Seguros (Foro Sol)** y **Arena CDMX**:\n- Contamos con salida ejecutiva directa desde San Manuel, Puebla (tarifa redonda desde **$549 MXN**).\n- Te dejamos en la puerta del recinto y nuestra unidad te espera al terminar para que regreses seguro a Puebla la misma noche.\n- Apartas tu asiento con solo **$200 MXN** (100% reembolsable si no se cubre cupo).\n¿Para qué fecha o artista deseas apartar tus lugares?`;
+    if (q.includes('shakira') || q.includes('chayanne') || q.includes('temerarios') || q.includes('morat') || q.includes('zayn') || q.includes('weeknd')) {
+        return `🎶 ¡Hola! Soy **Alma**. Para los grandes conciertos en el **Estadio GNP Seguros** ($549 MXN) y **Arena CDMX** ($580 MXN):\n- Contamos con salida ejecutiva directa desde San Manuel, Puebla.\n- Te dejamos en el recinto y nuestra unidad te espera al terminar para que regreses seguro a Puebla la misma noche.\n- Apartas tu asiento con solo **$200 MXN** y tienes 10% de descuento con el cupón **ESTETICA10**. ¿Para qué artista o fecha deseas apartar?`;
     }
 
-    // 3. LOGÍSTICA DE VIAJES PARTICULARES (Citas médicas, compras, trámites)
-    if (q.includes('hospital') || q.includes('medica') || q.includes('médica') || q.includes('doctor') || q.includes('nutricion') || q.includes('nutrición') || q.includes('compras') || q.includes('particular') || q.includes('privado') || q.includes('renta con chofer') || q.includes('aeropuerto') || q.includes('aifa') || q.includes('aicm') || q.includes('visa') || q.includes('embajada')) {
-        return `🚗 ¡Hola! Soy **Alma**. Contamos con **Servicio de Transporte Privado y Puerta a Puerta**:\n- **Vehículo a tu medida**: Auto sedán compacto (1 a 3 personas) o camioneta ejecutiva (4 a 6+ personas).\n- **Servicios frecuentes**: Citas médicas de alta especialidad en CDMX (Nutrición, Médica Sur, ABC), compras mayoristas de negocios, trámites de visa/embajada y traslados a aeropuertos (AICM/AIFA).\n- Chofer profesional que te recoge en tu domicilio en Puebla, te espera en tus citas y te regresa con total privacidad y confort.\n¿Qué fecha y destino particular requieres cotizar?`;
+    if (q.includes('hospital') || q.includes('medica') || q.includes('médica') || q.includes('doctor') || q.includes('nutricion') || q.includes('nutrición') || q.includes('compras') || q.includes('particular') || q.includes('privado') || q.includes('aeropuerto') || q.includes('aifa') || q.includes('aicm') || q.includes('visa') || q.includes('embajada')) {
+        return `🚗 ¡Hola! Soy **Alma**. Contamos con **Servicio de Transporte Privado y Puerta a Puerta**:\n- **Vehículo a tu medida**: Auto sedán ejecutivo (1 a 3 personas) o camioneta ejecutiva para grupos.\n- **Servicios frecuentes**: Citas médicas en CDMX (Nutrición, Médica Sur, ABC), compras de mayoreo, trámites de visa/embajada y traslados a aeropuertos (AICM/AIFA).\n¿Qué fecha y destino particular requieres cotizar?`;
     }
 
-    // 4. POLÍTICAS DE CANCELACIÓN Y NO-SHOW
     if (asksCancelacion) {
-        return `🛡️ ¡Hola! Soy **Alma**. Te explico con total transparencia nuestras **Políticas de Apartado y Cancelación**:\n1. **Reembolso 100% Garantizado**: Si la agencia cancela la salida por no cubrir el cupo mínimo requerido 48 horas antes, se te devuelve el 100% de tu dinero de inmediato.\n2. **Cancelación del cliente de última hora (No-Show)**: Si faltando poco tiempo para salir decides no viajar, no hay reembolso porque el asiento fue reservado exclusivamente para ti y los boletos/casetas ya están cubiertos; sin embargo, **puedes transferir tu lugar a cualquier amigo o familiar** sin ningún costo extra.\n3. **El viaje no se cancela para los demás**: Si uno o dos pasajeros cancelan a la mera hora pero el viaje ya fue confirmado, la salida opera con normalidad para los demás pasajeros puntuales.\n¿Tienes alguna duda sobre alguna salida específica?`;
+        return `🛡️ ¡Hola! Soy **Alma**. Nuestras **Políticas de Apartado y Cancelación** son 100% transparentes:\n1. **Reembolso 100% Garantizado**: Si un viaje grupal no reúne el cupo mínimo 48 horas antes, se te devuelve el **100% íntegro de tu dinero de inmediato**.\n2. **Cancelación de última hora (<48h) o No-Show**: No aplica reembolso porque tu asiento ya fue comprometido operativamente, pero **tu boleto es 100% transferible sin costo** a cualquier familiar o amigo, y el viaje nunca se cancela para los pasajeros puntuales.\nPuedes consultar todos los detalles en nuestra página de [Términos y Condiciones](terminos.html).`;
     }
 
-    // 5. DESTINOS CONFIRMADOS
     if (q.includes('xochimilco') || q.includes('llorona') || q.includes('trajinera') || q.includes('muertos')) {
-        return `🎭 ¡Hola! Soy **Alma**. Nuestra salida confirmada a **La Llorona en Xochimilco (Cuemanco)** opera los fines de semana de Octubre y Noviembre (Temporada Día de Muertos):\n- **Paquete Completo**: **$1,350 MXN** (incluye transporte ejecutivo redondo desde San Manuel, paseo en trajinera iluminada y boleto para la obra teatral en vivo en el islote).\n- *Opción solo transporte redondo*: $650 MXN (si ya tienes tu boleto).\n- Horario: Salida 14:00 hrs desde San Manuel, regreso aprox. 00:30 hrs (no requiere hospedaje).\n- Apartas con solo **$200 MXN** (puedes dar más si lo deseas). ¿Para cuántas personas requieres lugar?`;
+        return `🎭 ¡Hola! Soy **Alma**. Nuestra salida confirmada a **La Llorona en Xochimilco (Cuemanco)** opera en Temporada de Día de Muertos:\n- **Paquete Completo**: **$1,350 MXN** (transporte ejecutivo redondo desde San Manuel + paseo en trajinera + boleto oficial a la obra).\n- **Solo Transporte Redondo**: **$650 MXN**.\n- Apartas con **$200 MXN** y el resto se liquida 48-24h antes de salir. ¿Para cuántas personas requieres lugar?`;
     }
 
     if (q.includes('expo') || q.includes('beauty') || q.includes('ebs') || q.includes('citibanamex')) {
-        return `💄 ¡Hola! Soy **Alma**. Tenemos salida ejecutiva directa a la **Expo Beauty Show (EBS 2026)** en Centro Citibanamex (24 al 26 Octubre 2026):\n- Tarifa Redonda: **$790 MXN** (promoción especial para estilistas y profesionales).\n- **Incluye boleto oficial de acceso** a salas B, C y D, transporte redondo en van ejecutiva con seguro y casetas (07:30 a 19:45 hrs).\n- Aparta con solo **$200 MXN**. ¿Para cuántos estilistas o acompañantes deseas apartar?`;
+        return `💄 ¡Hola! Soy **Alma**. Tenemos salida ejecutiva directa a la **Expo Beauty Show (EBS 2026)** en Centro Citibanamex (24 al 26 Octubre 2026):\n- **Tarifa Redonda de Transporte Ejecutivo**: **$700 MXN** por persona saliendo desde San Manuel, Puebla (el boleto de acceso a la Expo se adquiere por separado).\n- Aparta tu asiento con solo **$200 MXN** y aplica el cupón **ESTETICA10**. ¿Para cuántas personas deseas apartar?`;
     }
 
-    if (q.includes('estetica') || q.includes('estética') || q.includes('salon') || q.includes('salón') || q.includes('cabello') || q.includes('corte') || q.includes('cupon') || q.includes('cupón') || q.includes('descuento')) {
-        return `🌸 ¡Hola! Soy **Alma**. Nuestro salón hermano **Estética Alma** se ubica en Río Nexapa 6101, San Manuel:\n- Servicios: Cortes de vanguardia, colorimetría, keratina brasileña y manicure.\n- 🎁 **Promoción Exclusiva**: Si te atiendes en el salón, usa el cupón **ESTETICA10** para obtener **10% de descuento directo** en cualquiera de nuestras salidas y excursiones de viaje.\n- Puedes agendar tu cita al **222 801 6244** o visitar [Estética Alma](estetica.html).`;
+    if (q.includes('estetica') || q.includes('estética') || q.includes('salon') || q.includes('salón') || q.includes('cupon') || q.includes('cupón') || q.includes('descuento')) {
+        return `🌸 ¡Hola! Soy **Alma**. El cupón **ESTETICA10** te da **10% de descuento directo** en cualquier viaje y está **abierto para todos** como promoción cruzada con nuestro salón **Estética Alma** en Río Nexapa #6101, San Manuel ([estetica.mera-kirai.com](https://estetica.mera-kirai.com)).`;
     }
 
-    if (q.includes('concierto') || q.includes('foro sol') || q.includes('gnp') || q.includes('karol') || q.includes('estadio') || q.includes('f1') || q.includes('cisne') || q.includes('chapultepec') || q.includes('nfl') || q.includes('arena') || q.includes('auditorio')) {
-        return `🎶 ¡Hola! Soy **Alma**. Contamos con **Transporte Seguro a Conciertos y Eventos en CDMX** con salida y regreso directo a San Manuel:\n- Tarifa Redonda: desde **$549 MXN** (Karol G $549, Cisne Negro Chapultepec $690, NFL $750).\n- Te dejamos en la puerta del recinto y nuestra unidad te espera hasta que termina el evento para que regreses tranquilo y seguro de noche.\n- Aparta tu lugar con solo **$200 MXN** (100% reembolsable si no se cubre cupo).\n¿A qué evento te gustaría asistir?`;
-    }
-
-    if (q.includes('taxco') || q.includes('cacahuamilpa') || q.includes('grutas') || q.includes('tolantongo') || q.includes('zacatlan') || q.includes('cuetzalan') || q.includes('excursion') || q.includes('excursión') || q.includes('nacional') || q.includes('pueblo')) {
-        return `🌿 ¡Hola! Soy **Alma**. Nuestras excursiones familiares y de descanso incluyen:\n- **Grutas de Tolantongo**: $790 MXN (pozas termales a 36°C, túnel de vapor y río turquesa).\n- **Grutas de Cacahuamilpa & Taxco**: $1,160 MXN (17 Octubre 2026, platería virreinal).\n- **Zacatlán & Chignahuapan**: $650 MXN (mirador de cristal, esferas y sidra).\n- **Cuetzalan del Progreso**: $820 MXN (cascadas, voladores y café de altura).\n- **Bahías de Acapulco**: $980 MXN (escapada de fin de semana).\nTodas salen desde Río Nexapa 6101, San Manuel y apartas con **$200 MXN**. ¿Cuál te llama más la atención?`;
-    }
-
-    if (q.includes('vip') || q.includes('internacional') || q.includes('europa') || q.includes('inglaterra') || q.includes('asia') || q.includes('fraveo') || q.includes('lujo') || q.includes('safari') || q.includes('kenia') || q.includes('tailandia')) {
-        return `👑 ¡Hola! Soy **Alma**. A través de nuestra franquicia autorizada **fraVEO** operamos circuitos internacionales de alta gama:\n- **Inglaterra al Completo 2026**: desde $1,909 USD (8 días: Londres, Stonehenge, Bath, Oxford).\n- **Guatemala al Completo**: $1,300 USD (Antigua colonial y Lago Atitlán).\n- **Vietnam y Camboya**: $2,265 USD (Bahía de Halong y templos de Angkor Wat).\n- **Tailandia 2027**: $1,432 USD (Bangkok, Chiang Mai y playas exóticas).\n- **Kenia Safari Masai Mara**: $2,135 USD (Lago Nakuru y vida salvaje).\n- **El Clásico Real Madrid vs Barcelona + Europa**: $5,790 USD.\nTodos incluyen vuelos, hoteles 4-5 estrellas y concierge privado. ¿Qué destino internacional sueñas visitar?`;
-    }
-
-    if (q.includes('apartar') || q.includes('pago') || q.includes('precio') || q.includes('costo') || q.includes('200') || q.includes('spei') || q.includes('oxxo')) {
-        return `🛡️ ¡Hola! Soy **Alma**. En *La Ruta del Águila* tu dinero está protegido:\n- **Apartado Mínimo**: Apartas tu asiento con solo **$200 MXN**.\n- **Garantía 100% Reembolsable**: Si no se cubre el cupo mínimo requerido 48 horas antes de la salida, te devolvemos el 100% de tu dinero de inmediato.\n- **Métodos de Pago**: Transferencia SPEI (BBVA), depósito en cualquier tienda OXXO o tarjeta en línea.\n- Si gustas apartar ahora, contáctame al **222 801 6244** o selecciona tu asiento en la pantalla.`;
-    }
-
-    return `🦅 ¡Hola! Soy **Alma**, tu asesora de viajes en *La Ruta del Águila* (San Manuel, Puebla).\nTenemos 3 opciones preparadas para ti:\n1. **Conciertos y Eventos CDMX** con retorno seguro nocturno (desde $549 MXN).\n2. **Excursiones Nacionales** para descansar en familia (Tolantongo, Taxco, Zacatlán, Cuetzalan).\n3. **Destinos VIP Internacionales** (Europa, Asia, África con fraVEO).\n4. **Servicio Privado Puerta a Puerta** para citas médicas, compras o trámites.\nApartas cualquier viaje con solo **$200 MXN**. Además, si eres cliente de *Estética Alma*, tienes 10% con el cupón **ESTETICA10**. ¿Qué tipo de viaje estás planeando?`;
+    return `🦅 ¡Hola! Soy **Alma**, tu asesora en *La Ruta del Águila* (San Manuel, Puebla).\nRespecto a tu consulta sobre **"${escapeHtml(raw)}"**, podemos organizarlo tanto en **salida grupal programada** (con mínimo 12 interesados de nuestro catálogo oficial de **737 destinos SECTUR y conciertos CDMX**) como en **traslado privado a tu medida**.\n\nRecuerda que apartas cualquier viaje con **$200 MXN**, liquidas 48-24h antes de salir y tienes **10% de descuento** con el cupón **ESTETICA10**. ¿En qué fecha aproximada y para cuántas personas te gustaría viajar?`;
 }
 
 /* =========================================================================
@@ -687,7 +713,7 @@ function bookCustomSearchWhatsApp(term) {
 }
 
 function escapeHtml(str) {
-    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    return String(str || '').replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
 }
 
 /* --- TECLA ESCAPE Y CLIC AFUERA PARA CERRAR MODALES Y CHAT --- */
@@ -697,7 +723,7 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Cerrar chat y buscador en vivo al hacer clic afuera (sin borrar la conversación)
+// Cerrar chat, modales y buscador en vivo al hacer clic afuera (sin borrar la conversación)
 document.addEventListener('click', (e) => {
     const aiWin = document.getElementById('ai-chat-window');
     const aiOrb = document.querySelector('.ai-orb-trigger');
@@ -707,6 +733,12 @@ document.addEventListener('click', (e) => {
         if (!aiWin.contains(e.target) && (!aiOrb || !aiOrb.contains(e.target)) && (!navAiBtn || !navAiBtn.contains(e.target))) {
             aiWin.classList.remove('active');
         }
+    }
+
+    // Cerrar cualquier modal backdrop si se hace clic directamente en el fondo oscuro
+    if (e.target && (e.target.classList.contains('lux-modal-backdrop') || e.target.classList.contains('modal-overlay'))) {
+        e.target.classList.remove('active');
+        document.body.style.overflow = '';
     }
 
     const dropdown = document.getElementById('live-search-results-dropdown');
@@ -733,14 +765,37 @@ function closeAllModals() {
 }
 
 /* =========================================================================
-   6. MODAL CATÁLOGO NACIONAL DE MÉXICO (290 DESTINOS)
+   6. MODAL CATÁLOGO OFICIAL SECTUR / UNESCO MÉXICO (737 OPCIONES)
    ========================================================================= */
 
-let catalogoNacionalFiltroCat = 'todos';
+let catalogoMacroFilter = 'todos';
+let catalogoSubFilter = 'todas';
+let catalogoStateFilter = 'todos';
 
-function openCatalogoNacionalModal() {
+const MACRO_LABELS = {
+    'pueblo_magico': '🏔️ Pueblo Mágico',
+    'barrio_magico': '🎨 Barrio Mágico',
+    'ruta_turistica': '🛣️ Ruta Turística',
+    'experiencia_comunitaria': '🌿 Experiencia Comunitaria',
+    'patrimonio_unesco': '🏛️ Patrimonio UNESCO'
+};
+
+function getCatalogo737List() {
+    if (Array.isArray(window.SECTUR_737_CATALOG) && window.SECTUR_737_CATALOG.length > 0) {
+        return window.SECTUR_737_CATALOG;
+    }
+    return [];
+}
+
+function openCatalogoNacionalModal(initialMacro) {
     const modal = document.getElementById('modal-catalogo-nacional');
     if (!modal) return;
+    if (initialMacro) {
+        catalogoMacroFilter = initialMacro;
+        catalogoSubFilter = 'todas';
+    }
+    populateCatalogoStatesDropdown();
+    renderCatalogoSubPills();
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
     renderCatalogoNacionalGrid();
@@ -752,11 +807,83 @@ function closeCatalogoNacionalModal() {
     document.body.style.overflow = '';
 }
 
-function filterCatalogoCat(cat, btn) {
-    catalogoNacionalFiltroCat = cat;
+function populateCatalogoStatesDropdown() {
+    const sel = document.getElementById('catalogo-state-select');
+    if (!sel || sel.options.length > 1) return;
+    const lista = getCatalogo737List();
+    const states = new Set();
+    lista.forEach(item => {
+        if (item.state && !item.state.includes(',')) {
+            states.add(item.state.trim());
+        }
+    });
+    Array.from(states).sort().forEach(st => {
+        const opt = document.createElement('option');
+        opt.value = st;
+        opt.textContent = `📍 ${st}`;
+        sel.appendChild(opt);
+    });
+}
+
+function filterCatalogoCat(macro, btn) {
+    catalogoMacroFilter = macro;
+    catalogoSubFilter = 'todas';
     document.querySelectorAll('.catalogo-filter-pill').forEach(b => b.classList.remove('active'));
     if (btn) btn.classList.add('active');
+    renderCatalogoSubPills();
     renderCatalogoNacionalGrid();
+}
+
+function filterCatalogoSub(sub, btn) {
+    catalogoSubFilter = sub;
+    document.querySelectorAll('.catalogo-sub-pill').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    renderCatalogoNacionalGrid();
+}
+
+function filterCatalogoState(stateVal) {
+    catalogoStateFilter = stateVal || 'todos';
+    renderCatalogoNacionalGrid();
+}
+
+function renderCatalogoSubPills() {
+    const subBar = document.getElementById('catalogo-sub-pills');
+    if (!subBar) return;
+    const lista = getCatalogo737List();
+    const base = catalogoMacroFilter === 'todos' ? lista : lista.filter(x => x.macro === catalogoMacroFilter);
+
+    const counts = {};
+    base.forEach(x => {
+        const s = x.sub || 'General';
+        counts[s] = (counts[s] || 0) + 1;
+    });
+
+    const subs = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    let html = `<button class="catalogo-sub-pill ${catalogoSubFilter === 'todas' ? 'active' : ''}" onclick="filterCatalogoSub('todas', this)" style="padding:4px 11px; border-radius:16px; font-size:0.75rem; font-weight:700; border:1px solid rgba(56,189,248,0.35); background:${catalogoSubFilter === 'todas' ? 'var(--brand-cyan)' : 'rgba(15,23,42,0.75)'}; color:${catalogoSubFilter === 'todas' ? '#000' : '#cbd5e1'}; cursor:pointer; white-space:nowrap;">Todas las subdivisiones (${base.length})</button>`;
+
+    subs.forEach(([subName, cnt]) => {
+        const isAct = catalogoSubFilter === subName;
+        const safeSub = subName.replace(/'/g, "\\'");
+        html += `<button class="catalogo-sub-pill ${isAct ? 'active' : ''}" onclick="filterCatalogoSub('${safeSub}', this)" style="padding:4px 11px; border-radius:16px; font-size:0.75rem; font-weight:700; border:1px solid rgba(255,255,255,0.14); background:${isAct ? 'var(--brand-cyan)' : 'rgba(15,23,42,0.75)'}; color:${isAct ? '#000' : '#cbd5e1'}; cursor:pointer; white-space:nowrap;">${escapeHtml(subName)} (${cnt})</button>`;
+    });
+
+    subBar.innerHTML = html;
+}
+
+function voteCatalogoItem(itemId, itemName, itemState, btnEl) {
+    const key = 'kuul_votes_' + itemId;
+    let current = parseInt(localStorage.getItem(key) || '4', 10);
+    current += 1;
+    localStorage.setItem(key, String(current));
+    if (btnEl) {
+        btnEl.innerHTML = `❤️ ${current}/12 Interesados`;
+        btnEl.style.background = 'rgba(244,63,94,0.22)';
+        btnEl.style.borderColor = '#fb7185';
+        btnEl.style.color = '#fda4af';
+    }
+    if (window.__vromlixTelemetry) {
+        window.__vromlixTelemetry.track('vote_sectur_737', { id: itemId, name: itemName, state: itemState, votes: current });
+    }
 }
 
 function renderCatalogoNacionalGrid() {
@@ -765,48 +892,202 @@ function renderCatalogoNacionalGrid() {
     if (!container) return;
 
     const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
-    const lista = typeof CATALOGO_NACIONAL_290 !== 'undefined' ? CATALOGO_NACIONAL_290 : [];
+    const lista = getCatalogo737List();
 
     const filtrados = lista.filter(item => {
-        const coincideCat = catalogoNacionalFiltroCat === 'todos' || item.cat === catalogoNacionalFiltroCat;
-        const coincideTxt = !query || item.nombre.toLowerCase().includes(query) || item.estado.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
-        return coincideCat && coincideTxt;
+        const matchMacro = catalogoMacroFilter === 'todos' || item.macro === catalogoMacroFilter;
+        const matchSub = catalogoSubFilter === 'todas' || item.sub === catalogoSubFilter;
+        const matchState = catalogoStateFilter === 'todos' || (item.state && item.state.toLowerCase().includes(catalogoStateFilter.toLowerCase()));
+        const matchTxt = !query ||
+            item.name.toLowerCase().includes(query) ||
+            item.state.toLowerCase().includes(query) ||
+            item.sub.toLowerCase().includes(query) ||
+            (item.desc && item.desc.toLowerCase().includes(query));
+        return matchMacro && matchSub && matchState && matchTxt;
     });
 
     const countLabel = document.getElementById('catalogo-count-label');
-    if (countLabel) countLabel.innerText = `${filtrados.length} destinos disponibles`;
+    if (countLabel) {
+        countLabel.innerHTML = `Mostrando <strong>${filtrados.length}</strong> de <strong>${lista.length}</strong> opciones oficiales SECTUR / UNESCO en México`;
+    }
 
     if (filtrados.length === 0) {
         container.innerHTML = `
             <div style="grid-column: 1 / -1; text-align:center; padding:3rem; color:var(--text-muted);">
                 <i class="fas fa-search" style="font-size:2rem; margin-bottom:1rem; display:block;"></i>
-                <p>No se encontraron destinos que coincidan con tu búsqueda.</p>
+                <p>No se encontraron opciones que coincidan con tu filtro.</p>
             </div>
         `;
         return;
     }
 
-    container.innerHTML = filtrados.map(d => `
-        <div style="background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:14px; padding:1.2rem; display:flex; flex-direction:column; justify-content:space-between; transition:all 0.2s ease;">
+    container.innerHTML = filtrados.map(d => {
+        const votes = parseInt(localStorage.getItem('kuul_votes_' + d.id) || String((d.id.charCodeAt(d.id.length - 1) % 6) + 3), 10);
+        const safeName = escapeHtml(d.name).replace(/'/g, "\\'");
+        const safeState = escapeHtml(d.state).replace(/'/g, "\\'");
+        return `
+        <div style="background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:14px; padding:1.15rem; display:flex; flex-direction:column; justify-content:space-between; transition:all 0.2s ease;">
             <div>
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
-                    <span style="font-size:0.75rem; font-weight:800; background:rgba(22,163,74,0.12); color:var(--brand-green); padding:3px 8px; border-radius:12px;">📍 ${d.estado}</span>
-                    <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">${d.cat}</span>
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; margin-bottom:0.45rem; flex-wrap:wrap;">
+                    <span style="font-size:0.72rem; font-weight:800; background:rgba(22,163,74,0.14); color:var(--brand-green); padding:3px 8px; border-radius:12px;">📍 ${escapeHtml(d.state)}</span>
+                    <span style="font-size:0.7rem; color:var(--brand-cyan); font-weight:700;">${MACRO_LABELS[d.macro] || d.macro}</span>
                 </div>
-                <h4 style="font-family:'Outfit'; font-size:1.1rem; font-weight:800; color:var(--text-title); margin-bottom:0.4rem;">${d.nombre}</h4>
-                <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5; margin-bottom:1rem;">${d.desc}</p>
+                <div style="font-size:0.7rem; color:var(--brand-gold); font-weight:700; text-transform:uppercase; margin-bottom:0.25rem;">${escapeHtml(d.sub)}</div>
+                <h4 style="font-family:'Outfit'; font-size:1.05rem; font-weight:800; color:var(--text-title); margin-bottom:0.35rem; line-height:1.3;">${escapeHtml(d.name)}</h4>
+                <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.45; margin-bottom:0.9rem;">${escapeHtml(d.desc)}</p>
             </div>
-            <button onclick="bookDirectWhatsAppDestino('${d.nombre}', '${d.estado}')" style="background:var(--brand-red); color:#fff; border:none; padding:8px 14px; border-radius:8px; font-weight:700; font-size:0.82rem; cursor:pointer; width:100%; display:flex; align-items:center; justify-content:center; gap:6px;">
-                <i class="fab fa-whatsapp"></i> Cotizar Salida
-            </button>
-        </div>
-    `).join('');
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+                <button type="button" onclick="voteCatalogoItem('${d.id}', '${safeName}', '${safeState}', this)" style="background:rgba(255,255,255,0.05); color:#e2e8f0; border:1px solid var(--border-color); padding:7px 8px; border-radius:8px; font-weight:700; font-size:0.76rem; cursor:pointer;">
+                    ❤️ ${votes}/12 Grupo
+                </button>
+                <button type="button" onclick="bookDirectWhatsAppDestino('${safeName}', '${safeState}')" style="background:var(--brand-red); color:#fff; border:none; padding:7px 10px; border-radius:8px; font-weight:700; font-size:0.78rem; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:5px;">
+                    <i class="fab fa-whatsapp"></i> Cotizar
+                </button>
+            </div>
+        </div>`;
+    }).join('');
 }
 
 function bookDirectWhatsAppDestino(nombre, estado) {
-    const msg = `Hola Alma, me interesa cotizar una salida para el destino: *${nombre}* (${estado}) saliendo desde San Manuel, Puebla. ¿Tienen fechas próximas disponibles?`;
+    const msg = `Hola Alma, me interesa cotizar una salida (grupal o privada) para: *${nombre}* (${estado}) saliendo desde San Manuel, Puebla. ¿Me das informes?`;
     window.open(`https://wa.me/522228016244?text=${encodeURIComponent(msg)}`, '_blank');
 }
+
+/* =========================================================================
+   7. MOTOR SWIPER 3D COVERFLOW (TARJETA CENTRAL AL FRENTE + SOMBRA DE PISO)
+   ========================================================================= */
+
+function updateTrack3DState(track) {
+    if (!track) return;
+    const cards = Array.from(track.querySelectorAll('.slider-card')).filter(c => c.style.display !== 'none');
+    if (cards.length === 0) return;
+
+    const trackRect = track.getBoundingClientRect();
+    const trackCenter = trackRect.left + trackRect.width / 2;
+
+    let closestIdx = 0;
+    let minDiff = Infinity;
+
+    cards.forEach((card, idx) => {
+        const rect = card.getBoundingClientRect();
+        const cardCenter = rect.left + rect.width / 2;
+        const diff = Math.abs(cardCenter - trackCenter);
+        if (diff < minDiff) {
+            minDiff = diff;
+            closestIdx = idx;
+        }
+    });
+
+    cards.forEach((card, idx) => {
+        card.classList.remove('is-center-3d', 'is-side-3d-left', 'is-side-3d-right', 'is-far-3d');
+        if (idx === closestIdx) {
+            card.classList.add('is-center-3d');
+        } else if (idx === closestIdx - 1) {
+            card.classList.add('is-side-3d-left');
+        } else if (idx === closestIdx + 1) {
+            card.classList.add('is-side-3d-right');
+        } else {
+            card.classList.add('is-far-3d');
+        }
+    });
+    track.dataset.activeIndex = String(closestIdx);
+}
+
+function centerCardInTrack(track, index, smooth = true) {
+    if (!track) return;
+    const cards = Array.from(track.querySelectorAll('.slider-card')).filter(c => c.style.display !== 'none');
+    if (cards.length === 0) return;
+    const wrappedIdx = ((index % cards.length) + cards.length) % cards.length;
+    const targetCard = cards[wrappedIdx];
+    if (!targetCard) return;
+
+    const scrollTarget = targetCard.offsetLeft - (track.clientWidth / 2) + (targetCard.offsetWidth / 2);
+    track.scrollTo({
+        left: Math.max(0, scrollTarget),
+        behavior: smooth ? 'smooth' : 'auto'
+    });
+    setTimeout(() => updateTrack3DState(track), smooth ? 320 : 30);
+}
+
+// Sobrescribe scrollSlider global para que navegue en modo Swiper 3D Circular Infinito
+window.scrollSlider = function(sliderId, offset) {
+    const track = document.getElementById(sliderId);
+    if (!track) return;
+    const cards = Array.from(track.querySelectorAll('.slider-card')).filter(c => c.style.display !== 'none');
+    if (cards.length === 0) return;
+
+    const currentIdx = parseInt(track.dataset.activeIndex || '0', 10);
+    const step = offset > 0 ? 1 : -1;
+    const nextIdx = ((currentIdx + step) % cards.length + cards.length) % cards.length;
+    centerCardInTrack(track, nextIdx, true);
+};
+
+function initSwiper3DCoverflow() {
+    const tracks = document.querySelectorAll('.slider-track');
+    tracks.forEach(track => {
+        // Actualizar estado 3D al hacer scroll
+        let ticking = false;
+        track.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    updateTrack3DState(track);
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+
+        // Soporte Mouse Drag-to-Scroll en escritorio
+        let isDown = false;
+        let startX = 0;
+        let scrollLeft = 0;
+        let dragged = false;
+
+        track.addEventListener('mousedown', (e) => {
+            isDown = true;
+            dragged = false;
+            track.classList.add('is-dragging');
+            startX = e.pageX - track.offsetLeft;
+            scrollLeft = track.scrollLeft;
+        });
+
+        track.addEventListener('mouseleave', () => {
+            if (isDown) {
+                isDown = false;
+                track.classList.remove('is-dragging');
+                updateTrack3DState(track);
+            }
+        });
+
+        track.addEventListener('mouseup', () => {
+            if (isDown) {
+                isDown = false;
+                track.classList.remove('is-dragging');
+                updateTrack3DState(track);
+            }
+        });
+
+        track.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            const x = e.pageX - track.offsetLeft;
+            const walk = (x - startX) * 1.35;
+            if (Math.abs(walk) > 8) dragged = true;
+            if (dragged) {
+                e.preventDefault();
+                track.scrollLeft = scrollLeft - walk;
+            }
+        });
+
+        // Arrancar centrando la segunda tarjeta para mostrar 1 izquierda + 1 central grande + 1 derecha
+        setTimeout(() => {
+            centerCardInTrack(track, 1, false);
+        }, 120);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initSwiper3DCoverflow();
+});
 
 function setupMotionUI() {
     window.addEventListener('scroll', () => {
@@ -836,7 +1117,12 @@ function applyCheckoutCoupon() {
         appliedCouponCode = code;
         msg.style.display = 'block';
         msg.style.color = 'var(--brand-green)';
-        msg.innerHTML = `✅ ¡Cupón <strong>${code}</strong> aplicado! 10% de descuento en tu viaje.`;
+        msg.innerHTML = `✅ ¡Cupón <strong>${code}</strong> aplicado! 10% de descuento en el total de tu viaje.`;
+        const amtEl = document.getElementById('modal-pkg-amount');
+        if (amtEl && typeof currentModalPkgAmount === 'number') {
+            const discounted = Math.round(currentModalPkgAmount * 0.90);
+            amtEl.innerHTML = `<del style="color:var(--text-muted); font-size:0.85rem;">$${currentModalPkgAmount.toLocaleString('es-MX')}</del> $${discounted.toLocaleString('es-MX')} MXN (-10%)`;
+        }
         if (typeof updateModalSeatDisplay === 'function') updateModalSeatDisplay();
     } else if (code) {
         msg.style.display = 'block';
@@ -856,4 +1142,63 @@ function toggleMobileNav() {
     const drawer = document.getElementById('lux-mobile-drawer');
     if (drawer) drawer.classList.toggle('active');
 }
+
+/* =========================================================================
+   8. TELEMETRÍA LIGERA, MONITOREO DE ERRORES Y SUSCRIPCIÓN CATÁLOGO PDF
+   ========================================================================= */
+
+window.__vromlixTelemetry = {
+    events: [],
+    track(eventName, payload = {}) {
+        const entry = {
+            event: eventName,
+            payload,
+            ts: new Date().toISOString(),
+            path: window.location.pathname
+        };
+        this.events.push(entry);
+        try {
+            const stored = JSON.parse(localStorage.getItem('vromlix_telemetry_log') || '[]');
+            stored.push(entry);
+            localStorage.setItem('vromlix_telemetry_log', JSON.stringify(stored.slice(-100)));
+        } catch (e) {}
+    }
+};
+
+window.addEventListener('error', (event) => {
+    window.__vromlixTelemetry.track('js_runtime_error', {
+        message: event.message,
+        filename: event.filename,
+        lineno: event.lineno
+    });
+});
+
+function subscribeMonthlyCatalog(e) {
+    if (e) e.preventDefault();
+    const emailInput = document.getElementById('newsletter-email-input');
+    const feedback = document.getElementById('newsletter-feedback');
+    const email = (emailInput ? emailInput.value : '').trim();
+    if (!email || !email.includes('@')) {
+        if (feedback) {
+            feedback.style.display = 'block';
+            feedback.style.color = '#fb7185';
+            feedback.innerText = 'Por favor ingresa un correo electrónico válido.';
+        }
+        return false;
+    }
+    try {
+        const subs = JSON.parse(localStorage.getItem('alma_newsletter_subs') || '[]');
+        if (!subs.includes(email)) subs.push(email);
+        localStorage.setItem('alma_newsletter_subs', JSON.stringify(subs));
+    } catch (err) {}
+    window.__vromlixTelemetry.track('subscribe_monthly_pdf_catalog', { email });
+    if (emailInput) emailInput.value = '';
+    if (feedback) {
+        feedback.style.display = 'block';
+        feedback.style.color = '#34d399';
+        feedback.innerHTML = '✅ ¡Registrado! Recibirás nuestro Catálogo Mensual en PDF desde <strong>contacto@mera-kirai.com</strong>.';
+    }
+    return false;
+}
+
 

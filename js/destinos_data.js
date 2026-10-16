@@ -15,30 +15,30 @@ const DESTINOS_DB = [
         categoria: "concierto",
         subcategoria: "express",
         estado: "Ciudad de México",
-        precio: 790,
-        precio_texto: "$790 MXN",
+        precio: 700,
+        precio_texto: "$700 MXN",
         anticipo_apartado: "$200 MXN",
-        tipo_transporte: "Transporte Ejecutivo Redondo",
+        tipo_transporte: "Transporte Ejecutivo Redondo (Boleto Expo Aparte)",
         duracion: "Día Completo (07:30 a 19:45)",
         distancia: "145 km desde Puebla",
         tiempo_traslado: "2.3 hrs directo",
         badge: "Salida Confirmada 24-26 Octubre",
         imagen: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=80",
-        descripcion: "El evento de belleza y estilismo más grande de América Latina en Centro Citibanamex. Acceso a salas B, C y D con lanzamientos de marcas profesionales, insumos a precio de mayoreo y shows de corte/peinado en vivo.",
+        descripcion: "Traslado ejecutivo redondo directo desde San Manuel, Puebla al evento de belleza y estilismo más grande de América Latina en Centro Citibanamex CDMX. Ideal para estilistas, barberos y profesionales que buscan lanzamientos e insumos a precio de mayoreo (boleto de acceso a EBS se adquiere por separado).",
         coordenadas: { lat: 19.4389, lng: -99.2227 },
         itinerario: [
             { hora: "07:30 AM", actividad: "Cita y abordaje en Río Nexapa 6101, San Manuel, Puebla." },
             { hora: "10:00 AM", actividad: "Llegada directa al Centro Citibanamex." },
-            { hora: "10:15 AM - 16:30 PM", actividad: "Recorrido libre y compras en Expo Beauty Show (EBS 2026)." },
+            { hora: "10:15 AM - 16:30 PM", actividad: "Tiempo libre para recorrido y compras en Expo Beauty Show (EBS 2026)." },
             { hora: "17:00 PM", actividad: "Abordaje en la unidad e inicio de regreso a Puebla." },
             { hora: "19:45 PM", actividad: "Arribo seguro a San Manuel, Puebla." }
         ],
         incluye: [
-            "Transporte redondo garantizado",
-            "Boleto oficial de acceso a Expo Beauty Show 2026",
-            "Combustible, peajes de autopista y seguro de viajero"
+            "Transporte redondo ejecutivo garantizado Puebla ↔ Centro Citibanamex",
+            "Amplio espacio de equipaje para tus compras de insumos y herramientas",
+            "Combustible, peajes de autopista y seguro de viajero a bordo"
         ],
-        no_incluye: ["Alimentos y compras personales"]
+        no_incluye: ["Boleto de acceso a Expo Beauty Show (se adquiere por separado)", "Alimentos y compras personales"]
     },
     {
         id: "llorona-xochimilco-nocturna",

@@ -1360,21 +1360,32 @@
     line-height: 1.6;
 }
 
-/* --- 4. CLEAN FLUID SLIDER (Responsive Scroll-Snap Track) --- */
+/* --- 4. SWIPER 3D / COVERFLOW STAGE (Center Front Card + Deep Floor Shadow + Condensed Sides) --- */
 .slider-wrapper {
     position: relative;
-    margin-bottom: 3.5rem;
+    margin-bottom: 3.8rem;
+    perspective: 1400px;
 }
 
 .slider-track {
     display: flex;
-    gap: 1.5rem;
+    gap: 1.4rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    padding: 1rem 0.5rem 2rem;
+    padding: 2.2rem 12% 3.8rem;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
+    align-items: stretch;
+    transform-style: preserve-3d;
+    cursor: grab;
+    user-select: none;
+}
+
+.slider-track.is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    scroll-behavior: auto;
 }
 
 .slider-track::-webkit-scrollbar {
@@ -1382,34 +1393,115 @@
 }
 
 .slider-card {
-    flex: 0 0 320px;
-    scroll-snap-align: start;
+    flex: 0 0 330px;
+    scroll-snap-align: center;
     background: var(--bg-card);
-    border-radius: 18px;
+    border-radius: 20px;
     border: 1px solid var(--border-color);
-    overflow: hidden;
+    overflow: visible;
     box-shadow: var(--shadow-card);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.35s ease;
     display: flex;
     flex-direction: column;
     cursor: pointer;
+    position: relative;
+    transform-origin: center center;
+}
+
+/* Sombra elíptica de piso 3D debajo de la tarjeta central */
+.slider-card::after {
+    content: "";
+    position: absolute;
+    bottom: -26px;
+    left: 10%;
+    width: 80%;
+    height: 22px;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.78) 0%, rgba(2, 132, 199, 0.22) 45%, transparent 75%);
+    filter: blur(8px);
+    opacity: 0;
+    transform: scale(0.75);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* TARJETA CENTRAL 3D (Al frente, más grande, con toda la información y sombra en el piso) */
+.slider-card.is-center-3d {
+    transform: perspective(1200px) translate3d(0, -10px, 45px) scale(1.07);
+    z-index: 15;
+    opacity: 1;
+    filter: brightness(1.04) saturate(1.06);
+    border-color: rgba(56, 189, 248, 0.65);
+    box-shadow: 0 28px 55px -10px rgba(0, 0, 0, 0.8), 0 0 28px rgba(56, 189, 248, 0.22);
+}
+
+.slider-card.gold-card-vip.is-center-3d {
+    border-color: rgba(250, 204, 21, 0.75);
+    box-shadow: 0 28px 55px -10px rgba(0, 0, 0, 0.85), 0 0 30px rgba(250, 204, 21, 0.26);
+}
+
+.slider-card.is-center-3d::after {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+/* TARJETAS LATERALES 3D (Más pequeñas a los lados, con información básica condensada) */
+.slider-card.is-side-3d-left {
+    transform: perspective(1200px) translate3d(6px, 8px, -45px) rotateY(11deg) scale(0.86);
+    z-index: 5;
+    opacity: 0.72;
+    filter: brightness(0.82) saturate(0.85);
+}
+
+.slider-card.is-side-3d-right {
+    transform: perspective(1200px) translate3d(-6px, 8px, -45px) rotateY(-11deg) scale(0.86);
+    z-index: 5;
+    opacity: 0.72;
+    filter: brightness(0.82) saturate(0.85);
+}
+
+.slider-card.is-far-3d {
+    transform: perspective(1200px) translate3d(0, 14px, -80px) scale(0.78);
+    z-index: 2;
+    opacity: 0.48;
+    filter: brightness(0.7) saturate(0.75);
+}
+
+/* En tarjetas laterales sólo se muestra información básica; en la central se despliega completa */
+.slider-card .slider-card-desc {
+    transition: max-height 0.4s ease, opacity 0.35s ease, margin 0.35s ease;
+    max-height: 90px;
+    opacity: 1;
+    overflow: hidden;
+}
+
+.slider-card.is-side-3d-left .slider-card-desc,
+.slider-card.is-side-3d-right .slider-card-desc,
+.slider-card.is-far-3d .slider-card-desc {
+    max-height: 0;
+    opacity: 0;
+    margin-bottom: 0.3rem;
 }
 
 .slider-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 18px 35px -5px rgba(0, 0, 0, 0.12);
-    border-color: rgba(2, 132, 199, 0.4);
+    border-color: rgba(56, 189, 248, 0.55);
 }
 
 .slider-card-img {
-    height: 200px;
+    height: 205px;
     width: 100%;
     position: relative;
     background-size: cover;
     background-position: center;
+    border-radius: 19px 19px 0 0;
+    overflow: hidden;
 }
 
-.slider-card-badge {
+.slider-card-badge, .slider-badge {
     position: absolute;
     top: 12px;
     left: 12px;
@@ -1420,6 +1512,7 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
     color: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.35);
 }
 
 .slider-card-price-tag {
@@ -1437,14 +1530,14 @@
 }
 
 .slider-card-body {
-    padding: 1.4rem;
+    padding: 1.35rem;
     display: flex;
     flex-direction: column;
     flex: 1;
     justify-content: space-between;
 }
 
-.slider-card-meta {
+.slider-card-meta, .slider-card-date {
     font-size: 0.75rem;
     font-weight: 700;
     color: var(--brand-gold);
@@ -1465,30 +1558,93 @@
     font-size: 0.86rem;
     color: var(--text-muted);
     line-height: 1.5;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.1rem;
 }
 
 .slider-card-btn {
-    width: 100%;
-    padding: 10px;
+    width: auto;
+    padding: 9px 16px;
     background: var(--bg-subtle);
     border: 1px solid var(--border-color);
     border-radius: 8px;
     color: var(--text-title);
     font-weight: 700;
-    font-size: 0.85rem;
+    font-size: 0.84rem;
     cursor: pointer;
     transition: all 0.2s ease;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
 }
 
-.slider-card:hover .slider-card-btn {
+.slider-card:hover .slider-card-btn,
+.slider-card.is-center-3d .slider-card-btn {
     background: var(--brand-red);
     border-color: var(--brand-red);
     color: #fff;
+}
+
+/* MODAL SPLIT VIEW: IMAGEN EN GRANDE A LA IZQUIERDA + DETALLES A LA DERECHA */
+.lux-modal-split-card {
+    max-width: 980px !important;
+    width: 94vw;
+    max-height: 88vh;
+    padding: 0 !important;
+    overflow: hidden !important;
+    display: grid;
+    grid-template-columns: 44% 56%;
+}
+
+.lux-modal-split-left {
+    position: relative;
+    height: 100%;
+    min-height: 480px;
+    background: #030712;
+    overflow: hidden;
+}
+
+.lux-modal-split-left img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.lux-modal-split-left::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(3,7,18,0.35) 0%, transparent 35%, rgba(3,7,18,0.85) 100%);
+    pointer-events: none;
+}
+
+.lux-modal-split-right {
+    padding: 2rem 2.2rem;
+    overflow-y: auto;
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media (max-width: 820px) {
+    .lux-modal-split-card {
+        grid-template-columns: 1fr;
+        overflow-y: auto !important;
+    }
+    .lux-modal-split-left {
+        min-height: 240px;
+        height: 240px;
+    }
+    .lux-modal-split-right {
+        max-height: none;
+        padding: 1.4rem;
+    }
+    .slider-track {
+        padding: 1.5rem 6% 3rem;
+    }
 }
 
 .slider-header-controls {

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Términos, Condiciones y Políticas de Viaje | Viajes La Ruta del Águila</title>
+    <meta name="description" content="Conoce nuestras políticas transparentes de apartado ($200 MXN), liquidación 48-24h antes, garantía de reembolso 100% por cupo mínimo y reglas de puntualidad en Viajes La Ruta del Águila (San Manuel, Puebla).">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/motion_lux.css">
+    <style>
+        body {
+            background: #070B14;
+            color: #F8FAFC;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+        }
+        .terms-header {
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(7, 11, 20, 0.98) 100%);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+            padding: 24px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(14px);
+        }
+        .terms-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #fff;
+        }
+        .terms-brand-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #D4AF37;
+            letter-spacing: 0.03em;
+        }
+        .terms-back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 999px;
+            background: rgba(212, 175, 55, 0.14);
+            border: 1px solid rgba(212, 175, 55, 0.45);
+            color: #FDE68A;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: all 0.25s ease;
+        }
+        .terms-back-btn:hover {
+            background: #D4AF37;
+            color: #070B14;
+        }
+        .terms-container {
+            max-width: 920px;
+            margin: 56px auto 90px;
+            padding: 0 24px;
+        }
+        .terms-hero {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .terms-eyebrow {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 999px;
+            background: rgba(212, 175, 55, 0.12);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            color: #D4AF37;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+        .terms-hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.1rem, 4vw, 3.1rem);
+            color: #FFFFFF;
+            margin: 0 0 12px;
+        }
+        .terms-hero p {
+            color: #94A3B8;
+            font-size: 1rem;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+        .terms-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .terms-card {
+            background: rgba(15, 23, 42, 0.72);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-left: 4px solid #D4AF37;
+            border-radius: 16px;
+            padding: 28px 32px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+        }
+        .terms-card h2 {
+            font-size: 1.2rem;
+            color: #FDE68A;
+            margin: 0 0 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .terms-card p, .terms-card li {
+            color: #CBD5E1;
+            font-size: 0.94rem;
+            margin: 0 0 10px;
+        }
+        .terms-card ul {
+            margin: 8px 0 0;
+            padding-left: 20px;
+        }
+        .terms-highlight {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 12px;
+            padding: 14px 18px;
+            color: #A7F3D0;
+            font-size: 0.88rem;
+            margin-top: 12px;
+        }
+        .terms-warning {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 12px;
+            padding: 14px 18px;
+            color: #FDE68A;
+            font-size: 0.88rem;
+            margin-top: 12px;
+        }
+        .terms-footer-box {
+            margin-top: 48px;
+            text-align: center;
+            padding: 32px;
+            background: rgba(212, 175, 55, 0.07);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-radius: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="terms-header">
+        <a href="index.html" class="terms-brand">
+            <span style="font-size: 1.5rem;">🦅</span>
+            <span class="terms-brand-title">Viajes La Ruta del Águila</span>
+        </a>
+        <a href="index.html" class="terms-back-btn">← Volver a la Página Principal</a>
+    </header>
+
+    <main class="terms-container">
+        <div class="terms-hero">
+            <span class="terms-eyebrow">Transparencia & Confianza Garantizada</span>
+            <h1>Términos, Condiciones y Políticas de Viaje</h1>
+            <p>Operado desde Calle Río Nexapa #6101, Col. San Manuel, Puebla, Pue. Al realizar el apartado o liquidación de cualquier viaje o traslado, el pasajero acepta las siguientes condiciones de servicio diseñadas para proteger la puntualidad y seguridad de todos los viajeros.</p>
+        </div>
+
+        <div class="terms-grid">
+            <!-- 1. Apartado y Pagos -->
+            <section class="terms-card" id="apartado-y-liquidacion">
+                <h2>💳 1. Apartado desde $200 MXN y Momento de Liquidación</h2>
+                <ul>
+                    <li><strong>Apartado Flexible:</strong> Cualquier viaje nacional, excursión de 1 día o traslado a concierto en CDMX se aparta con un anticipo mínimo de <strong>$200 MXN por persona</strong>.</li>
+                    <li><strong>Abonos Mayores o Pago Total Opcional:</strong> Si el cliente lo desea, puede abonar una cantidad mayor (ej. $300, $500 MXN) o liquidar el 100% desde el primer momento para asegurar asientos preferenciales al frente de la unidad.</li>
+                    <li><strong>Liquidación (48 a 24 Horas Antes):</strong> El saldo restante se liquida entre <strong>48 y 24 horas antes de la fecha y hora de salida</strong> mediante liga segura de Stripe (tarjeta de débito/crédito), transferencia SPEI o pago directo en nuestra sucursal en Col. San Manuel, Puebla.</li>
+                    <li><strong>Viajes con Hotel / Internacionales (fraVEO):</strong> Para paquetes con hospedaje, vuelos o cruceros, los calendarios de abono se rigen por las fechas de bloqueo de la operadora mayorista entregadas en tu cotización personalizada.</li>
+                </ul>
+            </section>
+
+            <!-- 2. Garantía de Cupo Mínimo -->
+            <section class="terms-card" id="garantia-cupo-minimo">
+                <h2>🛡️ 2. Garantía de Cupo Mínimo (Reembolso 100% Íntegro)</h2>
+                <p>Nuestras salidas grupales operan con un cupo mínimo requerido (entre 10 y 14 pasajeros según el tipo de unidad ejecutiva asignada) para mantener tarifas accesibles.</p>
+                <div class="terms-highlight">
+                    <strong>✅ Protección Total de tu Dinero:</strong> Si <strong>48 horas antes de la salida</strong> una ruta grupal no reúne el cupo mínimo operativo, <em>Viajes La Ruta del Águila</em> notificará de inmediato a los pasajeros registrados y realizará el <strong>reembolso del 100% íntegro de su anticipo o pago sin penalización alguna</strong> (o bien, a elección del cliente, podrá aplicar su saldo a otra fecha o recotizar en modalidad privada).
+                </div>
+            </section>
+
+            <!-- 3. Cancelaciones de Última Hora y No-Show -->
+            <section class="terms-card" id="cancelaciones-y-puntualidad">
+                <h2>⏱️ 3. Cancelación de Última Hora, Puntualidad y Política No-Show</h2>
+                <p>Una vez confirmada la salida grupal (dentro de las 48 horas previas al viaje), los lugares, permisos y costos operativos de la unidad quedan comprometidos.</p>
+                <ul>
+                    <li><strong>Cancelación por parte del pasajero (&lt; 48 horas) o No-Show:</strong> Si el pasajero cancela de última hora o no se presenta en el punto de reunión a la hora estipulada (tras un tiempo máximo de tolerancia de <strong>15 minutos</strong>), <strong>no aplica reembolso de anticipo ni de liquidación</strong>.</li>
+                    <li><strong>Boleto 100% Transferible sin Costo:</strong> Si por causas de fuerza mayor no puedes asistir, <strong>puedes transferir o endosar tu lugar a cualquier familiar, amigo o conocido sin cargo adicional</strong>, únicamente notificándonos el nombre del nuevo pasajero por WhatsApp (+52 222 546 6978) antes del abordaje para actualizar la bitácora del seguro de viajero.</li>
+                    <li><strong>Garantía de Salida para Pasajeros Puntuales:</strong> El hecho de que uno o varios pasajeros cancelen de última hora o no lleguen a tiempo <strong>NO cancela ni detiene el viaje</strong> para los pasajeros puntuales que sí se presentaron.</li>
+                </ul>
+            </section>
+
+            <!-- 4. Boletos de Conciertos y Recintos -->
+            <section class="terms-card" id="conciertos-cdmx">
+                <h2>🎸 4. Salidas a Conciertos, Festivales y Exposiciones en CDMX</h2>
+                <ul>
+                    <li><strong>Alcance del Transporte Redondo Ejecutivo:</strong> En las salidas a conciertos y convenciones (Estadio GNP Seguros, Arena CDMX, Palacio de los Deportes, Auditorio Nacional, Centro Citibanamex EBS), la tarifa publicada cubre exclusivamente el <strong>transporte redondo ejecutivo Puebla ↔ CDMX</strong>, seguro de pasajero a bordo y espera de la unidad al finalizar el evento (retorno 40 minutos después de concluido el espectáculo).</li>
+                    <li><strong>Entradas al Evento:</strong> Los boletos de acceso al concierto o exposición son independientes, salvo en paquetes donde se indique expresamente <em>"Todo Incluido con Entradas"</em> (como Xochimilco Todo Incluido o Grutas de Tolantongo).</li>
+                </ul>
+            </section>
+
+            <!-- 5. Cupón ESTETICA10 -->
+            <section class="terms-card" id="cupon-estetica10">
+                <h2>✂️ 5. Cupón Promocional ESTETICA10 y Beneficios Cruzados</h2>
+                <p>El código promocional <strong>ESTETICA10</strong> otorga un <strong>10% de descuento directo</strong> sobre la tarifa base del viaje al momento de cotizar en nuestro calculador web. Está abierto tanto para clientes actuales de <em>Estética Alma</em> como para nuevos viajeros que deseen conocer nuestra sucursal en Calle Río Nexapa #6101, Col. San Manuel, Puebla (un cupón por reservación titular, no acumulable con otras promociones relámpago).</p>
+            </section>
+
+            <!-- 6. Seguridad y Reglas a Bordo -->
+            <section class="terms-card" id="seguridad-a-bordo">
+                <h2>🚐 6. Seguridad Vial, Seguro de Viajero y Convivencia a Bordo</h2>
+                <ul>
+                    <li>Todas nuestras unidades operan con <strong>póliza de seguro de viajero vigente</strong>, cinturones de seguridad funcionales, botiquín de primeros auxilios y operadores descansados y 100% sobrios.</li>
+                    <li>Por seguridad y respeto a todas las familias y pasajeros a bordo, queda estrictamente prohibido fumar dentro de la unidad o abordar en estado inconveniente que comprometa la tranquilidad del grupo.</li>
+                </ul>
+            </section>
+        </div>
+
+        <div class="terms-footer-box">
+            <h3 style="margin: 0 0 10px; color: #FFFFFF; font-family: 'Cormorant Garamond', serif; font-size: 1.5rem;">¿Tienes alguna duda sobre tu reservación?</h3>
+            <p style="color: #94A3B8; font-size: 0.92rem; margin: 0 0 18px;">Atención directa y humana en nuestra oficina física en Calle Río Nexapa #6101, Col. San Manuel, Puebla.</p>
+            <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://wa.me/522225466978?text=Hola%20Alma,%20tengo%20una%20duda%20sobre%20las%20pol%C3%ADticas%20de%20viaje" target="_blank" rel="noopener" class="terms-back-btn" style="background: #10B981; color: #052E16; border-color: #10B981;">💬 WhatsApp Directo (+52 222 546 6978)</a>
+                <a href="mailto:contacto@mera-kirai.com" class="terms-back-btn">✉️ contacto@mera-kirai.com</a>
+                <a href="index.html" class="terms-back-btn">🦅 Volver a los Paquetes</a>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
