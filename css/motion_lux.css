@@ -1623,4 +1623,80 @@
     .slider-card { flex: 0 0 280px; }
 }
 
+/* Mobile Navigation Hamburger & Drawer */
+.lux-hamburger-btn {
+    display: none;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+}
+.lux-hamburger-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.lux-mobile-drawer {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 300px;
+    height: 100vh;
+    background: rgba(9, 9, 11, 0.98);
+    backdrop-filter: blur(20px);
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+    z-index: 10001;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+}
+.lux-mobile-drawer.active {
+    right: 0;
+}
+.lux-mobile-drawer-header {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.lux-mobile-nav-list {
+    list-style: none;
+    padding: 1rem 0;
+    margin: 0;
+    flex: 1;
+}
+.lux-mobile-nav-list li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 1.5rem;
+    color: var(--text-title);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+.lux-mobile-nav-list li a:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--brand-cyan);
+}
+.lux-mobile-nav-list li a i {
+    width: 20px;
+    color: var(--brand-cyan);
+}
+
+@media (max-width: 900px) {
+    .lux-nav-links { display: none; }
+    .lux-hamburger-btn { display: flex; }
+}
+
+
 

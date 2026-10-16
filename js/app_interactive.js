@@ -103,8 +103,8 @@ function initCoverflowShowcase(categoriaFiltro = 'todas') {
                     <span><i class="fas fa-route"></i> ${dest.tiempo_traslado}</span>
                 </div>
                 <div class="destino-actions">
-                    <button class="btn-3d-motion" onclick="event.stopPropagation(); openRutaSatelital3D('${dest.id}')" title="Ver Ruta Satelital 3D">
-                        <i class="fas fa-satellite"></i> Ruta 3D
+                    <button class="btn-3d-motion" onclick="event.stopPropagation(); openSharedElementModal('${dest.id}')" title="Ver Itinerario y Apartar Asiento">
+                        <i class="fas fa-map-marked-alt"></i> Ver Itinerario
                     </button>
                     <button class="btn-wishlist-vote" onclick="event.stopPropagation(); openWishlistModal('${dest.id}')" title="Votar por este destino semanal">
                         <i class="fas fa-heart"></i> Me interesa
@@ -424,20 +424,13 @@ function bookActiveDestinoWhatsApp() {
     window.open(`https://wa.me/522228016244?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
-/* Stubs for backward compatibility (Satellite 3D map removed per user directive) */
-function openRutaSatelital3D() {}
-function closeRutaSatelital3D() {}
-function openModoDios3D() {}
-function closeModoDios3D() {}
-function toggleMapEngine() {}
-function flyOverRoute3D() {}
-
+function openRutaSatelital3D(id) { openSharedElementModal(id); }
+function closeRutaSatelital3D() { closeAllModals(); }
 
 /* =========================================================================
    4. ASISTENTE IA DE VIAJES: ALMA (LA RUTA DEL ÁGUILA)
    ========================================================================= */
 
-const GEMINI_API_KEY_POOL = "AIzaSyCgJpWoUlVX9iP9BiIvmK-XZrAf02KFr8k";
 let chatHistory = [];
 
 function initChatAssistant() {
@@ -516,25 +509,72 @@ function removeTypingIndicator(id) {
 }
 
 function generateLocalAlmaResponse(question) {
-    const q = (question || '').toLowerCase();
+    const raw = (question || '').trim();
+    const q = raw.toLowerCase();
+
+    // 1. RECONOCIMIENTO MULTI-PREGUNTA / MULTI-INTENCIÓN (Hospedaje, Montos de Apartado, Horarios y Llegadas)
+    const asksHospedaje = q.includes('hospedaje') || q.includes('hotel') || q.includes('dormir') || q.includes('quedarme') || q.includes('habitacion') || q.includes('habitación');
+    const asksMasApartado = q.includes('dar mas') || q.includes('dar más') || q.includes('mas de apartado') || q.includes('más de apartado') || q.includes('liquidar') || q.includes('pagar completo') || q.includes('pagar todo') || q.includes('abonar') || q.includes('anticipo mayor');
+    const asksHorariosLlegada = q.includes('tres de la tarde') || q.includes('3 de la tarde') || q.includes('3 pm') || q.includes('3:00') || q.includes('llegar tarde') || q.includes('llegar a las') || q.includes('punto de reunion') || q.includes('punto de reunión') || q.includes('hora de salida');
+    const asksCancelacion = q.includes('si no voy') || q.includes('cancelar') || q.includes('cancelo') || q.includes('a la mera hora') || q.includes('devuelven el dinero') || q.includes('politica de cancelacion') || q.includes('no-show');
+
+    // Si el usuario hace una combinación de dudas logísticas comunes:
+    if ((asksHospedaje ? 1 : 0) + (asksMasApartado ? 1 : 0) + (asksHorariosLlegada ? 1 : 0) >= 2) {
+        let resp = `✨ ¡Hola! Con gusto resuelvo tus dudas punto por punto:\n\n`;
+        let count = 1;
+        if (asksHospedaje) {
+            resp += `${count}. **¿Incluye hospedaje?**: Para nuestras salidas de día o noche como **Xochimilco La Llorona** y **Conciertos CDMX**, no se requiere hospedaje porque son **viajes redondos el mismo día** (salimos en la tarde y regresamos a Puebla al terminar el evento de madrugada). Para circuitos de varios días (Oaxaca, Chiapas o circuitos VIP fraVEO), el hotel 4 o 5 estrellas sí está incluido al 100%.\n\n`;
+            count++;
+        }
+        if (asksMasApartado) {
+            resp += `${count}. **¿Puedes dar más de apartado?**: ¡Claro que sí! Los **$200 MXN** son únicamente el anticipo mínimo para asegurar tu asiento en la unidad ejecutiva. Puedes apartar con $500, $1,000 o liquidar la totalidad de tu viaje desde el inicio si lo prefieres (vía transferencia SPEI, OXXO o tarjeta).\n\n`;
+            count++;
+        }
+        if (asksHorariosLlegada) {
+            resp += `${count}. **¿Puedes llegar a las 3:00 PM al punto de reunión?**: No es recomendable. La salida oficial desde **Calle Río Nexapa #6101 en San Manuel** para Xochimilco es a las **14:00 hrs puntuales** para llegar con suficiente tiempo antes del anochecer y abordar la trajinera sin filas. Si llegas a las 3:00 PM la camioneta ya estará en la autopista rumbo a CDMX. Te citamos a las 13:45 hrs para abordar con calma.\n\n`;
+            count++;
+        }
+        resp += `¿Te gustaría apartar tus asientos para la próxima fecha disponible?`;
+        return resp;
+    }
+
+    // 2. ARTISTAS ESPECÍFICOS Y CARTELERA CDMX
+    if (q.includes('veronica castro') || q.includes('verónica castro')) {
+        return `🎭 ¡Hola! Soy **Alma** de *La Ruta del Águila*.\nActualmente **Verónica Castro** no tiene presentaciones de teatro ni conciertos confirmados en la cartelera oficial de CDMX (se encuentra retirada temporalmente de los escenarios y giras).\n\nSin embargo, en cuanto se anuncie cualquier obra, homenaje o gala en recintos de CDMX (como Bellas Artes o Teatro de los Insurgentes), contaremos con **salida ejecutiva redonda** desde San Manuel, Puebla.\n¿Te gustaría consultar por alguna otra obra de teatro o concierto en CDMX?`;
+    }
 
     if (q.includes('luis miguel') || q.includes('luismiguel') || q.includes('el sol')) {
         return `☀️ ¡Hola! Soy **Alma** de *La Ruta del Águila*.\nActualmente en la cartelera oficial de recintos CDMX (Arena CDMX, Estadio GNP, Auditorio Nacional) no hay fechas próximas confirmadas para Luis Miguel (sus fechas recientes en Arena CDMX ya concluyeron con lleno total).\n\nSin embargo, en cuanto se anuncie una nueva fecha o preventa, organizaremos **transporte ejecutivo redondo** desde San Manuel, Puebla (tarifa redonda desde **$549 MXN** con seguro y chofer sobrio que te espera hasta que termina el concierto).\nApartas tu lugar con solo **$200 MXN**. ¿Te gustaría que te avisemos en cuanto se confirme una nueva fecha?`;
+    }
+
+    if (q.includes('shakira') || q.includes('chayanne') || q.includes('temerarios') || q.includes('morat') || q.includes('paul mccartney') || q.includes('bruno mars')) {
+        return `🎶 ¡Hola! Soy **Alma**. Para los grandes conciertos en el **Estadio GNP Seguros (Foro Sol)** y **Arena CDMX**:\n- Contamos con salida ejecutiva directa desde San Manuel, Puebla (tarifa redonda desde **$549 MXN**).\n- Te dejamos en la puerta del recinto y nuestra unidad te espera al terminar para que regreses seguro a Puebla la misma noche.\n- Apartas tu asiento con solo **$200 MXN** (100% reembolsable si no se cubre cupo).\n¿Para qué fecha o artista deseas apartar tus lugares?`;
+    }
+
+    // 3. LOGÍSTICA DE VIAJES PARTICULARES (Citas médicas, compras, trámites)
+    if (q.includes('hospital') || q.includes('medica') || q.includes('médica') || q.includes('doctor') || q.includes('nutricion') || q.includes('nutrición') || q.includes('compras') || q.includes('particular') || q.includes('privado') || q.includes('renta con chofer') || q.includes('aeropuerto') || q.includes('aifa') || q.includes('aicm') || q.includes('visa') || q.includes('embajada')) {
+        return `🚗 ¡Hola! Soy **Alma**. Contamos con **Servicio de Transporte Privado y Puerta a Puerta**:\n- **Vehículo a tu medida**: Auto sedán compacto (1 a 3 personas) o camioneta ejecutiva (4 a 6+ personas).\n- **Servicios frecuentes**: Citas médicas de alta especialidad en CDMX (Nutrición, Médica Sur, ABC), compras mayoristas de negocios, trámites de visa/embajada y traslados a aeropuertos (AICM/AIFA).\n- Chofer profesional que te recoge en tu domicilio en Puebla, te espera en tus citas y te regresa con total privacidad y confort.\n¿Qué fecha y destino particular requieres cotizar?`;
+    }
+
+    // 4. POLÍTICAS DE CANCELACIÓN Y NO-SHOW
+    if (asksCancelacion) {
+        return `🛡️ ¡Hola! Soy **Alma**. Te explico con total transparencia nuestras **Políticas de Apartado y Cancelación**:\n1. **Reembolso 100% Garantizado**: Si la agencia cancela la salida por no cubrir el cupo mínimo requerido 48 horas antes, se te devuelve el 100% de tu dinero de inmediato.\n2. **Cancelación del cliente de última hora (No-Show)**: Si faltando poco tiempo para salir decides no viajar, no hay reembolso porque el asiento fue reservado exclusivamente para ti y los boletos/casetas ya están cubiertos; sin embargo, **puedes transferir tu lugar a cualquier amigo o familiar** sin ningún costo extra.\n3. **El viaje no se cancela para los demás**: Si uno o dos pasajeros cancelan a la mera hora pero el viaje ya fue confirmado, la salida opera con normalidad para los demás pasajeros puntuales.\n¿Tienes alguna duda sobre alguna salida específica?`;
+    }
+
+    // 5. DESTINOS CONFIRMADOS
+    if (q.includes('xochimilco') || q.includes('llorona') || q.includes('trajinera') || q.includes('muertos')) {
+        return `🎭 ¡Hola! Soy **Alma**. Nuestra salida confirmada a **La Llorona en Xochimilco (Cuemanco)** opera los fines de semana de Octubre y Noviembre (Temporada Día de Muertos):\n- **Paquete Completo**: **$1,350 MXN** (incluye transporte ejecutivo redondo desde San Manuel, paseo en trajinera iluminada y boleto para la obra teatral en vivo en el islote).\n- *Opción solo transporte redondo*: $650 MXN (si ya tienes tu boleto).\n- Horario: Salida 14:00 hrs desde San Manuel, regreso aprox. 00:30 hrs (no requiere hospedaje).\n- Apartas con solo **$200 MXN** (puedes dar más si lo deseas). ¿Para cuántas personas requieres lugar?`;
+    }
+
+    if (q.includes('expo') || q.includes('beauty') || q.includes('ebs') || q.includes('citibanamex')) {
+        return `💄 ¡Hola! Soy **Alma**. Tenemos salida ejecutiva directa a la **Expo Beauty Show (EBS 2026)** en Centro Citibanamex (24 al 26 Octubre 2026):\n- Tarifa Redonda: **$790 MXN** (promoción especial para estilistas y profesionales).\n- **Incluye boleto oficial de acceso** a salas B, C y D, transporte redondo en van ejecutiva con seguro y casetas (07:30 a 19:45 hrs).\n- Aparta con solo **$200 MXN**. ¿Para cuántos estilistas o acompañantes deseas apartar?`;
     }
 
     if (q.includes('estetica') || q.includes('estética') || q.includes('salon') || q.includes('salón') || q.includes('cabello') || q.includes('corte') || q.includes('cupon') || q.includes('cupón') || q.includes('descuento')) {
         return `🌸 ¡Hola! Soy **Alma**. Nuestro salón hermano **Estética Alma** se ubica en Río Nexapa 6101, San Manuel:\n- Servicios: Cortes de vanguardia, colorimetría, keratina brasileña y manicure.\n- 🎁 **Promoción Exclusiva**: Si te atiendes en el salón, usa el cupón **ESTETICA10** para obtener **10% de descuento directo** en cualquiera de nuestras salidas y excursiones de viaje.\n- Puedes agendar tu cita al **222 801 6244** o visitar [Estética Alma](estetica.html).`;
     }
 
-    if (q.includes('xochimilco') || q.includes('llorona') || q.includes('trajinera') || q.includes('muertos')) {
-        return `🎭 ¡Hola! Soy **Alma**. Nuestra salida confirmada a **La Llorona en Xochimilco (Cuemanco)** opera los fines de semana de Octubre y Noviembre (Temporada Día de Muertos):\n- **Paquete Completo**: **$1,350 MXN** (incluye transporte ejecutivo redondo desde San Manuel, paseo en trajinera iluminada y boleto para la obra teatral en vivo en el islote).\n- *Opción solo transporte redondo*: $650 MXN.\n- Horario: 14:30 hrs a 00:00 hrs.\n- Apartas con solo **$200 MXN**. ¿Te gustaría reservar tus lugares?`;
-    }
-
-    if (q.includes('expo') || q.includes('beauty') || q.includes('ebs') || q.includes('citibanamex')) {
-        return `💄 ¡Hola! Soy **Alma**. Tenemos salida ejecutiva directa a la **Expo Beauty Show (EBS 2026)** en Centro Citibanamex (24 al 26 Octubre 2026):\n- Tarifa Redonda: **$790 MXN**.\n- **Incluye boleto oficial de acceso** a salas B, C y D, transporte redondo en van con seguro y casetas (07:30 a 19:45 hrs).\n- Aparta con solo **$200 MXN**. ¿Para cuántos estilistas o acompañantes deseas apartar?`;
-    }
-
-    if (q.includes('concierto') || q.includes('foro sol') || q.includes('gnp') || q.includes('karol') || q.includes('estadio') || q.includes('shakira') || q.includes('f1') || q.includes('cisne') || q.includes('chapultepec') || q.includes('nfl') || q.includes('arena') || q.includes('auditorio')) {
+    if (q.includes('concierto') || q.includes('foro sol') || q.includes('gnp') || q.includes('karol') || q.includes('estadio') || q.includes('f1') || q.includes('cisne') || q.includes('chapultepec') || q.includes('nfl') || q.includes('arena') || q.includes('auditorio')) {
         return `🎶 ¡Hola! Soy **Alma**. Contamos con **Transporte Seguro a Conciertos y Eventos en CDMX** con salida y regreso directo a San Manuel:\n- Tarifa Redonda: desde **$549 MXN** (Karol G $549, Cisne Negro Chapultepec $690, NFL $750).\n- Te dejamos en la puerta del recinto y nuestra unidad te espera hasta que termina el evento para que regreses tranquilo y seguro de noche.\n- Aparta tu lugar con solo **$200 MXN** (100% reembolsable si no se cubre cupo).\n¿A qué evento te gustaría asistir?`;
     }
 
@@ -546,11 +586,11 @@ function generateLocalAlmaResponse(question) {
         return `👑 ¡Hola! Soy **Alma**. A través de nuestra franquicia autorizada **fraVEO** operamos circuitos internacionales de alta gama:\n- **Inglaterra al Completo 2026**: desde $1,909 USD (8 días: Londres, Stonehenge, Bath, Oxford).\n- **Guatemala al Completo**: $1,300 USD (Antigua colonial y Lago Atitlán).\n- **Vietnam y Camboya**: $2,265 USD (Bahía de Halong y templos de Angkor Wat).\n- **Tailandia 2027**: $1,432 USD (Bangkok, Chiang Mai y playas exóticas).\n- **Kenia Safari Masai Mara**: $2,135 USD (Lago Nakuru y vida salvaje).\n- **El Clásico Real Madrid vs Barcelona + Europa**: $5,790 USD.\nTodos incluyen vuelos, hoteles 4-5 estrellas y concierge privado. ¿Qué destino internacional sueñas visitar?`;
     }
 
-    if (q.includes('apartar') || q.includes('pago') || q.includes('precio') || q.includes('costo') || q.includes('200') || q.includes('garantia') || q.includes('garantía') || q.includes('spei') || q.includes('oxxo')) {
+    if (q.includes('apartar') || q.includes('pago') || q.includes('precio') || q.includes('costo') || q.includes('200') || q.includes('spei') || q.includes('oxxo')) {
         return `🛡️ ¡Hola! Soy **Alma**. En *La Ruta del Águila* tu dinero está protegido:\n- **Apartado Mínimo**: Apartas tu asiento con solo **$200 MXN**.\n- **Garantía 100% Reembolsable**: Si no se cubre el cupo mínimo requerido 48 horas antes de la salida, te devolvemos el 100% de tu dinero de inmediato.\n- **Métodos de Pago**: Transferencia SPEI (BBVA), depósito en cualquier tienda OXXO o tarjeta en línea.\n- Si gustas apartar ahora, contáctame al **222 801 6244** o selecciona tu asiento en la pantalla.`;
     }
 
-    return `🦅 ¡Hola! Soy **Alma**, tu asesora de viajes en *La Ruta del Águila* (San Manuel, Puebla).\nTenemos 3 opciones preparadas para ti:\n1. **Conciertos y Eventos CDMX** con retorno seguro nocturno (desde $549 MXN).\n2. **Excursiones Nacionales** para descansar en familia (Tolantongo, Taxco, Zacatlán, Cuetzalan).\n3. **Destinos VIP Internacionales** (Europa, Asia, África con fraVEO).\nApartas cualquier viaje con solo **$200 MXN**. Además, si eres cliente de *Estética Alma*, tienes 10% con el cupón **ESTETICA10**. ¿Qué tipo de viaje estás planeando?`;
+    return `🦅 ¡Hola! Soy **Alma**, tu asesora de viajes en *La Ruta del Águila* (San Manuel, Puebla).\nTenemos 3 opciones preparadas para ti:\n1. **Conciertos y Eventos CDMX** con retorno seguro nocturno (desde $549 MXN).\n2. **Excursiones Nacionales** para descansar en familia (Tolantongo, Taxco, Zacatlán, Cuetzalan).\n3. **Destinos VIP Internacionales** (Europa, Asia, África con fraVEO).\n4. **Servicio Privado Puerta a Puerta** para citas médicas, compras o trámites.\nApartas cualquier viaje con solo **$200 MXN**. Además, si eres cliente de *Estética Alma*, tienes 10% con el cupón **ESTETICA10**. ¿Qué tipo de viaje estás planeando?`;
 }
 
 /* =========================================================================
@@ -650,10 +690,31 @@ function escapeHtml(str) {
     return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
 }
 
-/* --- TECLA ESCAPE PARA CERRAR TODOS LOS MODALES --- */
+/* --- TECLA ESCAPE Y CLIC AFUERA PARA CERRAR MODALES Y CHAT --- */
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' || e.key === 'Esc') {
         closeAllModals();
+    }
+});
+
+// Cerrar chat y buscador en vivo al hacer clic afuera (sin borrar la conversación)
+document.addEventListener('click', (e) => {
+    const aiWin = document.getElementById('ai-chat-window');
+    const aiOrb = document.querySelector('.ai-orb-trigger');
+    const navAiBtn = document.querySelector('.btn-nav-ai');
+
+    if (aiWin && aiWin.classList.contains('active')) {
+        if (!aiWin.contains(e.target) && (!aiOrb || !aiOrb.contains(e.target)) && (!navAiBtn || !navAiBtn.contains(e.target))) {
+            aiWin.classList.remove('active');
+        }
+    }
+
+    const dropdown = document.getElementById('live-search-results-dropdown');
+    const searchInput = document.getElementById('main-live-search');
+    if (dropdown && dropdown.style.display === 'block') {
+        if (!dropdown.contains(e.target) && e.target !== searchInput) {
+            dropdown.style.display = 'none';
+        }
     }
 });
 
@@ -783,3 +844,16 @@ function applyCheckoutCoupon() {
         msg.innerHTML = `❌ El cupón <strong>${escapeHtml(code)}</strong> no es válido o ha expirado.`;
     }
 }
+
+function setXochimilcoPackage(price) {
+    currentModalPkgAmount = price;
+    const amtEl = document.getElementById('modal-pkg-amount');
+    if (amtEl) amtEl.innerText = `$${price.toLocaleString('es-MX')} MXN`;
+    if (typeof updateModalSeatDisplay === 'function') updateModalSeatDisplay();
+}
+
+function toggleMobileNav() {
+    const drawer = document.getElementById('lux-mobile-drawer');
+    if (drawer) drawer.classList.toggle('active');
+}
+

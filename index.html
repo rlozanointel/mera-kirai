@@ -708,9 +708,33 @@
                 <a href="https://wa.me/522228016244?text=Hola%20Alma,%20quiero%20cotizar%20un%20viaje%20con%20La%20Ruta%20del%20%C3%81guila" target="_blank" class="btn-nav-phone">
                     <i class="fab fa-whatsapp"></i> 222 801 6244
                 </a>
+                <button class="lux-hamburger-btn" onclick="toggleMobileNav()" aria-label="Abrir menú de navegación">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
     </header>
+
+    <!-- Menú Drawer Móvil -->
+    <div class="lux-mobile-drawer" id="lux-mobile-drawer">
+        <div class="lux-mobile-drawer-header">
+            <strong style="color:#fff; font-family:'Outfit'; font-size:1.1rem;">🦅 La Ruta del Águila</strong>
+            <button style="background:none; border:none; color:#fff; font-size:1.3rem; cursor:pointer;" onclick="toggleMobileNav()">✖</button>
+        </div>
+        <ul class="lux-mobile-nav-list">
+            <li><a href="#bloque-conciertos" onclick="toggleMobileNav()"><i class="fas fa-music"></i> Conciertos CDMX</a></li>
+            <li><a href="#bloque-pueblos" onclick="toggleMobileNav()"><i class="fas fa-mountain-sun"></i> Excursiones Nacionales</a></li>
+            <li><a href="#bloque-vip" onclick="toggleMobileNav()"><i class="fas fa-crown"></i> Destinos VIP fraVEO</a></li>
+            <li><a href="#bloque-privados" onclick="toggleMobileNav()"><i class="fas fa-car-side"></i> Traslados Particulares</a></li>
+            <li><a href="estetica.html"><i class="fas fa-spa"></i> Estética Alma (San Manuel)</a></li>
+            <li><a href="#bloque-contacto" onclick="toggleMobileNav()"><i class="fas fa-location-dot"></i> Ubicación y Contacto</a></li>
+        </ul>
+        <div style="padding:1.5rem; border-top:1px solid rgba(255,255,255,0.08);">
+            <a href="https://wa.me/522228016244" target="_blank" class="btn-lux-primary" style="background:#25d366; color:#000; font-weight:800; width:100%; text-align:center; display:block; padding:12px; border-radius:12px; text-decoration:none;">
+                <i class="fab fa-whatsapp"></i> Contactar a Alma
+            </a>
+        </div>
+    </div>
 
     <!-- Clean Motion Hero Banner -->
     <section class="lux-hero-section" id="bloque-hero">
@@ -1349,6 +1373,61 @@
             </div>
         </section>
 
+        <!-- BLOQUE 4.5: 🚗 SERVICIO DE TRASLADOS PRIVADOS Y VIAJES PARTICULARES -->
+        <section id="bloque-privados" style="margin-bottom: 4rem;">
+            <div class="section-title">
+                <i class="fas fa-car-side" style="color:var(--brand-cyan)"></i> Traslados Privados & Viajes Particulares
+            </div>
+            <div style="background:linear-gradient(135deg, rgba(14, 165, 233, 0.08), rgba(212, 175, 55, 0.06)); border:1px solid rgba(56, 189, 248, 0.25); border-radius:20px; padding:2.5rem; box-shadow:var(--shadow-card);">
+                <div style="max-width:850px; margin-bottom:2rem;">
+                    <span style="background:rgba(56, 189, 248, 0.15); color:var(--brand-cyan); font-weight:800; font-size:0.78rem; padding:4px 12px; border-radius:20px; text-transform:uppercase; letter-spacing:0.5px; display:inline-block; margin-bottom:0.8rem;">
+                        Servicio Ejecutivo Puerta a Puerta • Puebla ⇄ CDMX y Destinos
+                    </span>
+                    <h3 style="font-family:'Outfit'; font-size:1.65rem; color:#fff; margin-bottom:0.8rem;">
+                        Viajes Particulares con Chofer Profesional a tu Disposición
+                    </h3>
+                    <p style="font-size:0.95rem; color:var(--text-muted); line-height:1.7;">
+                        ¿Necesitas viajar de forma individual o con tu familia sin depender de itinerarios masivos? Te asignamos el vehículo adecuado según tu grupo: <strong>auto sedán compacto privado</strong> (1 a 3 personas para compras o citas) o <strong>camioneta ejecutiva</strong> (grupos y familias), con chofer sobrio y responsable que te recoge en tu puerta, te espera y te regresa a Puebla.
+                    </p>
+                </div>
+
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:1.2rem; margin-bottom:2rem;">
+                    <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:14px; padding:1.2rem;">
+                        <div style="color:var(--brand-cyan); font-size:1.4rem; margin-bottom:0.6rem;"><i class="fas fa-hospital-user"></i></div>
+                        <strong style="color:#fff; font-size:0.95rem; display:block; margin-bottom:0.4rem;">Citas Médicas de Especialidad</strong>
+                        <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.5;">Traslados a Nutrición, Médica Sur, Hospital ABC, Siglo XXI y Teletón CDMX. El chofer te espera en tu consulta.</p>
+                    </div>
+
+                    <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:14px; padding:1.2rem;">
+                        <div style="color:#fde047; font-size:1.4rem; margin-bottom:0.6rem;"><i class="fas fa-boxes-packing"></i></div>
+                        <strong style="color:#fff; font-size:0.95rem; display:block; margin-bottom:0.4rem;">Compras de Negocio & Mayoreo</strong>
+                        <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.5;">Salidas a Mixcalco, Centro Histórico de CDMX, ferias de proveedores y outlets con cajuela amplia y segura.</p>
+                    </div>
+
+                    <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:14px; padding:1.2rem;">
+                        <div style="color:#38bdf8; font-size:1.4rem; margin-bottom:0.6rem;"><i class="fas fa-passport"></i></div>
+                        <strong style="color:#fff; font-size:0.95rem; display:block; margin-bottom:0.4rem;">Trámites de Visa & Embajadas</strong>
+                        <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.5;">Traslados puntuales a citas en el CAS, Embajada de EE. UU., Relaciones Exteriores o trámites corporativos.</p>
+                    </div>
+
+                    <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:14px; padding:1.2rem;">
+                        <div style="color:#22c55e; font-size:1.4rem; margin-bottom:0.6rem;"><i class="fas fa-plane-departure"></i></div>
+                        <strong style="color:#fff; font-size:0.95rem; display:block; margin-bottom:0.4rem;">Traslados a Aeropuertos</strong>
+                        <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.5;">Conexión directa puerta a puerta hacia AICM (T1 y T2), AIFA y Aeropuerto de Puebla sin riesgos de transbordo.</p>
+                    </div>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; border-top:1px solid rgba(255,255,255,0.08); padding-top:1.5rem;">
+                    <div style="font-size:0.88rem; color:var(--text-muted);">
+                        ⚡ Tarifa calculada a precio justo con casetas, combustible y seguro de viajero incluidos.
+                    </div>
+                    <a href="https://wa.me/522228016244?text=Hola%20Alma,%20me%20interesa%20cotizar%20un%20traslado%20particular%20puerta%20a%20puerta%20desde%20Puebla" target="_blank" class="btn-lux-primary" style="background:#25d366; color:#000; font-weight:800; padding:12px 24px; font-size:0.95rem;">
+                        <i class="fab fa-whatsapp"></i> Cotizar Traslado Particular por WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <!-- BLOQUE 5: 📍 CONTACTO Y UBICACIÓN -->
         <section id="bloque-contacto">
             <div class="section-title">
@@ -1554,6 +1633,19 @@
             <div style="background:var(--bg-subtle); padding:10px 14px; border-radius:10px; margin-bottom:1rem; font-size:0.9rem;">
                 Reserva para: <strong id="modal-pkg-name" style="color:var(--brand-red)">Viaje Express CDMX</strong><br>
                 Precio Total del Paquete: <strong id="modal-pkg-amount" style="color:var(--brand-green); font-size:1.05rem;">$549 MXN</strong>
+            </div>
+
+            <!-- SELECTOR DE MODALIDAD PARA XOCHIMILCO ($1,350 vs $650) -->
+            <div id="xochimilco-option-picker" style="display:none; margin-bottom:1rem; background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.3); border-radius:10px; padding:12px 14px;">
+                <span style="font-size:0.8rem; font-weight:800; color:var(--brand-cyan); text-transform:uppercase; display:block; margin-bottom:8px;">Modalidad de Boleto:</span>
+                <label style="display:flex; align-items:center; gap:8px; font-size:0.88rem; margin-bottom:8px; cursor:pointer;">
+                    <input type="radio" id="xochi-radio-full" name="xochi-type" value="1350" checked onchange="setXochimilcoPackage(1350)">
+                    <span><strong>Paquete Todo Incluido ($1,350 MXN)</strong>: Camioneta + Trajinera + Entrada a la Obra</span>
+                </label>
+                <label style="display:flex; align-items:center; gap:8px; font-size:0.88rem; cursor:pointer;">
+                    <input type="radio" id="xochi-radio-trans" name="xochi-type" value="650" onchange="setXochimilcoPackage(650)">
+                    <span><strong>Solo Transporte Redondo ($650 MXN)</strong>: Camioneta Ejecutiva (si ya tienes tu boleto)</span>
+                </label>
             </div>
 
             <!-- SEAT PICKER INTEGRATED DIRECTLY IN CHECKOUT -->
@@ -1980,6 +2072,17 @@
             document.getElementById('modal-pkg-name').innerText = pkgName;
             document.getElementById('modal-pkg-amount').innerText = "$" + parseInt(amount).toLocaleString() + " MXN";
             
+            const xochiPicker = document.getElementById('xochimilco-option-picker');
+            if (xochiPicker) {
+                if (pkgName.toLowerCase().includes('xochimilco') || pkgName.toLowerCase().includes('llorona')) {
+                    xochiPicker.style.display = 'block';
+                    const fullRadio = document.getElementById('xochi-radio-full');
+                    if (fullRadio) fullRadio.checked = true;
+                } else {
+                    xochiPicker.style.display = 'none';
+                }
+            }
+            
             // Reset seats a #1 por defecto
             selectedModalSeats = new Set([1]);
             for(let i=1; i<=6; i++) {
@@ -2062,11 +2165,18 @@
             window.open(`https://wa.me/522228016244?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
-        /* Horizontal Slider Navigation Helper */
+        /* Horizontal Slider Navigation Helper (Circular / Infinite Loop) */
         function scrollSlider(sliderId, offset) {
             const el = document.getElementById(sliderId);
             if(el) {
-                el.scrollBy({ left: offset, behavior: 'smooth' });
+                const maxScroll = el.scrollWidth - el.clientWidth;
+                if (offset > 0 && el.scrollLeft >= maxScroll - 25) {
+                    el.scrollTo({ left: 0, behavior: 'smooth' });
+                } else if (offset < 0 && el.scrollLeft <= 25) {
+                    el.scrollTo({ left: maxScroll, behavior: 'smooth' });
+                } else {
+                    el.scrollBy({ left: offset, behavior: 'smooth' });
+                }
             }
         }
 
