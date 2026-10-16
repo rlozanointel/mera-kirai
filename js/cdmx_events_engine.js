@@ -174,7 +174,7 @@ const EVENTOS_CDMX_MAESTRO = [
         recintoKey: "centro-citibanamex",
         imagen: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=80",
         badge: "Centro Citibanamex",
-        precio_texto: "$790 MXN"
+        precio_texto: "$700 MXN"
     },
     {
         id: "concierto-shakira-gnp",
