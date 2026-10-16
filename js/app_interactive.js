@@ -616,7 +616,7 @@ function generateLocalAlmaResponse(question) {
         return `🌸 ¡Hola! Soy **Alma**. El cupón **ESTETICA10** te da **10% de descuento directo** en cualquier viaje y está **abierto para todos** como promoción cruzada con nuestro salón **Estética Alma** en Río Nexapa #6101, San Manuel ([estetica.mera-kirai.com](https://estetica.mera-kirai.com)).`;
     }
 
-    return `🦅 ¡Hola! Soy **Alma**, tu asesora en *La Ruta del Águila* (San Manuel, Puebla).\nRespecto a tu consulta sobre **"${escapeHtml(raw)}"**, podemos organizarlo tanto en **salida grupal programada** (con mínimo 12 interesados de nuestro catálogo oficial de **737 destinos SECTUR y conciertos CDMX**) como en **traslado privado a tu medida**.\n\nRecuerda que apartas cualquier viaje con **$200 MXN**, liquidas 48-24h antes de salir y tienes **10% de descuento** con el cupón **ESTETICA10**. ¿En qué fecha aproximada y para cuántas personas te gustaría viajar?`;
+    return `🦅 ¡Hola! Soy **Alma**, tu asesora en *La Ruta del Águila* (San Manuel, Puebla).\nRespecto a tu consulta sobre **"${escapeHtml(raw)}"**, podemos organizarlo tanto en **salida grupal programada** (con mínimo 12 interesados de nuestro catálogo oficial de **destinos de México y eventos CDMX**) como en **traslado privado a tu medida**.\n\nRecuerda que apartas cualquier viaje con **$200 MXN**, liquidas 48-24h antes de salir y tienes **10% de descuento** con el cupón **ESTETICA10**. ¿En qué fecha aproximada y para cuántas personas te gustaría viajar?`;
 }
 
 /* =========================================================================
@@ -765,7 +765,7 @@ function closeAllModals() {
 }
 
 /* =========================================================================
-   6. MODAL CATÁLOGO OFICIAL SECTUR / UNESCO MÉXICO (737 OPCIONES)
+   6. MODAL GRAN CATÁLOGO MAESTRO (1,000 DESTINOS, EVENTOS CDMX Y RUTAS)
    ========================================================================= */
 
 let catalogoMacroFilter = 'todos';
@@ -777,10 +777,16 @@ const MACRO_LABELS = {
     'barrio_magico': '🎨 Barrio Mágico',
     'ruta_turistica': '🛣️ Ruta Turística',
     'experiencia_comunitaria': '🌿 Experiencia Comunitaria',
-    'patrimonio_unesco': '🏛️ Patrimonio UNESCO'
+    'patrimonio_unesco': '🏛️ Patrimonio UNESCO',
+    'paquete_armado': '🚐 Paquete Confirmado',
+    'vip_internacional': '👑 Destino VIP fraVEO',
+    'evento_cdmx': '🎟️ Evento CDMX'
 };
 
 function getCatalogo737List() {
+    if (Array.isArray(window.MASTER_CATALOG_1000) && window.MASTER_CATALOG_1000.length > 0) {
+        return window.MASTER_CATALOG_1000;
+    }
     if (Array.isArray(window.SECTUR_737_CATALOG) && window.SECTUR_737_CATALOG.length > 0) {
         return window.SECTUR_737_CATALOG;
     }
@@ -882,7 +888,21 @@ function voteCatalogoItem(itemId, itemName, itemState, btnEl) {
         btnEl.style.color = '#fda4af';
     }
     if (window.__vromlixTelemetry) {
-        window.__vromlixTelemetry.track('vote_sectur_737', { id: itemId, name: itemName, state: itemState, votes: current });
+        window.__vromlixTelemetry.track('vote_catalogo_nacional', { id: itemId, name: itemName, state: itemState, votes: current });
+    }
+}
+
+function quoteWithAI(nombre, estado) {
+    closeCatalogoNacionalModal();
+    const win = document.getElementById('ai-chat-window');
+    if (win && !win.classList.contains('active')) {
+        toggleAiChat();
+    }
+    const prompt = `Hola Alma, me gustaría cotizar una salida a ${nombre} (${estado}). ¿Cuánto costaría en salida ejecutiva desde San Manuel, Puebla y qué fechas tienen disponibles?`;
+    const input = document.getElementById('ai-chat-input');
+    if (input) {
+        input.value = prompt;
+        sendChatMessage();
     }
 }
 
@@ -908,7 +928,7 @@ function renderCatalogoNacionalGrid() {
 
     const countLabel = document.getElementById('catalogo-count-label');
     if (countLabel) {
-        countLabel.innerHTML = `Mostrando <strong>${filtrados.length}</strong> de <strong>${lista.length}</strong> opciones oficiales SECTUR / UNESCO en México`;
+        countLabel.innerHTML = `Mostrando <strong>${filtrados.length}</strong> de <strong>${lista.length}</strong> destinos, eventos CDMX y rutas de México`;
     }
 
     if (filtrados.length === 0) {
@@ -935,13 +955,14 @@ function renderCatalogoNacionalGrid() {
                 <div style="font-size:0.7rem; color:var(--brand-gold); font-weight:700; text-transform:uppercase; margin-bottom:0.25rem;">${escapeHtml(d.sub)}</div>
                 <h4 style="font-family:'Outfit'; font-size:1.05rem; font-weight:800; color:var(--text-title); margin-bottom:0.35rem; line-height:1.3;">${escapeHtml(d.name)}</h4>
                 <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.45; margin-bottom:0.9rem;">${escapeHtml(d.desc)}</p>
+                ${d.price_ref ? `<div style="font-size:0.75rem; font-weight:700; color:var(--brand-green); margin-bottom:0.75rem;"><i class="fas fa-tag"></i> ${escapeHtml(d.price_ref)}</div>` : ''}
             </div>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
-                <button type="button" onclick="voteCatalogoItem('${d.id}', '${safeName}', '${safeState}', this)" style="background:rgba(255,255,255,0.05); color:#e2e8f0; border:1px solid var(--border-color); padding:7px 8px; border-radius:8px; font-weight:700; font-size:0.76rem; cursor:pointer;">
-                    ❤️ ${votes}/12 Grupo
+                <button type="button" onclick="quoteWithAI('${safeName}', '${safeState}')" style="background:linear-gradient(135deg, #0284c7, #0369a1); color:#fff; border:none; padding:7px 8px; border-radius:8px; font-weight:700; font-size:0.76rem; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:4px;" title="Cotizar salida y dudas con Alma IA">
+                    <i class="fas fa-wand-magic-sparkles"></i> Cotizar con IA
                 </button>
-                <button type="button" onclick="bookDirectWhatsAppDestino('${safeName}', '${safeState}')" style="background:var(--brand-red); color:#fff; border:none; padding:7px 10px; border-radius:8px; font-weight:700; font-size:0.78rem; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:5px;">
-                    <i class="fab fa-whatsapp"></i> Cotizar
+                <button type="button" onclick="bookDirectWhatsAppDestino('${safeName}', '${safeState}')" style="background:var(--brand-red); color:#fff; border:none; padding:7px 10px; border-radius:8px; font-weight:700; font-size:0.78rem; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:5px;" title="Preguntar por WhatsApp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
                 </button>
             </div>
         </div>`;
@@ -1001,15 +1022,17 @@ function centerCardInTrack(track, index, smooth = true) {
     const targetCard = cards[wrappedIdx];
     if (!targetCard) return;
 
+    // Centrado exacto: cada tarjeta (incluida la última) se centra sin ser topada prematuramente
     const scrollTarget = targetCard.offsetLeft - (track.clientWidth / 2) + (targetCard.offsetWidth / 2);
     track.scrollTo({
-        left: Math.max(0, scrollTarget),
+        left: scrollTarget,
         behavior: smooth ? 'smooth' : 'auto'
     });
+    track.dataset.activeIndex = String(wrappedIdx);
     setTimeout(() => updateTrack3DState(track), smooth ? 320 : 30);
 }
 
-// Sobrescribe scrollSlider global para que navegue en modo Swiper 3D Circular Infinito
+// Navegación Swiper 3D Circular Infinito
 window.scrollSlider = function(sliderId, offset) {
     const track = document.getElementById(sliderId);
     if (!track) return;

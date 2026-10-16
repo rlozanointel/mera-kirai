@@ -1373,7 +1373,7 @@
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    padding: 2.2rem 12% 3.8rem;
+    padding: 2.2rem calc(50% - 170px) 3.8rem;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
     align-items: stretch;
@@ -1643,7 +1643,7 @@
         padding: 1.4rem;
     }
     .slider-track {
-        padding: 1.5rem 6% 3rem;
+        padding: 1.5rem calc(50% - 140px) 3rem;
     }
 }
 
