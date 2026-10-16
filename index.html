@@ -57,7 +57,7 @@
         "closes": "20:00"
       },
       "sameAs": [
-        "https://www.facebook.com/share/p/1HvfxPsivZ/"
+        "https://www.facebook.com/share/18CecQ9qrH/"
       ]
     }
     </script>
@@ -1366,7 +1366,7 @@
                         <a href="https://wa.me/522228016244?text=Hola%20Alma,%20quiero%20información%20de%20los%20viajes" target="_blank" class="btn-lux-primary" style="background:#25d366; color:#000; font-weight:800; padding:11px 22px; font-size:0.92rem;">
                             <i class="fab fa-whatsapp"></i> Chat WhatsApp (222 801 6244)
                         </a>
-                        <a href="https://www.facebook.com/share/p/1HvfxPsivZ/" target="_blank" rel="noopener noreferrer" aria-label="Visitar página oficial de Facebook de La Ruta del Águila" class="btn-lux-primary" style="background:#1877f2; color:#fff; font-weight:700; padding:11px 20px; font-size:0.92rem;">
+                        <a href="https://www.facebook.com/share/18CecQ9qrH/" target="_blank" rel="noopener noreferrer" aria-label="Visitar página oficial de Facebook de La Ruta del Águila" class="btn-lux-primary" style="background:#1877f2; color:#fff; font-weight:700; padding:11px 20px; font-size:0.92rem;">
                             <i class="fab fa-facebook-f"></i> Facebook Oficial
                         </a>
                     </div>
@@ -1812,7 +1812,7 @@
                 </div>
                 <p style="font-size:0.88rem;">Tu salida directa, cómoda y segura desde San Manuel hacia los mejores eventos, conciertos y destinos de México.</p>
                 <div class="social-links" style="display:flex; gap:10px; margin-top:12px;">
-                    <a href="https://www.facebook.com/share/p/1HvfxPsivZ/" target="_blank" rel="noopener noreferrer" aria-label="Facebook Oficial de La Ruta del Águila" title="Facebook Oficial" style="width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; color:#fff; text-decoration:none;"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.facebook.com/share/18CecQ9qrH/" target="_blank" rel="noopener noreferrer" aria-label="Facebook Oficial de La Ruta del Águila" title="Facebook Oficial" style="width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; color:#fff; text-decoration:none;"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://wa.me/522228016244" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Oficial" title="WhatsApp 222 801 6244" style="width:36px; height:36px; border-radius:50%; background:rgba(37,211,102,0.15); color:#25d366; display:flex; align-items:center; justify-content:center; text-decoration:none;"><i class="fab fa-whatsapp"></i></a>
                     <a href="estetica.html" title="Estética Alma (San Manuel)" aria-label="Estética Alma" style="width:36px; height:36px; border-radius:50%; background:rgba(244,63,94,0.15); color:#fda4af; display:flex; align-items:center; justify-content:center; text-decoration:none;"><i class="fas fa-spa"></i></a>
                 </div>
@@ -2122,8 +2122,8 @@
         </div>
 
         <div class="ai-chat-input-bar">
-            <input type="text" id="ai-chat-input" placeholder="Pregúntame sobre cualquier destino...">
-            <button onclick="sendChatMessage()"><i class="fas fa-paper-plane"></i></button>
+            <input type="text" id="ai-chat-input" placeholder="Pregúntame sobre cualquier destino..." onkeydown="if(event.key==='Enter'){event.preventDefault(); sendChatMessage();}">
+            <button type="button" onclick="sendChatMessage()"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
 

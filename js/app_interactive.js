@@ -485,8 +485,42 @@ async function sendChatMessage() {
     }, 350);
 }
 
+function appendChatMessage(role, text) {
+    const body = document.getElementById('ai-chat-messages');
+    if (!body) return;
+
+    const div = document.createElement('div');
+    div.className = `ai-chat-bubble ${role}`;
+    div.innerHTML = text.replace(/\n/g, '<br>');
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+}
+
+function showTypingIndicator() {
+    const body = document.getElementById('ai-chat-messages');
+    if (!body) return null;
+    const id = 'typing-' + Date.now();
+    const div = document.createElement('div');
+    div.className = 'ai-chat-bubble assistant typing';
+    div.id = id;
+    div.innerHTML = `<span class="dot"></span><span class="dot"></span><span class="dot"></span> Consultando cartelera oficial...`;
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+    return id;
+}
+
+function removeTypingIndicator(id) {
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (el) el.remove();
+}
+
 function generateLocalAlmaResponse(question) {
     const q = (question || '').toLowerCase();
+
+    if (q.includes('luis miguel') || q.includes('luismiguel') || q.includes('el sol')) {
+        return `☀️ ¡Hola! Soy **Alma** de *La Ruta del Águila*.\nActualmente en la cartelera oficial de recintos CDMX (Arena CDMX, Estadio GNP, Auditorio Nacional) no hay fechas próximas confirmadas para Luis Miguel (sus fechas recientes en Arena CDMX ya concluyeron con lleno total).\n\nSin embargo, en cuanto se anuncie una nueva fecha o preventa, organizaremos **transporte ejecutivo redondo** desde San Manuel, Puebla (tarifa redonda desde **$549 MXN** con seguro y chofer sobrio que te espera hasta que termina el concierto).\nApartas tu lugar con solo **$200 MXN**. ¿Te gustaría que te avisemos en cuanto se confirme una nueva fecha?`;
+    }
 
     if (q.includes('estetica') || q.includes('estética') || q.includes('salon') || q.includes('salón') || q.includes('cabello') || q.includes('corte') || q.includes('cupon') || q.includes('cupón') || q.includes('descuento')) {
         return `🌸 ¡Hola! Soy **Alma**. Nuestro salón hermano **Estética Alma** se ubica en Río Nexapa 6101, San Manuel:\n- Servicios: Cortes de vanguardia, colorimetría, keratina brasileña y manicure.\n- 🎁 **Promoción Exclusiva**: Si te atiendes en el salón, usa el cupón **ESTETICA10** para obtener **10% de descuento directo** en cualquiera de nuestras salidas y excursiones de viaje.\n- Puedes agendar tu cita al **222 801 6244** o visitar [Estética Alma](estetica.html).`;
@@ -500,7 +534,7 @@ function generateLocalAlmaResponse(question) {
         return `💄 ¡Hola! Soy **Alma**. Tenemos salida ejecutiva directa a la **Expo Beauty Show (EBS 2026)** en Centro Citibanamex (24 al 26 Octubre 2026):\n- Tarifa Redonda: **$790 MXN**.\n- **Incluye boleto oficial de acceso** a salas B, C y D, transporte redondo en van con seguro y casetas (07:30 a 19:45 hrs).\n- Aparta con solo **$200 MXN**. ¿Para cuántos estilistas o acompañantes deseas apartar?`;
     }
 
-    if (q.includes('concierto') || q.includes('foro sol') || q.includes('gnp') || q.includes('karol') || q.includes('estadio') || q.includes('shakira') || q.includes('f1') || q.includes('cisne') || q.includes('chapultepec') || q.includes('nfl')) {
+    if (q.includes('concierto') || q.includes('foro sol') || q.includes('gnp') || q.includes('karol') || q.includes('estadio') || q.includes('shakira') || q.includes('f1') || q.includes('cisne') || q.includes('chapultepec') || q.includes('nfl') || q.includes('arena') || q.includes('auditorio')) {
         return `🎶 ¡Hola! Soy **Alma**. Contamos con **Transporte Seguro a Conciertos y Eventos en CDMX** con salida y regreso directo a San Manuel:\n- Tarifa Redonda: desde **$549 MXN** (Karol G $549, Cisne Negro Chapultepec $690, NFL $750).\n- Te dejamos en la puerta del recinto y nuestra unidad te espera hasta que termina el evento para que regreses tranquilo y seguro de noche.\n- Aparta tu lugar con solo **$200 MXN** (100% reembolsable si no se cubre cupo).\n¿A qué evento te gustaría asistir?`;
     }
 
