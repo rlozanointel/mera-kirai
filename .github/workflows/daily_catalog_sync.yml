@@ -1,0 +1,68 @@
+name: Actualización Diaria de Cartelera CDMX y Catálogo de Destinos
+
+on:
+  schedule:
+    # Ejecuta todos los días a las 05:00 AM hora CDMX (11:00 UTC)
+    - cron: '0 11 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-catalog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Depurar eventos vencidos en js/sectur_737_catalog.js y js/cdmx_events_engine.js
+        run: |
+          python3 - << 'EOF'
+          import json, re
+          from datetime import date
+
+          today = date.today().isoformat()
+          cat_path = "js/sectur_737_catalog.js"
+          with open(cat_path, "r", encoding="utf-8") as f:
+              text = f.read()
+
+          m = re.search(r"window\.MASTER_CATALOG_1000\s*=\s*(\[.*\]);", text, re.S)
+          if m:
+              items = json.loads(m.group(1))
+              active_items = []
+              removed = 0
+              for item in items:
+                  if item.get("macro") == "evento_cdmx":
+                      # Busca fechas YYYY-MM-DD en attractions/desc y conserva solo vigentes
+                      dates = re.findall(r"\b(202[6-9]-\d{2}-\d{2})\b", (item.get("attractions", "") + " " + item.get("desc", "")))
+                      if dates and max(dates) < today:
+                          removed += 1
+                          continue
+                  active_items.append(item)
+              if removed > 0:
+                  new_json = json.dumps(active_items, ensure_ascii=False)
+                  out = "// Catálogo Maestro Unificado (Actualizado automáticamente: " + today + ")\n"
+                  out += "window.MASTER_CATALOG_1000 = " + new_json + ";\n"
+                  out += "window.SECTUR_737_CATALOG = window.MASTER_CATALOG_1000;\n"
+                  with open(cat_path, "w", encoding="utf-8") as f:
+                      f.write(out)
+                  print(f"Depurados {removed} eventos vencidos antes de {today}.")
+              else:
+                  print(f"Catálogo al día ({len(active_items)} registros vigentes al {today}).")
+          EOF
+
+      - name: Commit y Push automático si hubo cambios de cartelera
+        run: |
+          git config user.name "Alma Catalog Bot"
+          git config user.email "contacto@mera-kirai.com"
+          if [[ -n $(git status --porcelain) ]]; then
+            git add js/sectur_737_catalog.js
+            git commit -m "chore(catalog): depuración diaria automática de eventos vencidos ($(date +%Y-%m-%d))"
+            git push
+          fi

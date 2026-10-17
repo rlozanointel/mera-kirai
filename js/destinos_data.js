@@ -267,7 +267,7 @@ const DESTINOS_DB = [
         distancia: "210 km desde Puebla",
         tiempo_traslado: "3.5 hrs",
         badge: "Aguas Termales 36°C",
-        imagen: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+        imagen: "img/tolantongo_real.jpg",
         descripcion: "Paraíso de aguas termales a 36°C enclavado en un cañón natural. Incluye acceso a las pozas escalonadas en el acantilado, la cueva de vapor, el río turquesa y cascadas.",
         coordenadas: { lat: 20.6481, lng: -98.9958 },
         itinerario: [
@@ -294,7 +294,7 @@ const DESTINOS_DB = [
         distancia: "128 km desde Puebla",
         tiempo_traslado: "2 hrs",
         badge: "Sierra Norte",
-        imagen: "https://images.unsplash.com/photo-1518638150340-f706e86654de?auto=format&fit=crop&w=1200&q=80",
+        imagen: "img/zacatlan_real.jpg",
         descripcion: "Mirador de cristal sobre la Barranca de los Jilgueros, fábrica de sidras tradicionales, Reloj Floral, Virgen Monumental y talleres artesanales de esferas navideñas en Chignahuapan.",
         coordenadas: { lat: 19.9328, lng: -97.9602 },
         itinerario: [
@@ -321,7 +321,7 @@ const DESTINOS_DB = [
         distancia: "260 km desde Puebla",
         tiempo_traslado: "3.5 hrs",
         badge: "Ruta Enológica & Peña",
-        imagen: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1200&q=80",
+        imagen: "img/bernal_vino_real.jpg",
         descripcion: "Paseo por cavas subterráneas de vino espumoso Freixenet a 25 metros de profundidad, degustación en queserías artesanales y tarde libre en el Pueblo Mágico de Bernal frente al tercer monolito más grande del mundo.",
         coordenadas: { lat: 20.7397, lng: -99.9404 },
         itinerario: [
@@ -348,7 +348,7 @@ const DESTINOS_DB = [
         distancia: "175 km desde Puebla",
         tiempo_traslado: "3 hrs",
         badge: "Niebla & Tradición Totonaca",
-        imagen: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
+        imagen: "img/cuetzalan_real.jpg",
         descripcion: "Callejones empedrados de arquitectura blanca, cascada Las Brisas en medio de la vegetación selvática, cata de café de altura y danza ancestral de voladores frente a la Parroquia de San Francisco.",
         coordenadas: { lat: 20.0175, lng: -97.5228 },
         itinerario: [
@@ -375,7 +375,7 @@ const DESTINOS_DB = [
         distancia: "390 km desde Puebla",
         tiempo_traslado: "4.5 hrs",
         badge: "Sol & Mar Pacífico",
-        imagen: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80",
+        imagen: "img/acapulco_bahia_real.jpg",
         descripcion: "Escapada directa a la Costa Dorada de Acapulco con llegada directa a la zona hotelera. Ideal para familias y grupos de descanso sin el desgaste de manejar.",
         coordenadas: { lat: 16.8531, lng: -99.8237 },
         itinerario: [
@@ -605,13 +605,13 @@ const DESTINOS_DB = [
         estado: "Quintana Roo",
         precio: 8990,
         precio_texto: "$8,990 MXN",
-        anticipo_apartado: "Aparta con $1,500",
+        anticipo_apartado: "Pre-venta con $1,500",
         tipo_transporte: "Vuelo Redondo + Traslados Privados",
         duracion: "4 Días / 3 Noches",
         distancia: "Caribe Mexicano",
         tiempo_traslado: "Vuelo directo",
         badge: "Todo Incluido 5 Estrellas",
-        imagen: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+        imagen: "img/cancun_caribe_real.jpg",
         descripcion: "Resort todo incluido frente a las playas de arena blanca y mar turquesa del Caribe Mexicano. Alimentos gourmet, bebidas ilimitadas, deportes acuáticos y traslados privados aeropuerto-hotel.",
         coordenadas: { lat: 21.1619, lng: -86.8515 },
         itinerario: [
@@ -622,6 +622,32 @@ const DESTINOS_DB = [
         ],
         incluye: ["Vuelo redondo desde CDMX/Puebla", "Resort All-Inclusive 4 o 5 estrellas", "Traslados privados aeropuerto-hotel-aeropuerto"],
         no_incluye: ["Tours extras y propinas"]
+    },
+    {
+        id: "los-cabos-all-inclusive",
+        nombre: "Los Cabos & Arco del Fin del Mundo All-Inclusive",
+        categoria: "fraveo_lujo",
+        subcategoria: "playa_internacional",
+        estado: "Baja California Sur",
+        precio: 10490,
+        precio_texto: "$10,490 MXN",
+        anticipo_apartado: "Pre-venta con $1,500",
+        tipo_transporte: "Vuelo Redondo + Resort Todo Incluido + Paseo al Arco",
+        duracion: "4 Días / 3 Noches",
+        distancia: "Mar de Cortés",
+        tiempo_traslado: "Vuelo directo",
+        badge: "Playa VIP con Vuelo",
+        imagen: "img/loscabos_arco_real.jpg",
+        descripcion: "Escapada de lujo donde el desierto se une con el Mar de Cortés. Incluye vuelo redondo, hospedaje Todo Incluido en Cabo San Lucas / San José del Cabo y paseo en embarcación hacia El Arco y Playa del Amor.",
+        coordenadas: { lat: 22.8905, lng: -109.9167 },
+        itinerario: [
+            { hora: "Día 1", actividad: "Vuelo a Los Cabos, traslado al resort y tarde frente al mar." },
+            { hora: "Día 2", actividad: "Paseo en embarcación al Arco de Cabo San Lucas y Playa del Amor." },
+            { hora: "Día 3", actividad: "Día libre en albercas infinity y caminata nocturna en San José del Cabo." },
+            { hora: "Día 4", actividad: "Desayuno buffet y vuelo de retorno." }
+        ],
+        incluye: ["Vuelo redondo", "Resort Todo Incluido con alimentos y bebidas ilimitadas", "Paseo marítimo al Arco de Cabo San Lucas", "Traslados aeropuerto-hotel-aeropuerto"],
+        no_incluye: ["Propinas y actividades motorizadas"]
     }
 ];
 

@@ -461,6 +461,71 @@ function askChipPrompt(promptText) {
     }
 }
 
+function normalizeSearchText(str) {
+    return String(str || '')
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '');
+}
+
+function findRelevantCatalogContext(userQuery) {
+    const qNorm = normalizeSearchText(userQuery);
+    const stopWords = new Set(['hola', 'como', 'para', 'quiero', 'cuanto', 'cuesta', 'tienen', 'viaje', 'viajes', 'salida', 'salidas', 'ir', 'ver', 'donde', 'que', 'cual', 'cuales', 'hay', 'puedo', 'hacer', 'visitar', 'comer', 'platillos', 'museos', 'boleto', 'boletos', 'precio', 'cotizar', 'desde', 'puebla', 'san', 'manuel', 'alma']);
+    const tokens = qNorm.split(/[^a-z0-9]+/).filter(t => t.length >= 3 && !stopWords.has(t));
+    if (tokens.length === 0) return [];
+
+    const lista = getCatalogo737List();
+    const scored = [];
+
+    for (const item of lista) {
+        const nameNorm = normalizeSearchText(item.name);
+        const stateNorm = normalizeSearchText(item.state);
+        const descNorm = normalizeSearchText(item.desc);
+        const attrNorm = normalizeSearchText(item.attractions);
+        const gastNorm = normalizeSearchText(item.gastronomy);
+
+        let score = 0;
+        if (qNorm.includes(nameNorm) && nameNorm.length > 3) score += 25;
+        for (const tk of tokens) {
+            if (nameNorm.includes(tk)) score += 10;
+            if (stateNorm.includes(tk)) score += 5;
+            if (attrNorm.includes(tk)) score += 4;
+            if (gastNorm.includes(tk)) score += 4;
+            if (descNorm.includes(tk)) score += 2;
+        }
+        if (score > 0) {
+            scored.push({ score, item });
+        }
+    }
+
+    scored.sort((a, b) => b.score - a.score);
+    return scored.slice(0, 5).map(s => ({
+        name: s.item.name,
+        state: s.item.state,
+        category: s.item.sub || s.item.macro,
+        price_ref: s.item.price_ref || '',
+        attractions: s.item.attractions || '',
+        gastronomy: s.item.gastronomy || '',
+        crafts: s.item.crafts || '',
+        festivities: s.item.festivities || '',
+        desc: s.item.desc || ''
+    }));
+}
+
+async function fetchLiveWebContextForChat(query) {
+    try {
+        const url = `https://es.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(query)}&utf8=&format=json&origin=*&srlimit=2`;
+        const resp = await fetch(url);
+        if (!resp.ok) return '';
+        const data = await resp.json();
+        const hits = (data && data.query && data.query.search) || [];
+        if (hits.length === 0) return '';
+        return hits.map(h => `${h.title}: ${String(h.snippet || '').replace(/<[^>]+>/g, '')}`).join(' | ');
+    } catch (e) {
+        return '';
+    }
+}
+
 async function sendChatMessage() {
     const input = document.getElementById('ai-chat-input');
     const msg = (input ? input.value : '').trim();
@@ -470,8 +535,46 @@ async function sendChatMessage() {
     if (input) input.value = '';
 
     const typingId = showTypingIndicator();
+    const matchedContext = findRelevantCatalogContext(msg);
 
-    // 1. Consultar Cloud AI Worker en Cloudflare Edge (24/7 en la nube, <300ms)
+    if (window.__vromlixTelemetry) {
+        window.__vromlixTelemetry.track('ai_chat_query', { query: msg, matches: matchedContext.length });
+    }
+
+    // Construir inyección RAG desde nuestros 908 destinos/eventos o búsqueda web en vivo para grupos virales
+    const augmentedHistory = chatHistory.slice(-6);
+    if (matchedContext.length > 0) {
+        const ragLines = matchedContext.map(item => {
+            let line = `Destino/Evento: ${item.name} (${item.state} | ${item.category}). ${item.desc}`;
+            if (item.attractions) line += ` | Museos y lugares a visitar: ${item.attractions}.`;
+            if (item.gastronomy) line += ` | Platillos típicos: ${item.gastronomy}.`;
+            if (item.crafts) line += ` | Artesanías: ${item.crafts}.`;
+            if (item.price_ref) line += ` | Tarifa / Boleto: ${item.price_ref}.`;
+            return line;
+        }).join(' || ');
+        augmentedHistory.push({
+            role: 'user',
+            content: `[DATOS EXACTOS DE NUESTRA BASE DE DATOS OFICIAL DE 908 DESTINOS Y EVENTOS PARA RESPONDER CON PRECISIÓN (NO MENCIONES LA PALABRA SECTUR): ${ragLines}]`
+        });
+        augmentedHistory.push({
+            role: 'assistant',
+            content: 'Entendido, usaré estos datos exactos de museos, atractivos, platillos típicos y costos de boletos/transporte para dar una cotización cálida y completa.'
+        });
+    } else if (msg.length > 4) {
+        const liveWiki = await fetchLiveWebContextForChat(msg);
+        if (liveWiki) {
+            augmentedHistory.push({
+                role: 'user',
+                content: `[CONTEXTO WEB EN VIVO PARA IDENTIFICAR GRUPOS VIRALES, ARTISTAS O LUGARES: ${liveWiki}. Si es un grupo musical o artista activo que aún no tiene fecha en nuestra cartelera CDMX, ofrece abrir salida ejecutiva desde San Manuel ($549-$580 MXN redondo) o armar viaje privado desde 6 personas en Suzuki Ertiga VIP.]`
+            });
+            augmentedHistory.push({
+                role: 'assistant',
+                content: 'Entendido, responderé con este contexto actualizado de la web y ofreceré nuestras opciones de transporte.'
+            });
+        }
+    }
+
+    // 1. Consultar Cloud AI Worker en Cloudflare Edge (24/7 en la nube, Meta Llama 3.3 70B + RAG)
     const endpoints = [
         '/api/chat',
         'https://mera-kirai.com/api/chat',
@@ -486,7 +589,8 @@ async function sendChatMessage() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     message: msg,
-                    history: chatHistory.slice(-8)
+                    history: augmentedHistory,
+                    context_items: matchedContext
                 })
             });
             if (resp.ok) {
@@ -502,7 +606,7 @@ async function sendChatMessage() {
     }
 
     removeTypingIndicator(typingId);
-    const finalReply = cloudReply || generateLocalAlmaResponse(msg);
+    const finalReply = cloudReply || generateLocalAlmaResponse(msg, matchedContext);
     chatHistory.push({ role: 'user', content: msg });
     chatHistory.push({ role: 'assistant', content: finalReply });
     appendChatMessage('assistant', finalReply);
@@ -545,7 +649,7 @@ function removeTypingIndicator(id) {
     if (el) el.remove();
 }
 
-function generateLocalAlmaResponse(question) {
+function generateLocalAlmaResponse(question, matchedContext = []) {
     const raw = (question || '').trim();
     const q = raw.toLowerCase();
 
@@ -616,7 +720,18 @@ function generateLocalAlmaResponse(question) {
         return `🌸 ¡Hola! Soy **Alma**. El cupón **ESTETICA10** te da **10% de descuento directo** en cualquier viaje y está **abierto para todos** como promoción cruzada con nuestro salón **Estética Alma** en Río Nexapa #6101, San Manuel ([estetica.mera-kirai.com](https://estetica.mera-kirai.com)).`;
     }
 
-    return `🦅 ¡Hola! Soy **Alma**, tu asesora en *La Ruta del Águila* (San Manuel, Puebla).\nRespecto a tu consulta sobre **"${escapeHtml(raw)}"**, podemos organizarlo tanto en **salida grupal programada** (con mínimo 12 interesados de nuestro catálogo oficial de **destinos de México y eventos CDMX**) como en **traslado privado a tu medida**.\n\nRecuerda que apartas cualquier viaje con **$200 MXN**, liquidas 48-24h antes de salir y tienes **10% de descuento** con el cupón **ESTETICA10**. ¿En qué fecha aproximada y para cuántas personas te gustaría viajar?`;
+    // 4. SI HAY COINCIDENCIA EN LA BASE DE DATOS DE 908 DESTINOS Y EVENTOS (MUSEOS, GASTRONOMÍA Y TARIFAS)
+    if (Array.isArray(matchedContext) && matchedContext.length > 0) {
+        const top = matchedContext[0];
+        let detail = `🦅 ¡Hola! Soy **Alma** de *La Ruta del Águila*.\nSobre **${top.name}** (${top.state}):\n- ${top.desc}\n`;
+        if (top.attractions) detail += `- 🏛️ **Lugares y museos por visitar:** ${top.attractions}.\n`;
+        if (top.gastronomy) detail += `- 🍽️ **Platillos típicos imperdibles:** ${top.gastronomy}.\n`;
+        if (top.price_ref) detail += `- 💰 **Tarifa estimada:** ${top.price_ref}.\n`;
+        detail += `\nRecuerda que apartas con **$200 MXN**, liquidas 48-24h antes de salir y tienes **10% de descuento** con el cupón **ESTETICA10**. ¿Para cuántas personas y qué fecha te gustaría cotizar?`;
+        return detail;
+    }
+
+    return `🦅 ¡Hola! Soy **Alma**, tu asesora en *La Ruta del Águila* (San Manuel, Puebla).\nRespecto a tu consulta sobre **"${escapeHtml(raw)}"**, podemos organizarlo tanto en **salida grupal programada** (con mínimo 12 interesados de nuestro catálogo de **908 destinos de México y eventos CDMX**) como en **traslado privado a tu medida**.\n\nRecuerda que apartas cualquier viaje con **$200 MXN**, liquidas 48-24h antes de salir y tienes **10% de descuento** con el cupón **ESTETICA10**. ¿En qué fecha aproximada y para cuántas personas te gustaría viajar?`;
 }
 
 /* =========================================================================
@@ -922,7 +1037,9 @@ function renderCatalogoNacionalGrid() {
             item.name.toLowerCase().includes(query) ||
             item.state.toLowerCase().includes(query) ||
             item.sub.toLowerCase().includes(query) ||
-            (item.desc && item.desc.toLowerCase().includes(query));
+            (item.desc && item.desc.toLowerCase().includes(query)) ||
+            (item.attractions && item.attractions.toLowerCase().includes(query)) ||
+            (item.gastronomy && item.gastronomy.toLowerCase().includes(query));
         return matchMacro && matchSub && matchState && matchTxt;
     });
 
@@ -942,7 +1059,6 @@ function renderCatalogoNacionalGrid() {
     }
 
     container.innerHTML = filtrados.map(d => {
-        const votes = parseInt(localStorage.getItem('kuul_votes_' + d.id) || String((d.id.charCodeAt(d.id.length - 1) % 6) + 3), 10);
         const safeName = escapeHtml(d.name).replace(/'/g, "\\'");
         const safeState = escapeHtml(d.state).replace(/'/g, "\\'");
         return `
@@ -954,7 +1070,9 @@ function renderCatalogoNacionalGrid() {
                 </div>
                 <div style="font-size:0.7rem; color:var(--brand-gold); font-weight:700; text-transform:uppercase; margin-bottom:0.25rem;">${escapeHtml(d.sub)}</div>
                 <h4 style="font-family:'Outfit'; font-size:1.05rem; font-weight:800; color:var(--text-title); margin-bottom:0.35rem; line-height:1.3;">${escapeHtml(d.name)}</h4>
-                <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.45; margin-bottom:0.9rem;">${escapeHtml(d.desc)}</p>
+                <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.45; margin-bottom:0.65rem;">${escapeHtml(d.desc)}</p>
+                ${d.attractions ? `<div style="font-size:0.75rem; color:#cbd5e1; margin-bottom:0.35rem; line-height:1.35;">🏛️ <strong style="color:#38bdf8;">Lugares / Museos:</strong> ${escapeHtml(d.attractions)}</div>` : ''}
+                ${d.gastronomy ? `<div style="font-size:0.75rem; color:#cbd5e1; margin-bottom:0.5rem; line-height:1.35;">🍽️ <strong style="color:#fde047;">Platillos típicos:</strong> ${escapeHtml(d.gastronomy)}</div>` : ''}
                 ${d.price_ref ? `<div style="font-size:0.75rem; font-weight:700; color:var(--brand-green); margin-bottom:0.75rem;"><i class="fas fa-tag"></i> ${escapeHtml(d.price_ref)}</div>` : ''}
             </div>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
@@ -1172,6 +1290,7 @@ function toggleMobileNav() {
 
 window.__vromlixTelemetry = {
     events: [],
+    errorCount: 0,
     track(eventName, payload = {}) {
         const entry = {
             event: eventName,
@@ -1183,16 +1302,38 @@ window.__vromlixTelemetry = {
         try {
             const stored = JSON.parse(localStorage.getItem('vromlix_telemetry_log') || '[]');
             stored.push(entry);
-            localStorage.setItem('vromlix_telemetry_log', JSON.stringify(stored.slice(-100)));
+            localStorage.setItem('vromlix_telemetry_log', JSON.stringify(stored.slice(-150)));
+        } catch (e) {}
+
+        // Sincronizar con Cloudflare Edge CRM / Telemetry (/api/telemetry)
+        try {
+            fetch('/api/telemetry', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(entry),
+                keepalive: true
+            }).catch(() => {});
         } catch (e) {}
     }
 };
 
 window.addEventListener('error', (event) => {
+    window.__vromlixTelemetry.errorCount += 1;
+    const badge = document.getElementById('sentry-health-badge');
+    if (badge) {
+        badge.innerText = `${window.__vromlixTelemetry.errorCount} ALERTA(S) JS`;
+        badge.style.color = '#fde047';
+    }
     window.__vromlixTelemetry.track('js_runtime_error', {
         message: event.message,
         filename: event.filename,
         lineno: event.lineno
+    });
+});
+
+window.addEventListener('unhandledrejection', (event) => {
+    window.__vromlixTelemetry.track('js_unhandled_promise', {
+        reason: String(event.reason || 'unknown')
     });
 });
 
@@ -1215,6 +1356,14 @@ function subscribeMonthlyCatalog(e) {
         localStorage.setItem('alma_newsletter_subs', JSON.stringify(subs));
     } catch (err) {}
     window.__vromlixTelemetry.track('subscribe_monthly_pdf_catalog', { email });
+    try {
+        fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, ts: new Date().toISOString() }),
+            keepalive: true
+        }).catch(() => {});
+    } catch (err) {}
     if (emailInput) emailInput.value = '';
     if (feedback) {
         feedback.style.display = 'block';
