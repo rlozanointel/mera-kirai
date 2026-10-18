@@ -442,11 +442,23 @@
 #destino-detail-modal .lux-modal-card {
     z-index: 10021 !important;
 }
-#wishlist-vote-modal {
+#pay-modal {
     z-index: 10025 !important;
 }
-.ai-chat-window {
+#pay-modal .modal-box {
+    z-index: 10026 !important;
+}
+#wishlist-vote-modal {
     z-index: 10030 !important;
+}
+#whatsapp-choice-modal {
+    z-index: 10035 !important;
+}
+#whatsapp-choice-modal .lux-modal-card {
+    z-index: 10036 !important;
+}
+.ai-chat-window {
+    z-index: 10040 !important;
 }
 
 .lux-modal-close {
@@ -1965,10 +1977,11 @@
     transition: all 0.2s ease;
 }
 .catalogo-filter-pill.active {
-    background: var(--brand-cyan);
-    color: #030712;
-    border-color: var(--brand-cyan);
-    font-weight: 800;
+    background: var(--brand-cyan) !important;
+    color: #030712 !important;
+    border-color: var(--brand-cyan) !important;
+    font-weight: 800 !important;
+    box-shadow: 0 2px 10px rgba(56, 189, 248, 0.45) !important;
 }
 
 @media (max-width: 900px) {
@@ -2217,7 +2230,25 @@
         border-radius: 16px !important;
     }
     .catalogo-minimal-topbar {
-        padding: 0.6rem 0.9rem !important;
+        padding: 0.6rem 54px 0.6rem 0.9rem !important;
+    }
+    .catalogo-pinned-close-btn {
+        position: absolute !important;
+        top: 10px !important;
+        right: 12px !important;
+        z-index: 50 !important;
+        width: 36px !important;
+        height: 36px !important;
+        border-radius: 50% !important;
+        background: rgba(255, 255, 255, 0.15) !important;
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
+        color: #ffffff !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 1.1rem !important;
+        cursor: pointer !important;
+        backdrop-filter: blur(8px) !important;
     }
     .catalogo-minimal-title {
         font-size: 1.05rem !important;
@@ -2240,8 +2271,15 @@
         gap: 5px !important;
     }
     .catalogo-filter-pill {
-        padding: 3px 9px !important;
-        font-size: 0.72rem !important;
+        padding: 5px 11px !important;
+        font-size: 0.74rem !important;
+    }
+    .catalogo-filter-pill.active {
+        background: var(--brand-cyan) !important;
+        color: #030712 !important;
+        border-color: var(--brand-cyan) !important;
+        font-weight: 800 !important;
+        box-shadow: 0 2px 8px rgba(56, 189, 248, 0.45) !important;
     }
     #catalogo-grid-container {
         grid-template-columns: 1fr !important;

@@ -21,8 +21,13 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- Cache Buster Meta Tags -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
     <!-- Motion Lux Design CSS (@santaia.lab standards) -->
-    <link rel="stylesheet" href="css/motion_lux.css?v=20261014">
+    <link rel="stylesheet" href="css/motion_lux.css?v=20261018b">
 
     <!-- Schema.org JSON-LD Structured Data for Local Travel Agency SEO -->
     <script type="application/ld+json">
@@ -2056,13 +2061,13 @@
 
                 <div>
                     <div style="display:flex; gap:10px; padding-top:1rem; border-top:1px solid var(--border-color); flex-wrap:wrap; align-items:center;">
-                        <button class="btn-search-main" style="flex:1; min-width:180px; padding:11px;" onclick="bookActiveDestinoWhatsApp('522228016244')">
-                            <i class="fab fa-whatsapp"></i> Apartar con Alma (222 801 6244)
+                        <button class="btn-search-main" style="flex:1; min-width:180px; padding:12px; font-weight:800;" onclick="bookActiveDestinoPayment()">
+                            <i class="fas fa-ticket-alt"></i> Apartar Asiento ($200 MXN)
                         </button>
-                        <button class="btn-search-main" style="width:auto; padding:11px 14px; background:rgba(34, 197, 94, 0.15); color:#22c55e; border:1px solid rgba(34, 197, 94, 0.35); font-size:0.82rem;" onclick="bookActiveDestinoWhatsApp('353877665536')" title="Soporte Internacional directo con Rogerman">
-                            <i class="fab fa-whatsapp"></i> Rogerman (+353 Irlanda)
+                        <button class="btn-search-main" style="width:auto; padding:12px 18px; background:#22c55e; color:#fff; border:none; font-weight:700; font-size:0.9rem;" onclick="openWhatsAppChoiceModal()">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
                         </button>
-                        <button class="btn-search-main" style="width:auto; padding:11px 16px; background:var(--bg-subtle); color:var(--text-title); border:1px solid var(--border-color);" onclick="closeSharedElementModal()">
+                        <button class="btn-search-main" style="width:auto; padding:12px 16px; background:var(--bg-subtle); color:var(--text-title); border:1px solid var(--border-color);" onclick="closeSharedElementModal()">
                             <i class="fas fa-times"></i> Cerrar
                         </button>
                     </div>
@@ -2070,6 +2075,38 @@
                         Entras en Pre-venta con solo $200 MXN y liquidas 48–24h antes. Garantía de reembolso 100% si no se reúne el cupo mínimo. <a href="terminos.html" target="_blank" style="color:var(--brand-cyan); text-decoration:underline;">Ver Términos y Políticas</a>.
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE ELECCIÓN DE CONTACTO WHATSAPP (ALMA O ROGERMAN) -->
+    <div class="lux-modal-backdrop" id="whatsapp-choice-modal" style="z-index:10035;">
+        <div class="lux-modal-card" style="max-width:440px; padding:1.8rem 1.6rem; text-align:center;">
+            <button class="lux-modal-close" onclick="closeWhatsAppChoiceModal()">✖</button>
+            <div style="width:54px; height:54px; background:rgba(37,211,102,0.18); color:#22c55e; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.8rem; margin:0 auto 0.8rem;">
+                <i class="fab fa-whatsapp"></i>
+            </div>
+            <h3 style="font-family:'Outfit'; font-size:1.3rem; margin-bottom:6px; color:var(--text-title);">Contacto Directo por WhatsApp</h3>
+            <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:1.4rem;">
+                ¿Con quién prefieres comunicarte para tu salida a <strong id="wa-choice-dest-name" style="color:var(--brand-cyan);">este destino</strong>?
+            </p>
+            <div style="display:flex; flex-direction:column; gap:10px; text-align:left;">
+                <button type="button" onclick="sendWhatsAppDirect('alma')" style="display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:14px; background:var(--bg-subtle); border:1px solid rgba(37,211,102,0.4); cursor:pointer; color:var(--text-title); transition:all 0.2s;">
+                    <span style="font-size:1.8rem;">👩‍💼</span>
+                    <div style="flex:1;">
+                        <strong style="display:block; font-size:0.95rem; color:#22c55e;">Hermana Alma (Puebla)</strong>
+                        <small style="color:var(--text-muted); font-size:0.78rem;">Salidas ejecutivas, reservas y operadora fraVEO (222 801 6244)</small>
+                    </div>
+                    <i class="fas fa-chevron-right" style="color:var(--brand-green);"></i>
+                </button>
+                <button type="button" onclick="sendWhatsAppDirect('rogerman')" style="display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:14px; background:var(--bg-subtle); border:1px solid rgba(56,189,248,0.4); cursor:pointer; color:var(--text-title); transition:all 0.2s;">
+                    <span style="font-size:1.8rem;">👨‍💻</span>
+                    <div style="flex:1;">
+                        <strong style="display:block; font-size:0.95rem; color:var(--brand-cyan);">Rogerman (Soporte / Irlanda)</strong>
+                        <small style="color:var(--text-muted); font-size:0.78rem;">Ideal si Alma está en el salón: atención inmediata con IA (+353)</small>
+                    </div>
+                    <i class="fas fa-chevron-right" style="color:var(--brand-cyan);"></i>
+                </button>
             </div>
         </div>
     </div>
@@ -2118,13 +2155,13 @@
     <div class="lux-modal-backdrop" id="modal-catalogo-nacional">
         <div class="lux-modal-card" style="max-width:1060px; width:95vw; max-height:90vh; display:flex; flex-direction:column; padding:0; overflow:hidden;">
             <!-- Google-Search Minimalist Header: Limpio, Ultra-rápido y con Máximo Espacio para las Tarjetas -->
-            <div class="catalogo-minimal-topbar">
+            <div class="catalogo-minimal-topbar" style="position:relative; padding-right:54px;">
                 <div class="catalogo-minimal-title">
                     <span>🗺️</span>
                     <span>Catálogo de Destinos</span>
                     <span id="catalogo-count-label" style="display:none;"></span>
                 </div>
-                <button class="lux-modal-close" style="position:static; width:34px; height:34px; min-width:34px; font-size:1.1rem; display:flex; align-items:center; justify-content:center;" onclick="closeCatalogoNacionalModal()" aria-label="Cerrar catálogo">✖</button>
+                <button class="lux-modal-close" style="position:absolute; top:10px; right:12px; width:34px; height:34px; min-width:34px; font-size:1.1rem; display:flex; align-items:center; justify-content:center; z-index:25;" onclick="closeCatalogoNacionalModal()" aria-label="Cerrar catálogo">✖</button>
             </div>
 
             <!-- Barra de Búsqueda Compacta y Filtro de Estado -->
@@ -2142,12 +2179,13 @@
 
             <!-- Fila Única Deslizable de Colecciones (Pills) -->
             <div class="catalogo-pills-row">
-                <button class="catalogo-filter-pill active" onclick="filterCatalogoCat('todos', this)">Todos</button>
-                <button class="catalogo-filter-pill" onclick="filterCatalogoCat('pueblo_magico', this)">🏔️ Pueblos Mágicos</button>
-                <button class="catalogo-filter-pill" onclick="filterCatalogoCat('barrio_magico', this)">🎨 Barrios Mágicos</button>
-                <button class="catalogo-filter-pill" onclick="filterCatalogoCat('ruta_turistica', this)">🛣️ Rutas Turísticas</button>
-                <button class="catalogo-filter-pill" onclick="filterCatalogoCat('experiencia_comunitaria', this)">🌿 Ecoturismo</button>
-                <button class="catalogo-filter-pill" onclick="filterCatalogoCat('patrimonio_unesco', this)">🏛️ UNESCO</button>
+                <button class="catalogo-filter-pill catalogo-macro-pill active" onclick="filterCatalogoCat('todos', this)">Todos (900+)</button>
+                <button class="catalogo-filter-pill catalogo-macro-pill" onclick="filterCatalogoCat('pueblo_magico', this)">🏔️ Pueblos Mágicos</button>
+                <button class="catalogo-filter-pill catalogo-macro-pill" onclick="filterCatalogoCat('barrio_magico', this)">🎨 Barrios Mágicos</button>
+                <button class="catalogo-filter-pill catalogo-macro-pill" onclick="filterCatalogoCat('ruta_turistica', this)">🛣️ Rutas Turísticas</button>
+                <button class="catalogo-filter-pill catalogo-macro-pill" onclick="filterCatalogoCat('experiencia_comunitaria', this)">🌿 Ecoturismo</button>
+                <button class="catalogo-filter-pill catalogo-macro-pill" onclick="filterCatalogoCat('patrimonio_unesco', this)">🏛️ UNESCO</button>
+                <button class="catalogo-filter-pill catalogo-macro-pill" onclick="filterCatalogoCat('cdmx_evento', this)">🎟️ Cartelera CDMX</button>
             </div>
             <!-- Sub-pills secundarias (solo visibles si se selecciona una macro-categoría) -->
             <div id="catalogo-sub-pills" class="catalogo-pills-row" style="display:none; padding-top:2px;"></div>
@@ -2514,9 +2552,9 @@
     </div>
 
     <!-- Base de Datos de Eventos CDMX, Gran Catálogo Maestro 1000 y Motores Interactivos -->
-    <script src="js/cdmx_events_engine.js?v=20261017"></script>
-    <script src="js/destinos_data.js?v=20261017"></script>
-    <script src="js/sectur_737_catalog.js?v=20261017"></script>
-    <script src="js/app_interactive.js?v=20261017"></script>
+    <script src="js/cdmx_events_engine.js?v=20261018b"></script>
+    <script src="js/destinos_data.js?v=20261018b"></script>
+    <script src="js/sectur_737_catalog.js?v=20261018b"></script>
+    <script src="js/app_interactive.js?v=20261018b"></script>
 </body>
 </html>

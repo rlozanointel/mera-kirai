@@ -421,6 +421,60 @@ function closeSharedElementModal() {
     }
 }
 
+function closeDestinoDetailModal() {
+    closeSharedElementModal();
+}
+
+function bookActiveDestinoPayment() {
+    if (!activeDestino) return;
+    const pkgName = activeDestino.nombre || 'Destino Nacional';
+    let amount = 200;
+    if (activeDestino.precio_texto) {
+        const numMatch = activeDestino.precio_texto.replace(/,/g, '').match(/\d+/);
+        if (numMatch && parseInt(numMatch[0]) > 200) {
+            amount = parseInt(numMatch[0]);
+        }
+    }
+    if (typeof openPaymentModal === 'function') {
+        openPaymentModal(pkgName, amount);
+    }
+}
+
+function openWhatsAppChoiceModal(name, state) {
+    if (name) {
+        activeDestino = activeDestino || {};
+        activeDestino.nombre = name;
+        if (state) activeDestino.estado = state;
+    }
+    const modal = document.getElementById('whatsapp-choice-modal');
+    if (modal) modal.classList.add('active');
+}
+
+function closeWhatsAppChoiceModal() {
+    const modal = document.getElementById('whatsapp-choice-modal');
+    if (modal) modal.classList.remove('active');
+}
+
+function sendWhatsAppDirect(target) {
+    const dName = activeDestino ? (activeDestino.nombre || 'Destino Nacional') : 'Destino Nacional';
+    const dState = activeDestino && activeDestino.estado ? ` (${activeDestino.estado})` : '';
+    const dPrice = activeDestino && activeDestino.precio_texto ? ` [${activeDestino.precio_texto}]` : '';
+    
+    const msg = `Hola, me interesa información y cotización para el viaje a: *${dName}${dState}*${dPrice} con salida desde San Manuel, Puebla. ¿Tienen disponibilidad y fechas programadas?`;
+
+    if (target === 'alma') {
+        window.open(`https://wa.me/522228016244?text=${encodeURIComponent(msg)}`, '_blank');
+    } else if (target === 'rogerman') {
+        window.open(`https://wa.me/353877665536?text=${encodeURIComponent(msg)}`, '_blank');
+    } else if (target === 'ambos') {
+        window.open(`https://wa.me/522228016244?text=${encodeURIComponent(msg)}`, '_blank');
+        setTimeout(() => {
+            window.open(`https://wa.me/353877665536?text=${encodeURIComponent(msg)}`, '_blank');
+        }, 400);
+    }
+    closeWhatsAppChoiceModal();
+}
+
 function bookActiveDestinoWhatsApp(targetNumber) {
     if (!activeDestino) return;
     const phone = targetNumber || '522228016244';
@@ -1000,17 +1054,20 @@ function filterCatalogoCat(macro, btn) {
     catalogoMacroFilter = macro;
     catalogoSubFilter = 'todas';
     resetCatalogoPage();
-    document.querySelectorAll('.catalogo-filter-pill').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.catalogo-macro-pill').forEach(b => b.classList.remove('active'));
     if (btn) btn.classList.add('active');
     renderCatalogoSubPills();
     renderCatalogoNacionalGrid();
 }
 
 function filterCatalogoSub(sub, btn) {
-    catalogoSubFilter = sub;
+    if (catalogoSubFilter === sub) {
+        catalogoSubFilter = 'todas';
+    } else {
+        catalogoSubFilter = sub;
+    }
     resetCatalogoPage();
-    document.querySelectorAll('.catalogo-sub-pill').forEach(b => b.classList.remove('active'));
-    if (btn) btn.classList.add('active');
+    renderCatalogoSubPills();
     renderCatalogoNacionalGrid();
 }
 
@@ -1094,10 +1151,9 @@ function buildAlmaContextualQuoteGreeting(nombre, estado) {
 }
 
 function quoteWithAI(nombre, estado) {
-    closeCatalogoNacionalModal();
     const win = document.getElementById('ai-chat-window');
-    if (win && !win.classList.contains('active')) {
-        toggleAiChat();
+    if (win) {
+        win.classList.add('active');
     }
     const greeting = buildAlmaContextualQuoteGreeting(nombre, estado);
     appendChatMessage('assistant', greeting);
@@ -1110,7 +1166,7 @@ function quoteWithAI(nombre, estado) {
             <span class="ai-chip" onclick="askChipPrompt('Somos 2 personas para cotizar salida a ${safeN}')">👥 2 Personas</span>
             <span class="ai-chip" onclick="askChipPrompt('Somos una familia de 4 a 6 personas para ${safeN}')">👨‍👩‍👧‍👦 Familia (4-6)</span>
             <span class="ai-chip" onclick="askChipPrompt('Queremos viajar el próximo fin de semana a ${safeN}')">🗓️ Fin de Semana</span>
-            <span class="ai-chip" onclick="bookDirectWhatsAppDestino('${safeN}', '${safeS}')">📱 WhatsApp Alma</span>
+            <span class="ai-chip" onclick="openWhatsAppChoiceModal('${safeN}', '${safeS}')">📱 WhatsApp</span>
         `;
     }
 

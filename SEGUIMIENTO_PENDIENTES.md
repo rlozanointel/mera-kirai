@@ -132,4 +132,25 @@ Recordatorios integrados en el panel de control (`#view-gestor`) y programados p
   - Botón de tarjeta renombrado a `Ver Detalles` (sustituyendo "Ver Ficha"). Se mantuvo el clic exclusivo en el botón para prevenir aperturas accidentales al deslizar con el pulgar en el móvil.
   - Soporte de contacto dual integrado: Botón de WhatsApp directo con Alma en Puebla (`+52 222 801 6244`) y botón alternativo de soporte directo con Rogerman en Irlanda (`+353 8 77 66 55 36`).
 
+### 28. Refinamiento Integral de Filtros, Apartado $200 MXN, Modal WhatsApp Dual y Experiencia Móvil (2026-10-18)
+- **Filtros Dinámicos y Deselección Toggle (Punto 1):**
+  - Corregido el bug donde las sub-píldoras no eliminaban la clase `.active` al hacer clic en varias ubicaciones consecutivas.
+  - Ahora cada sub-píldora cuenta con comportamiento toggle: al hacer clic sobre una activa, se desmarca regresando limpiamente a "Todas".
+  - Las macro-píldoras principales (Pueblos Mágicos, Playas & Caribe, Rutas, Conciertos CDMX, VIP Internacional) se sincronizan de forma limpia y exclusiva.
+- **Flujo de Apartado $200 MXN y Modal de Elección WhatsApp (Punto 2):**
+  - Separación clara y profesional de acciones en la ficha del destino (`#destino-detail-modal`):
+    1. **Botón Principal:** `Apartar Asiento ($200 MXN)` que abre de inmediato el modal de pago y selección de asientos Suzuki Ertiga (`#pay-modal`), con desglose SPEI BBVA, depósito en OXXO, pasarela de tarjeta y aplicación del cupón `ESTETICA10`.
+    2. **Botón de Contacto:** `WhatsApp` con icono oficial que despliega un modal elegante (`#whatsapp-choice-modal`) para elegir:
+       - **Hermana Alma (Puebla):** Contacto comercial fraVEO y reservaciones (`+52 222 801 6244`).
+       - **Roger Man (Irlanda):** Soporte inmediato y seguimiento (`+353 8 77 66 55 36`).
+       - **Enviar a Ambos:** Envía el mensaje con el itinerario y precio pre-llenado a ambos números.
+- **Cotización con IA en Capa Superior sin Cerrar Catálogo (Punto 3):**
+  - Se eliminó la llamada destructiva `closeCatalogoNacionalModal()` en el botón `Cotizar`.
+  - La ventana del chat de IA de Alma (`.ai-chat-window`) ahora se abre directamente encima del catálogo (`z-index: 10040 !important`), saludando con los datos y atractivos específicos del destino seleccionado.
+  - Al cerrar la consulta de la IA, el usuario permanece exactamente en la misma sección y tarjeta del catálogo donde estaba.
+- **Optimización Móvil y Neutralización de Caché (Punto 4):**
+  - Botón de cierre `✖` del catálogo fijado de forma absoluta en la esquina superior derecha (`top: 10px; right: 12px; z-index: 50`) con padding de seguridad (`padding-right: 54px`) en `.catalogo-minimal-topbar` para evitar cualquier colisión con el título o buscador.
+  - Actualización de versiones de assets en `index.html` (`?v=20261018b`) y cabeceras `Cache-Control: no-cache` para forzar a los navegadores móviles (Chrome/Safari) a descargar los estilos corregidos de sombreado cyan (`.catalogo-filter-pill.active`) y la jerarquía de modales.
+
+
 
