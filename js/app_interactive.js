@@ -555,7 +555,7 @@ async function sendChatMessage() {
         augmentedHistory.push({
             role: 'user',
             content: `[DATOS DE NUESTRO CATÁLOGO DE 908 DESTINOS Y EVENTOS (NO MENCIONES LA PALABRA SECTUR): ${ragLines}. DIRECTIVAS CLAVE DE ALMA: 
-1) Si es una gran expedición nacional de larga distancia (El Chepe, Barrancas del Cobre, Cancún, Los Cabos, Riviera Maya o Luna de Miel), explica que es un Paquete Integral a la Medida operado con fraVEO (incluye vuelos, traslados, hoteles o tren turístico); no des tarifa de camioneta de $200 y pide fecha estimada, pasajeros y si prefieren recibir su cotización formal en PDF por correo o WhatsApp.
+1) Si es una gran expedición nacional de larga distancia (El Chepe, Barrancas del Cobre, Cancún, Los Cabos, Riviera Maya o Luna de Miel), explica que es un Paquete Integral a la Medida operado con fraVEO (incluye vuelos, traslados, hoteles o tren turístico); no des tarifa de camioneta de $200 y pide fecha estimada, pasajeros y menciona que les enviaremos su cotización formal desglosada en PDF en menos de 2 horas hábiles a su WhatsApp o correo.
 2) Si es un concierto o evento CDMX, resalta que incluye Kit Concierto: Botana + Agua fría + Gafete Conmemorativo de Colección + Seguro de Viajero con chofer sobrio que espera hasta el final.
 3) Mantén respuestas concisas, juveniles y entusiastas.]`
         });
@@ -703,7 +703,7 @@ function generateLocalAlmaResponse(question, matchedContext = []) {
 
     // 1.6. GRANDES EXPEDICIONES NACIONALES Y LUNA DE MIEL (El Chepe, Barrancas, Cancún, Los Cabos, fraVEO)
     if (q.includes('chepe') || q.includes('barrancas') || q.includes('luna de miel') || q.includes('cancun') || q.includes('cancún') || q.includes('cabos') || q.includes('riviera maya') || q.includes('huasteca potosina') || q.includes('avion') || q.includes('avión')) {
-        return `✈️ ¡Hola! Soy **Alma** de *La Ruta del Águila*.\nPara grandes expediciones como **El Tren Chepe (Barrancas del Cobre)** o viajes de **Luna de Miel / Playa**, operamos en alianza oficial con **fraVEO** para armarte un **Paquete Integral a la Medida** (vuelos redondos, traslados ejecutivos, noches de hotel seleccionadas y boletos turísticos).\n\nPara que Alma Luis te prepare una cotización formal desglosada en PDF sin costo:\n1. ¿Para cuántas personas y cuántos días sería el viaje?\n2. ¿En qué mes o fecha tentativa tienen planeado viajar?\n3. ¿Prefieres recibir la propuesta detallada por **correo electrónico** o por **WhatsApp**?`;
+        return `✈️ ¡Hola! Soy **Alma** de *La Ruta del Águila*.\nPara grandes expediciones como **El Tren Chepe (Barrancas del Cobre)** o viajes de **Luna de Miel / Playa**, operamos en alianza oficial con **fraVEO** para armarte un **Paquete Integral a la Medida** (vuelos redondos, traslados ejecutivos, noches de hotel seleccionadas y boletos turísticos).\n\nTe preparamos tu **cotización formal desglosada en PDF en menos de 2 horas hábiles**:\n1. ¿Para cuántas personas y cuántos días sería el viaje?\n2. ¿En qué mes o fecha tentativa tienen planeado viajar?\n3. ¿Prefieres recibir la propuesta detallada por **WhatsApp** o por **correo electrónico**?`;
     }
 
     // 1.7. CONCIERTOS CDMX Y SODA STEREO (Kit Concierto: Botana + Agua + Gafete + Seguro)
@@ -919,6 +919,17 @@ function closeAllModals() {
 let catalogoMacroFilter = 'todos';
 let catalogoSubFilter = 'todas';
 let catalogoStateFilter = 'todos';
+let catalogoCurrentPage = 1;
+const CATALOGO_PAGE_SIZE = 24;
+
+function resetCatalogoPage() {
+    catalogoCurrentPage = 1;
+}
+
+function loadMoreCatalogoItems() {
+    catalogoCurrentPage++;
+    renderCatalogoNacionalGrid();
+}
 
 const MACRO_LABELS = {
     'pueblo_magico': '🏔️ Pueblo Mágico',
@@ -948,6 +959,7 @@ function openCatalogoNacionalModal(initialMacro) {
         catalogoMacroFilter = initialMacro;
         catalogoSubFilter = 'todas';
     }
+    resetCatalogoPage();
     populateCatalogoStatesDropdown();
     renderCatalogoSubPills();
     modal.classList.add('active');
@@ -982,6 +994,7 @@ function populateCatalogoStatesDropdown() {
 function filterCatalogoCat(macro, btn) {
     catalogoMacroFilter = macro;
     catalogoSubFilter = 'todas';
+    resetCatalogoPage();
     document.querySelectorAll('.catalogo-filter-pill').forEach(b => b.classList.remove('active'));
     if (btn) btn.classList.add('active');
     renderCatalogoSubPills();
@@ -990,6 +1003,7 @@ function filterCatalogoCat(macro, btn) {
 
 function filterCatalogoSub(sub, btn) {
     catalogoSubFilter = sub;
+    resetCatalogoPage();
     document.querySelectorAll('.catalogo-sub-pill').forEach(b => b.classList.remove('active'));
     if (btn) btn.classList.add('active');
     renderCatalogoNacionalGrid();
@@ -997,6 +1011,7 @@ function filterCatalogoSub(sub, btn) {
 
 function filterCatalogoState(stateVal) {
     catalogoStateFilter = stateVal || 'todos';
+    resetCatalogoPage();
     renderCatalogoNacionalGrid();
 }
 
@@ -1076,9 +1091,11 @@ function renderCatalogoNacionalGrid() {
         return matchMacro && matchSub && matchState && matchTxt;
     });
 
+    const visibleItems = filtrados.slice(0, catalogoCurrentPage * CATALOGO_PAGE_SIZE);
+
     const countLabel = document.getElementById('catalogo-count-label');
     if (countLabel) {
-        countLabel.innerHTML = `Mostrando <strong>${filtrados.length}</strong> de <strong>${lista.length}</strong> destinos, eventos CDMX y rutas de México`;
+        countLabel.innerHTML = `Mostrando <strong>${visibleItems.length}</strong> de <strong>${filtrados.length}</strong> opciones disponibles (Base Maestra de ${lista.length} destinos y eventos)`;
     }
 
     if (filtrados.length === 0) {
@@ -1091,33 +1108,120 @@ function renderCatalogoNacionalGrid() {
         return;
     }
 
-    container.innerHTML = filtrados.map(d => {
+    let cardsHtml = visibleItems.map(d => {
         const safeName = escapeHtml(d.name).replace(/'/g, "\\'");
         const safeState = escapeHtml(d.state).replace(/'/g, "\\'");
+        const safeId = escapeHtml(String(d.id || d.name)).replace(/'/g, "\\'");
+        const shortDesc = d.desc ? (d.desc.length > 95 ? d.desc.substring(0, 95) + '...' : d.desc) : 'Destino turístico con salida desde Puebla.';
+
         return `
-        <div style="background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:14px; padding:1.15rem; display:flex; flex-direction:column; justify-content:space-between; transition:all 0.2s ease;">
+        <div style="background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:14px; padding:1.1rem; display:flex; flex-direction:column; justify-content:space-between; transition:all 0.2s ease;">
             <div>
-                <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; margin-bottom:0.45rem; flex-wrap:wrap;">
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; margin-bottom:0.4rem; flex-wrap:wrap;">
                     <span style="font-size:0.72rem; font-weight:800; background:rgba(22,163,74,0.14); color:var(--brand-green); padding:3px 8px; border-radius:12px;">📍 ${escapeHtml(d.state)}</span>
                     <span style="font-size:0.7rem; color:var(--brand-cyan); font-weight:700;">${MACRO_LABELS[d.macro] || d.macro}</span>
                 </div>
-                <div style="font-size:0.7rem; color:var(--brand-gold); font-weight:700; text-transform:uppercase; margin-bottom:0.25rem;">${escapeHtml(d.sub)}</div>
+                <div style="font-size:0.68rem; color:var(--brand-gold); font-weight:700; text-transform:uppercase; margin-bottom:0.25rem;">${escapeHtml(d.sub)}</div>
                 <h4 style="font-family:'Outfit'; font-size:1.05rem; font-weight:800; color:var(--text-title); margin-bottom:0.35rem; line-height:1.3;">${escapeHtml(d.name)}</h4>
-                <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.45; margin-bottom:0.65rem;">${escapeHtml(d.desc)}</p>
-                ${d.attractions ? `<div style="font-size:0.75rem; color:#cbd5e1; margin-bottom:0.35rem; line-height:1.35;">🏛️ <strong style="color:#38bdf8;">Lugares / Museos:</strong> ${escapeHtml(d.attractions)}</div>` : ''}
-                ${d.gastronomy ? `<div style="font-size:0.75rem; color:#cbd5e1; margin-bottom:0.5rem; line-height:1.35;">🍽️ <strong style="color:#fde047;">Platillos típicos:</strong> ${escapeHtml(d.gastronomy)}</div>` : ''}
+                <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.45; margin-bottom:0.65rem;">${escapeHtml(shortDesc)}</p>
                 ${d.price_ref ? `<div style="font-size:0.75rem; font-weight:700; color:var(--brand-green); margin-bottom:0.75rem;"><i class="fas fa-tag"></i> ${escapeHtml(d.price_ref)}</div>` : ''}
             </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
-                <button type="button" onclick="quoteWithAI('${safeName}', '${safeState}')" style="background:linear-gradient(135deg, #0284c7, #0369a1); color:#fff; border:none; padding:7px 8px; border-radius:8px; font-weight:700; font-size:0.76rem; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:4px;" title="Cotizar salida y dudas con Alma IA">
-                    <i class="fas fa-wand-magic-sparkles"></i> Cotizar con IA
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; padding-top:0.6rem; border-top:1px solid var(--border-color);">
+                <button type="button" onclick="openCatalogDetailModal('${safeId}')" style="background:var(--bg-card); color:var(--text-title); border:1px solid var(--border-color); padding:7px 8px; border-radius:8px; font-weight:700; font-size:0.76rem; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:4px;" title="Ver ficha completa con museos, platillos y detalles">
+                    <i class="fas fa-eye"></i> Ver Ficha
                 </button>
-                <button type="button" onclick="bookDirectWhatsAppDestino('${safeName}', '${safeState}')" style="background:var(--brand-red); color:#fff; border:none; padding:7px 10px; border-radius:8px; font-weight:700; font-size:0.78rem; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:5px;" title="Preguntar por WhatsApp">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
+                <button type="button" onclick="quoteWithAI('${safeName}', '${safeState}')" style="background:linear-gradient(135deg, #0284c7, #0369a1); color:#fff; border:none; padding:7px 8px; border-radius:8px; font-weight:700; font-size:0.76rem; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:4px;" title="Cotizar salida con Alma IA">
+                    <i class="fas fa-wand-magic-sparkles"></i> Cotizar IA
                 </button>
             </div>
         </div>`;
     }).join('');
+
+    if (filtrados.length > visibleItems.length) {
+        cardsHtml += `
+            <div style="grid-column: 1 / -1; text-align:center; padding:1.5rem 0 1rem;">
+                <button type="button" onclick="loadMoreCatalogoItems()" class="btn-search-main" style="width:auto; padding:11px 26px; background:linear-gradient(135deg, #0284c7, #0369a1); font-size:0.9rem; border-radius:30px; box-shadow:0 4px 15px rgba(2, 132, 199, 0.35); cursor:pointer;">
+                    <i class="fas fa-plus-circle"></i> Cargar más opciones (+24) — Mostrando ${visibleItems.length} de ${filtrados.length}
+                </button>
+            </div>
+        `;
+    }
+
+    container.innerHTML = cardsHtml;
+}
+
+function openCatalogDetailModal(itemId) {
+    const list = getCatalogo737List();
+    const item = list.find(d => String(d.id) === String(itemId)) || list.find(d => d.name.toLowerCase() === String(itemId).toLowerCase());
+    if (!item) return;
+
+    // Check if it's already in DESTINOS_DB (curated trips with pre-configured itinerary)
+    if (typeof DESTINOS_DB !== 'undefined') {
+        const destExisting = DESTINOS_DB.find(d => d.id === item.id || d.nombre.toLowerCase().includes(item.name.toLowerCase()));
+        if (destExisting) {
+            openSharedElementModal(destExisting.id);
+            return;
+        }
+    }
+
+    const modal = document.getElementById('destino-detail-modal');
+    if (!modal) return;
+
+    // Rich fallback images based on category/state
+    let fallbackImg = 'https://images.unsplash.com/photo-1518638150340-f706e86654de?auto=format&fit=crop&w=1200&q=80';
+    if (item.macro === 'cdmx_evento' || item.macro === 'cartelera_cdmx') {
+        fallbackImg = 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80';
+    } else if (item.macro === 'playa_caribe' || (item.state && (item.state.includes('Quintana') || item.state.includes('Baja California') || item.state.includes('Guerrero')))) {
+        fallbackImg = 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80';
+    } else if (item.macro === 'vip_internacional') {
+        fallbackImg = 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';
+    } else if (item.macro === 'bosque_montana' || item.macro === 'pueblo_magico') {
+        fallbackImg = 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80';
+    }
+
+    document.getElementById('modal-dest-img').src = item.imagen || fallbackImg;
+    document.getElementById('modal-dest-badge').innerText = item.sub || (MACRO_LABELS[item.macro] || 'Destino de México');
+    document.getElementById('modal-dest-title').innerText = item.name;
+    document.getElementById('modal-dest-meta').innerHTML = `📍 ${item.state} | ☀️ Clima: ${item.climate || 'Templado'} | 🚐 Saliendo de San Manuel, Puebla`;
+    document.getElementById('modal-dest-desc').innerText = item.desc;
+    document.getElementById('modal-dest-price').innerText = item.price_ref || 'Cotización a tu medida (Pre-venta $200)';
+
+    // Rich Attractions & Gastronomy into Itinerary container
+    const itinContainer = document.getElementById('modal-dest-itinerario');
+    itinContainer.innerHTML = `
+        <div class="itin-item" style="margin-bottom:0.8rem;">
+            <span class="itin-hour" style="color:var(--brand-cyan);"><i class="fas fa-landmark"></i> Lugares & Museos</span>
+            <span class="itin-text" style="color:var(--text-body);">${escapeHtml(item.attractions || 'Centro histórico, plazas tradicionales y miradores paisajísticos.')}</span>
+        </div>
+        <div class="itin-item" style="margin-bottom:0.8rem;">
+            <span class="itin-hour" style="color:var(--brand-gold);"><i class="fas fa-utensils"></i> Gastronomía Típica</span>
+            <span class="itin-text" style="color:var(--text-body);">${escapeHtml(item.gastronomy || 'Platillos tradicionales, antojitos y sabores de la región.')}</span>
+        </div>
+        ${item.festivities ? `
+        <div class="itin-item">
+            <span class="itin-hour" style="color:var(--brand-red);"><i class="fas fa-calendar-star"></i> Festividades</span>
+            <span class="itin-text" style="color:var(--text-body);">${escapeHtml(item.festivities)}</span>
+        </div>` : ''}
+    `;
+
+    // Qué Incluye
+    const incContainer = document.getElementById('modal-dest-incluye');
+    incContainer.innerHTML = `
+        <li><i class="fas fa-check-circle" style="color:var(--brand-green);"></i> Transporte ejecutivo redondo saliendo de Jardines de San Manuel, Puebla</li>
+        <li><i class="fas fa-check-circle" style="color:var(--brand-green);"></i> Chofer sobrio profesional y combustible incluido</li>
+        <li><i class="fas fa-check-circle" style="color:var(--brand-green);"></i> Seguro de cobertura amplia de viajero a bordo</li>
+        <li><i class="fas fa-check-circle" style="color:var(--brand-green);"></i> Apartado en Pre-venta con solo $200 MXN por persona</li>
+        <li><i class="fas fa-check-circle" style="color:var(--brand-green);"></i> Atención directa y personalizada con Alma Luis (222 801 6244)</li>
+    `;
+
+    activeDestino = {
+        nombre: item.name,
+        precio_texto: item.price_ref || 'Cotización personalizada',
+        estado: item.state
+    };
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
 }
 
 function bookDirectWhatsAppDestino(nombre, estado) {

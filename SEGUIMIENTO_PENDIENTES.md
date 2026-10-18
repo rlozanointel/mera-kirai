@@ -84,3 +84,26 @@ Recordatorios integrados en el panel de control (`#view-gestor`) y programados p
 
 ## 📌 Punto 25: Aislamiento Móvil Estricto (`@media (max-width: 768px)`)
 - Todas las adaptaciones móviles (apilado de columnas en modales, chat flotante adaptativo al 100vw - 24px, catálogo nacional vertical y distribución táctil) están aisladas en CSS responsivo, garantizando que la versión de laptop y monitores de escritorio (> 768px) permanezca **100% intacta e idéntica a la visualización aprobada**.
+
+---
+
+## 📌 Punto 26: Erradicación de Desbordes Móviles, Tarjetas Compactas y Paginación Instantánea (Árbitro Adversarial)
+- **Bloqueo Antidesbordamiento Horizontal Estricto:**
+  - `html, body` asegurados con `overflow-x: hidden !important; width: 100% !important; max-width: 100vw !important; position: relative !important;`.
+  - `.slider-wrapper` configurado con `overflow: hidden; max-width: 100vw;` y `perspective: none` en móvil, eliminando la proyección 3D que expandía el ancho de página.
+- **Anclaje Físico de Botones Flotantes y Chat Alma IA:**
+  - WhatsApp (`.whatsapp-float` a `bottom: 18px; right: 16px; z-index: 9998`).
+  - Orbe IA (`.ai-orb-trigger` a `bottom: 80px; right: 16px; z-index: 9999`).
+  - Ventana Chat (`.ai-chat-window` anclada con `left: 8px; right: 8px; width: auto; max-width: calc(100vw - 16px); bottom: 74px; height: 72vh; z-index: 10005;` con `overscroll-behavior: contain` y `overflow-y: auto` táctil suave).
+  - Botón de cierre `✖` ampliado con área táctil accesible de 44x44px.
+  - Input con `font-size: 16px` para prevenir el zoom automático no deseado de iOS Safari.
+- **Compactación de Tarjetas de Salidas Confirmadas (EBS 2026 y Xochimilco):**
+  - Se eliminaron las largas listas de viñetas que duplicaban el itinerario en la vista principal.
+  - Se reemplazaron por chips/pills elegantes y concisos (`🚐 Redondo San Manuel`, `🛡️ Seguro de Viajero`, `🧳 Espacio Insumos`, `🛶 Trajinera Iluminada`).
+  - Botón claro `✨ Ver Itinerario y Detalles` que despliega el modal interactivo con el cronograma minuto a minuto sin forzar desplazamientos verticales infinitos en laptop ni en celular.
+- **Paginación en Lotes y Carga Rápida del Catálogo Maestro:**
+  - Carga inicial ultrarrápida de 24 tarjetas (< 10ms) en lugar de renderizar los 909 destinos simultáneamente.
+  - Botón ergonómico `Cargar más opciones (+24)` para navegación fluida y sin congelamiento de memoria.
+  - Tarjetas compactas con botón `🔍 Ver Ficha` conectado al modal interactivo de atracciones y gastronomía típica.
+- **Compromiso Formal de Cotización:** Se integró en la IA y en la documentación la garantía de entrega de cotización desglosada en PDF en menos de 2 horas hábiles.
+

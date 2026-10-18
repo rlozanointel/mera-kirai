@@ -137,10 +137,19 @@
             transition: background-color 0.3s, color 0.3s, border-color 0.3s;
         }
 
+        html, body {
+            overflow-x: hidden !important;
+            width: 100% !important;
+            max-width: 100vw !important;
+            position: relative !important;
+        }
+
         body {
             background-color: var(--bg-page);
             color: var(--text-body);
             line-height: 1.6;
+            margin: 0;
+            padding: 0;
         }
 
         /* Top Announcement Bar */
@@ -648,7 +657,7 @@
             justify-content: center;
             font-size: 2.2rem;
             box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-            z-index: 999;
+            z-index: 9998;
             text-decoration: none;
         }
 
@@ -826,31 +835,33 @@
                 </div>
                 <div class="confirmed-info-side">
                     <div>
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem; flex-wrap:wrap; gap:8px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.45rem; flex-wrap:wrap; gap:8px;">
                             <span style="font-size:0.85rem; font-weight:700; color:var(--brand-cyan);"><i class="fas fa-map-marker-alt"></i> Centro Citibanamex, CDMX</span>
-                            <span style="background:rgba(2,132,199,0.14); color:var(--brand-cyan); padding:4px 12px; border-radius:20px; font-weight:800; font-size:0.82rem;">🚐 Transporte Redondo Ejecutivo (Boleto Expo Aparte)</span>
+                            <span style="background:rgba(2,132,199,0.14); color:var(--brand-cyan); padding:4px 12px; border-radius:20px; font-weight:800; font-size:0.8rem;">🚐 Transporte Redondo</span>
                         </div>
-                        <h3 style="font-family:'Outfit'; font-size:1.45rem; font-weight:800; color:var(--text-title); margin-bottom:0.4rem;">Expo Beauty Show (EBS 2026)</h3>
-                        <p style="font-size:0.92rem; color:var(--text-muted); margin-bottom:0.8rem;">
-                            Salida ejecutiva directa al magno evento de estilismo y belleza profesional en Centro Citibanamex CDMX.
+                        <h3 style="font-family:'Outfit'; font-size:1.4rem; font-weight:800; color:var(--text-title); margin-bottom:0.35rem;">Expo Beauty Show (EBS 2026)</h3>
+                        <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:0.6rem; line-height:1.45;">
+                            Salida ejecutiva directa al evento líder de estilismo y belleza profesional. Apartas tu lugar con solo $200 MXN.
                         </p>
-                        <ul style="list-style:none; padding:0; margin:0 0 1rem; font-size:0.88rem; color:var(--text-body); display:grid; gap:4px;">
-                            <li><i class="fas fa-check-circle" style="color:var(--brand-green); margin-right:6px;"></i> Transporte redondo directo desde San Manuel (07:30 a 19:45 hrs)</li>
-                            <li><i class="fas fa-check-circle" style="color:var(--brand-green); margin-right:6px;"></i> Amplio espacio para tus compras de insumos y herramientas (boleto a la Expo es aparte)</li>
-                            <li><i class="fas fa-check-circle" style="color:var(--brand-green); margin-right:6px;"></i> Seguro de cobertura amplia de viajero a bordo</li>
-                        </ul>
+                        <!-- Chips compactos de amenidades principales -->
+                        <div style="display:flex; flex-wrap:wrap; gap:6px; margin:0.3rem 0 0.85rem;">
+                            <span style="font-size:0.78rem; font-weight:700; background:rgba(22,163,74,0.12); color:var(--brand-green); padding:4px 10px; border-radius:12px; display:inline-flex; align-items:center; gap:5px;"><i class="fas fa-bus"></i> Redondo San Manuel</span>
+                            <span style="font-size:0.78rem; font-weight:700; background:rgba(2,132,199,0.12); color:var(--brand-cyan); padding:4px 10px; border-radius:12px; display:inline-flex; align-items:center; gap:5px;"><i class="fas fa-shield-halved"></i> Seguro de Viajero</span>
+                            <span style="font-size:0.78rem; font-weight:700; background:rgba(217,119,6,0.12); color:var(--brand-gold); padding:4px 10px; border-radius:12px; display:inline-flex; align-items:center; gap:5px;"><i class="fas fa-suitcase"></i> Espacio Insumos</span>
+                            <span style="font-size:0.78rem; font-weight:700; background:rgba(216,37,44,0.1); color:var(--brand-red); padding:4px 10px; border-radius:12px; display:inline-flex; align-items:center; gap:5px;"><i class="fas fa-info-circle"></i> Boleto Expo Aparte</span>
+                        </div>
                     </div>
 
-                    <div style="display:flex; justify-content:space-between; align-items:center; padding-top:1rem; border-top:1px solid var(--border-color); flex-wrap:wrap; gap:12px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; padding-top:0.85rem; border-top:1px solid var(--border-color); flex-wrap:wrap; gap:10px;">
                         <div>
-                            <span style="font-size:0.75rem; color:var(--text-muted); display:block; font-weight:700;">TRANSPORTE REDONDO EJECUTIVO</span>
-                            <div class="price-amount" style="font-size:1.6rem; color:var(--brand-red);">$700 MXN <small style="font-size:0.8rem; color:var(--brand-green); font-weight:800;">(Pre-venta con $200)</small></div>
+                            <span style="font-size:0.73rem; color:var(--text-muted); display:block; font-weight:700;">TRANSPORTE REDONDO EJECUTIVO</span>
+                            <div class="price-amount" style="font-size:1.5rem; color:var(--brand-red);">$700 MXN <small style="font-size:0.8rem; color:var(--brand-green); font-weight:800;">(Pre-venta con $200)</small></div>
                         </div>
-                        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                            <button class="btn-search-main" style="width:auto; padding:9px 18px; background:var(--bg-subtle); color:var(--text-title); border:1px solid var(--border-color); font-size:0.88rem;" onclick="openSharedElementModal('expo-beauty-show-citibanamex')">
-                                <i class="fas fa-eye"></i> Ver Itinerario
+                        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                            <button class="btn-search-main" style="width:auto; padding:9px 16px; background:var(--bg-subtle); color:var(--text-title); border:1px solid var(--border-color); font-size:0.86rem;" onclick="openSharedElementModal('expo-beauty-show-citibanamex')">
+                                <i class="fas fa-list-check"></i> Ver Itinerario y Detalles
                             </button>
-                            <button class="btn-search-main" style="width:auto; padding:9px 20px; background:var(--brand-red); font-size:0.88rem;" onclick="openPaymentModal('Expo Beauty Show EBS Citibanamex (Solo Transporte)', 700)">
+                            <button class="btn-search-main" style="width:auto; padding:9px 18px; background:var(--brand-red); font-size:0.86rem;" onclick="openPaymentModal('Expo Beauty Show EBS Citibanamex (Solo Transporte)', 700)">
                                 <i class="fas fa-ticket-alt"></i> Pre-venta ($200)
                             </button>
                         </div>
@@ -866,32 +877,33 @@
                 </div>
                 <div class="confirmed-info-side">
                     <div>
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem; flex-wrap:wrap; gap:8px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.45rem; flex-wrap:wrap; gap:8px;">
                             <span style="font-size:0.85rem; font-weight:700; color:var(--brand-cyan);"><i class="fas fa-water"></i> Canales de Cuemanco, Xochimilco</span>
-                            <span style="background:rgba(217,119,6,0.15); color:var(--brand-gold); padding:4px 12px; border-radius:20px; font-weight:800; font-size:0.82rem;">🛶 Trajinera + Obra Incluida</span>
+                            <span style="background:rgba(217,119,6,0.15); color:var(--brand-gold); padding:4px 12px; border-radius:20px; font-weight:800; font-size:0.8rem;">🛶 Trajinera + Obra</span>
                         </div>
-                        <h3 style="font-family:'Outfit'; font-size:1.45rem; font-weight:800; color:var(--text-title); margin-bottom:0.4rem;">La Llorona en Xochimilco</h3>
-                        <p style="font-size:0.92rem; color:var(--text-muted); margin-bottom:0.8rem;">
-                            Travesía mística en trajinera al atardecer y función teatral en el islote de la Laguna de Tlilac. Fechas: Fines de semana (Viernes, Sábados y Domingos de Octubre y Noviembre).
+                        <h3 style="font-family:'Outfit'; font-size:1.4rem; font-weight:800; color:var(--text-title); margin-bottom:0.35rem;">La Llorona en Xochimilco</h3>
+                        <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:0.6rem; line-height:1.45;">
+                            Travesía mística en trajinera y función teatral en el islote de Laguna de Tlilac. Fines de semana de Octubre y Noviembre.
                         </p>
-                        <ul style="list-style:none; padding:0; margin:0 0 1rem; font-size:0.88rem; color:var(--text-body); display:grid; gap:4px;">
-                            <li><i class="fas fa-check-circle" style="color:var(--brand-gold); margin-right:6px;"></i> Paseo en trajinera tradicional iluminada</li>
-                            <li><i class="fas fa-check-circle" style="color:var(--brand-gold); margin-right:6px;"></i> Boleto oficial para la obra teatral en vivo en el islote</li>
-                            <li><i class="fas fa-check-circle" style="color:var(--brand-gold); margin-right:6px;"></i> Transporte redondo ejecutivo desde San Manuel (14:30 a 00:00 hrs)</li>
-                            <li><i class="fas fa-info-circle" style="color:var(--brand-cyan); margin-right:6px;"></i> <em>Opción solo transporte redondo disponible a $650 MXN</em></li>
-                        </ul>
+                        <!-- Chips compactos de amenidades principales -->
+                        <div style="display:flex; flex-wrap:wrap; gap:6px; margin:0.3rem 0 0.85rem;">
+                            <span style="font-size:0.78rem; font-weight:700; background:rgba(217,119,6,0.14); color:var(--brand-gold); padding:4px 10px; border-radius:12px; display:inline-flex; align-items:center; gap:5px;"><i class="fas fa-ship"></i> Trajinera Iluminada</span>
+                            <span style="font-size:0.78rem; font-weight:700; background:rgba(217,119,6,0.14); color:var(--brand-gold); padding:4px 10px; border-radius:12px; display:inline-flex; align-items:center; gap:5px;"><i class="fas fa-masks-theater"></i> Boleto Obra en Islote</span>
+                            <span style="font-size:0.78rem; font-weight:700; background:rgba(2,132,199,0.12); color:var(--brand-cyan); padding:4px 10px; border-radius:12px; display:inline-flex; align-items:center; gap:5px;"><i class="fas fa-bus"></i> Redondo San Manuel</span>
+                            <span style="font-size:0.78rem; font-weight:700; background:rgba(22,163,74,0.12); color:var(--brand-green); padding:4px 10px; border-radius:12px; display:inline-flex; align-items:center; gap:5px;"><i class="fas fa-shield-halved"></i> Seguro de Viajero</span>
+                        </div>
                     </div>
 
-                    <div style="display:flex; justify-content:space-between; align-items:center; padding-top:1rem; border-top:1px solid var(--border-color); flex-wrap:wrap; gap:12px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; padding-top:0.85rem; border-top:1px solid var(--border-color); flex-wrap:wrap; gap:10px;">
                         <div>
-                            <span style="font-size:0.75rem; color:var(--text-muted); display:block; font-weight:700;">PAQUETE COMPLETO CON BOLETO</span>
-                            <div class="price-amount" style="font-size:1.6rem; color:var(--brand-red);">$1,350 MXN <small style="font-size:0.8rem; color:var(--brand-gold); font-weight:800;">(Pre-venta con $200)</small></div>
+                            <span style="font-size:0.73rem; color:var(--text-muted); display:block; font-weight:700;">PAQUETE COMPLETO CON BOLETO</span>
+                            <div class="price-amount" style="font-size:1.5rem; color:var(--brand-red);">$1,350 MXN <small style="font-size:0.8rem; color:var(--brand-gold); font-weight:800;">(Pre-venta con $200)</small></div>
                         </div>
-                        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                            <button class="btn-search-main" style="width:auto; padding:9px 18px; background:var(--bg-subtle); color:var(--text-title); border:1px solid var(--border-color); font-size:0.88rem;" onclick="openSharedElementModal('llorona-xochimilco-nocturna')">
-                                <i class="fas fa-eye"></i> Ver Itinerario
+                        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                            <button class="btn-search-main" style="width:auto; padding:9px 16px; background:var(--bg-subtle); color:var(--text-title); border:1px solid var(--border-color); font-size:0.86rem;" onclick="openSharedElementModal('llorona-xochimilco-nocturna')">
+                                <i class="fas fa-list-check"></i> Ver Itinerario y Detalles
                             </button>
-                            <button class="btn-search-main" style="width:auto; padding:9px 20px; background:var(--brand-gold); color:#000; font-size:0.88rem;" onclick="openPaymentModal('La Llorona en Xochimilco Trajinera VIP', 1350)">
+                            <button class="btn-search-main" style="width:auto; padding:9px 18px; background:var(--brand-gold); color:#000; font-size:0.86rem;" onclick="openPaymentModal('La Llorona en Xochimilco Trajinera VIP', 1350)">
                                 <i class="fas fa-ticket-alt"></i> Pre-venta ($200)
                             </button>
                         </div>
@@ -2117,7 +2129,7 @@
                         <i class="fas fa-search" style="position:absolute; left:14px; top:11px; color:var(--text-muted);"></i>
                         <input type="text" id="catalogo-modal-search" placeholder="Busca entre más de 1,000 opciones por evento, artista, recinto, destino, estado o ruta..." 
                                style="width:100%; padding:9px 14px 9px 38px; border-radius:10px; border:1px solid var(--border-color); background:var(--bg-subtle); color:var(--text-title); font-size:0.88rem;"
-                               oninput="renderCatalogoNacionalGrid()">
+                               oninput="if(typeof resetCatalogoPage === 'function') resetCatalogoPage(); renderCatalogoNacionalGrid()">
                     </div>
                     <select id="catalogo-state-select" onchange="filterCatalogoState(this.value)" style="padding:9px 12px; border-radius:10px; border:1px solid var(--border-color); background:var(--bg-subtle); color:var(--text-title); font-size:0.85rem; font-weight:700;">
                         <option value="todos">🇲🇽 Todos los Estados</option>
@@ -2125,7 +2137,7 @@
                 </div>
                 <!-- Nivel 1: 5 Grandes Colecciones Oficiales -->
                 <div style="display:flex; gap:7px; overflow-x:auto; padding-bottom:2px;">
-                    <button class="catalogo-filter-pill active" onclick="filterCatalogoCat('todos', this)" style="padding:5px 12px; border-radius:20px; font-size:0.78rem; font-weight:800; border:1px solid var(--border-color); background:var(--bg-subtle); color:var(--text-title); cursor:pointer; white-space:nowrap;">Todos (737)</button>
+                    <button class="catalogo-filter-pill active" onclick="filterCatalogoCat('todos', this)" style="padding:5px 12px; border-radius:20px; font-size:0.78rem; font-weight:800; border:1px solid var(--border-color); background:var(--bg-subtle); color:var(--text-title); cursor:pointer; white-space:nowrap;">Todos (900+)</button>
                     <button class="catalogo-filter-pill" onclick="filterCatalogoCat('pueblo_magico', this)" style="padding:5px 12px; border-radius:20px; font-size:0.78rem; font-weight:800; border:1px solid var(--border-color); background:var(--bg-subtle); color:var(--text-title); cursor:pointer; white-space:nowrap;">🏔️ Pueblos Mágicos (177)</button>
                     <button class="catalogo-filter-pill" onclick="filterCatalogoCat('barrio_magico', this)" style="padding:5px 12px; border-radius:20px; font-size:0.78rem; font-weight:800; border:1px solid var(--border-color); background:var(--bg-subtle); color:var(--text-title); cursor:pointer; white-space:nowrap;">🎨 Barrios Mágicos (32)</button>
                     <button class="catalogo-filter-pill" onclick="filterCatalogoCat('ruta_turistica', this)" style="padding:5px 12px; border-radius:20px; font-size:0.78rem; font-weight:800; border:1px solid var(--border-color); background:var(--bg-subtle); color:var(--text-title); cursor:pointer; white-space:nowrap;">🛣️ Rutas Turísticas (307)</button>
@@ -2474,7 +2486,7 @@
                     <small style="color:#38bdf8; font-size:0.75rem;">● En línea • La Ruta del Águila</small>
                 </div>
             </div>
-            <button style="background:none; border:none; color:#fff; font-size:1.2rem; cursor:pointer;" onclick="toggleAiChat()">✖</button>
+            <button style="background:rgba(255,255,255,0.1); border:none; color:#fff; font-size:1.3rem; cursor:pointer; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:background 0.2s;" onclick="toggleAiChat()" aria-label="Cerrar chat de asistente">✖</button>
         </div>
 
         <div class="ai-chat-messages" id="ai-chat-messages">
