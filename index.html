@@ -2055,11 +2055,14 @@
                 </div>
 
                 <div>
-                    <div style="display:flex; gap:10px; padding-top:1rem; border-top:1px solid var(--border-color); flex-wrap:wrap;">
-                        <button class="btn-search-main" style="flex:1; min-width:190px; padding:11px;" onclick="bookActiveDestinoWhatsApp()">
-                            <i class="fab fa-whatsapp"></i> Pre-venta ($200 MXN)
+                    <div style="display:flex; gap:10px; padding-top:1rem; border-top:1px solid var(--border-color); flex-wrap:wrap; align-items:center;">
+                        <button class="btn-search-main" style="flex:1; min-width:180px; padding:11px;" onclick="bookActiveDestinoWhatsApp('522228016244')">
+                            <i class="fab fa-whatsapp"></i> Apartar con Alma (222 801 6244)
                         </button>
-                        <button class="btn-search-main" style="width:auto; padding:11px 18px; background:var(--bg-subtle); color:var(--text-title); border:1px solid var(--border-color);" onclick="closeSharedElementModal()">
+                        <button class="btn-search-main" style="width:auto; padding:11px 14px; background:rgba(34, 197, 94, 0.15); color:#22c55e; border:1px solid rgba(34, 197, 94, 0.35); font-size:0.82rem;" onclick="bookActiveDestinoWhatsApp('353877665536')" title="Soporte Internacional directo con Rogerman">
+                            <i class="fab fa-whatsapp"></i> Rogerman (+353 Irlanda)
+                        </button>
+                        <button class="btn-search-main" style="width:auto; padding:11px 16px; background:var(--bg-subtle); color:var(--text-title); border:1px solid var(--border-color);" onclick="closeSharedElementModal()">
                             <i class="fas fa-times"></i> Cerrar
                         </button>
                     </div>
@@ -2114,39 +2117,40 @@
     <!-- 4. MODAL CATÁLOGO MAESTRO DE DESTINOS, CARTELERA CDMX Y RUTAS DE MÉXICO (1,000 OPCIONES) -->
     <div class="lux-modal-backdrop" id="modal-catalogo-nacional">
         <div class="lux-modal-card" style="max-width:1060px; width:95vw; max-height:90vh; display:flex; flex-direction:column; padding:0; overflow:hidden;">
-            <div style="padding:1.2rem 1.6rem; border-bottom:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center; background:var(--bg-subtle);">
-                <div>
-                    <h3 style="font-family:'Outfit'; font-size:1.35rem; color:var(--text-title); margin:0 0 3px;">🗺️ Catálogo Maestro de Destinos, Cartelera CDMX y Rutas de México (1,000 Opciones)</h3>
-                    <small style="color:var(--text-muted); font-size:0.82rem;" id="catalogo-count-label">Destinos Nacionales • Cartelera CDMX en Vivo • Pueblos Mágicos • Rutas Turísticas • Patrimonios UNESCO</small>
+            <!-- Google-Search Minimalist Header: Limpio, Ultra-rápido y con Máximo Espacio para las Tarjetas -->
+            <div class="catalogo-minimal-topbar">
+                <div class="catalogo-minimal-title">
+                    <span>🗺️</span>
+                    <span>Catálogo de Destinos</span>
+                    <span id="catalogo-count-label" style="display:none;"></span>
                 </div>
-                <button class="lux-modal-close" style="position:static;" onclick="closeCatalogoNacionalModal()">✖</button>
+                <button class="lux-modal-close" style="position:static; width:34px; height:34px; min-width:34px; font-size:1.1rem; display:flex; align-items:center; justify-content:center;" onclick="closeCatalogoNacionalModal()" aria-label="Cerrar catálogo">✖</button>
             </div>
 
-            <!-- Filtros de 2 Niveles (5 Macro-Colecciones + 27 Subdivisiones Oficiales + Estado + Buscador) -->
-            <div style="padding:0.95rem 1.6rem; border-bottom:1px solid var(--border-color); background:var(--bg-card); display:flex; flex-direction:column; gap:9px;">
-                <div style="display:grid; grid-template-columns:1fr 220px; gap:10px;">
-                    <div style="position:relative;">
-                        <i class="fas fa-search" style="position:absolute; left:14px; top:11px; color:var(--text-muted);"></i>
-                        <input type="text" id="catalogo-modal-search" placeholder="Busca entre más de 1,000 opciones por evento, artista, recinto, destino, estado o ruta..." 
-                               style="width:100%; padding:9px 14px 9px 38px; border-radius:10px; border:1px solid var(--border-color); background:var(--bg-subtle); color:var(--text-title); font-size:0.88rem;"
-                               oninput="if(typeof resetCatalogoPage === 'function') resetCatalogoPage(); renderCatalogoNacionalGrid()">
-                    </div>
-                    <select id="catalogo-state-select" onchange="filterCatalogoState(this.value)" style="padding:9px 12px; border-radius:10px; border:1px solid var(--border-color); background:var(--bg-subtle); color:var(--text-title); font-size:0.85rem; font-weight:700;">
-                        <option value="todos">🇲🇽 Todos los Estados</option>
-                    </select>
+            <!-- Barra de Búsqueda Compacta y Filtro de Estado -->
+            <div class="catalogo-minimal-searchbar">
+                <div class="catalogo-search-input-wrap">
+                    <i class="fas fa-search catalogo-search-icon"></i>
+                    <input type="text" id="catalogo-modal-search" placeholder="Busca por destino, playa, evento, artista o estado..." 
+                           class="catalogo-minimal-input"
+                           oninput="if(typeof resetCatalogoPage === 'function') resetCatalogoPage(); renderCatalogoNacionalGrid()">
                 </div>
-                <!-- Nivel 1: 5 Grandes Colecciones Oficiales -->
-                <div style="display:flex; gap:7px; overflow-x:auto; padding-bottom:2px;">
-                    <button class="catalogo-filter-pill active" onclick="filterCatalogoCat('todos', this)" style="padding:5px 12px; border-radius:20px; font-size:0.78rem; font-weight:800; border:1px solid var(--border-color); background:var(--bg-subtle); color:var(--text-title); cursor:pointer; white-space:nowrap;">Todos (900+)</button>
-                    <button class="catalogo-filter-pill" onclick="filterCatalogoCat('pueblo_magico', this)" style="padding:5px 12px; border-radius:20px; font-size:0.78rem; font-weight:800; border:1px solid var(--border-color); background:var(--bg-subtle); color:var(--text-title); cursor:pointer; white-space:nowrap;">🏔️ Pueblos Mágicos (177)</button>
-                    <button class="catalogo-filter-pill" onclick="filterCatalogoCat('barrio_magico', this)" style="padding:5px 12px; border-radius:20px; font-size:0.78rem; font-weight:800; border:1px solid var(--border-color); background:var(--bg-subtle); color:var(--text-title); cursor:pointer; white-space:nowrap;">🎨 Barrios Mágicos (32)</button>
-                    <button class="catalogo-filter-pill" onclick="filterCatalogoCat('ruta_turistica', this)" style="padding:5px 12px; border-radius:20px; font-size:0.78rem; font-weight:800; border:1px solid var(--border-color); background:var(--bg-subtle); color:var(--text-title); cursor:pointer; white-space:nowrap;">🛣️ Rutas Turísticas (307)</button>
-                    <button class="catalogo-filter-pill" onclick="filterCatalogoCat('experiencia_comunitaria', this)" style="padding:5px 12px; border-radius:20px; font-size:0.78rem; font-weight:800; border:1px solid var(--border-color); background:var(--bg-subtle); color:var(--text-title); cursor:pointer; white-space:nowrap;">🌿 Experiencias Comunitarias (186)</button>
-                    <button class="catalogo-filter-pill" onclick="filterCatalogoCat('patrimonio_unesco', this)" style="padding:5px 12px; border-radius:20px; font-size:0.78rem; font-weight:800; border:1px solid var(--border-color); background:var(--bg-subtle); color:var(--text-title); cursor:pointer; white-space:nowrap;">🏛️ Patrimonios UNESCO (35)</button>
-                </div>
-                <!-- Nivel 2: Subdivisiones Oficiales por Vocación / Categoría -->
-                <div id="catalogo-sub-pills" style="display:flex; gap:6px; overflow-x:auto; padding-bottom:4px;"></div>
+                <select id="catalogo-state-select" onchange="filterCatalogoState(this.value)" class="catalogo-minimal-select">
+                    <option value="todos">🇲🇽 Estados</option>
+                </select>
             </div>
+
+            <!-- Fila Única Deslizable de Colecciones (Pills) -->
+            <div class="catalogo-pills-row">
+                <button class="catalogo-filter-pill active" onclick="filterCatalogoCat('todos', this)">Todos</button>
+                <button class="catalogo-filter-pill" onclick="filterCatalogoCat('pueblo_magico', this)">🏔️ Pueblos Mágicos</button>
+                <button class="catalogo-filter-pill" onclick="filterCatalogoCat('barrio_magico', this)">🎨 Barrios Mágicos</button>
+                <button class="catalogo-filter-pill" onclick="filterCatalogoCat('ruta_turistica', this)">🛣️ Rutas Turísticas</button>
+                <button class="catalogo-filter-pill" onclick="filterCatalogoCat('experiencia_comunitaria', this)">🌿 Ecoturismo</button>
+                <button class="catalogo-filter-pill" onclick="filterCatalogoCat('patrimonio_unesco', this)">🏛️ UNESCO</button>
+            </div>
+            <!-- Sub-pills secundarias (solo visibles si se selecciona una macro-categoría) -->
+            <div id="catalogo-sub-pills" class="catalogo-pills-row" style="display:none; padding-top:2px;"></div>
 
             <!-- Grid de Destinos con Scroll Suave -->
             <div id="catalogo-grid-container" style="padding:1.3rem 1.6rem; overflow-y:auto; flex:1; display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:1rem;">

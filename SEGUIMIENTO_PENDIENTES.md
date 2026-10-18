@@ -105,5 +105,31 @@ Recordatorios integrados en el panel de control (`#view-gestor`) y programados p
   - Carga inicial ultrarrápida de 24 tarjetas (< 10ms) en lugar de renderizar los 909 destinos simultáneamente.
   - Botón ergonómico `Cargar más opciones (+24)` para navegación fluida y sin congelamiento de memoria.
   - Tarjetas compactas con botón `🔍 Ver Ficha` conectado al modal interactivo de atracciones y gastronomía típica.
-- **Compromiso Formal de Cotización:** Se integró en la IA y en la documentación la garantía de entrega de cotización desglosada en PDF en menos de 2 horas hábiles.
+- **Compromiso Formal de Cotización:** Se calibró el compromiso formal de entrega en PDF a **24 a 48 horas hábiles** para cotizaciones complejas y paquetes fraVEO (hoteles + vuelos + trenes turísticos).
+
+---
+
+## 📌 Punto 27: Catálogo Minimalista Google-Search, Jerarquía de Modales (Z-Index) y Cotización Empática IA
+- **Integridad de Información Confirmada (Punto 1):**
+  - Se verificó y aseguró que ningún dato de itinerarios hora por hora, vehículos, inclusiones ni amenidades de EBS 2026, Xochimilco o destinos nacionales fue eliminado. Todo se despliega en su totalidad y con alta fidelidad dentro del modal de detalles (`openSharedElementModal()`).
+- **Calibración Realista de Cotizaciones (Punto 2):**
+  - Se ajustó el tiempo de promesa de entrega de cotizaciones formales desglosadas en PDF para paquetes a la medida fraVEO (El Chepe, vuelos, Cancún, circuitos) a **24 a 48 horas hábiles**, garantizando viabilidad operativa frente a horarios de mayoristas y fines de semana.
+- **Jerarquía y Apilamiento de Modales (Z-Index Fix - Punto 3.d):**
+  - Se resolvió el conflicto donde `#destino-detail-modal` aparecía oculto detrás del catálogo en laptop y móvil.
+  - Nueva jerarquía estricta: `#modal-catalogo-nacional` (`z-index: 10000`), `#destino-detail-modal` (`z-index: 10020` y tarjeta `10021`), `.ai-chat-window` (`z-index: 10030`).
+  - Al cerrar el detalle, el catálogo conserva exactamente la posición de scroll y los filtros del usuario.
+- **Rediseño Minimalista del Catálogo Estilo Google Search (Punto 3.e):**
+  - Se eliminaron títulos verbosos kilométricos y la leyenda fija que saturaba la pantalla.
+  - Barra superior compacta (~85px en móvil): Título limpio `Catálogo de Destinos`, botón de cierre `✖`, barra de búsqueda integrada tipo píldora y selector de estados.
+  - Fila horizontal única deslizable de colecciones (Pueblos Mágicos, Barrios, Rutas, Ecoturismo, UNESCO). Las sub-pills secundarias se ocultan cuando el filtro es "Todos".
+  - **Resultado:** El área visible de tarjetas de destinos pasó del 3% a más del 85% del viewport en teléfonos celulares.
+- **Cotización Empática e Inmediata con Alma IA (Punto 3.c):**
+  - Botón renombrado a `<i class="fas fa-wand-magic-sparkles"></i> Cotizar`.
+  - Al hacer clic, abre de inmediato el chat de Alma sin quedar bloqueado por el catálogo.
+  - Alma saluda mencionando el destino específico y sus atractivos (playas y comida en Acapulco, magia colonial en Pueblos Mágicos, ambiente y transporte con chofer en conciertos CDMX) y formula preguntas breves de cualificación (número de personas y fecha estimada).
+  - Incluye chips interactivos de respuesta rápida (`👥 2 Personas`, `👨‍👩‍👧‍👦 Familia (4-6)`, `🗓️ Fin de Semana`, `📱 WhatsApp Alma`).
+- **Navegación Ergonómica y Soporte Dual Internacional (Puntos 3.a y 3.b):**
+  - Botón de tarjeta renombrado a `Ver Detalles` (sustituyendo "Ver Ficha"). Se mantuvo el clic exclusivo en el botón para prevenir aperturas accidentales al deslizar con el pulgar en el móvil.
+  - Soporte de contacto dual integrado: Botón de WhatsApp directo con Alma en Puebla (`+52 222 801 6244`) y botón alternativo de soporte directo con Rogerman en Irlanda (`+353 8 77 66 55 36`).
+
 

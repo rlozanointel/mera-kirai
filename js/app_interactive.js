@@ -415,13 +415,18 @@ function openSharedElementModal(destId) {
 function closeSharedElementModal() {
     const modal = document.getElementById('destino-detail-modal');
     if (modal) modal.classList.remove('active');
-    document.body.style.overflow = '';
+    const catModal = document.getElementById('modal-catalogo-nacional');
+    if (!catModal || !catModal.classList.contains('active')) {
+        document.body.style.overflow = '';
+    }
 }
 
-function bookActiveDestinoWhatsApp() {
+function bookActiveDestinoWhatsApp(targetNumber) {
     if (!activeDestino) return;
-    const msg = `Hola Alma, me interesa apartar mi lugar para: *${activeDestino.nombre}* (${activeDestino.precio_texto}). ¿Tienen disponibilidad para el próximo viaje saliendo de San Manuel?`;
-    window.open(`https://wa.me/522228016244?text=${encodeURIComponent(msg)}`, '_blank');
+    const phone = targetNumber || '522228016244';
+    const contactName = phone === '353877665536' ? 'Rogerman' : 'Alma';
+    const msg = `Hola ${contactName}, me interesa apartar mi lugar para: *${activeDestino.nombre}* (${activeDestino.precio_texto}). ¿Tienen disponibilidad para el próximo viaje saliendo de San Manuel?`;
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
 function openRutaSatelital3D(id) { openSharedElementModal(id); }
@@ -555,7 +560,7 @@ async function sendChatMessage() {
         augmentedHistory.push({
             role: 'user',
             content: `[DATOS DE NUESTRO CATÁLOGO DE 908 DESTINOS Y EVENTOS (NO MENCIONES LA PALABRA SECTUR): ${ragLines}. DIRECTIVAS CLAVE DE ALMA: 
-1) Si es una gran expedición nacional de larga distancia (El Chepe, Barrancas del Cobre, Cancún, Los Cabos, Riviera Maya o Luna de Miel), explica que es un Paquete Integral a la Medida operado con fraVEO (incluye vuelos, traslados, hoteles o tren turístico); no des tarifa de camioneta de $200 y pide fecha estimada, pasajeros y menciona que les enviaremos su cotización formal desglosada en PDF en menos de 2 horas hábiles a su WhatsApp o correo.
+1) Si es una gran expedición nacional de larga distancia (El Chepe, Barrancas del Cobre, Cancún, Los Cabos, Riviera Maya o Luna de Miel), explica que es un Paquete Integral a la Medida operado con fraVEO (incluye vuelos, traslados, hoteles o tren turístico); no des tarifa de camioneta de $200 y pide fecha estimada, pasajeros y menciona que les enviaremos su cotización formal desglosada en PDF en un lapso de 24 a 48 horas hábiles a su WhatsApp o correo.
 2) Si es un concierto o evento CDMX, resalta que incluye Kit Concierto: Botana + Agua fría + Gafete Conmemorativo de Colección + Seguro de Viajero con chofer sobrio que espera hasta el final.
 3) Mantén respuestas concisas, juveniles y entusiastas.]`
         });
@@ -703,7 +708,7 @@ function generateLocalAlmaResponse(question, matchedContext = []) {
 
     // 1.6. GRANDES EXPEDICIONES NACIONALES Y LUNA DE MIEL (El Chepe, Barrancas, Cancún, Los Cabos, fraVEO)
     if (q.includes('chepe') || q.includes('barrancas') || q.includes('luna de miel') || q.includes('cancun') || q.includes('cancún') || q.includes('cabos') || q.includes('riviera maya') || q.includes('huasteca potosina') || q.includes('avion') || q.includes('avión')) {
-        return `✈️ ¡Hola! Soy **Alma** de *La Ruta del Águila*.\nPara grandes expediciones como **El Tren Chepe (Barrancas del Cobre)** o viajes de **Luna de Miel / Playa**, operamos en alianza oficial con **fraVEO** para armarte un **Paquete Integral a la Medida** (vuelos redondos, traslados ejecutivos, noches de hotel seleccionadas y boletos turísticos).\n\nTe preparamos tu **cotización formal desglosada en PDF en menos de 2 horas hábiles**:\n1. ¿Para cuántas personas y cuántos días sería el viaje?\n2. ¿En qué mes o fecha tentativa tienen planeado viajar?\n3. ¿Prefieres recibir la propuesta detallada por **WhatsApp** o por **correo electrónico**?`;
+        return `✈️ ¡Hola! Soy **Alma** de *La Ruta del Águila*.\nPara grandes expediciones como **El Tren Chepe (Barrancas del Cobre)** o viajes de **Luna de Miel / Playa**, operamos en alianza oficial con **fraVEO** para armarte un **Paquete Integral a la Medida** (vuelos redondos, traslados ejecutivos, noches de hotel seleccionadas y boletos turísticos).\n\nTe preparamos tu **cotización formal desglosada en PDF en un lapso de 24 a 48 horas hábiles**:\n1. ¿Para cuántas personas y cuántos días sería el viaje?\n2. ¿En qué mes o fecha tentativa tienen planeado viajar?\n3. ¿Prefieres recibir la propuesta detallada por **WhatsApp** o por **correo electrónico**?`;
     }
 
     // 1.7. CONCIERTOS CDMX Y SODA STEREO (Kit Concierto: Botana + Agua + Gafete + Seguro)
@@ -1018,8 +1023,14 @@ function filterCatalogoState(stateVal) {
 function renderCatalogoSubPills() {
     const subBar = document.getElementById('catalogo-sub-pills');
     if (!subBar) return;
+    if (catalogoMacroFilter === 'todos') {
+        subBar.style.display = 'none';
+        subBar.innerHTML = '';
+        return;
+    }
+    subBar.style.display = 'flex';
     const lista = getCatalogo737List();
-    const base = catalogoMacroFilter === 'todos' ? lista : lista.filter(x => x.macro === catalogoMacroFilter);
+    const base = lista.filter(x => x.macro === catalogoMacroFilter);
 
     const counts = {};
     base.forEach(x => {
@@ -1028,12 +1039,12 @@ function renderCatalogoSubPills() {
     });
 
     const subs = Object.entries(counts).sort((a, b) => b[1] - a[1]);
-    let html = `<button class="catalogo-sub-pill ${catalogoSubFilter === 'todas' ? 'active' : ''}" onclick="filterCatalogoSub('todas', this)" style="padding:4px 11px; border-radius:16px; font-size:0.75rem; font-weight:700; border:1px solid rgba(56,189,248,0.35); background:${catalogoSubFilter === 'todas' ? 'var(--brand-cyan)' : 'rgba(15,23,42,0.75)'}; color:${catalogoSubFilter === 'todas' ? '#000' : '#cbd5e1'}; cursor:pointer; white-space:nowrap;">Todas las subdivisiones (${base.length})</button>`;
+    let html = `<button class="catalogo-filter-pill ${catalogoSubFilter === 'todas' ? 'active' : ''}" onclick="filterCatalogoSub('todas', this)">Todas (${base.length})</button>`;
 
     subs.forEach(([subName, cnt]) => {
         const isAct = catalogoSubFilter === subName;
         const safeSub = subName.replace(/'/g, "\\'");
-        html += `<button class="catalogo-sub-pill ${isAct ? 'active' : ''}" onclick="filterCatalogoSub('${safeSub}', this)" style="padding:4px 11px; border-radius:16px; font-size:0.75rem; font-weight:700; border:1px solid rgba(255,255,255,0.14); background:${isAct ? 'var(--brand-cyan)' : 'rgba(15,23,42,0.75)'}; color:${isAct ? '#000' : '#cbd5e1'}; cursor:pointer; white-space:nowrap;">${escapeHtml(subName)} (${cnt})</button>`;
+        html += `<button class="catalogo-filter-pill ${isAct ? 'active' : ''}" onclick="filterCatalogoSub('${safeSub}', this)">${escapeHtml(subName)} (${cnt})</button>`;
     });
 
     subBar.innerHTML = html;
@@ -1055,17 +1066,58 @@ function voteCatalogoItem(itemId, itemName, itemState, btnEl) {
     }
 }
 
+function buildAlmaContextualQuoteGreeting(nombre, estado) {
+    const list = typeof getCatalogo737List === 'function' ? getCatalogo737List() : [];
+    const item = list.find(d => d.name.toLowerCase() === (nombre || '').toLowerCase()) ||
+                 list.find(d => d.name.toLowerCase().includes((nombre || '').toLowerCase()));
+
+    let highlight = '';
+    const nLow = (nombre || '').toLowerCase();
+    const sLow = (estado || '').toLowerCase();
+
+    if (nLow.includes('acapulco') || sLow.includes('guerrero') || nLow.includes('cancun') || nLow.includes('playa') || (item && item.macro === 'playa_caribe')) {
+        highlight = ', ¡un destino soñado por sus hermosas playas, atardeceres y deliciosa comida costeña! 🌊🍤';
+    } else if ((item && (item.macro === 'cdmx_evento' || item.macro === 'cartelera_cdmx')) || nLow.includes('concierto') || nLow.includes('arena') || nLow.includes('estadio')) {
+        highlight = '. ¡Te llevamos en salida ejecutiva directa desde San Manuel con chofer sobrio que te espera hasta el final del evento! 🎶🚐';
+    } else if (item && (item.macro === 'pueblo_magico' || item.macro === 'barrio_magico')) {
+        const dish = item.gastronomy ? ` y saborear delicias locales como ${item.gastronomy.split(',')[0]}` : '';
+        highlight = `, un lugar con magia colonial, arquitectura hermosa${dish}. 🏔️☕`;
+    } else if (item && (item.macro === 'ruta_turistica' || item.macro === 'experiencia_comunitaria')) {
+        highlight = ', una ruta panorámica fascinante para disfrutar de paisajes, aventura y aire libre. 🌿🛣️';
+    } else if (item && item.macro === 'vip_internacional') {
+        highlight = ', una expedición de ensueño que coordinamos con vuelos, hoteles de lujo y traslados ejecutivos fraVEO. ✈️👑';
+    } else {
+        highlight = ', un destino excelente para viajar con toda la tranquilidad y comodidad desde San Manuel, Puebla.';
+    }
+
+    return `¡Hola! Soy **Alma** de *La Ruta del Águila* 🦅.\nVeo que te interesa viajar a **${nombre} (${estado})**${highlight}\n\n¿Te gustaría visitarlo pronto? Cuéntame: ¿para cuántas personas sería el viaje y aproximadamente en qué fecha o cuántos días tienes pensado viajar?`;
+}
+
 function quoteWithAI(nombre, estado) {
     closeCatalogoNacionalModal();
     const win = document.getElementById('ai-chat-window');
     if (win && !win.classList.contains('active')) {
         toggleAiChat();
     }
-    const prompt = `Hola Alma, me gustaría cotizar una salida a ${nombre} (${estado}). ¿Cuánto costaría en salida ejecutiva desde San Manuel, Puebla y qué fechas tienen disponibles?`;
+    const greeting = buildAlmaContextualQuoteGreeting(nombre, estado);
+    appendChatMessage('assistant', greeting);
+
+    const chipsContainer = document.querySelector('.ai-chat-chips');
+    if (chipsContainer) {
+        const safeN = escapeHtml(nombre).replace(/'/g, "\\'");
+        const safeS = escapeHtml(estado).replace(/'/g, "\\'");
+        chipsContainer.innerHTML = `
+            <span class="ai-chip" onclick="askChipPrompt('Somos 2 personas para cotizar salida a ${safeN}')">👥 2 Personas</span>
+            <span class="ai-chip" onclick="askChipPrompt('Somos una familia de 4 a 6 personas para ${safeN}')">👨‍👩‍👧‍👦 Familia (4-6)</span>
+            <span class="ai-chip" onclick="askChipPrompt('Queremos viajar el próximo fin de semana a ${safeN}')">🗓️ Fin de Semana</span>
+            <span class="ai-chip" onclick="bookDirectWhatsAppDestino('${safeN}', '${safeS}')">📱 WhatsApp Alma</span>
+        `;
+    }
+
     const input = document.getElementById('ai-chat-input');
     if (input) {
-        input.value = prompt;
-        sendChatMessage();
+        input.placeholder = `Responde a Alma: ¿cuántas personas o fechas para ${nombre}?`;
+        input.focus();
     }
 }
 
@@ -1127,11 +1179,11 @@ function renderCatalogoNacionalGrid() {
                 ${d.price_ref ? `<div style="font-size:0.75rem; font-weight:700; color:var(--brand-green); margin-bottom:0.75rem;"><i class="fas fa-tag"></i> ${escapeHtml(d.price_ref)}</div>` : ''}
             </div>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; padding-top:0.6rem; border-top:1px solid var(--border-color);">
-                <button type="button" onclick="openCatalogDetailModal('${safeId}')" style="background:var(--bg-card); color:var(--text-title); border:1px solid var(--border-color); padding:7px 8px; border-radius:8px; font-weight:700; font-size:0.76rem; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:4px;" title="Ver ficha completa con museos, platillos y detalles">
-                    <i class="fas fa-eye"></i> Ver Ficha
+                <button type="button" onclick="openCatalogDetailModal('${safeId}')" style="background:var(--bg-card); color:var(--text-title); border:1px solid var(--border-color); padding:7px 8px; border-radius:8px; font-weight:700; font-size:0.76rem; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:4px;" title="Ver detalles completos con museos, platillos y amenidades">
+                    <i class="fas fa-eye"></i> Ver Detalles
                 </button>
-                <button type="button" onclick="quoteWithAI('${safeName}', '${safeState}')" style="background:linear-gradient(135deg, #0284c7, #0369a1); color:#fff; border:none; padding:7px 8px; border-radius:8px; font-weight:700; font-size:0.76rem; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:4px;" title="Cotizar salida con Alma IA">
-                    <i class="fas fa-wand-magic-sparkles"></i> Cotizar IA
+                <button type="button" onclick="quoteWithAI('${safeName}', '${safeState}')" style="background:linear-gradient(135deg, #0284c7, #0369a1); color:#fff; border:none; padding:7px 8px; border-radius:8px; font-weight:700; font-size:0.76rem; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:4px;" title="Cotizar salida ejecutiva con Alma">
+                    <i class="fas fa-wand-magic-sparkles"></i> Cotizar
                 </button>
             </div>
         </div>`;
@@ -1211,7 +1263,7 @@ function openCatalogDetailModal(itemId) {
         <li><i class="fas fa-check-circle" style="color:var(--brand-green);"></i> Chofer sobrio profesional y combustible incluido</li>
         <li><i class="fas fa-check-circle" style="color:var(--brand-green);"></i> Seguro de cobertura amplia de viajero a bordo</li>
         <li><i class="fas fa-check-circle" style="color:var(--brand-green);"></i> Apartado en Pre-venta con solo $200 MXN por persona</li>
-        <li><i class="fas fa-check-circle" style="color:var(--brand-green);"></i> Atención directa y personalizada con Alma Luis (222 801 6244)</li>
+        <li><i class="fas fa-check-circle" style="color:var(--brand-green);"></i> Atención directa y personalizada con Alma Luis (222 801 6244) y soporte internacional Rogerman (+353 8 77 66 55 36)</li>
     `;
 
     activeDestino = {

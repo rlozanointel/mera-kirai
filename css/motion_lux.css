@@ -432,6 +432,23 @@
     transform: scale(1) translateY(0);
 }
 
+/* Stacking Context Hierarchy for Nested Modals */
+#modal-catalogo-nacional {
+    z-index: 10000 !important;
+}
+#destino-detail-modal {
+    z-index: 10020 !important;
+}
+#destino-detail-modal .lux-modal-card {
+    z-index: 10021 !important;
+}
+#wishlist-vote-modal {
+    z-index: 10025 !important;
+}
+.ai-chat-window {
+    z-index: 10030 !important;
+}
+
 .lux-modal-close {
     position: absolute;
     top: 16px;
@@ -600,7 +617,7 @@
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
-    z-index: 9999;
+    z-index: 10030;
     overflow: hidden;
     opacity: 0;
     transform: translateY(20px) scale(0.95);
@@ -1852,6 +1869,108 @@
     color: var(--brand-cyan);
 }
 
+/* --- GOOGLE-SEARCH STYLE MINIMALIST CATALOG --- */
+.catalogo-minimal-topbar {
+    padding: 0.85rem 1.4rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-subtle);
+    flex-shrink: 0;
+}
+.catalogo-minimal-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--text-title);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.catalogo-minimal-searchbar {
+    padding: 0.8rem 1.4rem 0.5rem;
+    background: var(--bg-card);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-shrink: 0;
+}
+.catalogo-search-input-wrap {
+    position: relative;
+    flex: 1;
+}
+.catalogo-search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    pointer-events: none;
+}
+.catalogo-minimal-input {
+    width: 100%;
+    padding: 9px 14px 9px 38px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-subtle);
+    color: var(--text-title);
+    font-size: 0.88rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.catalogo-minimal-input:focus {
+    border-color: var(--brand-cyan);
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+}
+.catalogo-minimal-select {
+    padding: 9px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-subtle);
+    color: var(--text-title);
+    font-size: 0.84rem;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    outline: none;
+}
+.catalogo-pills-row {
+    padding: 0.4rem 1.4rem 0.75rem;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    gap: 7px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    flex-shrink: 0;
+}
+.catalogo-pills-row::-webkit-scrollbar {
+    display: none;
+}
+.catalogo-filter-pill {
+    padding: 5px 12px;
+    border-radius: 18px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    border: 1px solid var(--border-color);
+    background: var(--bg-subtle);
+    color: var(--text-title);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+.catalogo-filter-pill.active {
+    background: var(--brand-cyan);
+    color: #030712;
+    border-color: var(--brand-cyan);
+    font-weight: 800;
+}
+
 @media (max-width: 900px) {
     .lux-nav-links { display: none; }
     .lux-hamburger-btn { display: flex; }
@@ -2091,21 +2210,43 @@
         gap: 1rem !important;
     }
 
-    /* 10. Catálogo Nacional de 1,000 Opciones */
+    /* 10. Catálogo Nacional Minimalista Estilo Google */
     #modal-catalogo-nacional .lux-modal-card {
         width: 96vw !important;
         max-height: 94vh !important;
         border-radius: 16px !important;
     }
-    #modal-catalogo-nacional div[style*="grid-template-columns:1fr 220px"],
-    #modal-catalogo-nacional div[style*="grid-template-columns: 1fr 220px"] {
-        grid-template-columns: 1fr !important;
-        gap: 8px !important;
+    .catalogo-minimal-topbar {
+        padding: 0.6rem 0.9rem !important;
+    }
+    .catalogo-minimal-title {
+        font-size: 1.05rem !important;
+    }
+    .catalogo-minimal-searchbar {
+        padding: 0.45rem 0.9rem 0.35rem !important;
+        gap: 6px !important;
+    }
+    .catalogo-minimal-input {
+        padding: 7px 10px 7px 32px !important;
+        font-size: 0.84rem !important;
+    }
+    .catalogo-minimal-select {
+        padding: 7px 8px !important;
+        font-size: 0.78rem !important;
+        max-width: 115px !important;
+    }
+    .catalogo-pills-row {
+        padding: 0.3rem 0.9rem 0.5rem !important;
+        gap: 5px !important;
+    }
+    .catalogo-filter-pill {
+        padding: 3px 9px !important;
+        font-size: 0.72rem !important;
     }
     #catalogo-grid-container {
         grid-template-columns: 1fr !important;
-        padding: 1rem !important;
-        gap: 0.85rem !important;
+        padding: 0.85rem !important;
+        gap: 0.8rem !important;
     }
 
     /* 11. Selector de Asientos Suzuki Ertiga en Checkout */
