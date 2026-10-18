@@ -554,23 +554,41 @@ async function sendChatMessage() {
         }).join(' || ');
         augmentedHistory.push({
             role: 'user',
-            content: `[DATOS EXACTOS DE NUESTRA BASE DE DATOS OFICIAL DE 908 DESTINOS Y EVENTOS PARA RESPONDER CON PRECISIÓN (NO MENCIONES LA PALABRA SECTUR): ${ragLines}]`
+            content: `[DATOS DE NUESTRO CATÁLOGO DE 908 DESTINOS Y EVENTOS (NO MENCIONES LA PALABRA SECTUR): ${ragLines}. DIRECTIVAS CLAVE DE ALMA: 
+1) Si es una gran expedición nacional de larga distancia (El Chepe, Barrancas del Cobre, Cancún, Los Cabos, Riviera Maya o Luna de Miel), explica que es un Paquete Integral a la Medida operado con fraVEO (incluye vuelos, traslados, hoteles o tren turístico); no des tarifa de camioneta de $200 y pide fecha estimada, pasajeros y si prefieren recibir su cotización formal en PDF por correo o WhatsApp.
+2) Si es un concierto o evento CDMX, resalta que incluye Kit Concierto: Botana + Agua fría + Gafete Conmemorativo de Colección + Seguro de Viajero con chofer sobrio que espera hasta el final.
+3) Mantén respuestas concisas, juveniles y entusiastas.]`
         });
         augmentedHistory.push({
             role: 'assistant',
-            content: 'Entendido, usaré estos datos exactos de museos, atractivos, platillos típicos y costos de boletos/transporte para dar una cotización cálida y completa.'
+            content: 'Entendido, usaré estos datos para responder con calidez, agilidad juvenil y claridad entre salidas locales y grandes paquetes fraVEO.'
         });
     } else if (msg.length > 4) {
-        const liveWiki = await fetchLiveWebContextForChat(msg);
-        if (liveWiki) {
+        const lowerMsg = msg.toLowerCase();
+        // Evitar lecciones enciclopédicas de Wikipedia para preguntas filosóficas, poéticas o curiosas
+        const isPoeticOrCurious = lowerMsg.includes('nube') || lowerMsg.includes('olor') || lowerMsg.includes('filosof') || lowerMsg.includes('sentido') || lowerMsg.includes('chiste') || lowerMsg.includes('broma') || lowerMsg.includes('vuelo') || lowerMsg.includes('cielo');
+        
+        if (isPoeticOrCurious) {
             augmentedHistory.push({
                 role: 'user',
-                content: `[CONTEXTO WEB EN VIVO PARA IDENTIFICAR GRUPOS VIRALES, ARTISTAS O LUGARES: ${liveWiki}. Si es un grupo musical o artista activo que aún no tiene fecha en nuestra cartelera CDMX, ofrece abrir salida ejecutiva desde San Manuel ($549-$580 MXN redondo) o armar viaje privado desde 6 personas en Suzuki Ertiga VIP.]`
+                content: `[DIRECTIVA DE AGILIDAD Y TONO JUVENIL: El usuario hace una pregunta poética, curiosa o informal ("${msg}"). Responde en MÁXIMO 2 a 3 líneas con chispa, encanto, calidez juvenil y simpatía, relacionándolo con la emoción de viajar, el viento fresco en carretera o salir de la rutina hacia la naturaleza (como Cuetzalan o Zacatlán). NUNCA des explicaciones científicas ni lecciones de física/meteorología.]`
             });
             augmentedHistory.push({
                 role: 'assistant',
-                content: 'Entendido, responderé con este contexto actualizado de la web y ofreceré nuestras opciones de transporte.'
+                content: 'Entendido, responderé de forma breve, fresca, poética y divertida, conectando de inmediato con las ganas de viajar.'
             });
+        } else {
+            const liveWiki = await fetchLiveWebContextForChat(msg);
+            if (liveWiki) {
+                augmentedHistory.push({
+                    role: 'user',
+                    content: `[CONTEXTO WEB EN VIVO PARA IDENTIFICAR GRUPOS VIRALES, ARTISTAS O LUGARES: ${liveWiki}. Si es un grupo musical o artista activo que aún no tiene fecha en nuestra cartelera CDMX, ofrece abrir salida ejecutiva desde San Manuel ($549-$580 MXN redondo) o armar viaje privado desde 6 personas en Suzuki Ertiga VIP con Kit Concierto incluido.]`
+                });
+                augmentedHistory.push({
+                    role: 'assistant',
+                    content: 'Entendido, responderé con este contexto actualizado de la web y ofreceré nuestras opciones de transporte.'
+                });
+            }
         }
     }
 
@@ -676,6 +694,21 @@ function generateLocalAlmaResponse(question, matchedContext = []) {
         }
         resp += `¿Te gustaría apartar tus asientos para la próxima fecha disponible?`;
         return resp;
+    }
+
+    // 1.5. PREGUNTAS POÉTICAS, CURIOSAS O INFORMALES (Nubes, sentido de la vida, etc.)
+    if (q.includes('nube') || q.includes('nubes') || q.includes('olor a nube') || q.includes('olor de las nubes') || q.includes('filosof') || q.includes('sentido de la vida')) {
+        return `☁️✨ ¡Huelen a aire puro, libertad y a ese primer respiro fresco cuando vas en carretera saliendo de la ciudad!\n\nEn *La Ruta del Águila* nos fascina llevarte a donde el cielo se toca con las montañas (como Cuetzalan, Zacatlán de las Manzanas o Real del Monte). ¿Listo para escaparte a despejar la mente este fin de semana?`;
+    }
+
+    // 1.6. GRANDES EXPEDICIONES NACIONALES Y LUNA DE MIEL (El Chepe, Barrancas, Cancún, Los Cabos, fraVEO)
+    if (q.includes('chepe') || q.includes('barrancas') || q.includes('luna de miel') || q.includes('cancun') || q.includes('cancún') || q.includes('cabos') || q.includes('riviera maya') || q.includes('huasteca potosina') || q.includes('avion') || q.includes('avión')) {
+        return `✈️ ¡Hola! Soy **Alma** de *La Ruta del Águila*.\nPara grandes expediciones como **El Tren Chepe (Barrancas del Cobre)** o viajes de **Luna de Miel / Playa**, operamos en alianza oficial con **fraVEO** para armarte un **Paquete Integral a la Medida** (vuelos redondos, traslados ejecutivos, noches de hotel seleccionadas y boletos turísticos).\n\nPara que Alma Luis te prepare una cotización formal desglosada en PDF sin costo:\n1. ¿Para cuántas personas y cuántos días sería el viaje?\n2. ¿En qué mes o fecha tentativa tienen planeado viajar?\n3. ¿Prefieres recibir la propuesta detallada por **correo electrónico** o por **WhatsApp**?`;
+    }
+
+    // 1.7. CONCIERTOS CDMX Y SODA STEREO (Kit Concierto: Botana + Agua + Gafete + Seguro)
+    if (q.includes('soda stereo') || q.includes('soda estereo') || q.includes('cerati') || q.includes('pata de perro') || q.includes('kit concierto')) {
+        return `🎸 ¡Hola! Soy **Alma** de *La Ruta del Águila*.\n¡Tenemos transporte ejecutivo redondo a conciertos en CDMX con la mejor experiencia de Puebla!\n\n🎁 **Todas nuestras salidas a conciertos incluyen el Kit Concierto Ejecutivo:**\n- **Snack Pack de cortesía:** Botana/galleta + Agua fría embotellada.\n- **Gafete Conmemorativo de Colección** del concierto.\n- **Seguro de Cobertura Amplia de Viajero a Bordo**.\n- **Chofer sobrio asignado** que te deja en la puerta del recinto y te espera hasta el final de la última canción.\n\n*Nota:* El transporte es independiente de la boletera (llevas tu boleto en la zona que tú elijas). Apartas con solo **$200 MXN** y tienes 10% de descuento con el cupón **ESTETICA10**. ¿Te apartamos lugares?`;
     }
 
     // 2. ARTISTAS FALLECIDOS (José José, Juan Gabriel, Jenni Rivera, etc.)

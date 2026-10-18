@@ -102,9 +102,10 @@ const DESTINOS_DB = [
             { hora: "02:30 AM", actividad: "Llegada segura a San Manuel, Puebla." }
         ],
         incluye: [
-            "Transporte redondo Puebla - Estadio GNP - Puebla",
-            "Espera completa del vehículo hasta terminar el concierto",
-            "Casetas, gasolina y seguro de viajero"
+            "🎁 Kit Concierto: Botana/Snack + Agua fría embotellada + Gafete Conmemorativo de Colección",
+            "Transporte redondo ejecutivo garantizado Puebla ↔ Estadio GNP Seguros",
+            "Espera completa del vehículo hasta terminar la última canción del concierto",
+            "Casetas de autopista, combustible y seguro de cobertura amplia de viajero a bordo"
         ],
         no_incluye: ["Boleto de acceso al concierto", "Consumos personales"]
     },
@@ -132,7 +133,7 @@ const DESTINOS_DB = [
             { hora: "21:30 PM", actividad: "Abordaje para retorno a Puebla." },
             { hora: "23:30 PM", actividad: "Llegada a San Manuel." }
         ],
-        incluye: ["Transporte redondo ejecutivo", "Casetas y chofer certificado", "Seguro de cobertura amplia"],
+        incluye: ["🎁 Kit Ejecutivo: Botana/Snack + Agua fría embotellada + Souvenir Conmemorativo", "Transporte redondo ejecutivo Puebla ↔ Castillo de Chapultepec", "Casetas y chofer certificado", "Seguro de cobertura amplia"],
         no_incluye: ["Boleto de acceso a la función", "Alimentos"]
     },
     {
@@ -159,7 +160,7 @@ const DESTINOS_DB = [
             { hora: "19:00 PM", actividad: "Abordaje y regreso a Puebla." },
             { hora: "21:15 PM", actividad: "Llegada a San Manuel." }
         ],
-        incluye: ["Transporte redondo ejecutivo", "Casetas y gasolina", "Seguro de viajero"],
+        incluye: ["🎁 Kit Deportivo: Snack + Agua fría + Gafete Colección NFL", "Transporte redondo ejecutivo directo", "Casetas, combustible y chofer sobrio", "Seguro de viajero"],
         no_incluye: ["Boleto del partido", "Consumos dentro del estadio"]
     },
     {
@@ -186,7 +187,7 @@ const DESTINOS_DB = [
             { hora: "17:15 PM", actividad: "Retorno organizado a Puebla." },
             { hora: "19:30 PM", actividad: "Llegada a San Manuel." }
         ],
-        incluye: ["Transporte redondo por jornada", "Casetas y chofer designado", "Seguro de cobertura amplia"],
+        incluye: ["🎁 Kit F1: Agua fría + Barra energética + Lanyard/Gafete F1", "Transporte redondo diario al Autódromo", "Casetas y chofer designado", "Seguro de cobertura amplia"],
         no_incluye: ["Boleto de acceso F1"]
     },
     {
@@ -213,7 +214,7 @@ const DESTINOS_DB = [
             { hora: "21:30 PM", actividad: "Abordaje y regreso a Puebla." },
             { hora: "23:30 PM", actividad: "Llegada a San Manuel." }
         ],
-        incluye: ["Transporte redondo", "Casetas de autopista", "Seguro de viajero"],
+        incluye: ["🎁 Kit Estadio: Botana + Agua fría", "Transporte redondo seguro Puebla ↔ Recinto", "Casetas de autopista y chofer sobrio", "Seguro de viajero"],
         no_incluye: ["Boleto del partido", "Consumos personales"]
     },
 
@@ -648,6 +649,38 @@ const DESTINOS_DB = [
         ],
         incluye: ["Vuelo redondo", "Resort Todo Incluido con alimentos y bebidas ilimitadas", "Paseo marítimo al Arco de Cabo San Lucas", "Traslados aeropuerto-hotel-aeropuerto"],
         no_incluye: ["Propinas y actividades motorizadas"]
+    },
+    {
+        id: "barrancas-del-cobre-tren-chepe",
+        nombre: "Expedición Barrancas del Cobre & Tren Chepe Express",
+        categoria: "fraveo_lujo",
+        subcategoria: "nacional_expedicion",
+        estado: "Chihuahua / Sinaloa",
+        precio: 14850,
+        precio_texto: "Desde $14,850 MXN",
+        anticipo_apartado: "Cotización a la Medida",
+        tipo_transporte: "Vuelos + Tren Chepe Express + Hoteles Escénicos",
+        duracion: "5 Días / 4 Noches",
+        distancia: "Sierra Tarahumara",
+        tiempo_traslado: "Vuelo + Tren Turístico",
+        badge: "✈️ Expedición fraVEO",
+        imagen: "https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?auto=format&fit=crop&w=1200&q=80",
+        descripcion: "La gran expedición de México a bordo del legendario Tren Chepe Express por las majestuosas Barrancas del Cobre. Paquete integral operado vía fraVEO con vuelos desde Puebla/CDMX, noches en Creel, Divisadero y Los Mochis, tours guiados y vistas panorámicas inigualables.",
+        coordenadas: { lat: 27.5342, lng: -107.6328 },
+        itinerario: [
+            { hora: "Día 1", actividad: "Vuelo a Chihuahua, traslado a Creel y recorrido por el Valle de los Hongos y Lago de Arareko." },
+            { hora: "Día 2", actividad: "Abordaje del Tren Chepe Express rumbo a Divisadero Barrancas; tarde en miradores del Cañón de Urique." },
+            { hora: "Día 3", actividad: "Parque de Aventura Barrancas del Cobre (Teleférico y tirolesas escénicas) y caminata rarámuri." },
+            { hora: "Día 4", actividad: "Tramo ferroviario hacia El Fuerte / Los Mochis Sinaloa." },
+            { hora: "Día 5", actividad: "Desayuno regional y vuelo de regreso." }
+        ],
+        incluye: [
+            "Boletos oficiales del Tren Turístico Chepe Express en clase turista / ejecutiva",
+            "Hospedaje de 4 noches en hoteles seleccionados (Creel, Divisadero y Los Mochis)",
+            "Desayunos diarios y traslados ejecutivos terrestres privados",
+            "Asesoría y logística integral de vuelos con la alianza de mayoristas fraVEO"
+        ],
+        no_incluye: ["Actividades de aventura extrema en Parque Barrancas", "Propinas"]
     }
 ];
 

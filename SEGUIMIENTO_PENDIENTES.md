@@ -48,3 +48,39 @@ Recordatorios integrados en el panel de control (`#view-gestor`) y programados p
 3. **Alertas Vehiculares (Suzuki Ertiga VIP — Chofer Efraín):**
    - Póliza de **Seguro de Viajero con Cobertura Amplia de Pasajeros**.
    - Verificación vehicular semestral del Estado de Puebla y servicio preventivo de frenos/llantas antes de salidas largas.
+
+---
+
+## 📌 Punto 22: Amenidades de Conciertos ("Kit Concierto") e Inteligencia Comercial (Pata de Perro)
+- **Aprendizaje Clave:** Agencias como *Pata de Perro* operan salidas exitosas a conciertos en CDMX vendiendo **exclusivamente el transporte redondo** (el cliente compra su propio boleto del evento en la zona y costo que prefiere, eliminando el riesgo de inventario y reventa para nosotros).
+- **Ventaja Competitiva de La Ruta del Águila:**
+  - Salida cómoda desde San Manuel (sin aglomeraciones en Parque Juárez).
+  - Apartado accesible con solo **$200 MXN** (en lugar del 50% que exige la competencia).
+  - **Kit Concierto Ejecutivo Incluido:** Snack pack de cortesía (botana/galleta + agua fría embotellada) + **Gafete Conmemorativo de Colección del Tour** + Seguro de Viajero con chofer sobrio asignado que espera hasta que termina la última canción.
+
+---
+
+## 📌 Punto 23: Protocolo de Cotizaciones Complejas (Luna de Miel, El Chepe, Cancún — fraVEO vs. Paquete Propio)
+- **Diferenciación Operativa:**
+  1. **Operación Propia Terrestre (Ertiga VIP):** Conciertos CDMX, Pueblos Mágicos cercanos y traslados ejecutivos. Tarifa cerrada fija ($549 - $950 MXN) y apartado directo con $200.
+  2. **Grandes Expediciones / Luna de Miel (fraVEO):** El Chepe Express, Cancún, Los Cabos, Europa o cruceros. Requieren vuelos, noches de hotel y traslados privados.
+- **Flujo de Atención cuando el Cliente Pide Cotización:**
+  1. Alma IA (o el formulario web) recaba: **Destino, Número de Pasajeros, Fechas Tentativas y Correo/WhatsApp**.
+  2. El sistema envía los datos a la Hermana Alma y se evalúan dos vías:
+     - **Vía fraVEO:** Acceso a tarifas mayoristas de cadenas hoteleras, aerolíneas y operadores receptivos con comisiones negociadas.
+     - **Vía Directa (Armado Propio):** En circuitos locales o combinaciones donde fraVEO añada intermediación innecesaria, armamos la propuesta directa.
+  3. **Generación de Propuesta Formal en PDF:** Se entrega al cliente una cotización profesional membretada con desglose de itinerario, políticas de equipaje, hospedaje y facilidades de pago diferido.
+
+---
+
+## 📌 Punto 24: Sincronización Automática 05:00 AM (Pipeline Unificado)
+- **Crontab Local Actualizado:**
+  - `05:00 AM`: `CDMX_Event_Radar/automation/run_nightly_sync.sh` extrae eventos de CDMX y SECTUR, ejecuta `build_master_catalog.py`, actualiza el catálogo de 909 opciones y hace `git push origin main` hacia `mera-kirai.com`.
+  - `05:30 AM`: `vromlix_ops.sh` (mantenimiento y sincronización).
+  - `06:00 AM`: `agent_nightly_ops.py` (auditoría nocturna).
+  - `10:00 AM`: `youtube_daily_digest.py` (17 canales tras la mañanera del pueblo).
+
+---
+
+## 📌 Punto 25: Aislamiento Móvil Estricto (`@media (max-width: 768px)`)
+- Todas las adaptaciones móviles (apilado de columnas en modales, chat flotante adaptativo al 100vw - 24px, catálogo nacional vertical y distribución táctil) están aisladas en CSS responsivo, garantizando que la versión de laptop y monitores de escritorio (> 768px) permanezca **100% intacta e idéntica a la visualización aprobada**.
