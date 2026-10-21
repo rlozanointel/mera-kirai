@@ -28,7 +28,7 @@
 
 ## 📌 Punto 19: Ecosistema de Subdominios Futuros (`*.mera-kirai.com`)
 Arquitectura preparada en Cloudflare DNS y en el panel Super-Admin (`#view-gestor`) para lanzar progresivamente los siguientes giros sin pagar hosting adicional:
-1. **`estetica.mera-kirai.com`** *(Activo)* → Redirección 301 en el borde hacia `https://mera-kirai.com/estetica.html` (Estudio de Belleza Imagen y Estilo • Estética Alma).
+1. **`estetica.mera-kirai.com`** *(Activo)* → Renderizado directo en el borde mediante Cloudflare Worker transparente hacia el Estudio de Belleza Imagen y Estilo • Estética Alma (sin redirección ni cambio de URL en el navegador).
 2. **`contabilidad.mera-kirai.com`** *(En planeación — NexoContable)* → Despacho digital de asesoría fiscal RESICO, facturación CFDI 4.0 y declaraciones mensuales para pequeños negocios y transportistas.
 3. **`pet.mera-kirai.com`** *(En planeación — Pet Studio AI)* → Sesiones fotográficas profesionales y retratos temáticos con IA para mascotas en Puebla, con entrega digital e impresa.
 4. **`mercadito.mera-kirai.com`** *(En planeación — El Mercadito Regional)* → Venta por encargo de productos artesanales auténticos traídos directamente en nuestros viajes (sidra y pan de queso de Zacatlán, café y vainilla de Cuetzalan, plata 925 de Taxco, rompope y salsas).
