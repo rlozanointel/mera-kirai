@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/mormon.css">
+    <link rel="stylesheet" href="css/mormon.css?v=20261024_1430">
     <style>
         body {
             background-color: #0b0f17;
@@ -83,6 +83,25 @@
         .btn-portal-action:hover {
             background: rgba(255, 255, 255, 0.12);
             color: #ffffff;
+        }
+        @media (max-width: 600px) {
+            .portal-topbar {
+                padding: 8px 12px;
+            }
+            .portal-brand-subtitle {
+                display: none;
+            }
+            .portal-brand-title {
+                font-size: 0.98rem;
+            }
+            .portal-brand-icon {
+                width: 32px;
+                height: 32px;
+            }
+            .btn-portal-action {
+                padding: 6px 10px;
+                font-size: 0.78rem;
+            }
         }
     </style>
 </head>
@@ -419,10 +438,10 @@
     <!-- TOAST NOTIFICATIONS -->
     <div id="toast-container" class="toast-container"></div>
 
-    <script src="js/initial_data.js"></script>
-    <script src="js/mormon_view.js"></script>
-    <script src="js/conferencia_data.js"></script>
-    <script src="js/conferencia_view.js"></script>
+    <script src="js/initial_data.js?v=20261024_1430"></script>
+    <script src="js/mormon_view.js?v=20261024_1430"></script>
+    <script src="js/conferencia_data.js?v=20261024_1430"></script>
+    <script src="js/conferencia_view.js?v=20261024_1430"></script>
     <script>
         window.showToast = function(msg, type = 'info') {
             const c = document.getElementById('toast-container');
