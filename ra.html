@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Estética Alma & Merakirai | Portal de Realidad Aumentada (WebAR 3D)</title>
+    <meta name="description" content="Visualiza en Realidad Aumentada (AR) letreros y tótems 3D interactivos con tu celular en la calle o en tu espacio sin descargar aplicaciones. Estética Alma y Viajes Merakirai.">
+    
+    <!-- Tipografía Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Model Viewer (Estándar WebAR Oficial de Google) -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+    
+    <!-- QRCode Generator CDN para escanear en móvil -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <style>
+        :root {
+            --bg-deep: #07070a;
+            --bg-card: rgba(18, 18, 24, 0.75);
+            --bg-card-hover: rgba(26, 26, 36, 0.9);
+            --border-glass: rgba(255, 255, 255, 0.12);
+            --border-glow-alma: rgba(244, 63, 94, 0.5);
+            --border-glow-mera: rgba(56, 189, 248, 0.5);
+            --neon-rose: #f43f5e;
+            --neon-rose-glow: 0 0 25px rgba(244, 63, 94, 0.6);
+            --neon-cyan: #38bdf8;
+            --neon-cyan-glow: 0 0 25px rgba(56, 189, 248, 0.6);
+            --gold: #fbbf24;
+            --text-main: #f4f4f5;
+            --text-muted: #a1a1aa;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(244, 63, 94, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(56, 189, 248, 0.08) 0%, transparent 40%);
+        }
+
+        /* Top Header */
+        header {
+            padding: 1rem 1.5rem;
+            background: rgba(7, 7, 10, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-pill {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .brand-badge-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #f43f5e, #38bdf8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3);
+        }
+
+        .brand-texts h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            line-height: 1.2;
+        }
+
+        .brand-texts span {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .brand-texts span .live-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 8px #22c55e;
+            display: inline-block;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .btn-nav-action {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            border: 1px solid var(--border-glass);
+            padding: 7px 14px;
+            border-radius: 12px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .btn-nav-action:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Contenedor Principal */
+        main {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        /* Selector de Modelo (Tabs Estética Alma vs Merakirai) */
+        .model-tabs {
+            display: flex;
+            background: rgba(18, 18, 24, 0.8);
+            padding: 6px;
+            border-radius: 16px;
+            border: 1px solid var(--border-glass);
+            gap: 8px;
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px 16px;
+            border: none;
+            border-radius: 12px;
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .tab-btn.active.tab-alma {
+            background: linear-gradient(135deg, #f43f5e, #be123c);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(244, 63, 94, 0.4);
+        }
+
+        .tab-btn.active.tab-merakirai {
+            background: linear-gradient(135deg, #0284c7, #0369a1);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(2, 132, 199, 0.4);
+        }
+
+        /* Área de Visualización 3D / WebAR */
+        .viewer-container {
+            position: relative;
+            background: radial-gradient(circle at center, #181822 0%, #0d0d14 100%);
+            border-radius: 28px;
+            border: 1px solid var(--border-glass);
+            overflow: hidden;
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.7);
+            height: 520px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        model-viewer {
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            outline: none;
+            --poster-color: transparent;
+        }
+
+        /* Botón Flotante de AR Nativo de Google */
+        .ar-floating-cta {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            width: 90%;
+            max-width: 380px;
+        }
+
+        .btn-launch-ar {
+            width: 100%;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, #f43f5e 0%, #d4af37 100%);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(244, 63, 94, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-launch-ar:hover {
+            transform: scale(1.03);
+            box-shadow: 0 12px 40px rgba(244, 63, 94, 0.7);
+        }
+
+        .btn-launch-ar:active {
+            transform: scale(0.98);
+        }
+
+        .ar-hint {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.8);
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(10px);
+            padding: 4px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Overlay de Controles 3D Superiores */
+        .viewer-controls-overlay {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            right: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: none;
+            z-index: 40;
+        }
+
+        .status-pill {
+            pointer-events: auto;
+            background: rgba(9, 9, 14, 0.75);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--border-glass);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-buttons-group {
+            pointer-events: auto;
+            display: flex;
+            gap: 8px;
+        }
+
+        .icon-btn-viewer {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(9, 9, 14, 0.75);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--border-glass);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .icon-btn-viewer:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.08);
+        }
+
+        /* Cuadrícula de Información Tecnológica & Negocio */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .card-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 1.8rem;
+            backdrop-filter: blur(12px);
+        }
+
+        .card-panel h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-panel p {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .feature-bullets {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .feature-bullets li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.88rem;
+            color: #e4e4e7;
+        }
+
+        .feature-bullets li i {
+            color: var(--neon-rose);
+            margin-top: 3px;
+            font-size: 0.9rem;
+        }
+
+        /* Modal QR para Abrir en Celular */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: #12121a;
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 2.2rem;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+            position: relative;
+        }
+
+        .btn-close-modal {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .qr-wrapper {
+            background: #fff;
+            padding: 16px;
+            border-radius: 16px;
+            display: inline-block;
+            margin: 1.5rem 0 1rem;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: auto;
+            border-top: 1px solid var(--border-glass);
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            background: rgba(7, 7, 10, 0.85);
+        }
+
+        @media (max-width: 850px) {
+            .viewer-container {
+                height: 440px;
+            }
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <a href="estetica.html" class="brand-pill">
+            <div class="brand-badge-icon">✨</div>
+            <div class="brand-texts">
+                <h1>WebAR Spatial Portal</h1>
+                <span><span class="live-dot"></span> 3D & Realidad Aumentada Callejera</span>
+            </div>
+        </a>
+
+        <div class="header-actions">
+            <button class="btn-nav-action" id="btnOpenQr" title="Escanear con tu Celular">
+                <i class="fas fa-qrcode"></i> Escanear con Celular
+            </button>
+            <a href="estetica.html" class="btn-nav-action">
+                <i class="fas fa-cut"></i> Salón Alma
+            </a>
+            <a href="https://mera-kirai.com" class="btn-nav-action">
+                <i class="fas fa-plane"></i> Merakirai
+            </a>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main>
+        
+        <!-- Tabs de Selección de Modelo -->
+        <div class="model-tabs">
+            <button class="tab-btn active tab-alma" id="tabAlma" onclick="switchModel('alma')">
+                <i class="fas fa-spa"></i> Letrero 3D Estética Alma
+            </button>
+            <button class="tab-btn tab-merakirai" id="tabMera" onclick="switchModel('merakirai')">
+                <i class="fas fa-route"></i> Tótem 3D Merakirai Tours
+            </button>
+        </div>
+
+        <!-- Visor 3D y WebAR -->
+        <div class="viewer-container">
+            
+            <!-- Controles superpuestos -->
+            <div class="viewer-controls-overlay">
+                <div class="status-pill" id="modelStatusPill">
+                    <span style="color:var(--neon-rose);">●</span> Letrero Neón Iluminado (Escala 1:1)
+                </div>
+                <div class="control-buttons-group">
+                    <button class="icon-btn-viewer" id="btnToggleRotate" title="Pausar / Reanudar Rotación">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <button class="icon-btn-viewer" id="btnResetView" title="Restablecer Vista">
+                        <i class="fas fa-compress-arrows-alt"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Componente Oficial Google Model Viewer -->
+            <model-viewer
+                id="arViewer"
+                src="models/letrero_alma_ar.glb"
+                ar
+                ar-modes="webxr scene-viewer quick-look"
+                ar-scale="auto"
+                camera-controls
+                touch-action="pan-y"
+                auto-rotate
+                auto-rotate-delay="1000"
+                rotation-per-second="25deg"
+                shadow-intensity="1.5"
+                shadow-softness="0.8"
+                exposure="1.15"
+                environment-image="neutral">
+                
+                <!-- Botón de Lanzamiento de Realidad Aumentada -->
+                <div slot="ar-button" class="ar-floating-cta">
+                    <button class="btn-launch-ar" id="btnArTrigger">
+                        <i class="fas fa-camera"></i> Ver en Realidad Aumentada
+                    </button>
+                    <div class="ar-hint">
+                        <i class="fas fa-mobile-alt"></i> Apunta tu cámara a la pared, banqueta o sala
+                    </div>
+                </div>
+
+            </model-viewer>
+
+        </div>
+
+        <!-- Paneles de Información y Estrategia -->
+        <div class="info-grid">
+            
+            <!-- Panel 1: Explicación de la Tecnología -->
+            <div class="card-panel">
+                <h2><i class="fas fa-microchip" style="color:var(--neon-cyan);"></i> ¿Cómo funciona esta tecnología?</h2>
+                <p>
+                    Estás viendo un modelo 3D con estándar <strong>glTF 2.0 / GLB</strong> con mapeo de materiales <strong>PBR</strong> (luces de neón emisivas y marco metálico de titanio a escala métrica real).
+                </p>
+                <ul class="feature-bullets">
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <span><strong>WebAR sin Apps:</strong> El botón superior usa el motor nativo <em>Google Scene Viewer</em> (Android) y <em>Apple AR Quick Look</em> (iPhone). No requiere instalar ninguna aplicación pesada.</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <span><strong>Anclaje Callejero con VPS:</strong> Al combinarlo con el <em>ARCore Geospatial API</em> de Google Maps, este letrero se fija en las coordenadas exactas de <code>Río Nexapa #6101</code> o paradas de la BUAP.</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <span><strong>Preparado para Gafas AR:</strong> Cuando gafas como Ray-Ban Meta o Meta Orion tengan displays ópticos masivos, leerán exactamente este mismo estándar WebXR.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Panel 2: Caso de Negocio y Crecimiento -->
+            <div class="card-panel">
+                <h2><i class="fas fa-bullseye" style="color:var(--gold);"></i> Estrategia para Alma & Merakirai</h2>
+                <p>
+                    La Realidad Aumentada convierte fachadas físicas y puntos de abordaje en atracciones virales y puntos de contacto comercial:
+                </p>
+                <ul class="feature-bullets">
+                    <li>
+                        <i class="fas fa-star" style="color:var(--gold);"></i>
+                        <span><strong>Fachada Inteligente en Estética Alma:</strong> Una placa discreta de acrílico o QR en el cristal permite que transeúntes vean flotar el letrero neón, el menú de servicios y promociones sin que el local esté abierto.</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-star" style="color:var(--gold);"></i>
+                        <span><strong>Punto de Abordaje Seguro BUAP:</strong> Los estudiantes que viajan a Xochimilco o conciertos CDMX escanean y ven el tótem virtual con hora de abordaje, conductor asignado y seguro de viaje.</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-star" style="color:var(--gold);"></i>
+                        <span><strong>Conversión WhatsApp Directa:</strong> Ambos letreros integran botones de llamada a la acción hacia el WhatsApp oficial <code>222 801 6244</code>.</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Modal de Código QR para Celular -->
+    <div class="modal-overlay" id="qrModal">
+        <div class="modal-box">
+            <button class="btn-close-modal" id="btnCloseQr">&times;</button>
+            <h3 style="font-family:'Outfit'; font-size:1.4rem; color:#fff; margin-bottom:0.5rem;">
+                📱 Abre esta experiencia en tu Celular
+            </h3>
+            <p style="font-size:0.88rem; color:var(--text-muted);">
+                Apunta la cámara de tu teléfono a este código QR para abrir el letrero 3D en tu navegador móvil y proyectarlo en la calle o en tu sala.
+            </p>
+            
+            <div class="qr-wrapper" id="qrcode"></div>
+
+            <div style="font-size:0.8rem; color:#a1a1aa; margin-top:0.8rem;">
+                Compatible con Android (Google Chrome) e iOS (Safari).
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Estética Alma & Merakirai Tours • Portal de Realidad Aumentada WebAR</p>
+        <p style="margin-top:4px; font-size:0.75rem;">Desarrollado bajo estándares W3C WebXR, Google ARCore y Apple Quick Look • Puebla, México</p>
+    </footer>
+
+    <!-- Lógica JavaScript -->
+    <script>
+        const viewer = document.getElementById('arViewer');
+        const tabAlma = document.getElementById('tabAlma');
+        const tabMera = document.getElementById('tabMera');
+        const statusPill = document.getElementById('modelStatusPill');
+        const btnToggleRotate = document.getElementById('btnToggleRotate');
+        const btnResetView = document.getElementById('btnResetView');
+        const btnArTrigger = document.getElementById('btnArTrigger');
+
+        // Alternador de Modelos
+        window.switchModel = function(modelKey) {
+            if (modelKey === 'alma') {
+                tabAlma.classList.add('active');
+                tabMera.classList.remove('active');
+                viewer.src = 'models/letrero_alma_ar.glb';
+                statusPill.innerHTML = '<span style="color:var(--neon-rose);">●</span> Letrero Neón Alma Luis (Escala 1:1)';
+                btnArTrigger.style.background = 'linear-gradient(135deg, #f43f5e 0%, #d4af37 100%)';
+                btnArTrigger.style.boxShadow = '0 8px 30px rgba(244, 63, 94, 0.5)';
+            } else {
+                tabMera.classList.add('active');
+                tabAlma.classList.remove('active');
+                viewer.src = 'models/totem_merakirai_ar.glb';
+                statusPill.innerHTML = '<span style="color:var(--neon-cyan);">●</span> Tótem de Abordaje Merakirai Tours (Escala 1:1)';
+                btnArTrigger.style.background = 'linear-gradient(135deg, #0284c7 0%, #fbbf24 100%)';
+                btnArTrigger.style.boxShadow = '0 8px 30px rgba(2, 132, 199, 0.5)';
+            }
+        };
+
+        // Control de rotación automática
+        let isRotating = true;
+        btnToggleRotate.addEventListener('click', () => {
+            isRotating = !isRotating;
+            viewer.autoRotate = isRotating;
+            btnToggleRotate.style.color = isRotating ? '#fff' : '#f43f5e';
+        });
+
+        // Restablecer cámara
+        btnResetView.addEventListener('click', () => {
+            viewer.cameraOrbit = '0deg 75deg 2.2m';
+            viewer.fieldOfView = 'auto';
+        });
+
+        // Modal QR
+        const qrModal = document.getElementById('qrModal');
+        const btnOpenQr = document.getElementById('btnOpenQr');
+        const btnCloseQr = document.getElementById('btnCloseQr');
+        const qrContainer = document.getElementById('qrcode');
+
+        let qrGenerated = false;
+        function generateQr() {
+            if (qrGenerated) return;
+            const currentUrl = window.location.href.includes('localhost') 
+                ? 'https://mera-kirai.com/ra.html' 
+                : window.location.href;
+            
+            new QRCode(qrContainer, {
+                text: currentUrl,
+                width: 200,
+                height: 200,
+                colorDark: '#09090b',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.H
+            });
+            qrGenerated = true;
+        }
+
+        btnOpenQr.addEventListener('click', () => {
+            generateQr();
+            qrModal.classList.add('active');
+        });
+
+        btnCloseQr.addEventListener('click', () => {
+            qrModal.classList.remove('active');
+        });
+
+        qrModal.addEventListener('click', (e) => {
+            if (e.target === qrModal) {
+                qrModal.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
