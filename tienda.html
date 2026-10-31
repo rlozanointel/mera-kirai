@@ -661,6 +661,13 @@
             const msg = `Hola Alma, vi la Tienda Lendan en la web (${tipoCliente}). Me gustaría pedir información y precios de: ${lista}`;
             window.open('https://wa.me/522228016244?text=' + encodeURIComponent(msg), '_blank');
         }
+
+        // Garantizar que la barra de direcciones mantenga el subdominio limpio
+        if (window.history && window.history.replaceState && window.location.pathname.indexOf('tienda.html') !== -1) {
+            if (window.location.hostname.startsWith('tienda.') || window.location.hostname.startsWith('productos.')) {
+                window.history.replaceState(null, '', '/');
+            }
+        }
     </script>
 </body>
 </html>
