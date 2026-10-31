@@ -593,6 +593,242 @@
             transform: translateY(-1px);
         }
 
+        /* --- TUFTE SALON TARIFF DIRECTORY (CERO RUIDO, ALTA DENSIDAD, DATA-INK RATIO) --- */
+        .tufte-tariff-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2.2rem;
+            margin-top: 2rem;
+        }
+
+        .tufte-cat-group {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 1.8rem 2.2rem;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .tufte-cat-group:hover {
+            border-color: rgba(244, 63, 94, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .tufte-cat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1.5px solid rgba(244, 63, 94, 0.35);
+            padding-bottom: 1rem;
+            margin-bottom: 1.2rem;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tufte-cat-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.45rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tufte-cat-count {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: rgba(244, 63, 94, 0.15);
+            color: var(--brand-rose-light);
+            border: 1px solid rgba(244, 63, 94, 0.3);
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .tufte-tariff-table {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tufte-tariff-row {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.1rem 0.6rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+            transition: background-color 0.2s ease, padding-left 0.2s ease;
+            border-radius: 8px;
+        }
+
+        .tufte-tariff-row:last-child {
+            border-bottom: none;
+        }
+
+        .tufte-tariff-row:hover {
+            background: rgba(255, 255, 255, 0.035);
+            padding-left: 0.9rem;
+        }
+
+        .tufte-service-headline {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 4px;
+        }
+
+        .tufte-service-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.12rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.2px;
+        }
+
+        .tufte-perk-pill {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.22), rgba(244, 63, 94, 0.2));
+            border: 1px solid rgba(212, 175, 55, 0.45);
+            color: #fde047;
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 2px 9px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .tufte-service-desc {
+            font-size: 0.90rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+            margin-bottom: 6px;
+            max-width: 720px;
+        }
+
+        .tufte-details {
+            margin-top: 4px;
+            font-size: 0.84rem;
+        }
+
+        .tufte-details summary {
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--brand-rose-light);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            list-style: none;
+            user-select: none;
+        }
+
+        .tufte-details summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .tufte-details ul {
+            margin: 8px 0 4px 18px;
+            color: #d4d4d8;
+            line-height: 1.6;
+        }
+
+        .tufte-details li {
+            margin-bottom: 2px;
+        }
+
+        .tufte-tariff-action {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-align: right;
+            justify-content: flex-end;
+            min-width: 230px;
+        }
+
+        .tufte-price {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: #fff;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: -0.2px;
+            white-space: nowrap;
+        }
+
+        .tufte-price small {
+            font-size: 0.80rem;
+            color: var(--brand-rose-light);
+            font-weight: 700;
+            margin-right: 4px;
+        }
+
+        .tufte-btn-book {
+            background: var(--brand-rose);
+            color: #fff;
+            border: none;
+            padding: 9px 18px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 0.86rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .tufte-btn-book:hover {
+            background: #e11d48;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(244, 63, 94, 0.4);
+        }
+
+        .carousel-dots-wrap {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            padding: 0;
+        }
+
+        .carousel-dot.active {
+            background: var(--brand-rose);
+            width: 24px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(244, 63, 94, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .tufte-cat-group {
+                padding: 1.2rem 1rem;
+            }
+            .tufte-tariff-row {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+            .tufte-tariff-action {
+                justify-content: space-between;
+                width: 100%;
+                padding-top: 8px;
+                border-top: 1px dashed rgba(255, 255, 255, 0.08);
+            }
+        }
+
         /* Student Free Haircuts Hook Banner */
         .alumna-hook-card {
             background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(24, 24, 27, 0.95));
@@ -1187,441 +1423,496 @@
             <button class="salon-tab-btn" onclick="filterSalonServices('estetica', this)">👁️ Pestañas, Cejas & Depilación</button>
         </div>
 
-        <div class="services-grid" id="salon-services-grid">
-            <!-- 1. Corte Dama -->
-            <div class="service-card" data-cat="cortes">
-                <div>
-                    <div class="service-top-row">
-                        <div class="service-icon"><i class="fas fa-cut"></i></div>
-                    </div>
-                    <div class="service-name">1. Corte de Cabello Dama</div>
-                    <p class="service-desc">Corte estilizado y personalizado según tus facciones (capas, bob, mariposa, despunte o cambio de look).</p>
-                    <details class="service-breakdown">
-                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
-                        <ul>
-                            <li>Diagnóstico de visagismo y textura capilar.</li>
-                            <li>Corte de precisión con tijera profesional.</li>
-                            <li>Sellado de puntas o estilizado básico de acabado.</li>
-                        </ul>
-                    </details>
+        <div class="tufte-tariff-container" id="salon-tariff-container">
+            <!-- GRUPO 1: CORTES & ESTILIZADO -->
+            <div class="tufte-cat-group" data-cat="cortes">
+                <div class="tufte-cat-header">
+                    <div class="tufte-cat-title"><i class="fas fa-cut" style="color:var(--brand-rose);"></i> Cortes & Estilizado Térmico</div>
+                    <span class="tufte-cat-count">3 Servicios</span>
                 </div>
-                <div class="service-footer">
-                    <span class="service-price">$200 MXN</span>
-                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar un Corte de Dama ($200 MXN)')" class="btn-book-service">Agendar</button>
+                <div class="tufte-tariff-table">
+                    <!-- 1. Corte Dama -->
+                    <div class="tufte-tariff-row">
+                        <div>
+                            <div class="tufte-service-headline">
+                                <span class="tufte-service-name">01. Corte de Cabello Dama</span>
+                            </div>
+                            <p class="tufte-service-desc">Corte estilizado y personalizado según tus facciones (capas, bob, mariposa, despunte o cambio de look completo).</p>
+                            <details class="tufte-details">
+                                <summary><span><i class="fas fa-circle-info"></i> Qué incluye</span> <i class="fas fa-chevron-down"></i></summary>
+                                <ul>
+                                    <li>Diagnóstico de visagismo y textura capilar.</li>
+                                    <li>Corte de precisión con tijera profesional ergonómica.</li>
+                                    <li>Sellado de puntas o estilizado básico de acabado.</li>
+                                </ul>
+                            </details>
+                        </div>
+                        <div class="tufte-tariff-action">
+                            <span class="tufte-price">$200 MXN</span>
+                            <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar un Corte de Dama ($200 MXN)')" class="tufte-btn-book">
+                                <i class="fab fa-whatsapp"></i> Agendar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 2. Corte Caballero -->
+                    <div class="tufte-tariff-row">
+                        <div>
+                            <div class="tufte-service-headline">
+                                <span class="tufte-service-name">02. Corte de Cabello Caballero</span>
+                            </div>
+                            <p class="tufte-service-desc">Corte ejecutivo, clásico o desvanecido moderno con máquina y tijera, cuidando cada detalle del contorno.</p>
+                            <details class="tufte-details">
+                                <summary><span><i class="fas fa-circle-info"></i> Qué incluye</span> <i class="fas fa-chevron-down"></i></summary>
+                                <ul>
+                                    <li>Corte con tijera y/o máquina según estilo solicitado.</li>
+                                    <li>Delineado limpio de patillas, nuca y contornos faciales.</li>
+                                    <li>Peinado con producto de acabado profesional Lendan.</li>
+                                </ul>
+                            </details>
+                        </div>
+                        <div class="tufte-tariff-action">
+                            <span class="tufte-price">$150 MXN</span>
+                            <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar un Corte de Caballero ($150 MXN)')" class="tufte-btn-book">
+                                <i class="fab fa-whatsapp"></i> Agendar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 3. Planchado Express -->
+                    <div class="tufte-tariff-row">
+                        <div>
+                            <div class="tufte-service-headline">
+                                <span class="tufte-service-name">03. Planchado Express</span>
+                            </div>
+                            <p class="tufte-service-desc">Alaciado térmico rápido para lucir un cabello impecable, pulido y sin frizz en tus reuniones o compromisos.</p>
+                            <details class="tufte-details">
+                                <summary><span><i class="fas fa-circle-info"></i> Qué incluye</span> <i class="fas fa-chevron-down"></i></summary>
+                                <ul>
+                                    <li>Aplicación de termoprotector profesional europeo Lendan.</li>
+                                    <li>Planchado por secciones con placas de titanio/cerámica iónica.</li>
+                                    <li>Gotas de aceite de Moringa para sellar brillo y puntas.</li>
+                                </ul>
+                            </details>
+                        </div>
+                        <div class="tufte-tariff-action">
+                            <span class="tufte-price">$200 MXN</span>
+                            <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar un Planchado Express ($200 MXN)')" class="tufte-btn-book">
+                                <i class="fab fa-whatsapp"></i> Agendar
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- 2. Corte Caballero -->
-            <div class="service-card" data-cat="cortes">
-                <div>
-                    <div class="service-top-row">
-                        <div class="service-icon"><i class="fas fa-user-tie"></i></div>
-                    </div>
-                    <div class="service-name">2. Corte de Cabello Caballero</div>
-                    <p class="service-desc">Corte ejecutivo, clásico o desvanecido moderno con máquina y tijera, cuidando cada detalle del contorno.</p>
-                    <details class="service-breakdown">
-                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
-                        <ul>
-                            <li>Corte con tijera y/o máquina según estilo.</li>
-                            <li>Delineado limpio de patillas, nuca y contornos.</li>
-                            <li>Peinado con producto de acabado profesional.</li>
-                        </ul>
-                    </details>
+            <!-- GRUPO 2: COLOR, ALISADOS & CAPILAR -->
+            <div class="tufte-cat-group" data-cat="color">
+                <div class="tufte-cat-header">
+                    <div class="tufte-cat-title"><i class="fas fa-palette" style="color:var(--brand-rose);"></i> Colorimetría, Alisados & Terapias Capilares</div>
+                    <span class="tufte-cat-count">6 Servicios</span>
                 </div>
-                <div class="service-footer">
-                    <span class="service-price">$150 MXN</span>
-                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar un Corte de Caballero ($150 MXN)')" class="btn-book-service">Agendar</button>
+                <div class="tufte-tariff-table">
+                    <!-- 4. Aplicación de Tintes -->
+                    <div class="tufte-tariff-row">
+                        <div>
+                            <div class="tufte-service-headline">
+                                <span class="tufte-service-name">04. Aplicación de Tintes</span>
+                            </div>
+                            <p class="tufte-service-desc">Cobertura total de cana, retoque de raíz o baño de color uniforme con tintes europeos de máxima duración.</p>
+                            <details class="tufte-details">
+                                <summary><span><i class="fas fa-circle-info"></i> Qué incluye</span> <i class="fas fa-chevron-down"></i></summary>
+                                <ul>
+                                    <li>Asesoría de tono según subtono de piel y morfología.</li>
+                                    <li>Fórmula de coloración profesional con protector de fibra capilar.</li>
+                                    <li>Lavado neutro sellador de color, acondicionamiento y secado.</li>
+                                </ul>
+                            </details>
+                        </div>
+                        <div class="tufte-tariff-action">
+                            <span class="tufte-price"><small>Desde</small> $500 MXN</span>
+                            <button type="button" onclick="openSalonWaModal('Hola Alma, quiero cotizar/agendar Aplicación de Tinte (Desde $500 MXN)')" class="tufte-btn-book">
+                                <i class="fab fa-whatsapp"></i> Cotizar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 5. Diseños de Color -->
+                    <div class="tufte-tariff-row">
+                        <div>
+                            <div class="tufte-service-headline">
+                                <span class="tufte-service-name">05. Diseños de Color & Balayage</span>
+                                <span class="tufte-perk-pill">🎁 +10% en Viajes</span>
+                            </div>
+                            <p class="tufte-service-desc">Balayage, Babylights, Mechas universales, Contorno luminoso o Extracción cuidando al 100% la elasticidad capilar.</p>
+                            <details class="tufte-details">
+                                <summary><span><i class="fas fa-circle-info"></i> Qué incluye</span> <i class="fas fa-chevron-down"></i></summary>
+                                <ul>
+                                    <li>Diagnóstico profesional y prueba de mecha previa si se requiere.</li>
+                                    <li>Decoloración blindada y protegida con aditivo PlexForte.</li>
+                                    <li>Matiz de diseño, tratamiento sellador y estilizado final.</li>
+                                </ul>
+                            </details>
+                        </div>
+                        <div class="tufte-tariff-action">
+                            <span class="tufte-price"><small>Desde</small> $1,000 MXN</span>
+                            <button type="button" onclick="openSalonWaModal('Hola Alma, quiero cotizar un Diseño de Color (Desde $1,000 MXN)')" class="tufte-btn-book">
+                                <i class="fab fa-whatsapp"></i> Cotizar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 6. Alisados Progresivos -->
+                    <div class="tufte-tariff-row">
+                        <div>
+                            <div class="tufte-service-headline">
+                                <span class="tufte-service-name">06. Alisados Progresivos Termo-Activos</span>
+                                <span class="tufte-perk-pill">🎁 +10% en Viajes</span>
+                            </div>
+                            <p class="tufte-service-desc">Alaciado de larga duración (4 a 6 meses). Elimina encrespamiento con caída lacia, suave y sedosa.</p>
+                            <details class="tufte-details">
+                                <summary><span><i class="fas fa-circle-info"></i> Qué incluye</span> <i class="fas fa-chevron-down"></i></summary>
+                                <ul>
+                                    <li>Lavado con shampoo antirresiduos para preparar cutícula.</li>
+                                    <li>Aplicación minuciosa de fórmula alisadora y tiempo de pose.</li>
+                                    <li>Cauterización térmica mecha por mecha y sellado nutritivo.</li>
+                                </ul>
+                            </details>
+                        </div>
+                        <div class="tufte-tariff-action">
+                            <span class="tufte-price"><small>Desde</small> $850 MXN</span>
+                            <button type="button" onclick="openSalonWaModal('Hola Alma, quiero cotizar un Alisado Progresivo (Desde $850 MXN / Promo $800)')" class="tufte-btn-book">
+                                <i class="fab fa-whatsapp"></i> Cotizar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 7. Botox Capilar -->
+                    <div class="tufte-tariff-row">
+                        <div>
+                            <div class="tufte-service-headline">
+                                <span class="tufte-service-name">07. Botox Capilar Antiedad</span>
+                            </div>
+                            <p class="tufte-service-desc">Rejuvenecimiento y relleno capilar intensivo para cabellos deshidratados, porosos o químicamente procesados.</p>
+                            <details class="tufte-details">
+                                <summary><span><i class="fas fa-circle-info"></i> Qué incluye</span> <i class="fas fa-chevron-down"></i></summary>
+                                <ul>
+                                    <li>Limpieza profunda y preparación de la hebra capilar.</li>
+                                    <li>Aplicación de concentrado vitamínico de Botox Capilar.</li>
+                                    <li>Activación con calor y sellado para máxima sedosidad.</li>
+                                </ul>
+                            </details>
+                        </div>
+                        <div class="tufte-tariff-action">
+                            <span class="tufte-price"><small>Desde</small> $500 MXN</span>
+                            <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar un Botox Capilar (Desde $500 MXN)')" class="tufte-btn-book">
+                                <i class="fab fa-whatsapp"></i> Cotizar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 8. Nanoplastia -->
+                    <div class="tufte-tariff-row">
+                        <div>
+                            <div class="tufte-service-headline">
+                                <span class="tufte-service-name">08. Nanoplastia Capilar Orgánica</span>
+                            </div>
+                            <p class="tufte-service-desc">Restauración y alaciado progresivo con nanotecnología de aminoácidos y aceites esenciales sin formol.</p>
+                            <details class="tufte-details">
+                                <summary><span><i class="fas fa-circle-info"></i> Qué incluye</span> <i class="fas fa-chevron-down"></i></summary>
+                                <ul>
+                                    <li>Relleno intracelular con nanopartículas reconstructoras.</li>
+                                    <li>Reducción de volumen y control total del frizz.</li>
+                                    <li>Sellado térmico con brillo tridimensional efecto espejo.</li>
+                                </ul>
+                            </details>
+                        </div>
+                        <div class="tufte-tariff-action">
+                            <span class="tufte-price"><small>Desde</small> $600 MXN</span>
+                            <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar una Nanoplastia Capilar (Desde $600 MXN)')" class="tufte-btn-book">
+                                <i class="fab fa-whatsapp"></i> Cotizar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 9. Sinergia Capilar -->
+                    <div class="tufte-tariff-row">
+                        <div>
+                            <div class="tufte-service-headline">
+                                <span class="tufte-service-name">09. Sinergia Capilar Multivitamínica</span>
+                            </div>
+                            <p class="tufte-service-desc">Terapia combinada de hidratación, lípidos y proteínas para devolver fuerza y elasticidad inmediata a tu cabellera.</p>
+                            <details class="tufte-details">
+                                <summary><span><i class="fas fa-circle-info"></i> Qué incluye</span> <i class="fas fa-chevron-down"></i></summary>
+                                <ul>
+                                    <li>Diagnóstico de necesidad capilar (hidratación vs nutrición).</li>
+                                    <li>Mezcla magistral de ampolleta intensiva + mascarilla dermo-activa.</li>
+                                    <li>Tiempo de vapor/calor y secado profesional.</li>
+                                </ul>
+                            </details>
+                        </div>
+                        <div class="tufte-tariff-action">
+                            <span class="tufte-price"><small>Desde</small> $300 MXN</span>
+                            <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar una Sinergia Capilar (Desde $300 MXN)')" class="tufte-btn-book">
+                                <i class="fab fa-whatsapp"></i> Cotizar
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- 3. Planchado Express -->
-            <div class="service-card" data-cat="cortes">
-                <div>
-                    <div class="service-top-row">
-                        <div class="service-icon"><i class="fas fa-fire-flame-simple"></i></div>
-                    </div>
-                    <div class="service-name">3. Planchado Express</div>
-                    <p class="service-desc">Alaciado térmico rápido para lucir un cabello impecable, pulido y sin frizz en tus reuniones o compromisos.</p>
-                    <details class="service-breakdown">
-                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
-                        <ul>
-                            <li>Aplicación de termoprotector profesional Lendan.</li>
-                            <li>Planchado por secciones con placas de titanio/cerámica.</li>
-                            <li>Gotas de aceite de Moringa para sellar brillo y puntas.</li>
-                        </ul>
-                    </details>
+            <!-- GRUPO 3: NOVIAS, XV AÑOS & EVENTOS -->
+            <div class="tufte-cat-group" data-cat="eventos">
+                <div class="tufte-cat-header">
+                    <div class="tufte-cat-title"><i class="fas fa-crown" style="color:var(--brand-rose);"></i> Novias, XV Años & Maquillaje Social</div>
+                    <span class="tufte-cat-count">4 Servicios</span>
                 </div>
-                <div class="service-footer">
-                    <span class="service-price">$200 MXN</span>
-                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar un Planchado Express ($200 MXN)')" class="btn-book-service">Agendar</button>
+                <div class="tufte-tariff-table">
+                    <!-- 10. Peinado Social -->
+                    <div class="tufte-tariff-row">
+                        <div>
+                            <div class="tufte-service-headline">
+                                <span class="tufte-service-name">10. Peinado Social & Moldeado de Gala</span>
+                            </div>
+                            <p class="tufte-service-desc">Recogidos elegantes, semirecogidos, ondas Hollywood o trenzados artísticos para graduaciones y bodas.</p>
+                            <details class="tufte-details">
+                                <summary><span><i class="fas fa-circle-info"></i> Qué incluye</span> <i class="fas fa-chevron-down"></i></summary>
+                                <ul>
+                                    <li>Preparación térmica de la cabellera para máxima fijación.</li>
+                                    <li>Diseño de ondas, moldeado o recogido según escote del vestido.</li>
+                                    <li>Fijación resistente a humedad y colocación de tocado.</li>
+                                </ul>
+                            </details>
+                        </div>
+                        <div class="tufte-tariff-action">
+                            <span class="tufte-price"><small>Desde</small> $500 MXN</span>
+                            <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar un Peinado Social (Desde $500 MXN)')" class="tufte-btn-book">
+                                <i class="fab fa-whatsapp"></i> Agendar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 11. Maquillaje Social -->
+                    <div class="tufte-tariff-row">
+                        <div>
+                            <div class="tufte-service-headline">
+                                <span class="tufte-service-name">11. Maquillaje Social HD</span>
+                            </div>
+                            <p class="tufte-service-desc">Maquillaje profesional blindado de larga duración resistente a luces, flash fotográfico y lágrimas de emoción.</p>
+                            <details class="tufte-details">
+                                <summary><span><i class="fas fa-circle-info"></i> Qué incluye</span> <i class="fas fa-chevron-down"></i></summary>
+                                <ul>
+                                    <li>Preparación e hidratación dermo-cosmética de la piel.</li>
+                                    <li>Visagismo de contornos, iluminación de ojos y labios.</li>
+                                    <li>Pestaña postiza de tira y sellador fijador de larga duración.</li>
+                                </ul>
+                            </details>
+                        </div>
+                        <div class="tufte-tariff-action">
+                            <span class="tufte-price">$600 MXN</span>
+                            <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar un Maquillaje Social ($600 MXN)')" class="tufte-btn-book">
+                                <i class="fab fa-whatsapp"></i> Agendar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 12. Paquete de Novia -->
+                    <div class="tufte-tariff-row">
+                        <div>
+                            <div class="tufte-service-headline">
+                                <span class="tufte-service-name">12. Paquete Integral de Novia</span>
+                                <span class="tufte-perk-pill">🎁 +10% en Viajes</span>
+                            </div>
+                            <p class="tufte-service-desc">Atención de lujo para el día más especial de tu vida con pruebas previas y fijación blindada.</p>
+                            <details class="tufte-details">
+                                <summary><span><i class="fas fa-circle-info"></i> Qué incluye</span> <i class="fas fa-chevron-down"></i></summary>
+                                <ul>
+                                    <li>Prueba previa de maquillaje y diseño de peinado nupcial.</li>
+                                    <li>Preparación facial luminosa e hidratación capilar previa.</li>
+                                    <li>Maquillaje HD blindado, peinado, velo y tocado en el gran día.</li>
+                                </ul>
+                            </details>
+                        </div>
+                        <div class="tufte-tariff-action">
+                            <span class="tufte-price">$5,000 MXN</span>
+                            <button type="button" onclick="openSalonWaModal('Hola Alma, quiero pedir informes y agendar el Paquete de Novia ($5,000 MXN)')" class="tufte-btn-book">
+                                <i class="fab fa-whatsapp"></i> Agendar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 13. Paquete de XV Años -->
+                    <div class="tufte-tariff-row">
+                        <div>
+                            <div class="tufte-service-headline">
+                                <span class="tufte-service-name">13. Paquete Integral de XV Años</span>
+                                <span class="tufte-perk-pill">🎁 +10% en Viajes</span>
+                            </div>
+                            <p class="tufte-service-desc">Diseño de imagen juvenil y sofisticado para brillar en la misa, sesión fotográfica y recepción.</p>
+                            <details class="tufte-details">
+                                <summary><span><i class="fas fa-circle-info"></i> Qué incluye</span> <i class="fas fa-chevron-down"></i></summary>
+                                <ul>
+                                    <li>Prueba de maquillaje y peinado acorde a vestido y temática.</li>
+                                    <li>Preparación de piel juvenil y cuidado de acabado fresco.</li>
+                                    <li>Maquillaje de larga duración, peinado de gala y colocación de tiara.</li>
+                                </ul>
+                            </details>
+                        </div>
+                        <div class="tufte-tariff-action">
+                            <span class="tufte-price">$4,000 MXN</span>
+                            <button type="button" onclick="openSalonWaModal('Hola Alma, quiero pedir informes y agendar el Paquete de XV Años ($4,000 MXN)')" class="tufte-btn-book">
+                                <i class="fab fa-whatsapp"></i> Agendar
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- 4. Aplicación de Tintes -->
-            <div class="service-card" data-cat="color">
-                <div>
-                    <div class="service-top-row">
-                        <div class="service-icon"><i class="fas fa-fill-drip"></i></div>
+            <!-- GRUPO 4: PESTAÑAS, CEJAS & DEPILACIÓN -->
+            <div class="tufte-cat-group" data-cat="estetica">
+                <div class="tufte-cat-header">
+                    <div class="tufte-cat-title"><i class="fas fa-eye" style="color:var(--brand-rose);"></i> Pestañas, Cejas & Depilación</div>
+                    <span class="tufte-cat-count">6 Servicios</span>
+                </div>
+                <div class="tufte-tariff-table">
+                    <!-- 14. Aplicación de Pestañas -->
+                    <div class="tufte-tariff-row">
+                        <div>
+                            <div class="tufte-service-headline">
+                                <span class="tufte-service-name">14. Aplicación de Extensiones de Pestañas</span>
+                            </div>
+                            <p class="tufte-service-desc">Realza tu mirada todos los días con extensiones ligeras, cómodas y adaptadas a tu ojo.</p>
+                            <details class="tufte-details" open>
+                                <summary><span><i class="fas fa-circle-info"></i> Modalidades y Precios Exactos</span> <i class="fas fa-chevron-down"></i></summary>
+                                <ul>
+                                    <li><strong>Clásicas (1x1 efecto natural):</strong> $400 MXN</li>
+                                    <li><strong>Efecto Rímel (mirada definida):</strong> $450 MXN</li>
+                                    <li><strong>Volumen Tecnológico (mayor densidad):</strong> $500 MXN</li>
+                                </ul>
+                            </details>
+                        </div>
+                        <div class="tufte-tariff-action">
+                            <span class="tufte-price">$400 – $500 MXN</span>
+                            <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar Aplicación de Pestañas (Clásicas $400 / Rímel $450 / Volumen $500)')" class="tufte-btn-book">
+                                <i class="fab fa-whatsapp"></i> Agendar
+                            </button>
+                        </div>
                     </div>
-                    <div class="service-name">4. Aplicación de Tintes</div>
-                    <p class="service-desc">Cobertura total de cana, retoque de raíz o baño de color uniforme con tintes europeos de máxima duración.</p>
-                    <details class="service-breakdown">
-                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
-                        <ul>
-                            <li>Asesoría de tono según subtono de piel.</li>
-                            <li>Fórmula de coloración con protector de fibra capilar.</li>
-                            <li>Lavado neutro sellador de color y secado.</li>
-                        </ul>
-                    </details>
-                </div>
-                <div class="service-footer">
-                    <span class="service-price"><small>Desde</small> $500 MXN</span>
-                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero cotizar/agendar Aplicación de Tinte (Desde $500 MXN)')" class="btn-book-service">Cotizar / Agendar</button>
-                </div>
-            </div>
 
-            <!-- 5. Diseños de Color -->
-            <div class="service-card" data-cat="color">
-                <div>
-                    <div class="service-top-row">
-                        <div class="service-icon"><i class="fas fa-palette"></i></div>
-                        <span class="travel-bonus-pill">🎁 +10% Desc. en Viajes</span>
+                    <!-- 15. Lifting de Pestañas -->
+                    <div class="tufte-tariff-row">
+                        <div>
+                            <div class="tufte-service-headline">
+                                <span class="tufte-service-name">15. Lifting de Pestañas Natural</span>
+                            </div>
+                            <p class="tufte-service-desc">Curvatura y elevación de tu propia pestaña desde la raíz para una mirada abierta sin rizador.</p>
+                            <details class="tufte-details">
+                                <summary><span><i class="fas fa-circle-info"></i> Qué incluye</span> <i class="fas fa-chevron-down"></i></summary>
+                                <ul>
+                                    <li>Limpieza de párpados y molde de silicona anatómico.</li>
+                                    <li>Gel elevador, neutralizante fijador y tinte/botox nutritivo.</li>
+                                </ul>
+                            </details>
+                        </div>
+                        <div class="tufte-tariff-action">
+                            <span class="tufte-price">$350 MXN</span>
+                            <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar un Lifting de Pestañas ($350 MXN)')" class="tufte-btn-book">
+                                <i class="fab fa-whatsapp"></i> Agendar
+                            </button>
+                        </div>
                     </div>
-                    <div class="service-name">5. Diseños de Color</div>
-                    <p class="service-desc">Balayage, Babylights, Mechas universales, Contorno luminoso o Extracción de color cuidando la elasticidad de tu cabello.</p>
-                    <details class="service-breakdown">
-                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
-                        <ul>
-                            <li>Diagnóstico y prueba de mecha previa si se requiere.</li>
-                            <li>Decoloración protegida con aditivo PlexForte.</li>
-                            <li>Matiz de diseño, tratamiento sellador y estilizado final.</li>
-                        </ul>
-                    </details>
-                </div>
-                <div class="service-footer">
-                    <span class="service-price"><small>Desde</small> $1,000 MXN</span>
-                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero cotizar un Diseño de Color (Desde $1,000 MXN)')" class="btn-book-service">Cotizar / Agendar</button>
-                </div>
-            </div>
 
-            <!-- 6. Alisados Progresivos -->
-            <div class="service-card" data-cat="color">
-                <div>
-                    <div class="service-top-row">
-                        <div class="service-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
-                        <span class="travel-bonus-pill">🎁 +10% Desc. en Viajes</span>
+                    <!-- 16. Laminado de Cejas -->
+                    <div class="tufte-tariff-row">
+                        <div>
+                            <div class="tufte-service-headline">
+                                <span class="tufte-service-name">16. Laminado de Cejas (Brow Lamination)</span>
+                            </div>
+                            <p class="tufte-service-desc">Alineación y direccionamiento del vello rebelde para cejas más pobladas, definidas y simétricas.</p>
+                            <details class="tufte-details">
+                                <summary><span><i class="fas fa-circle-info"></i> Qué incluye</span> <i class="fas fa-chevron-down"></i></summary>
+                                <ul>
+                                    <li>Diseño y planchado direccional del vello de ceja.</li>
+                                    <li>Fijación nutritiva con keratina y peinado sellador.</li>
+                                </ul>
+                            </details>
+                        </div>
+                        <div class="tufte-tariff-action">
+                            <span class="tufte-price">$200 MXN</span>
+                            <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar un Laminado de Cejas ($200 MXN)')" class="tufte-btn-book">
+                                <i class="fab fa-whatsapp"></i> Agendar
+                            </button>
+                        </div>
                     </div>
-                    <div class="service-name">6. Alisados Progresivos</div>
-                    <p class="service-desc">Alaciado termo-activo de larga duración (4 a 6 meses). Elimina el encrespamiento y deja una caída lacia, suave y brillante.</p>
-                    <details class="service-breakdown">
-                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
-                        <ul>
-                            <li>Lavado con shampoo antirresiduos para abrir cutícula.</li>
-                            <li>Aplicación de fórmula alisadora y tiempo de pose.</li>
-                            <li>Cauterización térmica mecha por mecha y sellado nutritivo.</li>
-                        </ul>
-                    </details>
-                </div>
-                <div class="service-footer">
-                    <span class="service-price"><small>Desde</small> $850 MXN</span>
-                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero cotizar un Alisado Progresivo (Desde $850 MXN / Promo $800)')" class="btn-book-service">Cotizar / Agendar</button>
-                </div>
-            </div>
 
-            <!-- 7. Botox Capilar -->
-            <div class="service-card" data-cat="color">
-                <div>
-                    <div class="service-top-row">
-                        <div class="service-icon"><i class="fas fa-spa"></i></div>
+                    <!-- 17. Depilación de Cejas con Cera -->
+                    <div class="tufte-tariff-row">
+                        <div>
+                            <div class="tufte-service-headline">
+                                <span class="tufte-service-name">17. Depilación & Perfilado de Cejas con Cera</span>
+                            </div>
+                            <p class="tufte-service-desc">Limpieza y diseño de arco con cera tibia hipoalergénica respetando la piel sensible del contorno ocular.</p>
+                            <details class="tufte-details">
+                                <summary><span><i class="fas fa-circle-info"></i> Qué incluye</span> <i class="fas fa-chevron-down"></i></summary>
+                                <ul>
+                                    <li>Visagismo del arco de la ceja según proporciones faciales.</li>
+                                    <li>Depilación suave con cera tibia y loción calmante post-depilatoria.</li>
+                                </ul>
+                            </details>
+                        </div>
+                        <div class="tufte-tariff-action">
+                            <span class="tufte-price">$70 MXN</span>
+                            <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar Depilación de Cejas con Cera ($70 MXN)')" class="tufte-btn-book">
+                                <i class="fab fa-whatsapp"></i> Agendar
+                            </button>
+                        </div>
                     </div>
-                    <div class="service-name">7. Botox Capilar</div>
-                    <p class="service-desc">Rejuvenecimiento y relleno capilar intensivo para cabellos deshidratados, porosos o procesados químicamente.</p>
-                    <details class="service-breakdown">
-                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
-                        <ul>
-                            <li>Limpieza profunda y preparación de la hebra.</li>
-                            <li>Aplicación de concentrado de Botox Capilar vitamínico.</li>
-                            <li>Activación con calor y sellado para máxima sedosidad.</li>
-                        </ul>
-                    </details>
-                </div>
-                <div class="service-footer">
-                    <span class="service-price"><small>Desde</small> $500 MXN</span>
-                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar un Botox Capilar (Desde $500 MXN)')" class="btn-book-service">Cotizar / Agendar</button>
-                </div>
-            </div>
 
-            <!-- 8. Nanoplastia -->
-            <div class="service-card" data-cat="color">
-                <div>
-                    <div class="service-top-row">
-                        <div class="service-icon"><i class="fas fa-droplet"></i></div>
+                    <!-- 18. Depilación Facial Completa -->
+                    <div class="tufte-tariff-row">
+                        <div>
+                            <div class="tufte-service-headline">
+                                <span class="tufte-service-name">18. Depilación Facial Completa</span>
+                            </div>
+                            <p class="tufte-service-desc">Piel suave, uniforme y libre de vello (ceja, bozo, patillas, mejillas y mentón) para un maquillaje perfecto.</p>
+                            <details class="tufte-details">
+                                <summary><span><i class="fas fa-circle-info"></i> Qué incluye</span> <i class="fas fa-chevron-down"></i></summary>
+                                <ul>
+                                    <li>Higiene facial previa y cera tibia especial para rostro.</li>
+                                    <li>Gel descongestivo y calmante de aloe vera natural.</li>
+                                </ul>
+                            </details>
+                        </div>
+                        <div class="tufte-tariff-action">
+                            <span class="tufte-price">$250 MXN</span>
+                            <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar una Depilación Facial Completa ($250 MXN)')" class="tufte-btn-book">
+                                <i class="fab fa-whatsapp"></i> Agendar
+                            </button>
+                        </div>
                     </div>
-                    <div class="service-name">8. Nanoplastia Capilar</div>
-                    <p class="service-desc">Restauración y alaciado progresivo con nanotecnología de aminoácidos y aceites esenciales sin formol.</p>
-                    <details class="service-breakdown">
-                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
-                        <ul>
-                            <li>Relleno intracelular con nanopartículas reconstructoras.</li>
-                            <li>Reducción de volumen y control total del frizz.</li>
-                            <li>Sellado térmico con brillo tridimensional.</li>
-                        </ul>
-                    </details>
-                </div>
-                <div class="service-footer">
-                    <span class="service-price"><small>Desde</small> $600 MXN</span>
-                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar una Nanoplastia Capilar (Desde $600 MXN)')" class="btn-book-service">Cotizar / Agendar</button>
-                </div>
-            </div>
 
-            <!-- 9. Sinergia Capilar -->
-            <div class="service-card" data-cat="color">
-                <div>
-                    <div class="service-top-row">
-                        <div class="service-icon"><i class="fas fa-seedling"></i></div>
+                    <!-- 19. Depilación Corporal Roll-On -->
+                    <div class="tufte-tariff-row">
+                        <div>
+                            <div class="tufte-service-headline">
+                                <span class="tufte-service-name">19. Depilación Corporal Higiénica con Cera Roll-On</span>
+                            </div>
+                            <p class="tufte-service-desc">Sistema higiénico y rápido con cartucho tibio desechable que extrae el vello desde la raíz.</p>
+                            <details class="tufte-details" open>
+                                <summary><span><i class="fas fa-circle-info"></i> Zonas y Precios Exactos</span> <i class="fas fa-chevron-down"></i></summary>
+                                <ul>
+                                    <li><strong>Axilas:</strong> $200 MXN</li>
+                                    <li><strong>Brazos completos:</strong> $400 MXN</li>
+                                    <li><strong>Piernas completas:</strong> $650 MXN</li>
+                                </ul>
+                            </details>
+                        </div>
+                        <div class="tufte-tariff-action">
+                            <span class="tufte-price"><small>Desde</small> $200 MXN</span>
+                            <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar Depilación Corporal con Cera Roll-On (Axilas $200 / Brazos $400 / Piernas $650)')" class="tufte-btn-book">
+                                <i class="fab fa-whatsapp"></i> Agendar
+                            </button>
+                        </div>
                     </div>
-                    <div class="service-name">9. Sinergia Capilar</div>
-                    <p class="service-desc">Terapia combinada de hidratación, lípidos y proteínas para devolver fuerza y vitalidad inmediata a tu cabellera.</p>
-                    <details class="service-breakdown">
-                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
-                        <ul>
-                            <li>Diagnóstico de necesidad capilar (hidratación vs nutrición).</li>
-                            <li>Mezcla magistral de ampolleta + mascarilla intensiva.</li>
-                            <li>Tiempo de vapor/calor y secado profesional.</li>
-                        </ul>
-                    </details>
-                </div>
-                <div class="service-footer">
-                    <span class="service-price"><small>Desde</small> $300 MXN</span>
-                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar una Sinergia Capilar (Desde $300 MXN)')" class="btn-book-service">Cotizar / Agendar</button>
-                </div>
-            </div>
-
-            <!-- 10. Peinado Social -->
-            <div class="service-card" data-cat="cortes">
-                <div>
-                    <div class="service-top-row">
-                        <div class="service-icon"><i class="fas fa-crown"></i></div>
-                    </div>
-                    <div class="service-name">10. Peinado Social</div>
-                    <p class="service-desc">Recogidos elegantes, semirecogidos, ondas de gala o trenzados artísticos para graduaciones, bodas y eventos.</p>
-                    <details class="service-breakdown">
-                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
-                        <ul>
-                            <li>Preparación térmica de la cabellera para máxima fijación.</li>
-                            <li>Diseño de ondas, moldeado o recogido según tu vestido.</li>
-                            <li>Fijación resistente a la humedad y colocación de tocado.</li>
-                        </ul>
-                    </details>
-                </div>
-                <div class="service-footer">
-                    <span class="service-price"><small>Desde</small> $500 MXN</span>
-                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar un Peinado Social (Desde $500 MXN)')" class="btn-book-service">Agendar</button>
-                </div>
-            </div>
-
-            <!-- 11. Maquillaje Social -->
-            <div class="service-card" data-cat="eventos">
-                <div>
-                    <div class="service-top-row">
-                        <div class="service-icon"><i class="fas fa-paintbrush"></i></div>
-                    </div>
-                    <div class="service-name">11. Maquillaje Social</div>
-                    <p class="service-desc">Maquillaje profesional de larga duración (día o noche) resistente a luces, fotografía y lágrimas de emoción.</p>
-                    <details class="service-breakdown">
-                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
-                        <ul>
-                            <li>Preparación e hidratación dermo-cosmética de la piel.</li>
-                            <li>Diseño de ojos, visagismo en contorno/iluminación y labios.</li>
-                            <li>Pestaña postiza de tira y sellado fijador de larga duración.</li>
-                        </ul>
-                    </details>
-                </div>
-                <div class="service-footer">
-                    <span class="service-price">$600 MXN</span>
-                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar un Maquillaje Social ($600 MXN)')" class="btn-book-service">Agendar</button>
-                </div>
-            </div>
-
-            <!-- 12. Paquete de Novia -->
-            <div class="service-card" data-cat="eventos">
-                <div>
-                    <div class="service-top-row">
-                        <div class="service-icon"><i class="fas fa-ring"></i></div>
-                        <span class="travel-bonus-pill">🎁 +10% Desc. en Viajes</span>
-                    </div>
-                    <div class="service-name">12. Paquete de Novia</div>
-                    <p class="service-desc">Atención integral de lujo para el día más especial de tu vida, asegurando un look radiante, elegante e inolvidable.</p>
-                    <details class="service-breakdown">
-                        <summary><span>📋 Qué incluye este paquete</span> <i class="fas fa-chevron-down"></i></summary>
-                        <ul>
-                            <li>Prueba previa de maquillaje y diseño de peinado nupcial.</li>
-                            <li>Preparación facial luminosa e hidratación capilar previa.</li>
-                            <li>Maquillaje HD blindado, peinado de novia, colocación de velo y tocado en el gran día.</li>
-                        </ul>
-                    </details>
-                </div>
-                <div class="service-footer">
-                    <span class="service-price">$5,000 MXN</span>
-                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero pedir informes y agendar el Paquete de Novia ($5,000 MXN)')" class="btn-book-service">Agendar</button>
-                </div>
-            </div>
-
-            <!-- 13. Paquete de XV Años -->
-            <div class="service-card" data-cat="eventos">
-                <div>
-                    <div class="service-top-row">
-                        <div class="service-icon"><i class="fas fa-star"></i></div>
-                        <span class="travel-bonus-pill">🎁 +10% Desc. en Viajes</span>
-                    </div>
-                    <div class="service-name">13. Paquete de XV Años</div>
-                    <p class="service-desc">Diseño de imagen juvenil y sofisticado para que la quinceañera brille en la misa, sesión fotográfica y recepción.</p>
-                    <details class="service-breakdown">
-                        <summary><span>📋 Qué incluye este paquete</span> <i class="fas fa-chevron-down"></i></summary>
-                        <ul>
-                            <li>Prueba de maquillaje y peinado acorde al vestido y temática.</li>
-                            <li>Preparación de piel juvenil y cuidado de acabado fresco.</li>
-                            <li>Maquillaje de larga duración, peinado de gala y colocación de corona/tiara.</li>
-                        </ul>
-                    </details>
-                </div>
-                <div class="service-footer">
-                    <span class="service-price">$4,000 MXN</span>
-                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero pedir informes y agendar el Paquete de XV Años ($4,000 MXN)')" class="btn-book-service">Agendar</button>
-                </div>
-            </div>
-
-            <!-- 14. Aplicación de Pestañas -->
-            <div class="service-card" data-cat="estetica">
-                <div>
-                    <div class="service-top-row">
-                        <div class="service-icon"><i class="fas fa-eye"></i></div>
-                    </div>
-                    <div class="service-name">14. Aplicación de Pestañas</div>
-                    <p class="service-desc">Realza tu mirada todos los días con extensiones ligeras, cómodas y adaptadas a la forma natural de tu ojo.</p>
-                    <details class="service-breakdown" open>
-                        <summary><span>📋 Modalidades y Precios Exactos</span> <i class="fas fa-chevron-down"></i></summary>
-                        <ul>
-                            <li><strong>Clásicas (1x1 natural):</strong> $400 MXN</li>
-                            <li><strong>Efecto Rímel (mirada definida):</strong> $450 MXN</li>
-                            <li><strong>Volumen Tecnológico (mayor densidad):</strong> $500 MXN</li>
-                        </ul>
-                    </details>
-                </div>
-                <div class="service-footer">
-                    <span class="service-price">$400 – $500 MXN</span>
-                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar Aplicación de Pestañas (Clásicas $400 / Rímel $450 / Volumen $500)')" class="btn-book-service">Agendar</button>
-                </div>
-            </div>
-
-            <!-- 15. Lifting de Pestañas -->
-            <div class="service-card" data-cat="estetica">
-                <div>
-                    <div class="service-top-row">
-                        <div class="service-icon"><i class="fas fa-wand-sparkles"></i></div>
-                    </div>
-                    <div class="service-name">15. Lifting de Pestañas</div>
-                    <p class="service-desc">Elevación y curvatura natural de tu propia pestaña desde la raíz para una mirada abierta sin necesidad de rizador.</p>
-                    <details class="service-breakdown">
-                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
-                        <ul>
-                            <li>Limpieza de párpados y elección de molde anatómico.</li>
-                            <li>Gel elevador, fijador y tinte/botox nutritivo de pestañas.</li>
-                        </ul>
-                    </details>
-                </div>
-                <div class="service-footer">
-                    <span class="service-price">$350 MXN</span>
-                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar un Lifting de Pestañas ($350 MXN)')" class="btn-book-service">Agendar</button>
-                </div>
-            </div>
-
-            <!-- 16. Laminado de Cejas -->
-            <div class="service-card" data-cat="estetica">
-                <div>
-                    <div class="service-top-row">
-                        <div class="service-icon"><i class="fas fa-feather"></i></div>
-                    </div>
-                    <div class="service-name">16. Laminado de Cejas</div>
-                    <p class="service-desc">Alineación y direccionamiento del vello de la ceja (Brow Lamination) para cejas más pobladas, definidas y simétricas.</p>
-                    <details class="service-breakdown">
-                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
-                        <ul>
-                            <li>Diseño y planchado direccional del vello rebelde.</li>
-                            <li>Fijación nutritiva con keratina e hidratación de ceja.</li>
-                        </ul>
-                    </details>
-                </div>
-                <div class="service-footer">
-                    <span class="service-price">$200 MXN</span>
-                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar un Laminado de Cejas ($200 MXN)')" class="btn-book-service">Agendar</button>
-                </div>
-            </div>
-
-            <!-- 17. Depilación de Cejas con Cera -->
-            <div class="service-card" data-cat="estetica">
-                <div>
-                    <div class="service-top-row">
-                        <div class="service-icon"><i class="fas fa-sparkles"></i></div>
-                    </div>
-                    <div class="service-name">17. Depilación de Cejas con Cera</div>
-                    <p class="service-desc">Diseño y limpieza de cejas con cera tibia hipoalergénica que respeta la piel delicada del contorno ocular.</p>
-                    <details class="service-breakdown">
-                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
-                        <ul>
-                            <li>Visagismo de arco de ceja y depilación con cera suave.</li>
-                            <li>Loción calmante post-depilatoria.</li>
-                        </ul>
-                    </details>
-                </div>
-                <div class="service-footer">
-                    <span class="service-price">$70 MXN</span>
-                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar Depilación de Cejas con Cera ($70 MXN)')" class="btn-book-service">Agendar</button>
-                </div>
-            </div>
-
-            <!-- 18. Depilación Facial -->
-            <div class="service-card" data-cat="estetica">
-                <div>
-                    <div class="service-top-row">
-                        <div class="service-icon"><i class="fas fa-face-smile-beam"></i></div>
-                    </div>
-                    <div class="service-name">18. Depilación Facial Completa</div>
-                    <p class="service-desc">Piel suave, uniforme y libre de vello facial (ceja, bozo, patillas, mejillas y mentón) para un maquillaje perfecto.</p>
-                    <details class="service-breakdown">
-                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
-                        <ul>
-                            <li>Higiene facial previa y aplicación de cera especial rostro.</li>
-                            <li>Gel descongestivo y calmante de aloe vera.</li>
-                        </ul>
-                    </details>
-                </div>
-                <div class="service-footer">
-                    <span class="service-price">$250 MXN</span>
-                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar una Depilación Facial Completa ($250 MXN)')" class="btn-book-service">Agendar</button>
-                </div>
-            </div>
-
-            <!-- 19. Depilación Corporal Roll-On -->
-            <div class="service-card" data-cat="estetica">
-                <div>
-                    <div class="service-top-row">
-                        <div class="service-icon"><i class="fas fa-hand-holding-heart"></i></div>
-                    </div>
-                    <div class="service-name">19. Depilación Corporal con Cera Roll-On</div>
-                    <p class="service-desc">Sistema higiénico y rápido con cartucho tibio roll-on que extrae el vello desde la raíz dejando la piel tersa por semanas.</p>
-                    <details class="service-breakdown" open>
-                        <summary><span>📋 Zonas y Precios Exactos</span> <i class="fas fa-chevron-down"></i></summary>
-                        <ul>
-                            <li><strong>Axilas:</strong> $200 MXN</li>
-                            <li><strong>Brazos:</strong> $400 MXN</li>
-                            <li><strong>Piernas:</strong> $650 MXN</li>
-                        </ul>
-                    </details>
-                </div>
-                <div class="service-footer">
-                    <span class="service-price"><small>Desde</small> $200 MXN</span>
-                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar Depilación Corporal con Cera Roll-On (Axilas $200 / Brazos $400 / Piernas $650)')" class="btn-book-service">Agendar</button>
                 </div>
             </div>
         </div>
@@ -1744,8 +2035,29 @@
                         <span>¡No dejes pasar el tiempo sin consentirte! 🔍</span>
                     </div>
                 </div>
+
+                <!-- Slide 8: Campaña Cambio de Look y Nueva Imagen -->
+                <div class="carousel-slide" onclick="openLightbox('img/salon/promo_ysidi_tratamiento.jpg', '✨ Campaña de Imagen: Julio llegó con nueva imagen ¿y tú qué esperas?')">
+                    <img src="img/salon/promo_ysidi_tratamiento.jpg" alt="Campaña Nueva Imagen">
+                    <div class="carousel-caption">
+                        <strong>✨ Nueva Imagen</strong>
+                        <span>¡Atrévete a renovar tu estilo! 🔍</span>
+                    </div>
+                </div>
             </div>
             <button class="carousel-nav-btn next" onclick="scrollSalonCarousel(1)" aria-label="Siguiente">❯</button>
+        </div>
+
+        <!-- Indicadores de punto del carrusel -->
+        <div class="carousel-dots-wrap" id="salonCarouselDots">
+            <button type="button" class="carousel-dot active" onclick="goToSalonSlide(0)" aria-label="Slide 1"></button>
+            <button type="button" class="carousel-dot" onclick="goToSalonSlide(1)" aria-label="Slide 2"></button>
+            <button type="button" class="carousel-dot" onclick="goToSalonSlide(2)" aria-label="Slide 3"></button>
+            <button type="button" class="carousel-dot" onclick="goToSalonSlide(3)" aria-label="Slide 4"></button>
+            <button type="button" class="carousel-dot" onclick="goToSalonSlide(4)" aria-label="Slide 5"></button>
+            <button type="button" class="carousel-dot" onclick="goToSalonSlide(5)" aria-label="Slide 6"></button>
+            <button type="button" class="carousel-dot" onclick="goToSalonSlide(6)" aria-label="Slide 7"></button>
+            <button type="button" class="carousel-dot" onclick="goToSalonSlide(7)" aria-label="Slide 8"></button>
         </div>
     </section>
 
@@ -1863,14 +2175,40 @@
         function filterSalonServices(cat, btn) {
             document.querySelectorAll('.salon-tab-btn').forEach(b => b.classList.remove('active'));
             if (btn) btn.classList.add('active');
-            document.querySelectorAll('#salon-services-grid .service-card').forEach(card => {
-                if (cat === 'todos' || card.dataset.cat === cat) {
-                    card.style.display = 'flex';
+            document.querySelectorAll('#salon-tariff-container .tufte-cat-group').forEach(group => {
+                if (cat === 'todos' || group.dataset.cat === cat) {
+                    group.style.display = 'block';
                 } else {
-                    card.style.display = 'none';
+                    group.style.display = 'none';
                 }
             });
         }
+
+        function goToSalonSlide(idx) {
+            const track = document.getElementById('salonCarouselTrack');
+            if (track) {
+                const slides = track.querySelectorAll('.carousel-slide');
+                if (slides[idx]) {
+                    slides[idx].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+                }
+            }
+        }
+
+        // Sincronizar dots con scroll del carrusel
+        (function() {
+            const track = document.getElementById('salonCarouselTrack');
+            if (track) {
+                track.addEventListener('scroll', () => {
+                    const slide = track.querySelector('.carousel-slide');
+                    if (!slide) return;
+                    const w = slide.offsetWidth + 22;
+                    const idx = Math.min(7, Math.max(0, Math.round(track.scrollLeft / w)));
+                    document.querySelectorAll('.carousel-dot').forEach((d, i) => {
+                        d.classList.toggle('active', i === idx);
+                    });
+                }, { passive: true });
+            }
+        })();
 
         function openSalonWaModal(msg) {
             const encoded = encodeURIComponent(msg || 'Hola Alma, me gustaría agendar una cita en el Estudio de Belleza');

@@ -664,7 +664,7 @@ const DESTINOS_DB = [
         distancia: "Sierra Tarahumara",
         tiempo_traslado: "Vuelo + Tren Turístico",
         badge: "✈️ Expedición fraVEO",
-        imagen: "https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?auto=format&fit=crop&w=1200&q=80",
+        imagen: "img/barrancas_cobre_real.jpg",
         descripcion: "La gran expedición de México a bordo del legendario Tren Chepe Express por las majestuosas Barrancas del Cobre. Paquete integral operado vía fraVEO con vuelos desde Puebla/CDMX, noches en Creel, Divisadero y Los Mochis, tours guiados y vistas panorámicas inigualables.",
         coordenadas: { lat: 27.5342, lng: -107.6328 },
         itinerario: [
