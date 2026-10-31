@@ -501,9 +501,12 @@ function initChatAssistant() {
     }
 }
 
-function toggleAiChat() {
+function toggleAiChat(ev) {
+    if (ev && typeof ev.stopPropagation === 'function') ev.stopPropagation();
+    window._lastAiOpenTimestamp = Date.now();
     const win = document.getElementById('ai-chat-window');
     if (win) {
+        win.style.zIndex = '10055';
         win.classList.toggle('active');
         if (win.classList.contains('active')) {
             const input = document.getElementById('ai-chat-input');
@@ -801,15 +804,15 @@ function generateLocalAlmaResponse(question, matchedContext = []) {
     }
 
     if (q.includes('xochimilco') || q.includes('llorona') || q.includes('trajinera') || q.includes('muertos')) {
-        return `🎭 ¡Hola! Soy **Alma**. Nuestra salida confirmada a **La Llorona en Xochimilco (Cuemanco)** opera en Temporada de Día de Muertos:\n- **Paquete Completo**: **$1,350 MXN** (transporte ejecutivo redondo desde San Manuel + paseo en trajinera + boleto oficial a la obra).\n- **Solo Transporte Redondo**: **$650 MXN**.\n- Apartas con **$200 MXN** y el resto se liquida 48-24h antes de salir. ¿Para cuántas personas requieres lugar?`;
+        return `🎭 ¡Hola! Soy **Alma**. Nuestra primera salida confirmada a **La Llorona en Xochimilco (Cuemanco)** registró **CUPO AGOTADO** gracias a su preferencia, ¡pero estamos abriendo lista para la siguiente salida de noviembre!\n- **Paquete Completo**: **Desde $1,350 MXN** (transporte ejecutivo redondo desde San Manuel + paseo en trajinera + boleto oficial a la obra).\n- **Solo Transporte Redondo**: **Desde $650 MXN**.\n- Apartas con **$200 MXN** y el resto se liquida 48-24h antes de salir. ¿Para cuántas personas te anotamos en la próxima fecha?`;
     }
 
     if (q.includes('expo') || q.includes('beauty') || q.includes('ebs') || q.includes('citibanamex')) {
-        return `💄 ¡Hola! Soy **Alma**. Tenemos salida ejecutiva directa a la **Expo Beauty Show (EBS 2026)** en Centro Citibanamex (24 al 26 Octubre 2026):\n- **Tarifa Redonda de Transporte Ejecutivo**: **$700 MXN** por persona saliendo desde San Manuel, Puebla (el boleto de acceso a la Expo se adquiere por separado).\n- Aparta tu asiento con solo **$200 MXN** y aplica el cupón **ESTETICA10**. ¿Para cuántas personas deseas apartar?`;
+        return `💄 ¡Hola! Soy **Alma**. Nuestra salida del 24 al 26 de octubre a **Expo Beauty Show (EBS)** en Centro Citibanamex tuvo **CUPO AGOTADO** total.\n- Si deseas asistir a próximas exposiciones profesionales en Centro Citibanamex o WTC CDMX, organizamos **transporte redondo ejecutivo desde $700 MXN** saliendo de San Manuel, Puebla.\n- ¿Te gustaría que te registremos para la próxima expo o cotizar un traslado privado?`;
     }
 
-    if (q.includes('estetica') || q.includes('estética') || q.includes('salon') || q.includes('salón') || q.includes('cupon') || q.includes('cupón') || q.includes('descuento')) {
-        return `🌸 ¡Hola! Soy **Alma**. El cupón **ESTETICA10** te da **10% de descuento directo** en cualquier viaje y está **abierto para todos** como promoción cruzada con nuestro salón **Estética Alma** en Río Nexapa #6101, San Manuel ([estetica.mera-kirai.com](https://estetica.mera-kirai.com)).`;
+    if (q.includes('estetica') || q.includes('estética') || q.includes('salon') || q.includes('salón') || q.includes('cupon') || q.includes('cupón') || q.includes('descuento') || q.includes('corte') || q.includes('tinte') || q.includes('alisado') || q.includes('nanoplastia') || q.includes('botox') || q.includes('pestañas') || q.includes('novia') || q.includes('lendan')) {
+        return `🌸 ¡Hola! Soy **Alma** de **Estudio de Belleza Imagen y Estilo "Alma"** (más de 30 años nos respaldan en Río Nexapa #6101, San Manuel).\n\n✨ **Lista Oficial de Servicios y Precios:**\n- **Corte Dama:** $200 | **Caballero:** $150 | **Planchado Express:** $200\n- **Aplicación de Tintes:** Desde $500 | **Diseños de Color (Balayage/Mechas):** Desde $1,000\n- **Alisados Progresivos:** Desde $850 (Promo especial desde $800) | **Nanoplastia:** Desde $600 | **Botox Capilar:** Desde $500 | **Sinergia Capilar:** Desde $300\n- **Peinado Social:** Desde $500 | **Maquillaje Social:** $600\n- **Paquete Novia:** $5,000 | **Paquete XV Años:** $4,000\n- **Pestañas:** Clásicas $400, Efecto Rímel $450, Volumen Tecnológico $500 | **Lifting:** $350 | **Laminado Cejas:** $200\n- **Depilaciones:** Ceja $70, Facial $250, Cera Roll-On (Piernas $650, Brazos $400, Axilas $200)\n- **Cortes sin costo (Práctica supervisada):** Lun, Mié y Vie de 4:00 a 5:00 PM.\n- 🎁 **10% de Descuento en Viajes (Cupón ESTETICA10):** Al realizarte cualquier Diseño de Color, Alisado Progresivo, Paquete de Faciales, XV Años o Novias. ¿Qué servicio te gustaría agendar?`;
     }
 
     // 4. SI HAY COINCIDENCIA EN LA BASE DE DATOS DE 908 DESTINOS Y EVENTOS (MUSEOS, GASTRONOMÍA Y TARIFAS)
@@ -937,7 +940,9 @@ document.addEventListener('click', (e) => {
     const navAiBtn = document.querySelector('.btn-nav-ai');
 
     if (aiWin && aiWin.classList.contains('active')) {
-        if (!aiWin.contains(e.target) && (!aiOrb || !aiOrb.contains(e.target)) && (!navAiBtn || !navAiBtn.contains(e.target))) {
+        const isTriggerBtn = e.target && e.target.closest && e.target.closest('[onclick*="quoteWithAI"], [onclick*="toggleAiChat"], .btn-cotizar-ai, .ai-orb-trigger, .btn-nav-ai');
+        const justOpened = (Date.now() - (window._lastAiOpenTimestamp || 0)) < 450;
+        if (!justOpened && !isTriggerBtn && !aiWin.contains(e.target) && (!aiOrb || !aiOrb.contains(e.target)) && (!navAiBtn || !navAiBtn.contains(e.target))) {
             aiWin.classList.remove('active');
         }
     }
@@ -1150,9 +1155,14 @@ function buildAlmaContextualQuoteGreeting(nombre, estado) {
     return `¡Hola! Soy **Alma** de *La Ruta del Águila* 🦅.\nVeo que te interesa viajar a **${nombre} (${estado})**${highlight}\n\n¿Te gustaría visitarlo pronto? Cuéntame: ¿para cuántas personas sería el viaje y aproximadamente en qué fecha o cuántos días tienes pensado viajar?`;
 }
 
-function quoteWithAI(nombre, estado) {
+function quoteWithAI(nombre, estado, ev) {
+    if (ev && typeof ev.stopPropagation === 'function') ev.stopPropagation();
+    else if (window.event && typeof window.event.stopPropagation === 'function') window.event.stopPropagation();
+    window._lastAiOpenTimestamp = Date.now();
+
     const win = document.getElementById('ai-chat-window');
     if (win) {
+        win.style.zIndex = '10055';
         win.classList.add('active');
     }
     const greeting = buildAlmaContextualQuoteGreeting(nombre, estado);
@@ -1173,7 +1183,7 @@ function quoteWithAI(nombre, estado) {
     const input = document.getElementById('ai-chat-input');
     if (input) {
         input.placeholder = `Responde a Alma: ¿cuántas personas o fechas para ${nombre}?`;
-        input.focus();
+        setTimeout(() => input.focus(), 80);
     }
 }
 
@@ -1223,22 +1233,22 @@ function renderCatalogoNacionalGrid() {
         const shortDesc = d.desc ? (d.desc.length > 95 ? d.desc.substring(0, 95) + '...' : d.desc) : 'Destino turístico con salida desde Puebla.';
 
         return `
-        <div style="background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:14px; padding:1.1rem; display:flex; flex-direction:column; justify-content:space-between; transition:all 0.2s ease;">
+        <div style="background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:16px; padding:1.35rem; display:flex; flex-direction:column; justify-content:space-between; transition:all 0.2s ease;">
             <div>
-                <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; margin-bottom:0.4rem; flex-wrap:wrap;">
-                    <span style="font-size:0.72rem; font-weight:800; background:rgba(22,163,74,0.14); color:var(--brand-green); padding:3px 8px; border-radius:12px;">📍 ${escapeHtml(d.state)}</span>
-                    <span style="font-size:0.7rem; color:var(--brand-cyan); font-weight:700;">${MACRO_LABELS[d.macro] || d.macro}</span>
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:0.55rem; flex-wrap:wrap;">
+                    <span style="font-size:0.78rem; font-weight:800; background:rgba(22,163,74,0.14); color:var(--brand-green); padding:4px 10px; border-radius:12px;">📍 ${escapeHtml(d.state)}</span>
+                    <span style="font-size:0.76rem; color:var(--brand-cyan); font-weight:700;">${MACRO_LABELS[d.macro] || d.macro}</span>
                 </div>
-                <div style="font-size:0.68rem; color:var(--brand-gold); font-weight:700; text-transform:uppercase; margin-bottom:0.25rem;">${escapeHtml(d.sub)}</div>
-                <h4 style="font-family:'Outfit'; font-size:1.05rem; font-weight:800; color:var(--text-title); margin-bottom:0.35rem; line-height:1.3;">${escapeHtml(d.name)}</h4>
-                <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.45; margin-bottom:0.65rem;">${escapeHtml(shortDesc)}</p>
-                ${d.price_ref ? `<div style="font-size:0.75rem; font-weight:700; color:var(--brand-green); margin-bottom:0.75rem;"><i class="fas fa-tag"></i> ${escapeHtml(d.price_ref)}</div>` : ''}
+                <div style="font-size:0.75rem; color:var(--brand-gold); font-weight:700; text-transform:uppercase; margin-bottom:0.35rem; letter-spacing:0.3px;">${escapeHtml(d.sub)}</div>
+                <h4 style="font-family:'Outfit'; font-size:1.18rem; font-weight:800; color:var(--text-title); margin-bottom:0.5rem; line-height:1.38;">${escapeHtml(d.name)}</h4>
+                <p style="font-size:0.93rem; color:var(--text-muted); line-height:1.65; margin-bottom:0.85rem;">${escapeHtml(shortDesc)}</p>
+                ${d.price_ref ? `<div style="font-size:0.84rem; font-weight:700; color:var(--brand-green); margin-bottom:0.9rem; line-height:1.45;"><i class="fas fa-tag"></i> ${escapeHtml(d.price_ref)}</div>` : ''}
             </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; padding-top:0.6rem; border-top:1px solid var(--border-color);">
-                <button type="button" onclick="openCatalogDetailModal('${safeId}')" style="background:var(--bg-card); color:var(--text-title); border:1px solid var(--border-color); padding:7px 8px; border-radius:8px; font-weight:700; font-size:0.76rem; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:4px;" title="Ver detalles completos con museos, platillos y amenidades">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; padding-top:0.8rem; border-top:1px solid var(--border-color);">
+                <button type="button" onclick="openCatalogDetailModal('${safeId}')" style="background:var(--bg-card); color:var(--text-title); border:1px solid var(--border-color); padding:10px 10px; border-radius:10px; font-weight:700; font-size:0.85rem; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:6px;" title="Ver detalles completos con museos, platillos y amenidades">
                     <i class="fas fa-eye"></i> Ver Detalles
                 </button>
-                <button type="button" onclick="quoteWithAI('${safeName}', '${safeState}')" style="background:linear-gradient(135deg, #0284c7, #0369a1); color:#fff; border:none; padding:7px 8px; border-radius:8px; font-weight:700; font-size:0.76rem; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:4px;" title="Cotizar salida ejecutiva con Alma">
+                <button type="button" class="btn-cotizar-ai" onclick="quoteWithAI('${safeName}', '${safeState}', event)" style="background:linear-gradient(135deg, #0284c7, #0369a1); color:#fff; border:none; padding:10px 10px; border-radius:10px; font-weight:700; font-size:0.85rem; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:6px;" title="Cotizar salida ejecutiva con Alma">
                     <i class="fas fa-wand-magic-sparkles"></i> Cotizar
                 </button>
             </div>

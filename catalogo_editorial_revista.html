@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo Editorial de Lujo 2026 | Viajes La Ruta del Águila & Estudio de Belleza Alma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        body {
+            background: #18181b;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #18181b;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            position: relative;
+            overflow: hidden;
+            page-break-after: always;
+            break-after: page;
+            margin: 0 auto;
+            background: #faf8f5;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .page-dark {
+            background: #09090b;
+            color: #f4f4f5;
+        }
+
+        .serif-title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+        }
+
+        .sans-title {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .gold-text {
+            color: #d4af37;
+        }
+
+        .rose-text {
+            color: #f43f5e;
+        }
+
+        .page-footer-bar {
+            padding: 4.5mm 14mm;
+            border-top: 1px solid rgba(212, 175, 55, 0.35);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 7.8pt;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        .page-header-bar {
+            padding: 6mm 14mm 4mm;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 7.8pt;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+        }
+
+        .content-pad {
+            padding: 7mm 14mm;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Badge & Pills */
+        .lux-pill {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.16);
+            color: #b45309;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            padding: 1.2mm 3.5mm;
+            border-radius: 20px;
+            font-size: 7.5pt;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .lux-pill-dark {
+            background: rgba(212, 175, 55, 0.2);
+            color: #fde047;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+        }
+
+        .price-tag {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            color: #be123c;
+            font-size: 11pt;
+        }
+
+        .price-tag small {
+            font-size: 7.5pt;
+            font-weight: 700;
+            color: #71717a;
+            text-transform: uppercase;
+            margin-right: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =====================================================================
+         PÁGINA 1: PORTADA EDITORIAL DE LUJO
+    ====================================================================== -->
+    <section class="page page-dark" style="background: #07090e;">
+        <!-- Imagen de fondo con overlay editorial -->
+        <div style="position:absolute; inset:0; z-index:0;">
+            <img src="img/zacatlan_real.jpg" style="width:100%; height:100%; object-fit:cover; opacity:0.46; filter:contrast(1.12) saturate(1.15);" alt="Portada">
+            <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(7,9,14,0.86) 0%, rgba(7,9,14,0.32) 42%, rgba(7,9,14,0.95) 85%, #07090e 100%);"></div>
+        </div>
+
+        <!-- Marco dorado interior -->
+        <div style="position:absolute; inset:7mm; border:1px solid rgba(212,175,55,0.45); pointer-events:none; z-index:2;"></div>
+
+        <!-- Cabecera de Revista -->
+        <div style="position:relative; z-index:3; padding:14mm 15mm 0; text-align:center;">
+            <div style="font-size:8pt; letter-spacing:3.5px; color:#fde047; font-weight:800; text-transform:uppercase; margin-bottom:2.5mm;">
+                EDICIÓN COLECCIONISTA • TEMPORADA NOVIEMBRE – DICIEMBRE 2026 • PUEBLA, MÉXICO
+            </div>
+            <h1 class="serif-title" style="font-size:42pt; font-weight:700; color:#ffffff; letter-spacing:2px; line-height:1; text-transform:uppercase; margin-bottom:2mm;">
+                LA RUTA DEL ÁGUILA
+            </h1>
+            <div style="font-size:9.5pt; letter-spacing:4px; color:#e4e4e7; font-weight:600; text-transform:uppercase; border-top:1px solid rgba(212,175,55,0.5); border-bottom:1px solid rgba(212,175,55,0.5); padding:2mm 0; display:inline-block;">
+                VIAJES EJECUTIVOS • CONCIERTOS CDMX • ALTA BELLEZA & ESTILO
+            </div>
+        </div>
+
+        <!-- Centro / Fotografías Enmarcadas -->
+        <div style="position:relative; z-index:3; padding:0 16mm; display:grid; grid-template-columns:1.15fr 0.85fr; gap:5mm; align-items:center;">
+            <div style="background:rgba(9,9,11,0.78); backdrop-filter:blur(8px); border:1px solid rgba(212,175,55,0.5); border-radius:4mm; padding:6mm;">
+                <span class="lux-pill lux-pill-dark" style="margin-bottom:3mm;">DIRECCIÓN GENERAL: ALMA LUIS</span>
+                <h2 class="serif-title" style="font-size:24pt; color:#fff; line-height:1.12; margin-bottom:3mm;">
+                    El Arte de Viajar Cómodo, Seguro y Directo desde Puebla
+                </h2>
+                <p style="font-size:9.5pt; color:#d4d4d8; line-height:1.6; margin-bottom:4mm;">
+                    Descubre nuestra selección curada de conciertos en CDMX, escapadas a Pueblos Mágicos, grandes circuitos por México con tecnología <strong>fraVEO</strong> y el universo de imagen profesional de <strong>Estudio de Belleza "Alma"</strong>.
+                </p>
+                <div style="display:flex; gap:4mm; font-size:8.5pt; color:#fde047; font-weight:800;">
+                    <span>✦ Unidades VIP Ertiga & Hiace</span>
+                    <span>✦ Apartado desde $200 MXN</span>
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-rows:1fr 1fr; gap:4mm;">
+                <div style="border-radius:3.5mm; overflow:hidden; border:1.5px solid rgba(212,175,55,0.6); height:42mm; position:relative;">
+                    <img src="img/salon/thumb_paquetes_alma.jpg" style="width:100%; height:100%; object-fit:cover;" alt="Estudio Alma">
+                    <div style="position:absolute; bottom:0; inset-x:0; width:100%; background:rgba(0,0,0,0.75); padding:1.5mm 3mm; font-size:7.5pt; color:#fda4af; font-weight:800;">
+                        🌸 ESTUDIO DE BELLEZA "ALMA" • 30+ AÑOS
+                    </div>
+                </div>
+                <div style="border-radius:3.5mm; overflow:hidden; border:1.5px solid rgba(212,175,55,0.6); height:42mm; position:relative;">
+                    <img src="img/salon/thumb_lendan_plexforte_oil.jpg" style="width:100%; height:100%; object-fit:cover;" alt="Lendan">
+                    <div style="position:absolute; bottom:0; inset-x:0; width:100%; background:rgba(0,0,0,0.75); padding:1.5mm 3mm; font-size:7.5pt; color:#fde047; font-weight:800;">
+                        🛍️ DISTRIBUIDORA OFICIAL LENDAN COSMETICS
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sumario en Portada -->
+        <div style="position:relative; z-index:3; padding:0 15mm 14mm;">
+            <div style="border-top:1.5px solid #d4af37; padding-top:4.5mm; display:grid; grid-template-columns:repeat(4, 1fr); gap:4mm;">
+                <div>
+                    <div style="color:#fde047; font-size:7.5pt; font-weight:800; letter-spacing:1px;">PÁG. 03 • ESCENARIO</div>
+                    <div class="sans-title" style="color:#fff; font-size:9.5pt; font-weight:800; margin-top:1mm;">Conciertos CDMX Nov–Dic 2026</div>
+                    <div style="color:#a1a1aa; font-size:7.8pt;">Transporte redondo + Kit Viajero desde $549 MXN</div>
+                </div>
+                <div>
+                    <div style="color:#fde047; font-size:7.5pt; font-weight:800; letter-spacing:1px;">PÁG. 04 • MÉXICO VIVO</div>
+                    <div class="sans-title" style="color:#fff; font-size:9.5pt; font-weight:800; margin-top:1mm;">Pueblos Mágicos & Playas</div>
+                    <div style="color:#a1a1aa; font-size:7.8pt;">Escapadas de 1 día y fin de semana desde $450 MXN</div>
+                </div>
+                <div>
+                    <div style="color:#fda4af; font-size:7.5pt; font-weight:800; letter-spacing:1px;">PÁG. 06 • ALTA IMAGEN</div>
+                    <div class="sans-title" style="color:#fff; font-size:9.5pt; font-weight:800; margin-top:1mm;">Estudio Imagen y Estilo "Alma"</div>
+                    <div style="color:#a1a1aa; font-size:7.8pt;">4 Paquetes Promo + Bono 10% en tus Viajes</div>
+                </div>
+                <div>
+                    <div style="color:#fda4af; font-size:7.5pt; font-weight:800; letter-spacing:1px;">PÁG. 07 • BOUTIQUE</div>
+                    <div class="sans-title" style="color:#fff; font-size:9.5pt; font-weight:800; margin-top:1mm;">19 Servicios & Línea Lendan</div>
+                    <div style="color:#a1a1aa; font-size:7.8pt;">Menú oficial transparente y cosmética europea</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         PÁGINA 2: CARTA EDITORIAL, FLOTA EJECUTIVA & SISTEMA DE APARTADO
+    ====================================================================== -->
+    <section class="page">
+        <div class="page-header-bar">
+            <span>LA RUTA DEL ÁGUILA • EDITORIAL & FILOSOFÍA DE SERVICIO</span>
+            <span style="color:#b45309;">JARDINES DE SAN MANUEL, PUEBLA</span>
+        </div>
+
+        <div class="content-pad">
+            <!-- Carta Editorial -->
+            <div style="display:grid; grid-template-columns:1.25fr 0.75fr; gap:7mm; align-items:center; background:#fff; border:1px solid #e5e0d8; border-radius:4mm; padding:6.5mm; box-shadow:0 4px 15px rgba(0,0,0,0.03);">
+                <div>
+                    <span class="lux-pill" style="margin-bottom:2.5mm;">CARTA DE BIENVENIDA</span>
+                    <h2 class="serif-title" style="font-size:22pt; color:#09090b; line-height:1.15; margin-bottom:3mm;">
+                        "Viajar y cuidar de ti misma son las dos mejores inversiones de la vida"
+                    </h2>
+                    <p style="font-size:9.2pt; color:#3f3f46; line-height:1.65; margin-bottom:3mm;">
+                        Bienvenidos a la edición de fin de año de <strong>Viajes La Ruta del Águila</strong> y <strong>Estudio de Belleza Imagen y Estilo "Alma"</strong>. Durante más de 30 años en Jardines de San Manuel hemos tenido el privilegio de atender a cientos de familias poblanas, escuchando sus sueños de conocer nuevos destinos y asistir a grandes espectáculos sin el estrés de manejar de noche o viajar en transporte público inseguro.
+                    </p>
+                    <p style="font-size:9.2pt; color:#3f3f46; line-height:1.65; margin-bottom:3.5mm;">
+                        Hoy unimos nuestras dos pasiones: un servicio de transporte turístico ejecutivo, puntual y cálido, respaldado por nuestra alianza nacional <strong>fraVEO</strong>, junto con el cuidado integral de tu imagen en nuestro estudio.
+                    </p>
+                    <div style="border-left:3px solid #d4af37; padding-left:3.5mm;">
+                        <strong class="serif-title" style="font-size:13pt; color:#09090b; display:block;">Maestra Alma Luis</strong>
+                        <span style="font-size:8pt; color:#71717a; font-weight:700;">Directora General • Viajes La Ruta del Águila & Estudio de Belleza "Alma"</span>
+                    </div>
+                </div>
+                <div style="border-radius:3.5mm; overflow:hidden; border:2px solid #d4af37; height:76mm; position:relative;">
+                    <img src="img/salon/promo_servicios_alma.jpg" style="width:100%; height:100%; object-fit:cover;" alt="Alma Luis">
+                </div>
+            </div>
+
+            <!-- Flota y Amenidades -->
+            <div>
+                <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:3.5mm;">
+                    <div>
+                        <span style="font-size:7.8pt; font-weight:800; color:#b45309; letter-spacing:1px; text-transform:uppercase;">ESTÁNDAR EJECUTIVO</span>
+                        <h3 class="serif-title" style="font-size:18pt; color:#09090b;">Nuestra Flota & Kit Viajero Exclusivo</h3>
+                    </div>
+                    <span style="font-size:8.2pt; color:#52525b; font-weight:700;">📍 Salida Principal: Calle Río Nexapa #6101, San Manuel</span>
+                </div>
+
+                <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:4.5mm;">
+                    <div style="background:#fff; border:1px solid #e5e0d8; border-radius:3.5mm; padding:4.5mm;">
+                        <div style="font-size:8pt; font-weight:800; color:#be123c; margin-bottom:1.5mm;">🚐 UNIDADES ADAPTABLES</div>
+                        <div class="sans-title" style="font-size:10.5pt; font-weight:800; margin-bottom:1.5mm;">Suzuki Ertiga VIP & Camionetas Turismo</div>
+                        <p style="font-size:8.4pt; color:#52525b; line-height:1.55;">
+                            Para grupos íntimos (5 a 6 viajeros) operamos en <strong>Suzuki Ertiga VIP</strong> de máxima agilidad. Para grupos de 10 a 20 pasajeros asignamos camionetas ejecutivas <strong>Hiace / Crafter</strong> con aire acondicionado y asientos reclinables.
+                        </p>
+                    </div>
+                    <div style="background:#fff; border:1px solid #e5e0d8; border-radius:3.5mm; padding:4.5mm;">
+                        <div style="font-size:8pt; font-weight:800; color:#be123c; margin-bottom:1.5mm;">🎁 AMENIDADES INCLUIDAS</div>
+                        <div class="sans-title" style="font-size:10.5pt; font-weight:800; margin-bottom:1.5mm;">Kit Viajero Conmemorativo</div>
+                        <p style="font-size:8.4pt; color:#52525b; line-height:1.55;">
+                            En nuestras salidas a conciertos y eventos especiales disfrutas de <strong>Box Snack de cortesía</strong>, hidratación al abordar, <strong>gafete conmemorativo coleccionable</strong> del tour y playlist temática durante el trayecto.
+                        </p>
+                    </div>
+                    <div style="background:#fff; border:1px solid #e5e0d8; border-radius:3.5mm; padding:4.5mm;">
+                        <div style="font-size:8pt; font-weight:800; color:#be123c; margin-bottom:1.5mm;">🛡️ GARANTÍA TOTAL</div>
+                        <div class="sans-title" style="font-size:10.5pt; font-weight:800; margin-bottom:1.5mm;">Retorno Seguro al Terminar</div>
+                        <p style="font-size:8.4pt; color:#52525b; line-height:1.55;">
+                            Nuestra unidad te espera al finalizar el concierto o recorrido (tolerancia de 45 min post-evento) para traerte de regreso directo a Puebla con seguro de pasajero a bordo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cómo Apartar en 3 Pasos -->
+            <div style="background:#09090b; color:#fff; border-radius:4mm; padding:5.5mm 6.5mm; border:1.5px solid #d4af37;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:3mm;">
+                    <strong class="sans-title" style="font-size:11.5pt; color:#fde047;">💳 CÓMO APARTAR TU LUGAR CON SOLO $200 MXN</strong>
+                    <span style="font-size:8pt; background:rgba(212,175,55,0.2); color:#fde047; padding:1mm 3mm; border-radius:10px; font-weight:700;">100% Reembolsable si no se reúne cupo mínimo (48h antes)</span>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr 1.2fr; gap:5mm; font-size:8.5pt; line-height:1.55;">
+                    <div>
+                        <strong style="color:#fda4af;">1. Elige tu Salida o Servicio</strong><br>
+                        Consulta fechas disponibles por WhatsApp al <strong>222 801 6244</strong> o con nuestro Asistente IA en <strong>mera-kirai.com</strong>.
+                    </div>
+                    <div>
+                        <strong style="color:#fda4af;">2. Aparta con $200 MXN</strong><br>
+                        Realiza tu apartado vía transferencia SPEI y liquida el resto hasta 48 horas antes de tu salida.
+                    </div>
+                    <div style="background:rgba(255,255,255,0.07); padding:2.5mm 3.5mm; border-radius:2.5mm; border:1px solid rgba(212,175,55,0.4);">
+                        <strong style="color:#fde047;">🏦 Cuenta Oficial SPEI:</strong><br>
+                        Banco: <strong>Banco Azteca</strong><br>
+                        CLABE: <strong>127180012120460272</strong><br>
+                        Beneficiario: <strong>Alma Luis</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer-bar">
+            <span>VIAJES LA RUTA DEL ÁGUILA • MERA-KIRAI.COM</span>
+            <span>PÁGINA 02</span>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         PÁGINA 3: CARTELERA DE CONCIERTOS & EVENTOS CDMX (NOV - DIC 2026)
+    ====================================================================== -->
+    <section class="page">
+        <div class="page-header-bar">
+            <span>SECCIÓN 01 • TRANSPORTE EJECUTIVO A CONCIERTOS Y FESTIVALES</span>
+            <span style="color:#be123c;">TEMPORADA NOVIEMBRE – DICIEMBRE 2026</span>
+        </div>
+
+        <div class="content-pad">
+            <div>
+                <span class="lux-pill" style="margin-bottom:2mm;">SALIDAS REDONDAS DESDE PUEBLA</span>
+                <h2 class="serif-title" style="font-size:24pt; color:#09090b; line-height:1.12;">
+                    Cartelera de Conciertos & Eventos en CDMX
+                </h2>
+                <p style="font-size:9.2pt; color:#52525b; margin-top:1.5mm;">
+                    Viaje redondo ejecutivo saliendo desde Jardines de San Manuel, Puebla. Incluye traslado directo al recinto en CDMX, espera al finalizar el concierto y Kit Viajero Conmemorativo (No incluye boleto de entrada al recinto salvo que solicites cotización integral).
+                </p>
+            </div>
+
+            <!-- Recuadro de Salidas Recientes Agotadas (Social Proof) -->
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:4.5mm;">
+                <div style="background:#18181b; color:#fff; border-radius:3.5mm; padding:4mm; position:relative; overflow:hidden; border:1px solid #3f3f46;">
+                    <div style="position:absolute; top:4mm; right:-8mm; background:#dc2626; color:#fff; font-weight:900; font-size:7.5pt; padding:1mm 10mm; transform:rotate(18deg); letter-spacing:1.5px;">
+                        ¡AGOTADO!
+                    </div>
+                    <div style="font-size:7.5pt; color:#fda4af; font-weight:800;">SALIDA CONFIRMADA • OCTUBRE 2026</div>
+                    <div class="sans-title" style="font-size:11pt; font-weight:800; margin:1mm 0;">Expo Beauty Show (EBS) — Centro Citibanamex</div>
+                    <div style="font-size:8.2pt; color:#a1a1aa;">Gracias a todas las estilistas y profesionales que llenaron nuestras unidades. ¡Próxima edición 2027!</div>
+                </div>
+                <div style="background:#18181b; color:#fff; border-radius:3.5mm; padding:4mm; position:relative; overflow:hidden; border:1px solid #3f3f46;">
+                    <div style="position:absolute; top:4mm; right:-8mm; background:#dc2626; color:#fff; font-weight:900; font-size:7.5pt; padding:1mm 10mm; transform:rotate(18deg); letter-spacing:1.5px;">
+                        ¡AGOTADOS!
+                    </div>
+                    <div style="font-size:7.5pt; color:#fda4af; font-weight:800;">SALIDA ESPECIAL • TEMPORADA DÍA DE MUERTOS</div>
+                    <div class="sans-title" style="font-size:11pt; font-weight:800; margin:1mm 0;">La Llorona en Xochimilco + Coyoacán Mágico</div>
+                    <div style="font-size:8.2pt; color:#a1a1aa;">Cupo 100% lleno en nuestra salida nocturna en trajinera. Pregunta por aperturas para grupos privados.</div>
+                </div>
+            </div>
+
+            <!-- Grid de 6 Conciertos Activos Noviembre - Diciembre -->
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:4.5mm;">
+                <div style="background:#fff; border:1px solid #e5e0d8; border-radius:3.5mm; padding:4.5mm; display:flex; flex-direction:column; justify-content:space-between;">
+                    <div>
+                        <div style="display:flex; justify-content:space-between; font-size:7.8pt; font-weight:800; color:#b45309; margin-bottom:1.5mm;">
+                            <span>🎸 AUTÓDROMO HNOS. RODRÍGUEZ</span>
+                            <span>14 – 16 NOV 2026</span>
+                        </div>
+                        <div class="sans-title" style="font-size:11.5pt; font-weight:800; color:#09090b; margin-bottom:1.5mm;">Festival Corona Capital 2026</div>
+                        <p style="font-size:8.4pt; color:#52525b; line-height:1.5;">
+                            Transporte redondo por día de festival saliendo de San Manuel a las 10:00 AM y regreso al terminar el último headliner. Incluye Box Snack y gafete.
+                        </p>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed #e5e0d8; padding-top:2.5mm; margin-top:3mm;">
+                        <span class="price-tag"><small>Desde</small> $549 MXN</span>
+                        <span style="font-size:7.8pt; font-weight:800; color:#16a34a;">Aparta con $200 MXN</span>
+                    </div>
+                </div>
+
+                <div style="background:#fff; border:1px solid #e5e0d8; border-radius:3.5mm; padding:4.5mm; display:flex; flex-direction:column; justify-content:space-between;">
+                    <div>
+                        <div style="display:flex; justify-content:space-between; font-size:7.8pt; font-weight:800; color:#b45309; margin-bottom:1.5mm;">
+                            <span>🔥 AUTÓDROMO HNOS. RODRÍGUEZ</span>
+                            <span>22 – 23 NOV 2026</span>
+                        </div>
+                        <div class="sans-title" style="font-size:11.5pt; font-weight:800; color:#09090b; margin-bottom:1.5mm;">Coca-Cola Flow Fest 2026</div>
+                        <p style="font-size:8.4pt; color:#52525b; line-height:1.5;">
+                            Viaje redondo seguro para disfrutar el festival urbano más grande de Latinoamérica sin preocuparte por el regreso de madrugada a Puebla.
+                        </p>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed #e5e0d8; padding-top:2.5mm; margin-top:3mm;">
+                        <span class="price-tag"><small>Desde</small> $549 MXN</span>
+                        <span style="font-size:7.8pt; font-weight:800; color:#16a34a;">Aparta con $200 MXN</span>
+                    </div>
+                </div>
+
+                <div style="background:#fff; border:1px solid #e5e0d8; border-radius:3.5mm; padding:4.5mm; display:flex; flex-direction:column; justify-content:space-between;">
+                    <div>
+                        <div style="display:flex; justify-content:space-between; font-size:7.8pt; font-weight:800; color:#b45309; margin-bottom:1.5mm;">
+                            <span>🎤 ESTADIO GNP SEGUROS</span>
+                            <span>NOVIEMBRE 2026</span>
+                        </div>
+                        <div class="sans-title" style="font-size:11.5pt; font-weight:800; color:#09090b; margin-bottom:1.5mm;">Estadio GNP Seguros (Foro Sol) — Cartelera Estelar</div>
+                        <p style="font-size:8.4pt; color:#52525b; line-height:1.5;">
+                            Salidas programadas a los conciertos más esperados de Noviembre y Diciembre en Estadio GNP (Pop, Rock Internacional y Regional).
+                        </p>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed #e5e0d8; padding-top:2.5mm; margin-top:3mm;">
+                        <span class="price-tag"><small>Desde</small> $549 MXN</span>
+                        <span style="font-size:7.8pt; font-weight:800; color:#16a34a;">Aparta con $200 MXN</span>
+                    </div>
+                </div>
+
+                <div style="background:#fff; border:1px solid #e5e0d8; border-radius:3.5mm; padding:4.5mm; display:flex; flex-direction:column; justify-content:space-between;">
+                    <div>
+                        <div style="display:flex; justify-content:space-between; font-size:7.8pt; font-weight:800; color:#b45309; margin-bottom:1.5mm;">
+                            <span>🎶 PALACIO DE LOS DEPORTES / ARENA CDMX</span>
+                            <span>NOV – DIC 2026</span>
+                        </div>
+                        <div class="sans-title" style="font-size:11.5pt; font-weight:800; color:#09090b; margin-bottom:1.5mm;">Conciertos en Arena CDMX & Auditorio Nacional</div>
+                        <p style="font-size:8.4pt; color:#52525b; line-height:1.5;">
+                            Traslado ejecutivo puerta a puerta para espectáculos en Auditorio Nacional, Palacio de los Deportes y Arena Ciudad de México.
+                        </p>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed #e5e0d8; padding-top:2.5mm; margin-top:3mm;">
+                        <span class="price-tag"><small>Desde</small> $549 MXN</span>
+                        <span style="font-size:7.8pt; font-weight:800; color:#16a34a;">Aparta con $200 MXN</span>
+                    </div>
+                </div>
+
+                <div style="background:#fff; border:1px solid #e5e0d8; border-radius:3.5mm; padding:4.5mm; display:flex; flex-direction:column; justify-content:space-between;">
+                    <div>
+                        <div style="display:flex; justify-content:space-between; font-size:7.8pt; font-weight:800; color:#b45309; margin-bottom:1.5mm;">
+                            <span>✨ GIRA ESPECIAL & TRIBUTOS</span>
+                            <span>TEMPORADA 2026–2027</span>
+                        </div>
+                        <div class="sans-title" style="font-size:11.5pt; font-weight:800; color:#09090b; margin-bottom:1.5mm;">Espectáculos Internacionales (CDMX, GDL y MTY)</div>
+                        <p style="font-size:8.4pt; color:#52525b; line-height:1.5;">
+                            ¿Tu artista favorito se presenta en CDMX, Guadalajara o Monterrey? Cotizamos tu paquete de transporte o viaje completo con hotel vía fraVEO.
+                        </p>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed #e5e0d8; padding-top:2.5mm; margin-top:3mm;">
+                        <span class="price-tag"><small>Desde</small> $549 MXN</span>
+                        <span style="font-size:7.8pt; font-weight:800; color:#0284c7;">Cotización Personalizada</span>
+                    </div>
+                </div>
+
+                <div style="background:#fff; border:1px solid #e5e0d8; border-radius:3.5mm; padding:4.5mm; display:flex; flex-direction:column; justify-content:space-between;">
+                    <div>
+                        <div style="display:flex; justify-content:space-between; font-size:7.8pt; font-weight:800; color:#b45309; margin-bottom:1.5mm;">
+                            <span>🚐 CAMIONETA PRIVADA PARA TU GRUPO</span>
+                            <span>FECHA A ELEGIR</span>
+                        </div>
+                        <div class="sans-title" style="font-size:11.5pt; font-weight:800; color:#09090b; margin-bottom:1.5mm;">Renta de Unidad con Chofer a Conciertos o Aeropuerto</div>
+                        <p style="font-size:8.4pt; color:#52525b; line-height:1.5;">
+                            Si son 5 o más amigos o familiares, armamos salida exclusiva para su grupo recogiendo en su domicilio en Puebla y regresando directo a casa.
+                        </p>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed #e5e0d8; padding-top:2.5mm; margin-top:3mm;">
+                        <span class="price-tag"><small>Desde</small> $3,200 MXN <small>/ Unidad</small></span>
+                        <span style="font-size:7.8pt; font-weight:800; color:#16a34a;">Servicio VIP Privado</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer-bar">
+            <span>RESERVAS WHATSAPP: 222 801 6244 • DESCUENTO 10% CON CÓDIGO ESTETICA10</span>
+            <span>PÁGINA 03</span>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         PÁGINA 4: ESCAPADAS DE 1 DÍA — PUEBLOS MÁGICOS, NATURALEZA Y PLAYAS
+    ====================================================================== -->
+    <section class="page">
+        <div class="page-header-bar">
+            <span>SECCIÓN 02 • EXCURSIONES DE FIN DE SEMANA Y PUEBLOS MÁGICOS</span>
+            <span style="color:#b45309;">CATÁLOGO NACIONAL DE 290 DESTINOS</span>
+        </div>
+
+        <div class="content-pad">
+            <div>
+                <span class="lux-pill" style="margin-bottom:2mm;">ESCAPADAS DESDE PUEBLA</span>
+                <h2 class="serif-title" style="font-size:24pt; color:#09090b; line-height:1.12;">
+                    Pueblos Mágicos, Naturaleza & Sol de Fin de Semana
+                </h2>
+                <p style="font-size:9.2pt; color:#52525b; margin-top:1.5mm;">
+                    Rutas diseñadas para disfrutar en familia, pareja o con amigos. Nuestro portal web cuenta con <strong>290 destinos nacionales</strong> listos para programar con salida grupal o privada desde Puebla.
+                </p>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:4.5mm;">
+                <!-- Card 1 -->
+                <div style="background:#fff; border:1px solid #e5e0d8; border-radius:3.5mm; padding:4.5mm;">
+                    <div style="font-size:7.5pt; font-weight:800; color:#b45309;">🎄 ESPECIAL TEMPORADA NAVIDEÑA • PUEBLA</div>
+                    <div class="sans-title" style="font-size:11.5pt; font-weight:800; margin:1mm 0;">Chignahuapan (Feria de la Esfera) & Zacatlán de las Manzanas</div>
+                    <p style="font-size:8.4pt; color:#52525b; line-height:1.5; margin-bottom:2.5mm;">
+                        Recorrido por talleres de esferas artesanales, Basílica de la Inmaculada Concepción, Reloj Floral de Zacatlán, Mirador de Cristal de la Barranca y degustación de sidras y pan de queso.
+                    </p>
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed #e5e0d8; padding-top:2mm;">
+                        <span class="price-tag"><small>Desde</small> $490 MXN</span>
+                        <span style="font-size:7.8pt; font-weight:700; color:#52525b;">Salida Sábados y Domingos Nov–Dic</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div style="background:#fff; border:1px solid #e5e0d8; border-radius:3.5mm; padding:4.5mm;">
+                    <div style="font-size:7.5pt; font-weight:800; color:#b45309;">🌿 SIERRA NORTE • PUEBLO MÁGICO</div>
+                    <div class="sans-title" style="font-size:11.5pt; font-weight:800; margin:1mm 0;">Cuetzalan del Progreso, Zona Arqueológica Yohualichan y Cascadas</div>
+                    <p style="font-size:8.4pt; color:#52525b; line-height:1.5; margin-bottom:2.5mm;">
+                        Calles empedradas entre la niebla, Parroquia de los Jarritos, mercado de artesanías textiles, café de altura orgánico y visita a la cascada Las Brisas.
+                    </p>
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed #e5e0d8; padding-top:2mm;">
+                        <span class="price-tag"><small>Desde</small> $550 MXN</span>
+                        <span style="font-size:7.8pt; font-weight:700; color:#52525b;">Viaje Redondo de 1 Día</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div style="background:#fff; border:1px solid #e5e0d8; border-radius:3.5mm; padding:4.5mm;">
+                    <div style="font-size:7.5pt; font-weight:800; color:#b45309;">🚠 VERACRUZ • PUEBLO MÁGICO</div>
+                    <div class="sans-title" style="font-size:11.5pt; font-weight:800; margin:1mm 0;">Orizaba Pueblo Mágico, Teleférico, Poliforum y Paseo del Río</div>
+                    <p style="font-size:8.4pt; color:#52525b; line-height:1.5; margin-bottom:2.5mm;">
+                        Visita al Palacio de Hierro diseñado por Gustave Eiffel, ascenso panorámico al Cerro del Borrego, Casavegas, Tobogán de la Montaña y reserva animal junto al río.
+                    </p>
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed #e5e0d8; padding-top:2mm;">
+                        <span class="price-tag"><small>Desde</small> $520 MXN</span>
+                        <span style="font-size:7.8pt; font-weight:700; color:#52525b;">Salidas en Noviembre y Diciembre</span>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div style="background:#fff; border:1px solid #e5e0d8; border-radius:3.5mm; padding:4.5mm;">
+                    <div style="font-size:7.5pt; font-weight:800; color:#b45309;">💍 GUERRERO • JOYERÍA Y ARQUITECTURA</div>
+                    <div class="sans-title" style="font-size:11.5pt; font-weight:800; margin:1mm 0;">Taxco de Alarcón & Grutas de Cacahuamilpa</div>
+                    <p style="font-size:8.4pt; color:#52525b; line-height:1.5; margin-bottom:2.5mm;">
+                        Recorrido por las majestuosas Grutas de Cacahuamilpa seguido de tarde libre en Taxco: Parroquia de Santa Prisca, tianguis de plata y mirador del Cristo Monumental.
+                    </p>
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed #e5e0d8; padding-top:2mm;">
+                        <span class="price-tag"><small>Desde</small> $590 MXN</span>
+                        <span style="font-size:7.8pt; font-weight:700; color:#52525b;">Aparta con $200 MXN</span>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div style="background:#fff; border:1px solid #e5e0d8; border-radius:3.5mm; padding:4.5mm;">
+                    <div style="font-size:7.5pt; font-weight:800; color:#b45309;">🏖️ SOL Y PLAYA • FIN DE SEMANA</div>
+                    <div class="sans-title" style="font-size:11.5pt; font-weight:800; margin:1mm 0;">Veracruz Puerto, Acuario Renovado & Boca del Río</div>
+                    <p style="font-size:8.4pt; color:#52525b; line-height:1.5; margin-bottom:2.5mm;">
+                        Disfruta de la brisa del Golfo de México, café en La Parroquia del Malecón, San Juan de Ulúa, Aquarium del Puerto de Veracruz y tarde de playa en Boca del Río.
+                    </p>
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed #e5e0d8; padding-top:2mm;">
+                        <span class="price-tag"><small>Desde</small> $650 MXN</span>
+                        <span style="font-size:7.8pt; font-weight:700; color:#52525b;">Viaje Redondo Ejecutivo</span>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div style="background:#fff; border:1px solid #e5e0d8; border-radius:3.5mm; padding:4.5mm;">
+                    <div style="font-size:7.5pt; font-weight:800; color:#b45309;">🌊 WATERSPA & NATURALEZA • HIDALGO</div>
+                    <div class="sans-title" style="font-size:11.5pt; font-weight:800; margin:1mm 0;">Grutas de Tolantongo (Aguas Termales Turquesa)</div>
+                    <p style="font-size:8.4pt; color:#52525b; line-height:1.5; margin-bottom:2.5mm;">
+                        Relájate en las pozas termales enclavadas en la montaña, el río azul turquesa, el túnel de vapor y la gruta principal en una de las maravillas naturales de México.
+                    </p>
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed #e5e0d8; padding-top:2mm;">
+                        <span class="price-tag"><small>Desde</small> $690 MXN</span>
+                        <span style="font-size:7.8pt; font-weight:700; color:#52525b;">Aparta con $200 MXN</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nota de Catálogo Digital -->
+            <div style="background:#f4efe6; border:1px solid #d4af37; border-radius:3.5mm; padding:4mm 5.5mm; display:flex; justify-content:space-between; align-items:center;">
+                <div style="font-size:8.8pt; color:#27272a;">
+                    <strong>🔎 ¿Buscas otro Pueblo Mágico o Santuario?</strong> En <strong>mera-kirai.com</strong> puedes explorar nuestro buscador interactivo con <strong>290 destinos en los 32 estados de la República</strong> (Tepoztlán, Real del Monte, Peña de Bernal, Atlixco Iluminado, etc.).
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer-bar">
+            <span>EXPLORA LOS 290 DESTINOS EN MERA-KIRAI.COM</span>
+            <span>PÁGINA 04</span>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         PÁGINA 5: CIRCUITOS NACIONALES Y AGENCIA DE VIAJES VIP fraVEO
+    ====================================================================== -->
+    <section class="page">
+        <div class="page-header-bar">
+            <span>SECCIÓN 03 • GRANDES CIRCUITOS NACIONALES & ALIANZA MAYORISTA fraVEO</span>
+            <span style="color:#b45309;">HOTELES, VUELOS Y CRUCEROS</span>
+        </div>
+
+        <div class="content-pad">
+            <div>
+                <span class="lux-pill" style="margin-bottom:2mm;">RESPALDO MAYORISTA fraVEO</span>
+                <h2 class="serif-title" style="font-size:24pt; color:#09090b; line-height:1.12;">
+                    Circuitos de Varios Días, Todo Incluido & Destinos VIP
+                </h2>
+                <p style="font-size:9.2pt; color:#52525b; margin-top:1.5mm;">
+                    Como agencia afiliada a la red nacional <strong>fraVEO</strong>, gestionamos tus vacaciones completas con tarifas preferenciales en hoteles 4 y 5 estrellas, vuelos redondos, circuitos guiados y cruceros internacionales.
+                </p>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:4.5mm;">
+                <div style="background:#fff; border:1px solid #e5e0d8; border-radius:3.5mm; padding:4.5mm;">
+                    <div style="font-size:7.5pt; font-weight:800; color:#15803d;">🌴 CIRCUITO ESTELAR SURESTE • 4 A 6 DÍAS</div>
+                    <div class="sans-title" style="font-size:11.5pt; font-weight:800; margin:1mm 0;">Chiapas Mágico: Cañón del Sumidero, San Cristóbal y Palenque</div>
+                    <p style="font-size:8.4pt; color:#52525b; line-height:1.5; margin-bottom:2.5mm;">
+                        Chiapa de Corzo, lancha en el Cañón del Sumidero, San Cristóbal de las Casas, Cascadas de Agua Azul, Misol-Há, Zona Arqueológica de Palenque y Lagos de Montebello con hospedaje incluido.
+                    </p>
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed #e5e0d8; padding-top:2mm;">
+                        <span class="price-tag"><small>Desde</small> $4,850 MXN</span>
+                        <span style="font-size:7.8pt; font-weight:700; color:#52525b;">Hospedaje + Transporte + Guía</span>
+                    </div>
+                </div>
+
+                <div style="background:#fff; border:1px solid #e5e0d8; border-radius:3.5mm; padding:4.5mm;">
+                    <div style="font-size:7.5pt; font-weight:800; color:#15803d;">🏺 CULTURA, GASTRONOMÍA Y MAR • 3 A 4 DÍAS</div>
+                    <div class="sans-title" style="font-size:11.5pt; font-weight:800; margin:1mm 0;">Oaxaca Ancestral, Monte Albán, Hierve el Agua y Costa</div>
+                    <p style="font-size:8.4pt; color:#52525b; line-height:1.5; margin-bottom:2.5mm;">
+                        Centro Histórico de Oaxaca, Templo de Santo Domingo, Árbol del Tule, Mitla, cascadas petrificadas de Hierve el Agua, ruta del mezcal artesanal y opción de extensión a Huatulco o Mazunte.
+                    </p>
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed #e5e0d8; padding-top:2mm;">
+                        <span class="price-tag"><small>Desde</small> $2,950 MXN</span>
+                        <span style="font-size:7.8pt; font-weight:700; color:#52525b;">Salidas Puente de Noviembre y Dic</span>
+                    </div>
+                </div>
+
+                <div style="background:#fff; border:1px solid #e5e0d8; border-radius:3.5mm; padding:4.5mm;">
+                    <div style="font-size:7.5pt; font-weight:800; color:#15803d;">🏞️ ECOTURISMO ESPECTACULAR • 3 DÍAS</div>
+                    <div class="sans-title" style="font-size:11.5pt; font-weight:800; margin:1mm 0;">Huasteca Potosina: Jardín Surrealista de Xilitla y Cascada de Tamul</div>
+                    <p style="font-size:8.4pt; color:#52525b; line-height:1.5; margin-bottom:2.5mm;">
+                        Jardín Escultórico de Edward James en Xilitla, Puente de Dios, Cascadas de Tamasopo y navegación en panga hacia la imponente cascada de Tamul con hospedaje incluido.
+                    </p>
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed #e5e0d8; padding-top:2mm;">
+                        <span class="price-tag"><small>Desde</small> $3,600 MXN</span>
+                        <span style="font-size:7.8pt; font-weight:700; color:#52525b;">Plan Pagos Quincenales</span>
+                    </div>
+                </div>
+
+                <div style="background:#fff; border:1px solid #e5e0d8; border-radius:3.5mm; padding:4.5mm;">
+                    <div style="font-size:7.5pt; font-weight:800; color:#b45309;">🚂 EXPERIENCIA BUCKET LIST • CHIHUAHUA</div>
+                    <div class="sans-title" style="font-size:11.5pt; font-weight:800; margin:1mm 0;">Tren Chepe Express, Barrancas del Cobre y Creel Pueblo Mágico</div>
+                    <p style="font-size:8.4pt; color:#52525b; line-height:1.5; margin-bottom:2.5mm;">
+                        Uno de los recorridos ferroviarios más impresionantes del mundo cruzando la Sierra Tarahumara, Parque de Aventura Barrancas del Cobre, Lago de Arareko y Divisadero.
+                    </p>
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed #e5e0d8; padding-top:2mm;">
+                        <span class="price-tag"><small>Desde</small> $12,900 MXN</span>
+                        <span style="font-size:7.8pt; font-weight:700; color:#b45309;">Cotización VIP fraVEO</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bloque Todo Incluido Playas y Cruceros -->
+            <div style="background:#09090b; color:#fff; border-radius:4mm; padding:5.5mm 6.5mm; border:1px solid rgba(212,175,55,0.45);">
+                <div style="font-size:8pt; color:#fde047; font-weight:800; letter-spacing:1px; margin-bottom:1.5mm;">✈️ CONCIERGE DE VACACIONES A MEDIDA (ENTREGA DE COTIZACIÓN EN 24–48 HORAS)</div>
+                <h3 class="serif-title" style="font-size:17pt; color:#fff; margin-bottom:2.5mm;">
+                    Hoteles Todo Incluido, Lunas de Miel, XV Años y Cruceros
+                </h3>
+                <p style="font-size:8.6pt; color:#d4d4d8; line-height:1.6; margin-bottom:3mm;">
+                    ¿Sueñas con celebrar tu aniversario, luna de miel o vacaciones familiares en <strong>Cancún, Riviera Maya (Xcaret), Puerto Vallarta, Los Cabos, Huatulco, Mazatlán o un Crucero por el Caribe</strong>? Dinos tus fechas y número de viajeros; preparamos tu propuesta formal detallada en un plazo de 24 a 48 horas.
+                </p>
+                <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:3mm; font-size:8pt; font-weight:700; color:#fde047;">
+                    <div style="background:rgba(255,255,255,0.06); padding:2mm 3mm; border-radius:2mm; text-align:center;">🏖️ Cancún & Riviera Maya</div>
+                    <div style="background:rgba(255,255,255,0.06); padding:2mm 3mm; border-radius:2mm; text-align:center;">🌅 Los Cabos & Vallarta</div>
+                    <div style="background:rgba(255,255,255,0.06); padding:2mm 3mm; border-radius:2mm; text-align:center;">🚢 Royal Caribbean & MSC</div>
+                    <div style="background:rgba(255,255,255,0.06); padding:2mm 3mm; border-radius:2mm; text-align:center;">🏰 Disney, Europa y Sudamérica</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer-bar">
+            <span>COTIZACIONES VIP VÍA WHATSAPP: 222 801 6244</span>
+            <span>PÁGINA 05</span>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         PÁGINA 6: ESPECIAL ESTUDIO DE BELLEZA IMAGEN Y ESTILO "ALMA"
+    ====================================================================== -->
+    <section class="page page-dark">
+        <div class="page-header-bar" style="border-color:rgba(244,63,94,0.35);">
+            <span style="color:#fda4af;">SECCIÓN 04 • ALTA IMAGEN, COLORIMETRÍA Y SPA CAPILAR</span>
+            <span style="color:#fde047;">MÁS DE 30 AÑOS NOS RESPALDAN</span>
+        </div>
+
+        <div class="content-pad">
+            <!-- Hero del Estudio -->
+            <div style="display:grid; grid-template-columns:1.15fr 0.85fr; gap:6mm; align-items:center;">
+                <div>
+                    <span class="lux-pill" style="background:rgba(244,63,94,0.2); color:#fda4af; border-color:rgba(244,63,94,0.45); margin-bottom:2.5mm;">
+                        🌸 JARDINES DE SAN MANUEL, PUEBLA
+                    </span>
+                    <h2 class="serif-title" style="font-size:24pt; color:#fff; line-height:1.12; margin-bottom:2.5mm;">
+                        Estudio de Belleza Imagen y Estilo "Alma"
+                    </h2>
+                    <p style="font-size:9pt; color:#d4d4d8; line-height:1.65; margin-bottom:3mm;">
+                        Con <strong>más de 30 años de trayectoria</strong> que nos respaldan, nuestro estudio es un referente de excelencia en diseño de color, alisados progresivos, botox y nanoplastia capilar, cortes personalizados, maquillaje y peinado social, paquetes de Novia y XV Años, pestañas, laminado de cejas, depilación facial y corporal, tratamientos multivitamínicos, etc.
+                    </p>
+                    <div style="background:linear-gradient(135deg, rgba(212,175,55,0.2), rgba(244,63,94,0.18)); border:1px solid #d4af37; border-radius:3mm; padding:3.5mm 4.5mm;">
+                        <div style="font-size:7.8pt; font-weight:800; color:#fde047; text-transform:uppercase;">🎁 BENEFICIO CRUZADO EXCLUSIVO (CÓDIGO: ESTETICA10)</div>
+                        <div style="font-size:8.6pt; color:#fff; line-height:1.5; margin-top:1mm;">
+                            Obtén un <strong>10% de Descuento directo en tus Viajes</strong> de La Ruta del Águila al realizarte cualquier <strong>Diseño de Color, Alisados Progresivos, Paquete de Faciales, Paquete de XV Años o Paquete de Novia</strong>.
+                        </div>
+                    </div>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:3mm;">
+                    <img src="img/salon/promo_ysidi_color.jpg" style="width:100%; height:64mm; object-fit:cover; border-radius:3mm; border:1px solid rgba(244,63,94,0.4);" alt="Color">
+                    <img src="img/salon/promo_ysidi_tratamiento.jpg" style="width:100%; height:64mm; object-fit:cover; border-radius:3mm; border:1px solid rgba(244,63,94,0.4);" alt="Tratamiento">
+                </div>
+            </div>
+
+            <!-- Los 4 Paquetes Promocionales -->
+            <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:3mm;">
+                    <h3 class="serif-title" style="font-size:18pt; color:#fda4af;">🔥 4 Paquetes Promocionales de Temporada</h3>
+                    <span style="font-size:8pt; color:#a1a1aa;">Agenda por WhatsApp: 222 801 6244</span>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:4mm;">
+                    <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(244,63,94,0.35); border-radius:3.5mm; padding:4mm;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5mm;">
+                            <span style="font-size:7.5pt; font-weight:800; color:#fda4af;">✨ PAQUETE PROMO 1</span>
+                            <span class="sans-title" style="font-size:11pt; font-weight:900; color:#fde047;">Desde $800 MXN</span>
+                        </div>
+                        <div class="sans-title" style="font-size:10.5pt; font-weight:800; color:#fff; margin-bottom:1mm;">Alisado Progresivo Efecto Espejo</div>
+                        <p style="font-size:8.2pt; color:#d4d4d8; line-height:1.5;">Control total del frizz, sedosidad extrema y sellado térmico nutritivo. <strong>Incluye bono de 10% de descuento en viajes.</strong></p>
+                    </div>
+
+                    <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(244,63,94,0.35); border-radius:3.5mm; padding:4mm;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5mm;">
+                            <span style="font-size:7.5pt; font-weight:800; color:#fda4af;">💆‍♀️ PAQUETE PROMO 2</span>
+                            <span class="sans-title" style="font-size:11pt; font-weight:900; color:#fde047;">$600 MXN</span>
+                        </div>
+                        <div class="sans-title" style="font-size:10.5pt; font-weight:800; color:#fff; margin-bottom:1mm;">Coctel Capilar + Depilación 1/2 Brazos</div>
+                        <p style="font-size:8.2pt; color:#d4d4d8; line-height:1.5;">Terapia multivitamínica intensiva para restaurar tu cabellera + depilación de medios brazos con cera roll-on.</p>
+                    </div>
+
+                    <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(244,63,94,0.35); border-radius:3.5mm; padding:4mm;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5mm;">
+                            <span style="font-size:7.5pt; font-weight:800; color:#fda4af;">💅 PAQUETE PROMO 3</span>
+                            <span class="sans-title" style="font-size:11pt; font-weight:900; color:#fde047;">$200 MXN</span>
+                        </div>
+                        <div class="sans-title" style="font-size:10.5pt; font-weight:800; color:#fff; margin-bottom:1mm;">Gelish Decorado + Depilación de Ceja</div>
+                        <p style="font-size:8.2pt; color:#d4d4d8; line-height:1.5;">Esmaltado semipermanente en gel con diseño decorado + perfilado y depilación de ceja con navaja.</p>
+                    </div>
+
+                    <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(244,63,94,0.35); border-radius:3.5mm; padding:4mm;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5mm;">
+                            <span style="font-size:7.5pt; font-weight:800; color:#fda4af;">🧖‍♀️ PAQUETE PROMO 4</span>
+                            <span class="sans-title" style="font-size:11pt; font-weight:900; color:#fde047;">$400 MXN</span>
+                        </div>
+                        <div class="sans-title" style="font-size:10.5pt; font-weight:800; color:#fff; margin-bottom:1mm;">Facial de Hidratación Profunda con Aparatología</div>
+                        <p style="font-size:8.2pt; color:#d4d4d8; line-height:1.5;">Limpieza profunda, exfoliación, mascarilla hidroplástica y aparatología estética. <strong>Incluye bono de 10% en viajes.</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gancho Comunitario: Cortes Gratis por Alumna Supervisada -->
+            <div style="background:rgba(16,185,129,0.14); border:1.5px solid rgba(16,185,129,0.45); border-radius:3.5mm; padding:4.5mm 5.5mm; display:flex; justify-content:space-between; align-items:center; gap:5mm;">
+                <div>
+                    <div style="font-size:7.8pt; font-weight:800; color:#6ee7b7; text-transform:uppercase; margin-bottom:1mm;">
+                        🎓 PROGRAMA DE PRÁCTICA SUPERVISADA — CORTES DE CABELLO SIN COSTO (GRATIS)
+                    </div>
+                    <p style="font-size:8.5pt; color:#e4e4e7; line-height:1.55;">
+                        ¿Buscas un corte básico sin costo? Apoya a nuestra alumna en formación, quien realiza cortes gratuitos bajo la <strong>supervisión directa paso a paso de la Maestra Alma Luis</strong>. Horario exclusivo con cita previa: <strong>Lunes, Miércoles y Viernes de 4:00 PM a 5:00 PM</strong>.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer-bar" style="border-color:rgba(244,63,94,0.35);">
+            <span>ESTUDIO DE BELLEZA IMAGEN Y ESTILO "ALMA" • RÍO NEXAPA #6101, SAN MANUEL</span>
+            <span>PÁGINA 06</span>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         PÁGINA 7: MENÚ OFICIAL DE 19 SERVICIOS & DISTRIBUIDORA LENDAN
+    ====================================================================== -->
+    <section class="page">
+        <div class="page-header-bar">
+            <span>SECCIÓN 05 • LISTA OFICIAL DE PRECIOS (19 SERVICIOS) & BOUTIQUE LENDAN</span>
+            <span style="color:#be123c;">PRECIOS OFICIALES 2026</span>
+        </div>
+
+        <div class="content-pad">
+            <div>
+                <h2 class="serif-title" style="font-size:21pt; color:#09090b; line-height:1.12; margin-bottom:1mm;">
+                    Menú Oficial de 19 Servicios & Desglose de Atención
+                </h2>
+                <p style="font-size:8.5pt; color:#52525b;">
+                    En servicios capilares con la indicación <strong>"Desde"</strong>, el presupuesto final se confirma en valoración según el largo y volumen de tu cabellera.
+                </p>
+            </div>
+
+            <!-- Tabla / Grid compacto de los 19 Servicios -->
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:2.2mm 5mm; background:#fff; border:1px solid #e5e0d8; border-radius:3.5mm; padding:4.5mm; font-size:8.3pt;">
+                <div style="display:flex; justify-content:space-between; border-bottom:1px dashed #e5e0d8; padding-bottom:1.4mm;">
+                    <span><strong>1. Corte de Cabello Dama</strong> (Visagismo y estilizado)</span>
+                    <strong style="color:#be123c;">$200 MXN</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; border-bottom:1px dashed #e5e0d8; padding-bottom:1.4mm;">
+                    <span><strong>11. Maquillaje Social</strong> (Larga duración + pestaña)</span>
+                    <strong style="color:#be123c;">$600 MXN</strong>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; border-bottom:1px dashed #e5e0d8; padding-bottom:1.4mm;">
+                    <span><strong>2. Corte de Cabello Caballero</strong> (Tijera/máquina)</span>
+                    <strong style="color:#be123c;">$150 MXN</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; border-bottom:1px dashed #e5e0d8; padding-bottom:1.4mm;">
+                    <span><strong>12. Paquete de Novia</strong> (Prueba + Día B) 🎁</span>
+                    <strong style="color:#be123c;">$5,000 MXN</strong>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; border-bottom:1px dashed #e5e0d8; padding-bottom:1.4mm;">
+                    <span><strong>3. Planchado Express</strong> (Con termoprotector)</span>
+                    <strong style="color:#be123c;">$200 MXN</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; border-bottom:1px dashed #e5e0d8; padding-bottom:1.4mm;">
+                    <span><strong>13. Paquete de XV Años</strong> (Prueba + Gala) 🎁</span>
+                    <strong style="color:#be123c;">$4,000 MXN</strong>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; border-bottom:1px dashed #e5e0d8; padding-bottom:1.4mm;">
+                    <span><strong>4. Aplicación de Tintes</strong> (Cobertura y brillo)</span>
+                    <strong style="color:#be123c;">Desde $500 MXN</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; border-bottom:1px dashed #e5e0d8; padding-bottom:1.4mm;">
+                    <span><strong>14. Pestañas Clásicas / Rímel / Volumen</strong></span>
+                    <strong style="color:#be123c;">$400 / $450 / $500</strong>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; border-bottom:1px dashed #e5e0d8; padding-bottom:1.4mm;">
+                    <span><strong>5. Diseños de Color</strong> (Balayage, Mechas) 🎁</span>
+                    <strong style="color:#be123c;">Desde $1,000 MXN</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; border-bottom:1px dashed #e5e0d8; padding-bottom:1.4mm;">
+                    <span><strong>15. Lifting de Pestañas</strong> (Curvatura natural)</span>
+                    <strong style="color:#be123c;">$350 MXN</strong>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; border-bottom:1px dashed #e5e0d8; padding-bottom:1.4mm;">
+                    <span><strong>6. Alisados Progresivos</strong> (Efecto espejo) 🎁</span>
+                    <strong style="color:#be123c;">Desde $850 MXN</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; border-bottom:1px dashed #e5e0d8; padding-bottom:1.4mm;">
+                    <span><strong>16. Laminado de Cejas</strong> (Brow Lamination)</span>
+                    <strong style="color:#be123c;">$200 MXN</strong>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; border-bottom:1px dashed #e5e0d8; padding-bottom:1.4mm;">
+                    <span><strong>7. Botox Capilar</strong> (Relleno e hidratación)</span>
+                    <strong style="color:#be123c;">Desde $500 MXN</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; border-bottom:1px dashed #e5e0d8; padding-bottom:1.4mm;">
+                    <span><strong>17. Depilación de Cejas con Cera</strong></span>
+                    <strong style="color:#be123c;">$70 MXN</strong>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; border-bottom:1px dashed #e5e0d8; padding-bottom:1.4mm;">
+                    <span><strong>8. Nanoplastia Capilar</strong> (Aminoácidos)</span>
+                    <strong style="color:#be123c;">Desde $600 MXN</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; border-bottom:1px dashed #e5e0d8; padding-bottom:1.4mm;">
+                    <span><strong>18. Depilación Facial Completa</strong></span>
+                    <strong style="color:#be123c;">$250 MXN</strong>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; padding-bottom:0.5mm;">
+                    <span><strong>9. Sinergia Capilar</strong> (Terapia combinada)</span>
+                    <strong style="color:#be123c;">Desde $300 MXN</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; padding-bottom:0.5mm;">
+                    <span><strong>19. Depilación Cera Roll-On</strong> (Axila/Brazo/Pierna)</span>
+                    <strong style="color:#be123c;">$200 / $400 / $650</strong>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; border-top:1px dashed #e5e0d8; padding-top:1.4mm; grid-column:span 2;">
+                    <span><strong>10. Peinado Social de Gala / Graduación / Evento</strong> (Ondas, semirecogido o alto diseño)</span>
+                    <strong style="color:#be123c;">Desde $500 MXN</strong>
+                </div>
+            </div>
+
+            <!-- Distribuidora Oficial Lendan Cosmetics (7 Líneas) -->
+            <div style="background:#09090b; color:#fff; border-radius:4mm; padding:5mm 6mm; border:1.5px solid #d4af37;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2.5mm;">
+                    <div>
+                        <span style="font-size:7.5pt; color:#fde047; font-weight:800; letter-spacing:1px;">🛍️ TIENDA & DISTRIBUIDORA OFICIAL EN PUEBLA (MERA-KIRAI.COM/TIENDA.HTML)</span>
+                        <h3 class="serif-title" style="font-size:16.5pt; color:#fff;">7 Líneas Europeas Lendan Cosmetics (Casa & Estilistas)</h3>
+                    </div>
+                </div>
+                <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:3mm; margin-bottom:3mm;">
+                    <div style="background:rgba(255,255,255,0.06); padding:2.5mm; border-radius:2.5mm; font-size:7.8pt;">
+                        <strong style="color:#fde047; display:block;">1. PlexForte N°6 Oil</strong>
+                        Aceite reparador de enlaces y termoprotector 230°C.
+                    </div>
+                    <div style="background:rgba(255,255,255,0.06); padding:2.5mm; border-radius:2.5mm; font-size:7.8pt;">
+                        <strong style="color:#fde047; display:block;">2. Oil Moringa</strong>
+                        Elixir nutritivo antioxidante del Árbol de la Vida.
+                    </div>
+                    <div style="background:rgba(255,255,255,0.06); padding:2.5mm; border-radius:2.5mm; font-size:7.8pt;">
+                        <strong style="color:#fde047; display:block;">3. Recovery E+B5</strong>
+                        Tratamiento revitalizante antiox contra radicales libres.
+                    </div>
+                    <div style="background:rgba(255,255,255,0.06); padding:2.5mm; border-radius:2.5mm; font-size:7.8pt;">
+                        <strong style="color:#fde047; display:block;">4. Root Cover</strong>
+                        Spray corrector instantáneo de raíz y cana en 3 seg.
+                    </div>
+                </div>
+                <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:3mm;">
+                    <div style="background:rgba(255,255,255,0.06); padding:2.5mm; border-radius:2.5mm; font-size:7.8pt;">
+                        <strong style="color:#fda4af; display:block;">5. PlexForte Bond Color</strong>
+                        Coloración profesional con tecnología protectora de enlaces.
+                    </div>
+                    <div style="background:rgba(255,255,255,0.06); padding:2.5mm; border-radius:2.5mm; font-size:7.8pt;">
+                        <strong style="color:#fda4af; display:block;">6. Activia Plant</strong>
+                        Tinte en crema con glucosamina y ácido hialurónico.
+                    </div>
+                    <div style="background:rgba(255,255,255,0.06); padding:2.5mm; border-radius:2.5mm; font-size:7.8pt;">
+                        <strong style="color:#fda4af; display:block;">7. Activia Absolutes</strong>
+                        100% cobertura de cana rebelde y efecto anti-edad.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer-bar">
+            <span>VENTA AL PÚBLICO Y PRECIOS ESPECIALES A ESTILISTAS • WHATSAPP: 222 801 6244</span>
+            <span>PÁGINA 07</span>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         PÁGINA 8: CONTRAPORTADA EDITORIAL — DIRECTORIO Y CONTACTO DIRECTO
+    ====================================================================== -->
+    <section class="page page-dark" style="background: radial-gradient(circle at top right, #1e1b4b, #09090b 65%);">
+        <div style="position:absolute; inset:7mm; border:1px solid rgba(212,175,55,0.45); pointer-events:none;"></div>
+
+        <div style="padding:18mm 16mm 10mm; text-align:center;">
+            <span class="lux-pill lux-pill-dark" style="margin-bottom:4mm;">DIRECTORIO OFICIAL & RESERVACIONES</span>
+            <h2 class="serif-title" style="font-size:32pt; color:#fff; line-height:1.1; margin-bottom:3mm;">
+                Planea tu Próximo Viaje o Transforma tu Imagen Hoy
+            </h2>
+            <p style="font-size:10pt; color:#d4d4d8; max-width:145mm; margin:0 auto; line-height:1.65;">
+                Atención cálida, directa y personalizada por la <strong>Maestra Alma Luis</strong> en el corazón de Jardines de San Manuel, Puebla.
+            </p>
+        </div>
+
+        <div style="padding:0 16mm; display:grid; grid-template-columns:1fr 1fr; gap:6mm;">
+            <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.45); border-radius:4mm; padding:6mm;">
+                <div style="font-size:8pt; font-weight:800; color:#fde047; letter-spacing:1px; margin-bottom:2mm;">🦅 AGENCIA DE VIAJES & CONCIERTOS</div>
+                <h3 class="sans-title" style="font-size:14pt; color:#fff; margin-bottom:2.5mm;">Viajes La Ruta del Águila</h3>
+                <p style="font-size:8.8pt; color:#d4d4d8; line-height:1.65; margin-bottom:3.5mm;">
+                    • Salidas a Conciertos CDMX (Estadio GNP, Autódromo, Arena CDMX)<br>
+                    • 290 Destinos y Pueblos Mágicos<br>
+                    • Agencia Mayorista VIP <strong>fraVEO</strong><br>
+                    • Unidades Suzuki Ertiga VIP & Camionetas Ejecutivas
+                </p>
+                <div style="font-size:9pt; color:#fde047; font-weight:800;">🌐 https://mera-kirai.com</div>
+            </div>
+
+            <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(244,63,94,0.45); border-radius:4mm; padding:6mm;">
+                <div style="font-size:8pt; font-weight:800; color:#fda4af; letter-spacing:1px; margin-bottom:2mm;">🌸 SALÓN, SPA CAPILAR & BOUTIQUE</div>
+                <h3 class="sans-title" style="font-size:14pt; color:#fff; margin-bottom:2.5mm;">Estudio Imagen y Estilo "Alma"</h3>
+                <p style="font-size:8.8pt; color:#d4d4d8; line-height:1.65; margin-bottom:3.5mm;">
+                    • Más de 30 años nos respaldan<br>
+                    • Diseño de Color, Alisados, Novias, XV Años, Pestañas, etc.<br>
+                    • Distribuidora Oficial <strong>Lendan Cosmetics</strong><br>
+                    • Bono <strong>ESTETICA10</strong> (10% Desc. en Viajes)
+                </p>
+                <div style="font-size:9pt; color:#fda4af; font-weight:800;">🌐 https://mera-kirai.com/estetica.html</div>
+            </div>
+        </div>
+
+        <!-- Ficha Central de Ubicación y Cuenta Bancaria -->
+        <div style="padding:0 16mm;">
+            <div style="background:rgba(212,175,55,0.12); border:1.5px solid #d4af37; border-radius:4mm; padding:6mm; display:grid; grid-template-columns:1.1fr 0.9fr; gap:6mm; align-items:center;">
+                <div>
+                    <div style="font-size:8.5pt; font-weight:800; color:#fde047; margin-bottom:2mm;">📍 PUNTO DE REUNIÓN Y ESTUDIO EN PUEBLA</div>
+                    <div style="font-size:9.5pt; color:#fff; line-height:1.7;">
+                        <strong>Dirección:</strong> Calle Río Nexapa #6101, Col. Jardines de San Manuel, C.P. 72570, Puebla, Pue.<br>
+                        <strong>WhatsApp Directo (Alma Luis):</strong> +52 222 801 6244<br>
+                        <strong>Coordinación Digital 24/7:</strong> +353 87 709 2085<br>
+                        <strong>Correo:</strong> contacto@mera-kirai.com
+                    </div>
+                </div>
+                <div style="background:#09090b; border:1px solid rgba(255,255,255,0.18); border-radius:3mm; padding:4.5mm;">
+                    <div style="font-size:8pt; font-weight:800; color:#fde047; margin-bottom:1.5mm;">🏦 DATOS OFICIALES DE APARTADO SPEI</div>
+                    <div style="font-size:9pt; color:#e4e4e7; line-height:1.65;">
+                        <strong>Banco:</strong> Banco Azteca<br>
+                        <strong>CLABE:</strong> <span style="color:#fde047; font-weight:800;">127180012120460272</span><br>
+                        <strong>Beneficiario:</strong> Alma Luis<br>
+                        <small style="color:#a1a1aa;">Envía tu comprobante por WhatsApp al 222 801 6244 para recibir tu pase de abordar.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="padding:0 16mm 14mm; text-align:center; font-size:8pt; color:#a1a1aa;">
+            © 2026 Viajes La Ruta del Águila & Estudio de Belleza Imagen y Estilo "Alma" • Todos los derechos reservados • Puebla, México.
+        </div>
+    </section>
+
+</body>
+</html>

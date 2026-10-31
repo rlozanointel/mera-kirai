@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estética Alma | Salón de Belleza & Spa Capilar en San Manuel, Puebla</title>
-    <meta name="description" content="Salón de belleza y spa capilar en Jardines de San Manuel, Puebla. Cortes, colorimetría, alaciados, manicure y tratamientos. Descuento exclusivo en tus viajes de La Ruta del Águila.">
+    <title>Estudio de Belleza Imagen y Estilo "Alma" | Salón, Spa Capilar & Distribuidora Lendan en Puebla</title>
+    <meta name="description" content="Estudio de Belleza Imagen y Estilo 'Alma' en Jardines de San Manuel, Puebla. Más de 30 años nos respaldan en diseño de color, alisados progresivos, novias, XV años, faciales, pestañas, etc. Distribuidora oficial Lendan.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -13,16 +13,17 @@
     <style>
         :root {
             --bg-main: #09090b;
-            --bg-card: rgba(24, 24, 27, 0.85);
-            --bg-subtle: rgba(39, 39, 42, 0.6);
+            --bg-card: rgba(24, 24, 27, 0.9);
+            --bg-subtle: rgba(39, 39, 42, 0.65);
             --brand-rose: #f43f5e;
             --brand-rose-light: #fda4af;
             --brand-gold: #d4af37;
+            --brand-gold-light: #fde047;
             --text-title: #ffffff;
-            --text-body: #e4e4e7;
-            --text-muted: #a1a1aa;
-            --border-color: rgba(255, 255, 255, 0.1);
-            --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            --text-body: #f4f4f5;
+            --text-muted: #d4d4d8;
+            --border-color: rgba(255, 255, 255, 0.12);
+            --shadow-card: 0 14px 34px -10px rgba(0, 0, 0, 0.6);
         }
 
         * {
@@ -32,48 +33,59 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth;
+            font-size: 16.5px;
+        }
+
         body {
             background-color: var(--bg-main);
             color: var(--text-body);
-            line-height: 1.6;
+            line-height: 1.72;
             overflow-x: hidden;
+            letter-spacing: 0.01em;
         }
 
         /* Top Bar */
         .top-notice-bar {
-            background: linear-gradient(90deg, #be123c, #881337);
+            background: linear-gradient(90deg, #9f1239, #881337, #701a75);
             color: #fff;
-            padding: 8px 1.5rem;
-            font-size: 0.82rem;
+            padding: 10px 1.5rem;
+            font-size: 0.88rem;
             font-weight: 700;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
         .top-notice-bar a {
-            color: #fecdd3;
+            color: #fde047;
             text-decoration: underline;
             margin-left: 8px;
+            font-weight: 800;
         }
 
         /* Navbar */
         .salon-header {
-            background: rgba(9, 9, 11, 0.9);
-            backdrop-filter: blur(16px);
+            background: rgba(9, 9, 11, 0.92);
+            backdrop-filter: blur(18px);
             border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
-            z-index: 100;
-            padding: 1rem 2rem;
+            z-index: 1000;
+            padding: 0.95rem 1.8rem;
         }
 
         .nav-inner {
-            max-width: 1200px;
+            max-width: 1240px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
         .salon-brand {
@@ -85,72 +97,91 @@
         }
 
         .brand-logo-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
+            width: 46px;
+            height: 46px;
+            border-radius: 13px;
             background: linear-gradient(135deg, var(--brand-rose), #fb7185);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            font-size: 1.35rem;
             color: #fff;
             box-shadow: 0 4px 15px rgba(244, 63, 94, 0.4);
+            flex-shrink: 0;
         }
 
         .salon-brand-text strong {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.35rem;
+            font-size: 1.25rem;
             display: block;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.3px;
+            line-height: 1.2;
         }
 
         .salon-brand-text small {
-            font-size: 0.75rem;
+            font-size: 0.78rem;
             color: var(--brand-rose-light);
             font-weight: 600;
+            display: block;
         }
 
         .nav-actions {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .btn-travel-link {
             background: rgba(255, 255, 255, 0.08);
             color: #fff;
             border: 1px solid var(--border-color);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
+            padding: 9px 15px;
+            border-radius: 22px;
+            font-size: 0.86rem;
+            font-weight: 700;
             text-decoration: none;
             transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
         }
 
         .btn-travel-link:hover {
-            background: rgba(255, 255, 255, 0.15);
-            color: #38bdf8;
+            background: rgba(255, 255, 255, 0.16);
+            color: #fde047;
+            transform: translateY(-1px);
+        }
+
+        .btn-store-link {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.22), rgba(244, 63, 94, 0.22));
+            border: 1px solid rgba(212, 175, 55, 0.55);
+            color: #fde047;
         }
 
         .btn-whatsapp-header {
             background: #25d366;
-            color: #000;
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 0.85rem;
+            color: #052e16;
+            padding: 9px 18px;
+            border-radius: 22px;
+            font-weight: 800;
+            font-size: 0.88rem;
             text-decoration: none;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 6px;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+            box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
         }
 
         /* Hero */
         .salon-hero {
             position: relative;
-            padding: 5rem 2rem 4rem;
-            max-width: 1200px;
+            padding: 4.2rem 1.8rem 3.5rem;
+            max-width: 1240px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1.2fr 1fr;
@@ -161,42 +192,42 @@
         .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            background: rgba(244, 63, 94, 0.15);
+            gap: 8px;
+            background: rgba(244, 63, 94, 0.16);
             color: var(--brand-rose-light);
-            border: 1px solid rgba(244, 63, 94, 0.3);
-            padding: 5px 14px;
-            border-radius: 20px;
-            font-size: 0.82rem;
-            font-weight: 700;
+            border: 1px solid rgba(244, 63, 94, 0.38);
+            padding: 7px 16px;
+            border-radius: 24px;
+            font-size: 0.88rem;
+            font-weight: 800;
             margin-bottom: 1.2rem;
         }
 
         .hero-title {
             font-family: 'Outfit', sans-serif;
-            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            font-size: clamp(2.1rem, 4.6vw, 3.25rem);
             font-weight: 900;
             color: #fff;
-            line-height: 1.15;
-            margin-bottom: 1.2rem;
+            line-height: 1.18;
+            margin-bottom: 1.25rem;
         }
 
         .hero-title span {
-            background: linear-gradient(135deg, var(--brand-rose), #fda4af);
+            background: linear-gradient(135deg, var(--brand-rose), #fda4af, #fde047);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero-desc {
-            font-size: 1.05rem;
+            font-size: 1.08rem;
             color: var(--text-muted);
-            margin-bottom: 2rem;
-            line-height: 1.7;
+            margin-bottom: 1.8rem;
+            line-height: 1.78;
         }
 
         .hero-features {
             display: flex;
-            gap: 20px;
+            gap: 16px;
             flex-wrap: wrap;
             margin-bottom: 2.2rem;
         }
@@ -205,26 +236,36 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-body);
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fff;
+            background: rgba(255,255,255,0.05);
+            padding: 8px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.08);
         }
 
         .feature-item i {
             color: var(--brand-rose);
         }
 
+        .hero-cta-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
         .hero-img-box {
             position: relative;
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65);
+            border: 1px solid rgba(244, 63, 94, 0.3);
         }
 
         .hero-img-box img {
             width: 100%;
-            height: 480px;
+            height: 490px;
             object-fit: cover;
             display: block;
         }
@@ -234,141 +275,309 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(180deg, transparent, rgba(9, 9, 11, 0.95));
-            padding: 1.5rem;
+            background: linear-gradient(180deg, transparent, rgba(9, 9, 11, 0.96));
+            padding: 1.8rem 1.5rem 1.4rem;
         }
 
         /* Promo Banner Alianza */
         .travel-promo-banner {
-            max-width: 1200px;
-            margin: 0 auto 4rem;
-            padding: 0 2rem;
+            max-width: 1240px;
+            margin: 0 auto 3.8rem;
+            padding: 0 1.8rem;
         }
 
         .travel-promo-inner {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(244, 63, 94, 0.12));
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 20px;
-            padding: 2rem;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.16), rgba(244, 63, 94, 0.14));
+            border: 1.5px solid rgba(212, 175, 55, 0.45);
+            border-radius: 22px;
+            padding: 2.2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 2rem;
             flex-wrap: wrap;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+        }
+
+        .travel-promo-content {
+            flex: 1;
+            min-width: 280px;
         }
 
         .travel-promo-content h3 {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.35rem;
-            color: #fff;
-            margin-bottom: 0.3rem;
-        }
-
-        .travel-promo-content p {
-            color: var(--text-muted);
-            font-size: 0.92rem;
-        }
-
-        /* Services Grid */
-        .section-wrap {
-            max-width: 1200px;
-            margin: 0 auto 5rem;
-            padding: 0 2rem;
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 3rem;
-        }
-
-        .section-header h2 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 800;
+            font-size: 1.45rem;
             color: #fff;
             margin-bottom: 0.5rem;
         }
 
-        .section-header p {
-            color: var(--text-muted);
-            font-size: 0.98rem;
+        .travel-promo-content p {
+            color: var(--text-body);
+            font-size: 1rem;
+            line-height: 1.72;
         }
 
+        /* General Section Wrap */
+        .section-wrap {
+            max-width: 1240px;
+            margin: 0 auto 4.8rem;
+            padding: 0 1.8rem;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 780px;
+            margin: 0 auto 2.6rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.75rem, 3.5vw, 2.35rem);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 0.65rem;
+            line-height: 1.25;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.04rem;
+            line-height: 1.7;
+        }
+
+        /* 4 Promo Packages + Video Showcase */
+        .promo-showcase-grid {
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            gap: 2rem;
+            align-items: stretch;
+        }
+
+        .promo-video-card {
+            background: var(--bg-card);
+            border: 1.5px solid rgba(244, 63, 94, 0.4);
+            border-radius: 22px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-card);
+        }
+
+        .promo-video-card video {
+            width: 100%;
+            height: 440px;
+            object-fit: cover;
+            background: #000;
+            display: block;
+        }
+
+        .promo-packages-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.35rem;
+        }
+
+        .promo-pkg-card {
+            background: linear-gradient(145deg, rgba(39, 39, 42, 0.75), rgba(24, 24, 27, 0.95));
+            border: 1px solid rgba(244, 63, 94, 0.35);
+            border-radius: 20px;
+            padding: 1.65rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .promo-pkg-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 30px rgba(244, 63, 94, 0.2);
+            border-color: var(--brand-rose);
+        }
+
+        .promo-pkg-badge {
+            display: inline-block;
+            background: rgba(244, 63, 94, 0.2);
+            color: #fda4af;
+            border: 1px solid rgba(244, 63, 94, 0.4);
+            font-size: 0.78rem;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 0.85rem;
+            width: fit-content;
+            text-transform: uppercase;
+        }
+
+        /* Category Filter Tabs */
+        .salon-filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 2.2rem;
+        }
+
+        .salon-tab-btn {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-body);
+            border: 1px solid var(--border-color);
+            padding: 10px 18px;
+            border-radius: 24px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .salon-tab-btn.active,
+        .salon-tab-btn:hover {
+            background: var(--brand-rose);
+            color: #fff;
+            border-color: var(--brand-rose);
+            box-shadow: 0 4px 15px rgba(244, 63, 94, 0.35);
+        }
+
+        /* Services Grid */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 1.6rem;
         }
 
         .service-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 18px;
-            padding: 1.8rem;
+            border-radius: 20px;
+            padding: 1.85rem;
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            box-shadow: var(--shadow-card);
         }
 
         .service-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(244, 63, 94, 0.4);
-            box-shadow: 0 15px 35px rgba(244, 63, 94, 0.15);
+            border-color: rgba(244, 63, 94, 0.45);
+            box-shadow: 0 16px 36px rgba(244, 63, 94, 0.16);
+        }
+
+        .service-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 1rem;
         }
 
         .service-icon {
-            width: 48px;
-            height: 48px;
+            width: 50px;
+            height: 50px;
             border-radius: 14px;
-            background: rgba(244, 63, 94, 0.12);
-            color: var(--brand-rose);
+            background: rgba(244, 63, 94, 0.14);
+            color: var(--brand-rose-light);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.4rem;
-            margin-bottom: 1.2rem;
+            font-size: 1.35rem;
+            flex-shrink: 0;
+        }
+
+        .travel-bonus-pill {
+            background: rgba(212, 175, 55, 0.18);
+            color: #fde047;
+            border: 1px solid rgba(212, 175, 55, 0.45);
+            font-size: 0.74rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 12px;
+            text-align: right;
         }
 
         .service-name {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 700;
+            font-size: 1.28rem;
+            font-weight: 800;
             color: #fff;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.55rem;
+            line-height: 1.3;
         }
 
         .service-desc {
-            font-size: 0.88rem;
+            font-size: 0.96rem;
             color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 1.2rem;
+            line-height: 1.68;
+            margin-bottom: 1rem;
+        }
+
+        .service-breakdown {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 12px;
+            padding: 0.85rem 1rem;
+            margin-bottom: 1.25rem;
+            font-size: 0.88rem;
+            color: #e4e4e7;
+            line-height: 1.62;
+        }
+
+        .service-breakdown summary {
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--brand-rose-light);
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .service-breakdown summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .service-breakdown ul {
+            margin-top: 0.65rem;
+            padding-left: 1.15rem;
+            color: var(--text-muted);
+        }
+
+        .service-breakdown li {
+            margin-bottom: 0.3rem;
         }
 
         .service-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 1rem;
+            padding-top: 1.1rem;
             border-top: 1px solid var(--border-color);
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .service-price {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.15rem;
-            font-weight: 800;
+            font-size: 1.24rem;
+            font-weight: 900;
             color: #fff;
+        }
+
+        .service-price small {
+            font-size: 0.82rem;
+            color: var(--brand-rose-light);
+            font-weight: 700;
+            margin-right: 3px;
         }
 
         .btn-book-service {
             background: var(--brand-rose);
             color: #fff;
             border: none;
-            padding: 8px 16px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 0.82rem;
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.88rem;
             cursor: pointer;
             text-decoration: none;
             display: inline-flex;
@@ -379,36 +588,248 @@
 
         .btn-book-service:hover {
             background: #e11d48;
+            transform: translateY(-1px);
+        }
+
+        /* Student Free Haircuts Hook Banner */
+        .alumna-hook-card {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(24, 24, 27, 0.95));
+            border: 1.5px solid rgba(16, 185, 129, 0.4);
+            border-radius: 22px;
+            padding: 2rem 2.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.8rem;
+            flex-wrap: wrap;
+            margin-top: 2.5rem;
+        }
+
+        /* Flyers & Salon Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.4rem;
+        }
+
+        .gallery-item {
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 330px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.35s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.03);
+        }
+
+        .gallery-caption {
+            padding: 0.85rem 1rem;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #fff;
+            background: rgba(9, 9, 11, 0.9);
+            border-top: 1px solid var(--border-color);
         }
 
         /* Location Section */
         .location-box {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 2.5rem;
+            border-radius: 22px;
+            padding: 2.4rem;
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 2.5rem;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 2.4rem;
             align-items: center;
+        }
+
+        /* Floating AI & WhatsApp Widgets */
+        .floating-dock {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9990;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: flex-end;
+        }
+
+        .fab-btn {
+            border: none;
+            border-radius: 30px;
+            padding: 13px 20px;
+            font-weight: 800;
+            font-size: 0.92rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            transition: transform 0.2s ease;
+        }
+
+        .fab-btn:hover {
+            transform: scale(1.04);
+        }
+
+        .fab-ai {
+            background: linear-gradient(135deg, #f43f5e, #be123c);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .fab-wa {
+            background: #25d366;
+            color: #052e16;
+        }
+
+        /* Salon AI Chat Modal */
+        .salon-ai-window {
+            position: fixed;
+            bottom: 140px;
+            right: 20px;
+            width: 370px;
+            max-width: calc(100vw - 24px);
+            height: 500px;
+            max-height: 75vh;
+            background: #121216;
+            border: 1.5px solid rgba(244, 63, 94, 0.5);
+            border-radius: 22px;
+            box-shadow: 0 22px 50px rgba(0,0,0,0.8);
+            z-index: 10055;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .salon-ai-window.active {
+            display: flex;
+        }
+
+        /* Dual WhatsApp Modal */
+        .wa-modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.78);
+            backdrop-filter: blur(6px);
+            z-index: 10060;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .wa-modal-backdrop.active {
+            display: flex;
+        }
+
+        .wa-modal-card {
+            background: #18181b;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 22px;
+            max-width: 440px;
+            width: 100%;
+            padding: 1.8rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.75);
         }
 
         /* Footer */
         footer {
             border-top: 1px solid var(--border-color);
-            padding: 3rem 2rem 2rem;
+            padding: 3rem 1.5rem 6rem;
             background: #09090b;
             text-align: center;
-            font-size: 0.88rem;
+            font-size: 0.92rem;
             color: var(--text-muted);
         }
 
-        @media (max-width: 900px) {
-            .salon-hero, .location-box {
+        @media (max-width: 960px) {
+            .salon-hero,
+            .promo-showcase-grid,
+            .location-box {
                 grid-template-columns: 1fr;
             }
             .hero-img-box img {
-                height: 320px;
+                height: 340px;
+            }
+            .promo-video-card video {
+                height: 380px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            html {
+                font-size: 16px;
+            }
+            .top-notice-bar {
+                padding: 8px 1rem;
+                font-size: 0.8rem;
+                justify-content: center;
+                text-align: center;
+            }
+            .salon-header {
+                padding: 0.75rem 1rem;
+            }
+            .nav-inner {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.65rem;
+            }
+            .salon-brand {
+                justify-content: center;
+            }
+            .nav-actions {
+                justify-content: center;
+                gap: 6px;
+            }
+            .btn-travel-link,
+            .btn-whatsapp-header {
+                padding: 8px 12px;
+                font-size: 0.78rem;
+                flex: 1 1 auto;
+                justify-content: center;
+            }
+            .salon-hero {
+                padding: 2.2rem 1.15rem 2.5rem;
+                gap: 2rem;
+            }
+            .section-wrap,
+            .travel-promo-banner {
+                padding: 0 1.15rem;
+                margin-bottom: 3.5rem;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .service-card {
+                padding: 1.5rem;
+            }
+            .location-box {
+                padding: 1.5rem;
+            }
+            .floating-dock {
+                bottom: 14px;
+                right: 12px;
+            }
+            .fab-btn {
+                padding: 11px 16px;
+                font-size: 0.84rem;
+            }
+            .salon-ai-window {
+                right: 12px;
+                bottom: 125px;
+                width: calc(100vw - 24px);
             }
         }
     </style>
@@ -417,34 +838,38 @@
 
     <!-- Barra de Alianza Superior -->
     <div class="top-notice-bar">
-        <span>✨ <strong>Estética Alma Luis</strong> • Cuidado Capilar y Belleza en Jardines de San Manuel</span>
+        <span>✨ <strong>Estudio de Belleza Imagen y Estilo "Alma"</strong> • Más de 30 años nos respaldan en Puebla</span>
         <div>
-            <span>¿Planeas viajar?</span>
-            <a href="https://mera-kirai.com">Visitar Viajes La Ruta del Águila →</a>
+            <span>¿Buscas productos profesionales o viajes?</span>
+            <a href="tienda.html">🛍️ Tienda Lendan</a>
+            <a href="https://mera-kirai.com">✈️ Viajes La Ruta del Águila →</a>
         </div>
     </div>
 
-    <!-- Header / Navbar -->
+    <!-- Header / Navbar (Optimizado también para Móvil con accesos visibles) -->
     <header class="salon-header">
         <div class="nav-inner">
             <a href="#" class="salon-brand">
                 <div class="brand-logo-icon">🌸</div>
                 <div class="salon-brand-text">
-                    <strong>ESTÉTICA ALMA</strong>
-                    <small>Salón & Spa Capilar • San Manuel</small>
+                    <strong>ESTUDIO DE BELLEZA "ALMA"</strong>
+                    <small>Imagen y Estilo • Más de 30 Años de Experiencia</small>
                 </div>
             </a>
 
             <div class="nav-actions">
-                <a href="ra.html" class="btn-travel-link" style="background:linear-gradient(135deg, rgba(244,63,94,0.3), rgba(212,175,55,0.3)); border-color:var(--brand-rose); color:#fff; font-weight:700;">
+                <a href="tienda.html" class="btn-travel-link btn-store-link">
+                    <i class="fas fa-shopping-bag"></i> Productos Lendan
+                </a>
+                <a href="ra.html" class="btn-travel-link" style="background:linear-gradient(135deg, rgba(244,63,94,0.3), rgba(212,175,55,0.3)); border-color:var(--brand-rose); color:#fff;">
                     <i class="fas fa-cube"></i> Letrero 3D (AR)
                 </a>
                 <a href="https://mera-kirai.com" class="btn-travel-link">
-                    <i class="fas fa-plane"></i> Portal de Viajes
+                    <i class="fas fa-plane"></i> Viajes
                 </a>
-                <a href="https://wa.me/522228016244?text=Hola%20Alma,%20quiero%20agendar%20una%20cita%20en%20la%20est%C3%A9tica" target="_blank" class="btn-whatsapp-header">
+                <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar una cita en el Estudio de Belleza Imagen y Estilo Alma')" class="btn-whatsapp-header">
                     <i class="fab fa-whatsapp"></i> Agendar Cita
-                </a>
+                </button>
             </div>
         </div>
     </header>
@@ -453,135 +878,663 @@
     <section class="salon-hero">
         <div>
             <div class="hero-badge">
-                <i class="fas fa-sparkles"></i> Atención Personalizada por Alma Luis
+                <i class="fas fa-award"></i> Más de 30 años nos respaldan • Atención por Alma Luis
             </div>
             <h1 class="hero-title">
-                Realza tu belleza con <span>estilo, cuidado y salud capilar</span>
+                Estudio de Belleza <span>Imagen y Estilo "Alma"</span>
             </h1>
             <p class="hero-desc">
-                Tratamientos profesionales de alta gama en un ambiente cómodo y de confianza en Jardines de San Manuel, Puebla. Colorimetría de diseño, alaciados sin formol, cortes de vanguardia y spa de manos y pies.
+                Transformamos y cuidamos tu imagen en un ambiente cálido, profesional y de total confianza en Jardines de San Manuel, Puebla. Somos especialistas en diseño de color, alisados progresivos, botox y nanoplastia capilar, cortes de dama y caballero, maquillaje y peinado social, paquetes de Novia y XV Años, aplicación de pestañas, laminado de cejas, depilación facial y corporal, tratamientos multivitamínicos, etc.
             </p>
             
             <div class="hero-features">
-                <div class="feature-item"><i class="fas fa-check-circle"></i> Productos Profesionales</div>
-                <div class="feature-item"><i class="fas fa-check-circle"></i> Citas Puntuales</div>
-                <div class="feature-item"><i class="fas fa-check-circle"></i> Más de 15 años de Experiencia</div>
+                <div class="feature-item"><i class="fas fa-medal"></i> Más de 30 años nos respaldan</div>
+                <div class="feature-item"><i class="fas fa-flask"></i> Distribuidora Oficial Lendan</div>
+                <div class="feature-item"><i class="fas fa-calendar-check"></i> Atención Personalizada</div>
             </div>
 
-            <a href="https://wa.me/522228016244?text=Hola%20Alma,%20me%20gustar%C3%ADa%20cotizar%20un%20servicio%20en%20la%20est%C3%A9tica" target="_blank" class="btn-book-service" style="padding:14px 28px; font-size:1rem; border-radius:30px;">
-                <i class="fab fa-whatsapp"></i> Agendar Cita por WhatsApp: 222 801 6244
-            </a>
+            <div class="hero-cta-group">
+                <button type="button" onclick="openSalonWaModal('Hola Alma, me gustaría agendar una cita o valoración en el Estudio de Belleza')" class="btn-book-service" style="padding:14px 26px; font-size:1rem; border-radius:30px;">
+                    <i class="fab fa-whatsapp"></i> Agendar Cita por WhatsApp: 222 801 6244
+                </button>
+                <a href="#precios-oficiales" class="btn-travel-link" style="padding:14px 22px; font-size:0.95rem; border-radius:30px;">
+                    Ver Menú de 19 Servicios y Precios ↓
+                </a>
+            </div>
         </div>
 
         <div class="hero-img-box">
-            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1000&q=80" alt="Estética Alma Luis San Manuel Puebla">
+            <img src="img/salon/salon_1.jpg" onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1000&q=80'" alt="Estudio de Belleza Imagen y Estilo Alma en San Manuel Puebla">
             <div class="hero-img-overlay">
-                <strong style="color:#fff; font-family:'Outfit'; font-size:1.1rem; display:block;">Salón de Belleza Alma Luis</strong>
-                <span style="color:var(--brand-rose-light); font-size:0.85rem;">Río Nexapa 6101, Jardines de San Manuel, Puebla</span>
+                <strong style="color:#fff; font-family:'Outfit'; font-size:1.2rem; display:block;">Estudio de Belleza Imagen y Estilo "Alma"</strong>
+                <span style="color:var(--brand-rose-light); font-size:0.92rem;">Calle Río Nexapa #6101, Jardines de San Manuel, Puebla</span>
             </div>
         </div>
     </section>
 
-    <!-- Banner de Alianza Comercial con Viajes -->
+    <!-- Banner de Alianza Comercial con Viajes (Regla Oficial de la Hermana Alma) -->
     <div class="travel-promo-banner">
         <div class="travel-promo-inner">
             <div class="travel-promo-content">
-                <div style="font-size:0.8rem; font-weight:800; color:var(--brand-gold); text-transform:uppercase; margin-bottom:4px;">
-                    🎁 Alianza Exclusiva para Nuestras Clientas
+                <div style="font-size:0.84rem; font-weight:800; color:var(--brand-gold-light); text-transform:uppercase; margin-bottom:6px; letter-spacing:0.5px;">
+                    🎁 Beneficio Exclusivo para Nuestras Clientas
                 </div>
                 <h3>10% de Descuento en tus Viajes y Excursiones</h3>
-                <p>Al realizarte cualquier servicio en Estética Alma, usa tu cupón oficial <code style="background:rgba(212,175,55,0.25); color:#fde047; padding:2px 6px; border-radius:4px; font-weight:800;">ESTETICA10</code> para obtener 10% de descuento directo en tus salidas con <strong>Viajes La Ruta del Águila</strong> (conciertos CDMX, pueblos mágicos y circuitos).</p>
+                <p>
+                    Al realizarte cualquier <strong>Diseño de Color, Alisados Progresivos, Paquete de Faciales, Paquete de XV Años o Paquete de Novia</strong> en nuestro Estudio de Belleza, recibe tu código oficial <code style="background:rgba(212,175,55,0.25); color:#fde047; padding:3px 8px; border-radius:6px; font-weight:800;">ESTETICA10</code> válido por un <strong>10% de descuento directo</strong> en tu próximo viaje con <strong>Viajes La Ruta del Águila</strong> (conciertos CDMX, Pueblos Mágicos, playas y circuitos).
+                </p>
             </div>
-            <a href="https://mera-kirai.com" class="btn-travel-link" style="background:var(--brand-gold); color:#000; font-weight:800; padding:12px 24px;">
-                Ver Destinos de Viaje →
+            <a href="https://mera-kirai.com" class="btn-travel-link" style="background:var(--brand-gold); color:#000; font-weight:800; padding:14px 24px; font-size:0.95rem;">
+                Explorar Viajes y Conciertos →
             </a>
         </div>
     </div>
 
-    <!-- Menú de Servicios -->
-    <section class="section-wrap">
+    <!-- Sección de los 4 Paquetes Promocionales en Video -->
+    <section class="section-wrap" id="paquetes-promocionales">
         <div class="section-header">
-            <h2>Nuestros Servicios de Salón & Spa</h2>
-            <p>Trabajamos con cita previa para dedicarte el tiempo, cuidado y atención que mereces.</p>
+            <h2>🔥 4 Paquetes Promocionales Destacados</h2>
+            <p>Aprovecha nuestras promociones especiales diseñadas para consentir tu cabello, rostro y manos con productos europeos de alta cosmética.</p>
         </div>
 
-        <div class="services-grid">
-            <!-- Servicio 1 -->
-            <div class="service-card">
-                <div>
-                    <div class="service-icon"><i class="fas fa-cut"></i></div>
-                    <div class="service-name">Corte de Cabello Dama</div>
-                    <p class="service-desc">Corte con diseño personalizado según tu tipo de rostro, lavado capilar y secado rápido.</p>
-                </div>
-                <div class="service-footer">
-                    <span class="service-price">Desde $180 MXN</span>
-                    <a href="https://wa.me/522228016244?text=Hola%20Alma,%20quiero%20agendar%20un%20Corte%20Dama" target="_blank" class="btn-book-service">Agendar</a>
+        <div class="promo-showcase-grid">
+            <div class="promo-video-card">
+                <video controls preload="metadata" poster="img/salon/thumb_paquetes_alma.jpg">
+                    <source src="video/salon/paquetes_oct_nov_alma.mp4" type="video/mp4">
+                    Tu navegador no soporta reproducción de video.
+                </video>
+                <div style="padding:1.1rem 1.25rem;">
+                    <strong style="color:#fff; font-family:'Outfit'; font-size:1.05rem; display:block;">🎥 Reel Oficial de Promociones</strong>
+                    <span style="color:var(--text-muted); font-size:0.86rem;">Conoce los 4 paquetes especiales en Estudio de Belleza Imagen y Estilo "Alma".</span>
                 </div>
             </div>
 
-            <!-- Servicio 2 -->
-            <div class="service-card">
+            <div class="promo-packages-list">
+                <!-- Promo 1 -->
+                <div class="promo-pkg-card">
+                    <div>
+                        <span class="promo-pkg-badge">✨ Paquete Promo 1</span>
+                        <div class="service-name">Alisado Progresivo Efecto Espejo</div>
+                        <p class="service-desc">Reducción total de frizz, alaciado sedoso, nutrición térmica y brillo espejo duradero sin maltratar la fibra capilar.</p>
+                        <div style="font-size:0.82rem; color:#fde047; font-weight:700; margin-bottom:1rem;">
+                            🎁 Incluye Bono 10% en Viajes La Ruta del Águila
+                        </div>
+                    </div>
+                    <div class="service-footer">
+                        <span class="service-price"><small>Desde</small> $800 MXN</span>
+                        <button type="button" onclick="openSalonWaModal('Hola Alma, me interesa la Promo 1: Alisado Progresivo desde $800 MXN')" class="btn-book-service">Apartar Promo</button>
+                    </div>
+                </div>
+
+                <!-- Promo 2 -->
+                <div class="promo-pkg-card">
+                    <div>
+                        <span class="promo-pkg-badge">💆‍♀️ Paquete Promo 2</span>
+                        <div class="service-name">Coctel Capilar + Depilación 1/2 Brazos</div>
+                        <p class="service-desc">Bomba nutritiva multivitamínica para restaurar la hebra capilar + depilación suave de medios brazos con cera roll-on.</p>
+                    </div>
+                    <div class="service-footer">
+                        <span class="service-price">$600 MXN</span>
+                        <button type="button" onclick="openSalonWaModal('Hola Alma, me interesa la Promo 2: Coctel Capilar + Depilación 1/2 brazos por $600 MXN')" class="btn-book-service">Apartar Promo</button>
+                    </div>
+                </div>
+
+                <!-- Promo 3 -->
+                <div class="promo-pkg-card">
+                    <div>
+                        <span class="promo-pkg-badge">💅 Paquete Promo 3</span>
+                        <div class="service-name">Gelish Decorado + Depilación de Ceja</div>
+                        <p class="service-desc">Aplicación de Gelish de larga duración con diseño decorado en manos + perfilado y depilación de ceja con navaja.</p>
+                    </div>
+                    <div class="service-footer">
+                        <span class="service-price">$200 MXN</span>
+                        <button type="button" onclick="openSalonWaModal('Hola Alma, me interesa la Promo 3: Gelish Decorado + Depilación de Ceja por $200 MXN')" class="btn-book-service">Apartar Promo</button>
+                    </div>
+                </div>
+
+                <!-- Promo 4 -->
+                <div class="promo-pkg-card">
+                    <div>
+                        <span class="promo-pkg-badge">🧖‍♀️ Paquete Promo 4</span>
+                        <div class="service-name">Facial de Hidratación Profunda</div>
+                        <p class="service-desc">Limpieza facial profunda con exfoliación, extracción suave, mascarilla nutritiva y aparatología estética especializada.</p>
+                        <div style="font-size:0.82rem; color:#fde047; font-weight:700; margin-bottom:1rem;">
+                            🎁 Incluye Bono 10% en Viajes La Ruta del Águila
+                        </div>
+                    </div>
+                    <div class="service-footer">
+                        <span class="service-price">$400 MXN</span>
+                        <button type="button" onclick="openSalonWaModal('Hola Alma, me interesa la Promo 4: Facial de Hidratación Profunda con aparatología por $400 MXN')" class="btn-book-service">Apartar Promo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menú Completo de 19 Servicios Oficiales + Desglose -->
+    <section class="section-wrap" id="precios-oficiales">
+        <div class="section-header">
+            <h2>Menú Oficial de Servicios & Precios</h2>
+            <p>Precios claros y transparentes. En servicios capilares con la leyenda <strong>"Desde"</strong>, el presupuesto exacto se confirma según el largo y volumen de tu cabellera.</p>
+        </div>
+
+        <!-- Filtros rápidos por categoría -->
+        <div class="salon-filter-tabs">
+            <button class="salon-tab-btn active" onclick="filterSalonServices('todos', this)">Todos los Servicios (19)</button>
+            <button class="salon-tab-btn" onclick="filterSalonServices('cortes', this)">✂️ Cortes & Peinado</button>
+            <button class="salon-tab-btn" onclick="filterSalonServices('color', this)">🎨 Color, Alisados & Capilar</button>
+            <button class="salon-tab-btn" onclick="filterSalonServices('eventos', this)">👰 Novias, XV & Maquillaje</button>
+            <button class="salon-tab-btn" onclick="filterSalonServices('estetica', this)">👁️ Pestañas, Cejas & Depilación</button>
+        </div>
+
+        <div class="services-grid" id="salon-services-grid">
+            <!-- 1. Corte Dama -->
+            <div class="service-card" data-cat="cortes">
                 <div>
-                    <div class="service-icon"><i class="fas fa-user-tie"></i></div>
-                    <div class="service-name">Corte Caballero</div>
-                    <p class="service-desc">Corte clásico o moderno con máquina y tijera, alineación de contornos y perfilado.</p>
+                    <div class="service-top-row">
+                        <div class="service-icon"><i class="fas fa-cut"></i></div>
+                    </div>
+                    <div class="service-name">1. Corte de Cabello Dama</div>
+                    <p class="service-desc">Corte estilizado y personalizado según tus facciones (capas, bob, mariposa, despunte o cambio de look).</p>
+                    <details class="service-breakdown">
+                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
+                        <ul>
+                            <li>Diagnóstico de visagismo y textura capilar.</li>
+                            <li>Corte de precisión con tijera profesional.</li>
+                            <li>Sellado de puntas o estilizado básico de acabado.</li>
+                        </ul>
+                    </details>
                 </div>
                 <div class="service-footer">
-                    <span class="service-price">Desde $120 MXN</span>
-                    <a href="https://wa.me/522228016244?text=Hola%20Alma,%20quiero%20agendar%20un%20Corte%20Caballero" target="_blank" class="btn-book-service">Agendar</a>
+                    <span class="service-price">$200 MXN</span>
+                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar un Corte de Dama ($200 MXN)')" class="btn-book-service">Agendar</button>
                 </div>
             </div>
 
-            <!-- Servicio 3 -->
-            <div class="service-card">
+            <!-- 2. Corte Caballero -->
+            <div class="service-card" data-cat="cortes">
                 <div>
-                    <div class="service-icon"><i class="fas fa-palette"></i></div>
-                    <div class="service-name">Colorimetría & Mechas</div>
-                    <p class="service-desc">Balayage, baby lights, luces, tintes completos y corrección de color con protección capilar.</p>
+                    <div class="service-top-row">
+                        <div class="service-icon"><i class="fas fa-user-tie"></i></div>
+                    </div>
+                    <div class="service-name">2. Corte de Cabello Caballero</div>
+                    <p class="service-desc">Corte ejecutivo, clásico o desvanecido moderno con máquina y tijera, cuidando cada detalle del contorno.</p>
+                    <details class="service-breakdown">
+                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
+                        <ul>
+                            <li>Corte con tijera y/o máquina según estilo.</li>
+                            <li>Delineado limpio de patillas, nuca y contornos.</li>
+                            <li>Peinado con producto de acabado profesional.</li>
+                        </ul>
+                    </details>
                 </div>
                 <div class="service-footer">
-                    <span class="service-price">Desde $650 MXN</span>
-                    <a href="https://wa.me/522228016244?text=Hola%20Alma,%20quiero%20cotizar%20un%20servicio%20de%20Color%20o%20Mechas" target="_blank" class="btn-book-service">Agendar</a>
+                    <span class="service-price">$150 MXN</span>
+                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar un Corte de Caballero ($150 MXN)')" class="btn-book-service">Agendar</button>
                 </div>
             </div>
 
-            <!-- Servicio 4 -->
-            <div class="service-card">
+            <!-- 3. Planchado Express -->
+            <div class="service-card" data-cat="cortes">
                 <div>
-                    <div class="service-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
-                    <div class="service-name">Alaciado Permanente</div>
-                    <p class="service-desc">Alaciado japonés o de keratina progresiva. Efecto espejo, sedosidad y cero frizz por meses.</p>
+                    <div class="service-top-row">
+                        <div class="service-icon"><i class="fas fa-fire-flame-simple"></i></div>
+                    </div>
+                    <div class="service-name">3. Planchado Express</div>
+                    <p class="service-desc">Alaciado térmico rápido para lucir un cabello impecable, pulido y sin frizz en tus reuniones o compromisos.</p>
+                    <details class="service-breakdown">
+                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
+                        <ul>
+                            <li>Aplicación de termoprotector profesional Lendan.</li>
+                            <li>Planchado por secciones con placas de titanio/cerámica.</li>
+                            <li>Gotas de aceite de Moringa para sellar brillo y puntas.</li>
+                        </ul>
+                    </details>
                 </div>
                 <div class="service-footer">
-                    <span class="service-price">Desde $850 MXN</span>
-                    <a href="https://wa.me/522228016244?text=Hola%20Alma,%20quiero%20agendar%20un%20Alaciado%20Permanente" target="_blank" class="btn-book-service">Agendar</a>
+                    <span class="service-price">$200 MXN</span>
+                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar un Planchado Express ($200 MXN)')" class="btn-book-service">Agendar</button>
                 </div>
             </div>
 
-            <!-- Servicio 5 -->
-            <div class="service-card">
+            <!-- 4. Aplicación de Tintes -->
+            <div class="service-card" data-cat="color">
                 <div>
-                    <div class="service-icon"><i class="fas fa-spa"></i></div>
-                    <div class="service-name">Botox Capilar & Cauterización</div>
-                    <p class="service-desc">Hidratación intensiva para reparar puntas abiertas y cabello seco por decoloraciones.</p>
+                    <div class="service-top-row">
+                        <div class="service-icon"><i class="fas fa-fill-drip"></i></div>
+                    </div>
+                    <div class="service-name">4. Aplicación de Tintes</div>
+                    <p class="service-desc">Cobertura total de cana, retoque de raíz o baño de color uniforme con tintes europeos de máxima duración.</p>
+                    <details class="service-breakdown">
+                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
+                        <ul>
+                            <li>Asesoría de tono según subtono de piel.</li>
+                            <li>Fórmula de coloración con protector de fibra capilar.</li>
+                            <li>Lavado neutro sellador de color y secado.</li>
+                        </ul>
+                    </details>
                 </div>
                 <div class="service-footer">
-                    <span class="service-price">Desde $450 MXN</span>
-                    <a href="https://wa.me/522228016244?text=Hola%20Alma,%20quiero%20agendar%20un%20Botox%20Capilar" target="_blank" class="btn-book-service">Agendar</a>
+                    <span class="service-price"><small>Desde</small> $500 MXN</span>
+                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero cotizar/agendar Aplicación de Tinte (Desde $500 MXN)')" class="btn-book-service">Cotizar / Agendar</button>
                 </div>
             </div>
 
-            <!-- Servicio 6 -->
-            <div class="service-card">
+            <!-- 5. Diseños de Color -->
+            <div class="service-card" data-cat="color">
                 <div>
-                    <div class="service-icon"><i class="fas fa-hand-sparkles"></i></div>
-                    <div class="service-name">Manicure & Gelish</div>
-                    <p class="service-desc">Limpieza profunda de cutícula, limado, exfoliación y aplicación de esmalte semipermanente.</p>
+                    <div class="service-top-row">
+                        <div class="service-icon"><i class="fas fa-palette"></i></div>
+                        <span class="travel-bonus-pill">🎁 +10% Desc. en Viajes</span>
+                    </div>
+                    <div class="service-name">5. Diseños de Color</div>
+                    <p class="service-desc">Balayage, Babylights, Mechas universales, Contorno luminoso o Extracción de color cuidando la elasticidad de tu cabello.</p>
+                    <details class="service-breakdown">
+                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
+                        <ul>
+                            <li>Diagnóstico y prueba de mecha previa si se requiere.</li>
+                            <li>Decoloración protegida con aditivo PlexForte.</li>
+                            <li>Matiz de diseño, tratamiento sellador y estilizado final.</li>
+                        </ul>
+                    </details>
                 </div>
                 <div class="service-footer">
-                    <span class="service-price">Desde $220 MXN</span>
-                    <a href="https://wa.me/522228016244?text=Hola%20Alma,%20quiero%20agendar%20Manicure%20o%20Gelish" target="_blank" class="btn-book-service">Agendar</a>
+                    <span class="service-price"><small>Desde</small> $1,000 MXN</span>
+                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero cotizar un Diseño de Color (Desde $1,000 MXN)')" class="btn-book-service">Cotizar / Agendar</button>
                 </div>
+            </div>
+
+            <!-- 6. Alisados Progresivos -->
+            <div class="service-card" data-cat="color">
+                <div>
+                    <div class="service-top-row">
+                        <div class="service-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+                        <span class="travel-bonus-pill">🎁 +10% Desc. en Viajes</span>
+                    </div>
+                    <div class="service-name">6. Alisados Progresivos</div>
+                    <p class="service-desc">Alaciado termo-activo de larga duración (4 a 6 meses). Elimina el encrespamiento y deja una caída lacia, suave y brillante.</p>
+                    <details class="service-breakdown">
+                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
+                        <ul>
+                            <li>Lavado con shampoo antirresiduos para abrir cutícula.</li>
+                            <li>Aplicación de fórmula alisadora y tiempo de pose.</li>
+                            <li>Cauterización térmica mecha por mecha y sellado nutritivo.</li>
+                        </ul>
+                    </details>
+                </div>
+                <div class="service-footer">
+                    <span class="service-price"><small>Desde</small> $850 MXN</span>
+                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero cotizar un Alisado Progresivo (Desde $850 MXN / Promo $800)')" class="btn-book-service">Cotizar / Agendar</button>
+                </div>
+            </div>
+
+            <!-- 7. Botox Capilar -->
+            <div class="service-card" data-cat="color">
+                <div>
+                    <div class="service-top-row">
+                        <div class="service-icon"><i class="fas fa-spa"></i></div>
+                    </div>
+                    <div class="service-name">7. Botox Capilar</div>
+                    <p class="service-desc">Rejuvenecimiento y relleno capilar intensivo para cabellos deshidratados, porosos o procesados químicamente.</p>
+                    <details class="service-breakdown">
+                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
+                        <ul>
+                            <li>Limpieza profunda y preparación de la hebra.</li>
+                            <li>Aplicación de concentrado de Botox Capilar vitamínico.</li>
+                            <li>Activación con calor y sellado para máxima sedosidad.</li>
+                        </ul>
+                    </details>
+                </div>
+                <div class="service-footer">
+                    <span class="service-price"><small>Desde</small> $500 MXN</span>
+                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar un Botox Capilar (Desde $500 MXN)')" class="btn-book-service">Cotizar / Agendar</button>
+                </div>
+            </div>
+
+            <!-- 8. Nanoplastia -->
+            <div class="service-card" data-cat="color">
+                <div>
+                    <div class="service-top-row">
+                        <div class="service-icon"><i class="fas fa-droplet"></i></div>
+                    </div>
+                    <div class="service-name">8. Nanoplastia Capilar</div>
+                    <p class="service-desc">Restauración y alaciado progresivo con nanotecnología de aminoácidos y aceites esenciales sin formol.</p>
+                    <details class="service-breakdown">
+                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
+                        <ul>
+                            <li>Relleno intracelular con nanopartículas reconstructoras.</li>
+                            <li>Reducción de volumen y control total del frizz.</li>
+                            <li>Sellado térmico con brillo tridimensional.</li>
+                        </ul>
+                    </details>
+                </div>
+                <div class="service-footer">
+                    <span class="service-price"><small>Desde</small> $600 MXN</span>
+                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar una Nanoplastia Capilar (Desde $600 MXN)')" class="btn-book-service">Cotizar / Agendar</button>
+                </div>
+            </div>
+
+            <!-- 9. Sinergia Capilar -->
+            <div class="service-card" data-cat="color">
+                <div>
+                    <div class="service-top-row">
+                        <div class="service-icon"><i class="fas fa-seedling"></i></div>
+                    </div>
+                    <div class="service-name">9. Sinergia Capilar</div>
+                    <p class="service-desc">Terapia combinada de hidratación, lípidos y proteínas para devolver fuerza y vitalidad inmediata a tu cabellera.</p>
+                    <details class="service-breakdown">
+                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
+                        <ul>
+                            <li>Diagnóstico de necesidad capilar (hidratación vs nutrición).</li>
+                            <li>Mezcla magistral de ampolleta + mascarilla intensiva.</li>
+                            <li>Tiempo de vapor/calor y secado profesional.</li>
+                        </ul>
+                    </details>
+                </div>
+                <div class="service-footer">
+                    <span class="service-price"><small>Desde</small> $300 MXN</span>
+                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar una Sinergia Capilar (Desde $300 MXN)')" class="btn-book-service">Cotizar / Agendar</button>
+                </div>
+            </div>
+
+            <!-- 10. Peinado Social -->
+            <div class="service-card" data-cat="cortes">
+                <div>
+                    <div class="service-top-row">
+                        <div class="service-icon"><i class="fas fa-crown"></i></div>
+                    </div>
+                    <div class="service-name">10. Peinado Social</div>
+                    <p class="service-desc">Recogidos elegantes, semirecogidos, ondas de gala o trenzados artísticos para graduaciones, bodas y eventos.</p>
+                    <details class="service-breakdown">
+                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
+                        <ul>
+                            <li>Preparación térmica de la cabellera para máxima fijación.</li>
+                            <li>Diseño de ondas, moldeado o recogido según tu vestido.</li>
+                            <li>Fijación resistente a la humedad y colocación de tocado.</li>
+                        </ul>
+                    </details>
+                </div>
+                <div class="service-footer">
+                    <span class="service-price"><small>Desde</small> $500 MXN</span>
+                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar un Peinado Social (Desde $500 MXN)')" class="btn-book-service">Agendar</button>
+                </div>
+            </div>
+
+            <!-- 11. Maquillaje Social -->
+            <div class="service-card" data-cat="eventos">
+                <div>
+                    <div class="service-top-row">
+                        <div class="service-icon"><i class="fas fa-paintbrush"></i></div>
+                    </div>
+                    <div class="service-name">11. Maquillaje Social</div>
+                    <p class="service-desc">Maquillaje profesional de larga duración (día o noche) resistente a luces, fotografía y lágrimas de emoción.</p>
+                    <details class="service-breakdown">
+                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
+                        <ul>
+                            <li>Preparación e hidratación dermo-cosmética de la piel.</li>
+                            <li>Diseño de ojos, visagismo en contorno/iluminación y labios.</li>
+                            <li>Pestaña postiza de tira y sellado fijador de larga duración.</li>
+                        </ul>
+                    </details>
+                </div>
+                <div class="service-footer">
+                    <span class="service-price">$600 MXN</span>
+                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar un Maquillaje Social ($600 MXN)')" class="btn-book-service">Agendar</button>
+                </div>
+            </div>
+
+            <!-- 12. Paquete de Novia -->
+            <div class="service-card" data-cat="eventos">
+                <div>
+                    <div class="service-top-row">
+                        <div class="service-icon"><i class="fas fa-ring"></i></div>
+                        <span class="travel-bonus-pill">🎁 +10% Desc. en Viajes</span>
+                    </div>
+                    <div class="service-name">12. Paquete de Novia</div>
+                    <p class="service-desc">Atención integral de lujo para el día más especial de tu vida, asegurando un look radiante, elegante e inolvidable.</p>
+                    <details class="service-breakdown">
+                        <summary><span>📋 Qué incluye este paquete</span> <i class="fas fa-chevron-down"></i></summary>
+                        <ul>
+                            <li>Prueba previa de maquillaje y diseño de peinado nupcial.</li>
+                            <li>Preparación facial luminosa e hidratación capilar previa.</li>
+                            <li>Maquillaje HD blindado, peinado de novia, colocación de velo y tocado en el gran día.</li>
+                        </ul>
+                    </details>
+                </div>
+                <div class="service-footer">
+                    <span class="service-price">$5,000 MXN</span>
+                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero pedir informes y agendar el Paquete de Novia ($5,000 MXN)')" class="btn-book-service">Agendar</button>
+                </div>
+            </div>
+
+            <!-- 13. Paquete de XV Años -->
+            <div class="service-card" data-cat="eventos">
+                <div>
+                    <div class="service-top-row">
+                        <div class="service-icon"><i class="fas fa-star"></i></div>
+                        <span class="travel-bonus-pill">🎁 +10% Desc. en Viajes</span>
+                    </div>
+                    <div class="service-name">13. Paquete de XV Años</div>
+                    <p class="service-desc">Diseño de imagen juvenil y sofisticado para que la quinceañera brille en la misa, sesión fotográfica y recepción.</p>
+                    <details class="service-breakdown">
+                        <summary><span>📋 Qué incluye este paquete</span> <i class="fas fa-chevron-down"></i></summary>
+                        <ul>
+                            <li>Prueba de maquillaje y peinado acorde al vestido y temática.</li>
+                            <li>Preparación de piel juvenil y cuidado de acabado fresco.</li>
+                            <li>Maquillaje de larga duración, peinado de gala y colocación de corona/tiara.</li>
+                        </ul>
+                    </details>
+                </div>
+                <div class="service-footer">
+                    <span class="service-price">$4,000 MXN</span>
+                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero pedir informes y agendar el Paquete de XV Años ($4,000 MXN)')" class="btn-book-service">Agendar</button>
+                </div>
+            </div>
+
+            <!-- 14. Aplicación de Pestañas -->
+            <div class="service-card" data-cat="estetica">
+                <div>
+                    <div class="service-top-row">
+                        <div class="service-icon"><i class="fas fa-eye"></i></div>
+                    </div>
+                    <div class="service-name">14. Aplicación de Pestañas</div>
+                    <p class="service-desc">Realza tu mirada todos los días con extensiones ligeras, cómodas y adaptadas a la forma natural de tu ojo.</p>
+                    <details class="service-breakdown" open>
+                        <summary><span>📋 Modalidades y Precios Exactos</span> <i class="fas fa-chevron-down"></i></summary>
+                        <ul>
+                            <li><strong>Clásicas (1x1 natural):</strong> $400 MXN</li>
+                            <li><strong>Efecto Rímel (mirada definida):</strong> $450 MXN</li>
+                            <li><strong>Volumen Tecnológico (mayor densidad):</strong> $500 MXN</li>
+                        </ul>
+                    </details>
+                </div>
+                <div class="service-footer">
+                    <span class="service-price">$400 – $500 MXN</span>
+                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar Aplicación de Pestañas (Clásicas $400 / Rímel $450 / Volumen $500)')" class="btn-book-service">Agendar</button>
+                </div>
+            </div>
+
+            <!-- 15. Lifting de Pestañas -->
+            <div class="service-card" data-cat="estetica">
+                <div>
+                    <div class="service-top-row">
+                        <div class="service-icon"><i class="fas fa-wand-sparkles"></i></div>
+                    </div>
+                    <div class="service-name">15. Lifting de Pestañas</div>
+                    <p class="service-desc">Elevación y curvatura natural de tu propia pestaña desde la raíz para una mirada abierta sin necesidad de rizador.</p>
+                    <details class="service-breakdown">
+                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
+                        <ul>
+                            <li>Limpieza de párpados y elección de molde anatómico.</li>
+                            <li>Gel elevador, fijador y tinte/botox nutritivo de pestañas.</li>
+                        </ul>
+                    </details>
+                </div>
+                <div class="service-footer">
+                    <span class="service-price">$350 MXN</span>
+                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar un Lifting de Pestañas ($350 MXN)')" class="btn-book-service">Agendar</button>
+                </div>
+            </div>
+
+            <!-- 16. Laminado de Cejas -->
+            <div class="service-card" data-cat="estetica">
+                <div>
+                    <div class="service-top-row">
+                        <div class="service-icon"><i class="fas fa-feather"></i></div>
+                    </div>
+                    <div class="service-name">16. Laminado de Cejas</div>
+                    <p class="service-desc">Alineación y direccionamiento del vello de la ceja (Brow Lamination) para cejas más pobladas, definidas y simétricas.</p>
+                    <details class="service-breakdown">
+                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
+                        <ul>
+                            <li>Diseño y planchado direccional del vello rebelde.</li>
+                            <li>Fijación nutritiva con keratina e hidratación de ceja.</li>
+                        </ul>
+                    </details>
+                </div>
+                <div class="service-footer">
+                    <span class="service-price">$200 MXN</span>
+                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar un Laminado de Cejas ($200 MXN)')" class="btn-book-service">Agendar</button>
+                </div>
+            </div>
+
+            <!-- 17. Depilación de Cejas con Cera -->
+            <div class="service-card" data-cat="estetica">
+                <div>
+                    <div class="service-top-row">
+                        <div class="service-icon"><i class="fas fa-sparkles"></i></div>
+                    </div>
+                    <div class="service-name">17. Depilación de Cejas con Cera</div>
+                    <p class="service-desc">Diseño y limpieza de cejas con cera tibia hipoalergénica que respeta la piel delicada del contorno ocular.</p>
+                    <details class="service-breakdown">
+                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
+                        <ul>
+                            <li>Visagismo de arco de ceja y depilación con cera suave.</li>
+                            <li>Loción calmante post-depilatoria.</li>
+                        </ul>
+                    </details>
+                </div>
+                <div class="service-footer">
+                    <span class="service-price">$70 MXN</span>
+                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar Depilación de Cejas con Cera ($70 MXN)')" class="btn-book-service">Agendar</button>
+                </div>
+            </div>
+
+            <!-- 18. Depilación Facial -->
+            <div class="service-card" data-cat="estetica">
+                <div>
+                    <div class="service-top-row">
+                        <div class="service-icon"><i class="fas fa-face-smile-beam"></i></div>
+                    </div>
+                    <div class="service-name">18. Depilación Facial Completa</div>
+                    <p class="service-desc">Piel suave, uniforme y libre de vello facial (ceja, bozo, patillas, mejillas y mentón) para un maquillaje perfecto.</p>
+                    <details class="service-breakdown">
+                        <summary><span>📋 Qué incluye este servicio</span> <i class="fas fa-chevron-down"></i></summary>
+                        <ul>
+                            <li>Higiene facial previa y aplicación de cera especial rostro.</li>
+                            <li>Gel descongestivo y calmante de aloe vera.</li>
+                        </ul>
+                    </details>
+                </div>
+                <div class="service-footer">
+                    <span class="service-price">$250 MXN</span>
+                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar una Depilación Facial Completa ($250 MXN)')" class="btn-book-service">Agendar</button>
+                </div>
+            </div>
+
+            <!-- 19. Depilación Corporal Roll-On -->
+            <div class="service-card" data-cat="estetica">
+                <div>
+                    <div class="service-top-row">
+                        <div class="service-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    </div>
+                    <div class="service-name">19. Depilación Corporal con Cera Roll-On</div>
+                    <p class="service-desc">Sistema higiénico y rápido con cartucho tibio roll-on que extrae el vello desde la raíz dejando la piel tersa por semanas.</p>
+                    <details class="service-breakdown" open>
+                        <summary><span>📋 Zonas y Precios Exactos</span> <i class="fas fa-chevron-down"></i></summary>
+                        <ul>
+                            <li><strong>Axilas:</strong> $200 MXN</li>
+                            <li><strong>Brazos:</strong> $400 MXN</li>
+                            <li><strong>Piernas:</strong> $650 MXN</li>
+                        </ul>
+                    </details>
+                </div>
+                <div class="service-footer">
+                    <span class="service-price"><small>Desde</small> $200 MXN</span>
+                    <button type="button" onclick="openSalonWaModal('Hola Alma, quiero agendar Depilación Corporal con Cera Roll-On (Axilas $200 / Brazos $400 / Piernas $650)')" class="btn-book-service">Agendar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gancho Secundario: Cortes Gratis por Alumna Supervisada -->
+        <div class="alumna-hook-card">
+            <div style="flex:1; min-width:280px;">
+                <div style="display:inline-block; background:rgba(16,185,129,0.2); color:#6ee7b7; border:1px solid rgba(16,185,129,0.4); font-size:0.78rem; font-weight:800; padding:4px 12px; border-radius:20px; margin-bottom:8px;">
+                    🎓 PROGRAMA DE FORMACIÓN & APOYO COMUNITARIO
+                </div>
+                <h3 style="font-family:'Outfit'; font-size:1.35rem; color:#fff; margin-bottom:6px;">
+                    ¿Te gustaría un Corte de Cabello Sin Costo (Gratis)?
+                </h3>
+                <p style="color:var(--text-muted); font-size:0.96rem; line-height:1.68;">
+                    Apoya el perfeccionamiento práctico de nuestra alumna en formación, quien realiza cortes básicos <strong>100% supervisada paso a paso por la Maestra Alma Luis</strong>. Disponible únicamente con cita previa los días <strong>Lunes, Miércoles y Viernes de 4:00 PM a 5:00 PM</strong> (cupo limitado a modelos por día).
+                </p>
+            </div>
+            <button type="button" onclick="openSalonWaModal('Hola Alma, me gustaría anotarme como modelo para el Corte Sin Costo con tu alumna supervisada (Lun, Mié o Vie de 4:00 a 5:00 PM)')" class="btn-book-service" style="background:#10b981; color:#052e16; padding:13px 22px; font-size:0.94rem;">
+                <i class="fab fa-whatsapp"></i> Solicitar Lugar como Modelo (Gratis)
+            </button>
+        </div>
+    </section>
+
+    <!-- Sección Tienda de Productos Profesionales Lendan -->
+    <section class="section-wrap">
+        <div style="background:linear-gradient(135deg, rgba(24,24,27,0.95), rgba(63,63,70,0.45)); border:1.5px solid rgba(212,175,55,0.45); border-radius:24px; padding:2.5rem; display:grid; grid-template-columns:1.2fr 1fr; gap:2rem; align-items:center;" class="location-box">
+            <div>
+                <span style="background:rgba(212,175,55,0.2); color:#fde047; border:1px solid rgba(212,175,55,0.4); padding:5px 14px; border-radius:20px; font-size:0.8rem; font-weight:800; display:inline-block; margin-bottom:12px;">
+                    🛍️ DISTRIBUIDORA OFICIAL LENDAN COSMETICS
+                </span>
+                <h2 style="font-family:'Outfit'; font-size:2rem; color:#fff; margin-bottom:0.8rem; line-height:1.22;">
+                    Tienda de Productos Profesionales para Casa y Estilistas
+                </h2>
+                <p style="color:var(--text-muted); font-size:1rem; line-height:1.72; margin-bottom:1.5rem;">
+                    Adquiere en nuestro estudio o pide por WhatsApp las líneas europeas originales que usamos en salón: <strong>PlexForte (Bond Color & Oil), Vitaminas E+B5 Recovery Antiox, Aceite de Moringa, Activia Plant, Activia Absolutes y Root Cover</strong>. Contamos con venta individual para clientas y precios especiales a estilistas.
+                </p>
+                <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                    <a href="tienda.html" class="btn-book-service" style="background:var(--brand-gold); color:#000; padding:13px 24px; font-size:0.96rem;">
+                        <i class="fas fa-store"></i> Entrar a la Tienda de Productos (7 Líneas en Video) →
+                    </a>
+                </div>
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:10px;">
+                <img src="img/salon/thumb_lendan_plexforte_oil.jpg" alt="PlexForte Lendan" style="width:100%; height:165px; object-fit:cover; border-radius:14px; border:1px solid rgba(255,255,255,0.15);">
+                <img src="img/salon/thumb_lendan_oil_moringa.jpg" alt="Aceite de Moringa Lendan" style="width:100%; height:165px; object-fit:cover; border-radius:14px; border:1px solid rgba(255,255,255,0.15);">
+                <img src="img/salon/thumb_lendan_recovery.jpg" alt="Recovery Antiox Lendan" style="width:100%; height:165px; object-fit:cover; border-radius:14px; border:1px solid rgba(255,255,255,0.15);">
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería de Carteles Oficiales e Instalaciones del Estudio -->
+    <section class="section-wrap">
+        <div class="section-header">
+            <h2>Nuestras Instalaciones & Cartelera del Estudio</h2>
+            <p>Conoce nuestro espacio en Jardines de San Manuel y nuestras líneas de coloración y cuidado capilar.</p>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="img/salon/promo_servicios_alma.jpg" alt="Póster Oficial Estudio de Belleza Imagen y Estilo Alma">
+                <div class="gallery-caption">✨ Especialidades del Estudio de Belleza "Alma"</div>
+            </div>
+            <div class="gallery-item">
+                <img src="img/salon/promo_ysidi_color.jpg" alt="Colorimetría Profesional">
+                <div class="gallery-caption">🎨 Alta Colorimetría y Cobertura Luminosa</div>
+            </div>
+            <div class="gallery-item">
+                <img src="img/salon/promo_ysidi_tratamiento.jpg" alt="Tratamientos Capilares">
+                <div class="gallery-caption">💆‍♀️ Tratamientos de Restauración Profunda</div>
+            </div>
+            <div class="gallery-item">
+                <img src="img/salon/salon_2.jpg" alt="Interior Estudio de Belleza Alma">
+                <div class="gallery-caption">🌸 Estaciones de Estilismo en San Manuel</div>
             </div>
         </div>
     </section>
@@ -590,19 +1543,23 @@
     <section class="section-wrap">
         <div class="location-box">
             <div>
-                <h3 style="font-family:'Outfit'; font-size:1.8rem; color:#fff; margin-bottom:1rem;">Ubicación & Citas</h3>
-                <p style="color:var(--text-muted); margin-bottom:1.5rem; line-height:1.8;">
+                <h3 style="font-family:'Outfit'; font-size:1.85rem; color:#fff; margin-bottom:1rem;">Ubicación & Citas</h3>
+                <p style="color:var(--text-muted); margin-bottom:1.5rem; line-height:1.85; font-size:1rem;">
                     📍 <strong>Dirección:</strong> Calle Río Nexapa #6101, Col. Jardines de San Manuel, C.P. 72570, Puebla, Pue.<br>
-                    📞 <strong>Teléfono / WhatsApp:</strong> <a href="https://wa.me/522228016244" target="_blank" style="color:var(--brand-rose); font-weight:700;">222 801 6244</a><br>
-                    ✉️ <strong>Correo Oficial:</strong> <a href="mailto:contacto@mera-kirai.com" style="color:var(--brand-rose); font-weight:700;">contacto@mera-kirai.com</a><br>
-                    🕒 <strong>Horario de Atención:</strong> Lunes a Sábado de 10:00 AM a 7:30 PM (Con previa cita)
+                    📞 <strong>Teléfono / WhatsApp:</strong> <a href="https://wa.me/522228016244" target="_blank" style="color:var(--brand-rose-light); font-weight:800;">222 801 6244</a><br>
+                    🕒 <strong>Cortes Sin Costo (Alumna Supervisada):</strong> Lun, Mié y Vie de 4:00 PM a 5:00 PM (Previa cita)<br>
+                    🕒 <strong>Horario General del Estudio:</strong> Lunes a Sábado de 10:00 AM a 7:30 PM (Con previa cita)<br>
+                    🏦 <strong>Apartados / Transferencia SPEI:</strong> Banco Azteca • CLABE <code style="color:#fde047;">127180012120460272</code> (Beneficiario: Alma Luis)
                 </p>
                 <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:1.5rem;">
-                    <a href="https://wa.me/522228016244?text=Hola%20Alma,%20me%20gustar%C3%ADa%20agendar%20una%20cita%20para%20esta%20semana" target="_blank" class="btn-book-service" style="padding:12px 22px; font-size:0.95rem; border-radius:12px;">
+                    <button type="button" onclick="openSalonWaModal('Hola Alma, me gustaría agendar una cita para esta semana')" class="btn-book-service" style="padding:12px 22px; font-size:0.95rem; border-radius:12px;">
                         <i class="fab fa-whatsapp"></i> Agendar Mi Cita Directa
-                    </a>
+                    </button>
                     <a href="ra.html" class="btn-book-service" style="background:linear-gradient(135deg, #f43f5e, #d4af37); color:#fff; border:none; padding:12px 20px; font-size:0.95rem; border-radius:12px; box-shadow:0 4px 15px rgba(244,63,94,0.35);">
                         <i class="fas fa-camera"></i> Ver Letrero 3D (Realidad Aumentada)
+                    </a>
+                    <a href="tienda.html" class="btn-book-service" style="background:rgba(212,175,55,0.2); color:#fde047; border:1px solid rgba(212,175,55,0.5); padding:12px 20px; font-size:0.95rem; border-radius:12px;">
+                        <i class="fas fa-shopping-bag"></i> Tienda Lendan
                     </a>
                     <a href="https://www.facebook.com/share/1FYv1dKuJs/" target="_blank" rel="noopener noreferrer" class="btn-book-service" style="background:#1877f2; color:#fff; border-color:#1877f2; padding:12px 20px; font-size:0.95rem; border-radius:12px;">
                         <i class="fab fa-facebook-f"></i> Facebook Salón
@@ -610,12 +1567,9 @@
                     <a href="https://www.instagram.com/imagen_estilopue?stkn=bmlwd2FrZTk2cjc5" target="_blank" rel="noopener noreferrer" class="btn-book-service" style="background:linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color:#fff; border:none; padding:12px 20px; font-size:0.95rem; border-radius:12px;">
                         <i class="fab fa-instagram"></i> Instagram (@imagen_estilopue)
                     </a>
-                    <a href="mailto:contacto@mera-kirai.com?subject=Cita%20Est%C3%A9tica%20Alma%20San%20Manuel" class="btn-book-service" style="background:rgba(244,63,94,0.18); color:#fda4af; border:1px solid rgba(244,63,94,0.45); padding:12px 20px; font-size:0.95rem; border-radius:12px;">
-                        <i class="fas fa-envelope"></i> Correo Oficial
-                    </a>
                 </div>
             </div>
-            <div style="border-radius:16px; overflow:hidden; border:1px solid var(--border-color); height:280px;">
+            <div style="border-radius:18px; overflow:hidden; border:1px solid var(--border-color); height:320px;">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.8687258380816!2d-98.19705022417724!3d19.004187454245648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cfc0bf72461a29%3A0xe5e13d9ea72960f5!2sR%C3%ADo%20Nexapa%206101%2C%20Jardines%20de%20San%20Manuel%2C%2072570%20Heroica%20Puebla%20de%20Zaragoza%2C%20Pue.!5e0!3m2!1ses-419!2smx!4v1727390000000!5m2!1ses-419!2smx" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
@@ -623,9 +1577,130 @@
 
     <!-- Footer -->
     <footer>
-        <p>© 2026 Estética Alma Luis • Todos los derechos reservados.</p>
-        <p style="margin-top:6px; font-size:0.8rem;">Calle Río Nexapa #6101, Jardines de San Manuel, Puebla, Pue. • En alianza con <a href="https://mera-kirai.com" style="color:#38bdf8; text-decoration:none;">Viajes La Ruta del Águila</a></p>
+        <p>© 2026 <strong>Estudio de Belleza Imagen y Estilo "Alma"</strong> • Más de 30 años nos respaldan.</p>
+        <p style="margin-top:6px; font-size:0.86rem;">Calle Río Nexapa #6101, Jardines de San Manuel, Puebla, Pue. • En alianza con <a href="https://mera-kirai.com" style="color:#38bdf8; text-decoration:none; font-weight:700;">Viajes La Ruta del Águila</a> y <a href="tienda.html" style="color:#fde047; text-decoration:none; font-weight:700;">Tienda Lendan</a></p>
     </footer>
 
+    <!-- Botones Flotantes: Asistente Alma IA + WhatsApp Dual -->
+    <div class="floating-dock">
+        <button type="button" class="fab-btn fab-ai" onclick="toggleSalonAiChat()">
+            <i class="fas fa-sparkles"></i> Asistente Alma IA
+        </button>
+        <button type="button" class="fab-btn fab-wa" onclick="openSalonWaModal('Hola Alma, me gustaría consultar disponibilidad de cita en el Estudio de Belleza')">
+            <i class="fab fa-whatsapp" style="font-size:1.15rem;"></i> WhatsApp Estética
+        </button>
+    </div>
+
+    <!-- Ventana de Chat Asistente Alma IA (Modo Estética) -->
+    <div class="salon-ai-window" id="salon-ai-window">
+        <div style="background:linear-gradient(135deg, #be123c, #881337); padding:14px 16px; display:flex; justify-content:space-between; align-items:center; color:#fff;">
+            <div>
+                <strong style="font-family:'Outfit'; font-size:1.05rem; display:block;">🌸 Asistente Alma IA</strong>
+                <small style="font-size:0.76rem; color:#fecdd3;">Precios, Promos, Productos Lendan y Citas</small>
+            </div>
+            <button type="button" onclick="toggleSalonAiChat()" style="background:rgba(255,255,255,0.15); border:none; color:#fff; width:30px; height:30px; border-radius:50%; cursor:pointer;">✕</button>
+        </div>
+        <div id="salon-ai-messages" style="flex:1; padding:14px; overflow-y:auto; display:flex; flex-direction:column; gap:10px; font-size:0.92rem;">
+            <div style="background:rgba(255,255,255,0.07); padding:11px 14px; border-radius:14px; color:#fff; line-height:1.6;">
+                ¡Hola! Soy el asistente virtual del <strong>Estudio de Belleza Imagen y Estilo "Alma"</strong> (más de 30 años nos respaldan). 🌸<br><br>
+                Pregúntame por cualquiera de nuestros <strong>19 servicios</strong>, los <strong>4 paquetes promocionales</strong>, los <strong>cortes sin costo con alumna (Lun, Mié y Vie 4-5 PM)</strong> o nuestros <strong>productos Lendan</strong>.
+            </div>
+        </div>
+        <div style="padding:8px 12px; display:flex; gap:6px; overflow-x:auto; border-top:1px solid rgba(255,255,255,0.08); background:#0d0d10;">
+            <button type="button" onclick="askSalonAi('¿Cuáles son los 4 paquetes promocionales?')" style="background:rgba(244,63,94,0.18); color:#fda4af; border:1px solid rgba(244,63,94,0.35); border-radius:14px; padding:5px 10px; font-size:0.76rem; white-space:nowrap; cursor:pointer;">🔥 4 Promos</button>
+            <button type="button" onclick="askSalonAi('¿Cómo funciona el corte gratis con alumna?')" style="background:rgba(16,185,129,0.18); color:#6ee7b7; border:1px solid rgba(16,185,129,0.35); border-radius:14px; padding:5px 10px; font-size:0.76rem; white-space:nowrap; cursor:pointer;">🎓 Corte Gratis</button>
+            <button type="button" onclick="askSalonAi('¿Qué servicios dan 10% de descuento en viajes?')" style="background:rgba(212,175,55,0.18); color:#fde047; border:1px solid rgba(212,175,55,0.35); border-radius:14px; padding:5px 10px; font-size:0.76rem; white-space:nowrap; cursor:pointer;">✈️ Bono 10% Viajes</button>
+        </div>
+        <form onsubmit="handleSalonAiSubmit(event)" style="display:flex; padding:10px; gap:8px; background:#18181b; border-top:1px solid rgba(255,255,255,0.1);">
+            <input type="text" id="salon-ai-input" placeholder="Escribe tu duda (ej. precio de balayage o novias)..." style="flex:1; background:#09090b; border:1px solid rgba(255,255,255,0.18); border-radius:12px; padding:9px 12px; color:#fff; font-size:0.9rem;">
+            <button type="submit" style="background:var(--brand-rose); color:#fff; border:none; border-radius:12px; padding:0 16px; font-weight:800; cursor:pointer;">Enviar</button>
+        </form>
+    </div>
+
+    <!-- Modal Dual de WhatsApp (Alma Puebla / Rogerman Soporte) -->
+    <div class="wa-modal-backdrop" id="salon-wa-modal" onclick="if(event.target===this) closeSalonWaModal()">
+        <div class="wa-modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <strong style="font-family:'Outfit'; font-size:1.25rem; color:#fff;">📲 Agendar o Cotizar por WhatsApp</strong>
+                <button type="button" onclick="closeSalonWaModal()" style="background:none; border:none; color:#a1a1aa; font-size:1.2rem; cursor:pointer;">✕</button>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.92rem; margin-bottom:16px; line-height:1.6;">
+                Elige con quién deseas comunicarte para confirmar tu cita o resolver dudas:
+            </p>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+                <a id="wa-link-alma" href="https://wa.me/522228016244" target="_blank" style="background:#25d366; color:#052e16; text-decoration:none; padding:13px 16px; border-radius:14px; font-weight:800; display:flex; align-items:center; justify-content:space-between;">
+                    <span>🌸 Directo con Maestra Alma Luis (Puebla)</span>
+                    <small style="font-weight:900;">222 801 6244 →</small>
+                </a>
+                <a id="wa-link-roger" href="https://wa.me/353877092085" target="_blank" style="background:rgba(255,255,255,0.08); color:#fff; border:1px solid rgba(255,255,255,0.18); text-decoration:none; padding:12px 16px; border-radius:14px; font-weight:700; display:flex; align-items:center; justify-content:space-between; font-size:0.9rem;">
+                    <span>🛠️ Coordinación Digital & Viajes (Rogelio)</span>
+                    <small style="color:#38bdf8;">Respaldo 24/7 →</small>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function filterSalonServices(cat, btn) {
+            document.querySelectorAll('.salon-tab-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            document.querySelectorAll('#salon-services-grid .service-card').forEach(card => {
+                if (cat === 'todos' || card.dataset.cat === cat) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function openSalonWaModal(msg) {
+            const encoded = encodeURIComponent(msg || 'Hola Alma, me gustaría agendar una cita en el Estudio de Belleza');
+            document.getElementById('wa-link-alma').href = 'https://wa.me/522228016244?text=' + encoded;
+            document.getElementById('wa-link-roger').href = 'https://wa.me/353877092085?text=' + encoded;
+            document.getElementById('salon-wa-modal').classList.add('active');
+        }
+
+        function closeSalonWaModal() {
+            document.getElementById('salon-wa-modal').classList.remove('active');
+        }
+
+        function toggleSalonAiChat() {
+            document.getElementById('salon-ai-window').classList.toggle('active');
+        }
+
+        function askSalonAi(text) {
+            document.getElementById('salon-ai-input').value = text;
+            handleSalonAiSubmit(new Event('submit'));
+        }
+
+        function handleSalonAiSubmit(e) {
+            if (e && e.preventDefault) e.preventDefault();
+            const input = document.getElementById('salon-ai-input');
+            const q = (input.value || '').trim();
+            if (!q) return;
+            input.value = '';
+            const box = document.getElementById('salon-ai-messages');
+            box.innerHTML += `<div style="align-self:flex-end; background:var(--brand-rose); color:#fff; padding:9px 13px; border-radius:14px; max-width:85%;">${q}</div>`;
+
+            const lower = q.toLowerCase();
+            let reply = '';
+            if (lower.includes('promo') || lower.includes('paquete')) {
+                reply = 'Contamos con <strong>4 Paquetes Promocionales</strong>:<br>1️⃣ <strong>Alisado Progresivo:</strong> Desde $800 MXN<br>2️⃣ <strong>Coctel Capilar + Depilación 1/2 brazos:</strong> $600 MXN<br>3️⃣ <strong>Gelish Decorado + Depilación ceja:</strong> $200 MXN<br>4️⃣ <strong>Facial Hidratación Profunda con aparatología:</strong> $400 MXN.';
+            } else if (lower.includes('gratis') || lower.includes('alumna') || lower.includes('modelo')) {
+                reply = '🎓 <strong>Cortes Sin Costo (Programa de Alumna Supervisada):</strong> Nuestra alumna realiza cortes gratuitos bajo supervisión directa de la Maestra Alma Luis los días <strong>Lunes, Miércoles y Viernes de 4:00 PM a 5:00 PM</strong> con cita previa.';
+            } else if (lower.includes('viaje') || lower.includes('10%') || lower.includes('descuento')) {
+                reply = '✈️ <strong>Bono del 10% en Viajes (Código ESTETICA10):</strong> Se otorga al realizarte cualquier <strong>Diseño de Color, Alisado Progresivo, Paquete de Faciales, Paquete de XV Años ($4,000) o Paquete de Novia ($5,000)</strong>.';
+            } else if (lower.includes('novia') || lower.includes('xv') || lower.includes('maquillaje') || lower.includes('peinado')) {
+                reply = '👰 <strong>Eventos Sociales:</strong><br>• Peinado Social: Desde $500 MXN<br>• Maquillaje Social: $600 MXN<br>• Paquete de XV Años: $4,000 MXN<br>• Paquete de Novia: $5,000 MXN.';
+            } else if (lower.includes('pestaña') || lower.includes('ceja') || lower.includes('depila')) {
+                reply = '👁️ <strong>Pestañas, Cejas y Depilación:</strong><br>• Pestañas: Clásicas $400 | Rímel $450 | Volumen $500<br>• Lifting de Pestañas: $350 | Laminado de Cejas: $200<br>• Depilación Ceja: $70 | Facial: $250<br>• Cera Roll-On: Axilas $200 | Brazos $400 | Piernas $650.';
+            } else {
+                reply = '🌸 En <strong>Estudio de Belleza Imagen y Estilo "Alma"</strong> (Río Nexapa #6101, San Manuel) tenemos Corte Dama $200, Caballero $150, Planchado Express $200, Tintes desde $500, Diseño de Color desde $1,000, Alisados desde $850, Botox desde $500, Nanoplastia desde $600 y Sinergia desde $300. <br><br><button onclick="openSalonWaModal(\'Hola Alma, tengo una consulta sobre: ' + q.replace(/'/g, '') + '\')" style="margin-top:8px; background:#25d366; color:#052e16; border:none; padding:7px 12px; border-radius:8px; font-weight:800; cursor:pointer;">Confirmar con Alma por WhatsApp →</button>';
+            }
+
+            box.innerHTML += `<div style="background:rgba(255,255,255,0.08); padding:11px 14px; border-radius:14px; color:#fff; line-height:1.6;">${reply}</div>`;
+            box.scrollTop = box.scrollHeight;
+        }
+    </script>
 </body>
 </html>

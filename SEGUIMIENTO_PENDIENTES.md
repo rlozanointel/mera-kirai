@@ -152,5 +152,31 @@ Recordatorios integrados en el panel de control (`#view-gestor`) y programados p
   - Botón de cierre `✖` del catálogo fijado de forma absoluta en la esquina superior derecha (`top: 10px; right: 12px; z-index: 50`) con padding de seguridad (`padding-right: 54px`) en `.catalogo-minimal-topbar` para evitar cualquier colisión con el título o buscador.
   - Actualización de versiones de assets en `index.html` (`?v=20261018b`) y cabeceras `Cache-Control: no-cache` para forzar a los navegadores móviles (Chrome/Safari) a descargar los estilos corregidos de sombreado cyan (`.catalogo-filter-pill.active`) y la jerarquía de modales.
 
+---
 
-
+### 29. Implementación Integral de los 12 Puntos Acordados (2026-10-30)
+- **1. Apertura Inmediata de Cotizar IA en Catálogo:**
+  - Corregida la condición de carrera por propagación de eventos (`event.stopPropagation()`, bandera de protección por marca de tiempo y lista blanca en el listener de documento).
+  - Elevado el `z-index` a `10055` en escritorio y móvil, garantizando que el chat de la IA responda instantáneamente en cualquier tarjeta del catálogo.
+- **2. Sellos Diagonales de "AGOTADO" / "AGOTADOS" en Salidas Confirmadas:**
+  - Integrados overlays diagonales en mayúsculas de alto impacto visual sobre las tarjetas de Expo Beauty Show (EBS Citibanamex) y La Llorona en Xochimilco en `index.html`.
+- **3. Cumplimiento Exhaustivo de Requerimientos de Hermana Alma:**
+  - **3a & 5. Precios Oficiales y Palabra "Desde":** Actualizados en `estetica.html` los 19 servicios oficiales manuscritos por Alma, aplicando "Desde" en los servicios capilares con costo variable y precios fijos donde ella lo especificó.
+  - **3b & 12.3. Regla del Bono 10% en Viajes (`ESTETICA10`):** Establecido formalmente que aplica al realizarse cualquier Diseño de Color, Alisados Progresivos, Paquete de Faciales, Paquete de XV Años o Paquete de Novia.
+  - **3c. Nombre Oficial del Salón:** Actualizado a **Estudio de Belleza Imagen y Estilo "Alma"**.
+  - **3d. Cortes Gratuitos por Alumna Supervisada & Desglose:** Integrado banner de gancho comunitario para cortes sin costo supervisados paso a paso por Alma (Lun, Mié y Vie de 4:00 PM a 5:00 PM con cita previa), más desglose interactivo desplegable de qué incluye cada uno de los 19 servicios.
+  - **3e & 4. Cuenta Real Banco Azteca, Deshabilitación de Stripe y Registro en localhost:8080:** Conectada la cuenta real de Banco Azteca (CLABE `127180012120460272`, Beneficiario: `Alma Luis`), deshabilitadas temporalmente las pestañas de Stripe y OXXO para no comprometer datos fiscales hasta que ella decida, y añadida tarjeta prioritaria **"Hermana Alma"** en `tasks.json` del dashboard local de Rogerman.
+- **6. Generación del Catálogo Editorial de Lujo en PDF:**
+  - Creada plantilla editorial de revista coleccionista de 8 páginas (`catalogo_editorial_revista.html`) y compilado `Catalogo_Editorial_La_Ruta_Del_Aguila_2026.pdf` de alta resolución (3.6 MB) listo para revisión previa del usuario antes de distribución.
+- **7. Tienda Oficial Lendan Cosmetics (`tienda.html`):**
+  - Creada plataforma e-commerce boutique con las 7 líneas profesionales europeas en video, selector de modalidad B2C (cuidado en casa) vs B2B (precio especial a estilistas) y checkout automatizado vía WhatsApp.
+- **8. Paquetes Promocionales en Video & Cartelera en `estetica.html`:**
+  - Integrados los 4 paquetes promocionales de Alma (Alisado Progresivo desde $800, Coctel Capilar + Depilación $600, Gelish + Ceja $200, Facial Profundo $400), reproductor de reel en video y galería con carteles originales.
+- **9 & 10. Optimización Tipográfica y Mobile First:**
+  - Aumentado tamaño de fuente base a 16.5px, interlineado a 1.7–1.75, diseño espacioso antifatiga visual y adaptabilidad completa para pantallas de hasta 360px.
+- **11. Identidad Institucional:**
+  - Actualizado el lema a **"Más de 30 años nos respaldan"** e incorporada la leyenda **", etc."** en la presentación del salón.
+- **12. Actualización de Fechas y Sincronización Global:**
+  - Salidas activas sincronizadas a Noviembre y Diciembre 2026.
+  - Asistente Alma IA y Modal de WhatsApp Dual (Alma Puebla / Rogerman Soporte) integrados en `estetica.html`.
+  - Preservado el acceso directo a Realidad Aumentada (`ra.html`) y enlaces permanentes a `✈️ Viajes` y `🛍️ Tienda` en el encabezado móvil.

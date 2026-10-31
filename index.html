@@ -717,14 +717,17 @@
 <body>
 
     <!-- Top Utility / Sister Brand Announcement -->
-    <div style="background: linear-gradient(90deg, #18181b, #27272a); color: #e4e4e7; padding: 7px 5%; font-size: 0.82rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); z-index: 1001; position: relative; flex-wrap: wrap; gap: 8px;">
+    <div style="background: linear-gradient(90deg, #18181b, #27272a); color: #e4e4e7; padding: 8px 5%; font-size: 0.86rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); z-index: 1001; position: relative; flex-wrap: wrap; gap: 8px; line-height: 1.5;">
         <div style="display: flex; align-items: center; gap: 8px;">
             <span style="color: #fb7185;">🌸</span>
-            <span>🎁 <strong>Promoción Abierta con Estética Alma:</strong> Usa el cupón <code style="background:rgba(244,63,94,0.25); color:#fda4af; padding:2px 7px; border-radius:4px; font-weight:800; letter-spacing:0.5px;">ESTETICA10</code> para <strong>10% de descuento directo</strong> en cualquier viaje (válido para todos).</span>
+            <span>🎁 <strong>Alianza Estudio de Belleza Imagen y Estilo "Alma":</strong> Obtén <strong>10% de descuento en tus viajes</strong> (<code style="background:rgba(244,63,94,0.25); color:#fda4af; padding:2px 7px; border-radius:4px; font-weight:800; letter-spacing:0.5px;">ESTETICA10</code>) al realizarte Diseño de Color, Alisado Progresivo, Paquete Facial, XV Años o Novia.</span>
         </div>
-        <div style="display: flex; align-items: center; gap: 10px;">
-            <a href="https://estetica.mera-kirai.com" style="color: #fda4af; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 5px; padding: 3px 12px; border-radius: 12px; background: rgba(244,63,94,0.14); border: 1px solid rgba(244,63,94,0.3);">
-                Ver Salón & Citas <i class="fas fa-arrow-right" style="font-size: 0.7rem;"></i>
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <a href="estetica.html" style="color: #fda4af; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 5px; padding: 4px 12px; border-radius: 12px; background: rgba(244,63,94,0.14); border: 1px solid rgba(244,63,94,0.3);">
+                🌸 Estudio de Belleza <i class="fas fa-arrow-right" style="font-size: 0.7rem;"></i>
+            </a>
+            <a href="tienda.html" style="color: #fde047; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 5px; padding: 4px 12px; border-radius: 12px; background: rgba(253,224,71,0.12); border: 1px solid rgba(253,224,71,0.3);">
+                🛍️ Productos Lendan
             </a>
         </div>
     </div>
@@ -772,9 +775,21 @@
             <li><a href="#bloque-pueblos" onclick="toggleMobileNav()"><i class="fas fa-mountain-sun"></i> Excursiones Nacionales</a></li>
             <li><a href="#bloque-vip" onclick="toggleMobileNav()"><i class="fas fa-crown"></i> Destinos VIP fraVEO</a></li>
             <li><a href="#bloque-privados" onclick="toggleMobileNav()"><i class="fas fa-car-side"></i> Traslados Particulares</a></li>
-            <li><a href="https://estetica.mera-kirai.com"><i class="fas fa-spa"></i> Estética Alma (San Manuel)</a></li>
+            <li><a href="estetica.html"><i class="fas fa-spa"></i> Estudio de Belleza "Alma"</a></li>
+            <li><a href="tienda.html"><i class="fas fa-shopping-bag"></i> Tienda Productos Lendan</a></li>
+            <li><a href="ra.html"><i class="fas fa-cube"></i> Letrero 3D (Realidad Aumentada)</a></li>
             <li><a href="#bloque-contacto" onclick="toggleMobileNav()"><i class="fas fa-location-dot"></i> Ubicación y Contacto</a></li>
         </ul>
+        <script>
+            (function() {
+                var h = (window.location.hostname || '').toLowerCase();
+                if (h.indexOf('estetica.') === 0 && window.location.pathname.indexOf('estetica.html') === -1) {
+                    window.location.replace('/estetica.html');
+                } else if ((h.indexOf('tienda.') === 0 || h.indexOf('productos.') === 0) && window.location.pathname.indexOf('tienda.html') === -1) {
+                    window.location.replace('/tienda.html');
+                }
+            })();
+        </script>
         <div style="padding:1.5rem; border-top:1px solid rgba(255,255,255,0.08);">
             <a href="https://wa.me/522228016244" target="_blank" class="btn-lux-primary" style="background:#25d366; color:#000; font-weight:800; width:100%; text-align:center; display:block; padding:12px; border-radius:12px; text-decoration:none;">
                 <i class="fab fa-whatsapp"></i> Contactar a Alma
@@ -832,84 +847,88 @@
                 Salidas estelares de temporada inmediata con cupo limitado desde Río Nexapa 6101, Jardines de San Manuel, Puebla.
             </div>
 
-            <!-- Salida Confirmada 1: Expo Beauty Show EBS 2026 -->
-            <div class="confirmed-trip-card" style="margin-bottom: 2rem;">
+            <!-- Salida Confirmada 1: Expo Beauty Show EBS 2026 (AGOTADO) -->
+            <div class="confirmed-trip-card is-sold-out" style="margin-bottom: 2.2rem;">
                 <div class="confirmed-img-side">
                     <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1000&q=80" alt="Expo Beauty Show 2026 Centro Citibanamex">
-                    <span class="card-badge" style="background:var(--brand-red); font-size:0.85rem; padding:6px 16px;">🔥 24 al 26 Octubre 2026</span>
+                    <span class="card-badge" style="background:var(--brand-red); font-size:0.85rem; padding:6px 16px; z-index:7;">🔥 24 al 26 Octubre 2026</span>
+                    <div class="sold-out-diagonal-overlay">
+                        <span class="sold-out-stamp">AGOTADO</span>
+                    </div>
                 </div>
                 <div class="confirmed-info-side">
                     <div>
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.45rem; flex-wrap:wrap; gap:8px;">
-                            <span style="font-size:0.85rem; font-weight:700; color:var(--brand-cyan);"><i class="fas fa-map-marker-alt"></i> Centro Citibanamex, CDMX</span>
-                            <span style="background:rgba(2,132,199,0.14); color:var(--brand-cyan); padding:4px 12px; border-radius:20px; font-weight:800; font-size:0.8rem;">🚐 Transporte Redondo</span>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem; flex-wrap:wrap; gap:8px;">
+                            <span style="font-size:0.9rem; font-weight:700; color:var(--brand-cyan);"><i class="fas fa-map-marker-alt"></i> Centro Citibanamex, CDMX</span>
+                            <span style="background:rgba(220,38,38,0.18); color:#fca5a5; border:1px solid rgba(220,38,38,0.4); padding:4px 12px; border-radius:20px; font-weight:800; font-size:0.82rem;">🔥 CUPO AGOTADO (100% LLENO)</span>
                         </div>
-                        <h3 style="font-family:'Outfit'; font-size:1.4rem; font-weight:800; color:var(--text-title); margin-bottom:0.35rem;">Expo Beauty Show (EBS 2026)</h3>
-                        <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:0.6rem; line-height:1.45;">
-                            Salida ejecutiva directa al evento líder de estilismo y belleza profesional. Apartas tu lugar con solo $200 MXN.
+                        <h3 style="font-family:'Outfit'; font-size:1.5rem; font-weight:800; color:var(--text-title); margin-bottom:0.45rem;">Expo Beauty Show (EBS 2026)</h3>
+                        <p style="font-size:0.96rem; color:var(--text-muted); margin-bottom:0.75rem; line-height:1.68;">
+                            Salida ejecutiva directa al evento líder de estilismo y belleza profesional. ¡Gracias por su preferencia, todos los lugares de nuestra unidad fueron reservados!
                         </p>
                         <!-- Chips compactos de amenidades principales -->
-                        <div style="display:flex; flex-wrap:wrap; gap:6px; margin:0.3rem 0 0.85rem;">
-                            <span style="font-size:0.78rem; font-weight:700; background:rgba(22,163,74,0.12); color:var(--brand-green); padding:4px 10px; border-radius:12px; display:inline-flex; align-items:center; gap:5px;"><i class="fas fa-bus"></i> Redondo San Manuel</span>
-                            <span style="font-size:0.78rem; font-weight:700; background:rgba(2,132,199,0.12); color:var(--brand-cyan); padding:4px 10px; border-radius:12px; display:inline-flex; align-items:center; gap:5px;"><i class="fas fa-shield-halved"></i> Seguro de Viajero</span>
-                            <span style="font-size:0.78rem; font-weight:700; background:rgba(217,119,6,0.12); color:var(--brand-gold); padding:4px 10px; border-radius:12px; display:inline-flex; align-items:center; gap:5px;"><i class="fas fa-suitcase"></i> Espacio Insumos</span>
-                            <span style="font-size:0.78rem; font-weight:700; background:rgba(216,37,44,0.1); color:var(--brand-red); padding:4px 10px; border-radius:12px; display:inline-flex; align-items:center; gap:5px;"><i class="fas fa-info-circle"></i> Boleto Expo Aparte</span>
+                        <div style="display:flex; flex-wrap:wrap; gap:8px; margin:0.4rem 0 0.95rem;">
+                            <span style="font-size:0.82rem; font-weight:700; background:rgba(22,163,74,0.12); color:var(--brand-green); padding:5px 12px; border-radius:12px; display:inline-flex; align-items:center; gap:5px;"><i class="fas fa-bus"></i> Redondo San Manuel</span>
+                            <span style="font-size:0.82rem; font-weight:700; background:rgba(2,132,199,0.12); color:var(--brand-cyan); padding:5px 12px; border-radius:12px; display:inline-flex; align-items:center; gap:5px;"><i class="fas fa-shield-halved"></i> Seguro de Viajero</span>
+                            <span style="font-size:0.82rem; font-weight:700; background:rgba(217,119,6,0.12); color:var(--brand-gold); padding:5px 12px; border-radius:12px; display:inline-flex; align-items:center; gap:5px;"><i class="fas fa-suitcase"></i> Espacio Insumos</span>
                         </div>
                     </div>
 
-                    <div style="display:flex; justify-content:space-between; align-items:center; padding-top:0.85rem; border-top:1px solid var(--border-color); flex-wrap:wrap; gap:10px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; padding-top:0.95rem; border-top:1px solid var(--border-color); flex-wrap:wrap; gap:12px;">
                         <div>
-                            <span style="font-size:0.73rem; color:var(--text-muted); display:block; font-weight:700;">TRANSPORTE REDONDO EJECUTIVO</span>
-                            <div class="price-amount" style="font-size:1.5rem; color:var(--brand-red);">$700 MXN <small style="font-size:0.8rem; color:var(--brand-green); font-weight:800;">(Pre-venta con $200)</small></div>
+                            <span style="font-size:0.76rem; color:var(--text-muted); display:block; font-weight:700;">TRANSPORTE REDONDO EJECUTIVO</span>
+                            <div class="price-amount" style="font-size:1.5rem; color:var(--text-muted);">Desde $700 MXN <small style="font-size:0.82rem; color:#f87171; font-weight:800;">(SALIDA AGOTADA)</small></div>
                         </div>
-                        <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                            <button class="btn-search-main" style="width:auto; padding:9px 16px; background:var(--bg-subtle); color:var(--text-title); border:1px solid var(--border-color); font-size:0.86rem;" onclick="openSharedElementModal('expo-beauty-show-citibanamex')">
-                                <i class="fas fa-list-check"></i> Ver Itinerario y Detalles
+                        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                            <button class="btn-search-main" style="width:auto; padding:10px 16px; background:var(--bg-subtle); color:var(--text-title); border:1px solid var(--border-color); font-size:0.9rem;" onclick="openSharedElementModal('expo-beauty-show-citibanamex')">
+                                <i class="fas fa-list-check"></i> Ver Detalles
                             </button>
-                            <button class="btn-search-main" style="width:auto; padding:9px 18px; background:var(--brand-red); font-size:0.86rem;" onclick="openPaymentModal('Expo Beauty Show EBS Citibanamex (Solo Transporte)', 700)">
-                                <i class="fas fa-ticket-alt"></i> Pre-venta ($200)
+                            <button class="btn-search-main btn-cotizar-ai" style="width:auto; padding:10px 18px; background:rgba(220,38,38,0.22); color:#fca5a5; border:1px solid rgba(220,38,38,0.5); font-size:0.9rem;" onclick="quoteWithAI('Próxima Expo Beauty Show CDMX', 'Ciudad de México', event)">
+                                <i class="fas fa-bell"></i> Agotado • Lista Próxima Fecha
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Salida Confirmada 2: La Llorona en Xochimilco -->
-            <div class="confirmed-trip-card">
+            <!-- Salida Confirmada 2: La Llorona en Xochimilco (AGOTADO) -->
+            <div class="confirmed-trip-card is-sold-out">
                 <div class="confirmed-img-side">
                     <img src="img/xochimilco_clean_card.jpg" alt="La Llorona en Xochimilco" style="width:100%; height:100%; object-fit:cover;">
-                    <span class="card-badge" style="background:var(--brand-gold); color:#000; font-size:0.85rem; padding:6px 16px;">🎭 Temporada Día de Muertos</span>
+                    <span class="card-badge" style="background:var(--brand-gold); color:#000; font-size:0.85rem; padding:6px 16px; z-index:7;">🎭 Temporada Día de Muertos</span>
+                    <div class="sold-out-diagonal-overlay">
+                        <span class="sold-out-stamp">AGOTADOS</span>
+                    </div>
                 </div>
                 <div class="confirmed-info-side">
                     <div>
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.45rem; flex-wrap:wrap; gap:8px;">
-                            <span style="font-size:0.85rem; font-weight:700; color:var(--brand-cyan);"><i class="fas fa-water"></i> Canales de Cuemanco, Xochimilco</span>
-                            <span style="background:rgba(217,119,6,0.15); color:var(--brand-gold); padding:4px 12px; border-radius:20px; font-weight:800; font-size:0.8rem;">🛶 Trajinera + Obra</span>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem; flex-wrap:wrap; gap:8px;">
+                            <span style="font-size:0.9rem; font-weight:700; color:var(--brand-cyan);"><i class="fas fa-water"></i> Canales de Cuemanco, Xochimilco</span>
+                            <span style="background:rgba(220,38,38,0.18); color:#fca5a5; border:1px solid rgba(220,38,38,0.4); padding:4px 12px; border-radius:20px; font-weight:800; font-size:0.82rem;">🔥 LUGARES AGOTADOS</span>
                         </div>
-                        <h3 style="font-family:'Outfit'; font-size:1.4rem; font-weight:800; color:var(--text-title); margin-bottom:0.35rem;">La Llorona en Xochimilco</h3>
-                        <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:0.6rem; line-height:1.45;">
-                            Travesía mística en trajinera y función teatral en el islote de Laguna de Tlilac. Fines de semana de Octubre y Noviembre.
+                        <h3 style="font-family:'Outfit'; font-size:1.5rem; font-weight:800; color:var(--text-title); margin-bottom:0.45rem;">La Llorona en Xochimilco</h3>
+                        <p style="font-size:0.96rem; color:var(--text-muted); margin-bottom:0.75rem; line-height:1.68;">
+                            Travesía mística en trajinera y función teatral nocturna en la Laguna de Tlilac. Primera salida con cupo 100% agotado; regístrate para la siguiente fecha de noviembre.
                         </p>
                         <!-- Chips compactos de amenidades principales -->
-                        <div style="display:flex; flex-wrap:wrap; gap:6px; margin:0.3rem 0 0.85rem;">
-                            <span style="font-size:0.78rem; font-weight:700; background:rgba(217,119,6,0.14); color:var(--brand-gold); padding:4px 10px; border-radius:12px; display:inline-flex; align-items:center; gap:5px;"><i class="fas fa-ship"></i> Trajinera Iluminada</span>
-                            <span style="font-size:0.78rem; font-weight:700; background:rgba(217,119,6,0.14); color:var(--brand-gold); padding:4px 10px; border-radius:12px; display:inline-flex; align-items:center; gap:5px;"><i class="fas fa-masks-theater"></i> Boleto Obra en Islote</span>
-                            <span style="font-size:0.78rem; font-weight:700; background:rgba(2,132,199,0.12); color:var(--brand-cyan); padding:4px 10px; border-radius:12px; display:inline-flex; align-items:center; gap:5px;"><i class="fas fa-bus"></i> Redondo San Manuel</span>
-                            <span style="font-size:0.78rem; font-weight:700; background:rgba(22,163,74,0.12); color:var(--brand-green); padding:4px 10px; border-radius:12px; display:inline-flex; align-items:center; gap:5px;"><i class="fas fa-shield-halved"></i> Seguro de Viajero</span>
+                        <div style="display:flex; flex-wrap:wrap; gap:8px; margin:0.4rem 0 0.95rem;">
+                            <span style="font-size:0.82rem; font-weight:700; background:rgba(217,119,6,0.14); color:var(--brand-gold); padding:5px 12px; border-radius:12px; display:inline-flex; align-items:center; gap:5px;"><i class="fas fa-ship"></i> Trajinera Iluminada</span>
+                            <span style="font-size:0.82rem; font-weight:700; background:rgba(217,119,6,0.14); color:var(--brand-gold); padding:5px 12px; border-radius:12px; display:inline-flex; align-items:center; gap:5px;"><i class="fas fa-masks-theater"></i> Boleto Obra en Islote</span>
+                            <span style="font-size:0.82rem; font-weight:700; background:rgba(2,132,199,0.12); color:var(--brand-cyan); padding:5px 12px; border-radius:12px; display:inline-flex; align-items:center; gap:5px;"><i class="fas fa-bus"></i> Redondo San Manuel</span>
                         </div>
                     </div>
 
-                    <div style="display:flex; justify-content:space-between; align-items:center; padding-top:0.85rem; border-top:1px solid var(--border-color); flex-wrap:wrap; gap:10px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; padding-top:0.95rem; border-top:1px solid var(--border-color); flex-wrap:wrap; gap:12px;">
                         <div>
-                            <span style="font-size:0.73rem; color:var(--text-muted); display:block; font-weight:700;">PAQUETE COMPLETO CON BOLETO</span>
-                            <div class="price-amount" style="font-size:1.5rem; color:var(--brand-red);">$1,350 MXN <small style="font-size:0.8rem; color:var(--brand-gold); font-weight:800;">(Pre-venta con $200)</small></div>
+                            <span style="font-size:0.76rem; color:var(--text-muted); display:block; font-weight:700;">TRANSPORTE O PAQUETE COMPLETO</span>
+                            <div class="price-amount" style="font-size:1.5rem; color:var(--text-muted);">Desde $650 / $1,350 MXN <small style="font-size:0.82rem; color:#f87171; font-weight:800;">(AGOTADOS)</small></div>
                         </div>
-                        <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                            <button class="btn-search-main" style="width:auto; padding:9px 16px; background:var(--bg-subtle); color:var(--text-title); border:1px solid var(--border-color); font-size:0.86rem;" onclick="openSharedElementModal('llorona-xochimilco-nocturna')">
-                                <i class="fas fa-list-check"></i> Ver Itinerario y Detalles
+                        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                            <button class="btn-search-main" style="width:auto; padding:10px 16px; background:var(--bg-subtle); color:var(--text-title); border:1px solid var(--border-color); font-size:0.9rem;" onclick="openSharedElementModal('llorona-xochimilco-nocturna')">
+                                <i class="fas fa-list-check"></i> Ver Detalles
                             </button>
-                            <button class="btn-search-main" style="width:auto; padding:9px 18px; background:var(--brand-gold); color:#000; font-size:0.86rem;" onclick="openPaymentModal('La Llorona en Xochimilco Trajinera VIP', 1350)">
-                                <i class="fas fa-ticket-alt"></i> Pre-venta ($200)
+                            <button class="btn-search-main btn-cotizar-ai" style="width:auto; padding:10px 18px; background:rgba(217,119,6,0.22); color:#fde047; border:1px solid rgba(217,119,6,0.5); font-size:0.9rem;" onclick="quoteWithAI('La Llorona en Xochimilco (Próxima Salida Noviembre)', 'Ciudad de México', event)">
+                                <i class="fas fa-bell"></i> Agotado • Anotarme en Noviembre
                             </button>
                         </div>
                     </div>
@@ -957,7 +976,7 @@
                             <div class="slider-card-footer">
                                 <div>
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">TRANSPORTE REDONDO</span>
-                                    <div class="slider-price">$549 MXN</div>
+                                    <div class="slider-price">Desde $549 MXN</div>
                                 </div>
                                 <button class="slider-card-btn" onclick="event.stopPropagation(); openPaymentModal('Transporte Karol G Estadio GNP', 549)">
                                     Pre-venta ($200)
@@ -975,11 +994,11 @@
                             <div class="slider-card-date">📅 7 NOV - 6 DIC 2026 • CDMX</div>
                             <div class="slider-card-title">El Cisne Negro en Chapultepec</div>
                             <div class="slider-card-desc">Espectáculo de ballet en vivo en el majestuoso Castillo de Chapultepec.</div>
-                            <div style="font-size:0.75rem; color:var(--brand-gold); font-weight:700; margin: 4px 0 8px;"><i class="fas fa-gift"></i> Incluye Kit Ejecutivo: Snack + Bebida + Seguro</div>
+                            <div style="font-size:0.78rem; color:var(--brand-gold); font-weight:700; margin: 4px 0 8px;"><i class="fas fa-gift"></i> Incluye Kit Ejecutivo: Snack + Bebida + Seguro</div>
                             <div class="slider-card-footer">
                                 <div>
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">TRANSPORTE REDONDO</span>
-                                    <div class="slider-price">$690 MXN</div>
+                                    <div class="slider-price">Desde $690 MXN</div>
                                 </div>
                                 <button class="slider-card-btn" onclick="event.stopPropagation(); openPaymentModal('Transporte El Cisne Negro Chapultepec', 690)">
                                     Pre-venta ($200)
@@ -997,11 +1016,11 @@
                             <div class="slider-card-date">📅 22 NOVIEMBRE 2026 • CDMX</div>
                             <div class="slider-card-title">NFL: 49ers vs Vikings en CDMX</div>
                             <div class="slider-card-desc">El regreso del fútbol americano profesional a México con traslado redondo.</div>
-                            <div style="font-size:0.75rem; color:var(--brand-gold); font-weight:700; margin: 4px 0 8px;"><i class="fas fa-gift"></i> Incluye Kit Deportivo: Snack + Agua + Gafete NFL</div>
+                            <div style="font-size:0.78rem; color:var(--brand-gold); font-weight:700; margin: 4px 0 8px;"><i class="fas fa-gift"></i> Incluye Kit Deportivo: Snack + Agua + Gafete NFL</div>
                             <div class="slider-card-footer">
                                 <div>
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">TRANSPORTE REDONDO</span>
-                                    <div class="slider-price">$690 MXN</div>
+                                    <div class="slider-price">Desde $690 MXN</div>
                                 </div>
                                 <button class="slider-card-btn" onclick="event.stopPropagation(); openPaymentModal('Transporte NFL 49ers vs Vikings', 690)">
                                     Pre-venta ($200)
@@ -1010,42 +1029,42 @@
                         </div>
                     </div>
 
-                    <!-- Fórmula 1 GP de México 2026 -->
+                    <!-- Festival & Eventos Autódromo Hermanos Rodríguez -->
                     <div class="slider-card" onclick="openSharedElementModal('f1-gp-mexico-2026')">
                         <div class="slider-card-img" style="background-image: url('img/IMG-20260926-WA0017.jpg');">
                             <span class="slider-badge" style="background:var(--brand-green);">Autódromo Hnos. R.</span>
                         </div>
                         <div class="slider-card-body">
-                            <div class="slider-card-date">📅 30 OCT - 1 NOV 2026 • CDMX</div>
-                            <div class="slider-card-title">Fórmula 1: GP de México 2026</div>
-                            <div class="slider-card-desc">Traslado ejecutivo diario al Hermanos Rodríguez sin estrés de tráfico.</div>
-                            <div style="font-size:0.75rem; color:var(--brand-gold); font-weight:700; margin: 4px 0 8px;"><i class="fas fa-gift"></i> Incluye Kit F1: Agua fría + Barra + Gafete F1</div>
+                            <div class="slider-card-date">📅 NOVIEMBRE 2026 • CDMX</div>
+                            <div class="slider-card-title">Eventos & Festivales Autódromo CDMX</div>
+                            <div class="slider-card-desc">Traslado ejecutivo redondo al Autódromo Hermanos Rodríguez sin estrés de tráfico.</div>
+                            <div style="font-size:0.78rem; color:var(--brand-gold); font-weight:700; margin: 4px 0 8px;"><i class="fas fa-gift"></i> Incluye Kit Ejecutivo: Agua fría + Barra + Gafete</div>
                             <div class="slider-card-footer">
                                 <div>
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">POR DÍA REDONDO</span>
-                                    <div class="slider-price">$750 MXN</div>
+                                    <div class="slider-price">Desde $750 MXN</div>
                                 </div>
-                                <button class="slider-card-btn" onclick="event.stopPropagation(); openPaymentModal('Transporte F1 GP México', 750)">
+                                <button class="slider-card-btn" onclick="event.stopPropagation(); openPaymentModal('Transporte Autódromo Hermanos Rodríguez', 750)">
                                     Pre-venta ($200)
                                 </button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- América vs Monterrey -->
+                    <!-- América vs Monterrey (Liguilla Noviembre) -->
                     <div class="slider-card" onclick="openSharedElementModal('america-vs-monterrey-cdmx')">
                         <div class="slider-card-img" style="background-image: url('img/IMG-20260926-WA0010.jpg');">
                             <span class="slider-badge" style="background:var(--brand-gold); color:#000;">Liga MX</span>
                         </div>
                         <div class="slider-card-body">
-                            <div class="slider-card-date">📅 OCTUBRE 2026 • CDMX</div>
+                            <div class="slider-card-date">📅 NOVIEMBRE 2026 • CDMX</div>
                             <div class="slider-card-title">Club América vs Monterrey</div>
                             <div class="slider-card-desc">Vive el partido en vivo con traslado redondo y espera al término del juego.</div>
-                            <div style="font-size:0.75rem; color:var(--brand-gold); font-weight:700; margin: 4px 0 8px;"><i class="fas fa-gift"></i> Incluye Kit Estadio: Botana + Agua fría + Seguro</div>
+                            <div style="font-size:0.78rem; color:var(--brand-gold); font-weight:700; margin: 4px 0 8px;"><i class="fas fa-gift"></i> Incluye Kit Estadio: Botana + Agua fría + Seguro</div>
                             <div class="slider-card-footer">
                                 <div>
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">TRANSPORTE REDONDO</span>
-                                    <div class="slider-price">$549 MXN</div>
+                                    <div class="slider-price">Desde $549 MXN</div>
                                 </div>
                                 <button class="slider-card-btn" onclick="event.stopPropagation(); openPaymentModal('Transporte América vs Monterrey', 549)">
                                     Pre-venta ($200)
@@ -1095,13 +1114,13 @@
                             <span class="slider-badge" style="background:var(--brand-cyan)">Grutas & Plata</span>
                         </div>
                         <div class="slider-card-body">
-                            <div class="slider-card-date">📅 17 OCTUBRE 2026 • GUERRERO</div>
+                            <div class="slider-card-date">📅 NOVIEMBRE 2026 • GUERRERO</div>
                             <div class="slider-card-title">Grutas de Cacahuamilpa & Taxco</div>
                             <div class="slider-card-desc">Salones subterráneos iluminados, platerías virreinales y Parroquia de Santa Prisca.</div>
                             <div class="slider-card-footer">
                                 <div>
-                                    <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">TRANSPORTE REDONDO</span>
-                                    <div class="slider-price">$1,160 MXN</div>
+                                    <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">PAQUETE REDONDO</span>
+                                    <div class="slider-price">Desde $1,160 MXN</div>
                                 </div>
                                 <button class="slider-card-btn" onclick="event.stopPropagation(); openPaymentModal('Grutas de Cacahuamilpa y Taxco', 1160)">
                                     Pre-venta ($200)
@@ -1122,7 +1141,7 @@
                             <div class="slider-card-footer">
                                 <div>
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">TRANSPORTE REDONDO</span>
-                                    <div class="slider-price">$790 MXN</div>
+                                    <div class="slider-price">Desde $790 MXN</div>
                                 </div>
                                 <button class="slider-card-btn" onclick="event.stopPropagation(); openPaymentModal('Grutas de Tolantongo', 790)">
                                     Pre-venta ($200)
@@ -1143,7 +1162,7 @@
                             <div class="slider-card-footer">
                                 <div>
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">TRANSPORTE REDONDO</span>
-                                    <div class="slider-price">$650 MXN</div>
+                                    <div class="slider-price">Desde $650 MXN</div>
                                 </div>
                                 <button class="slider-card-btn" onclick="event.stopPropagation(); openPaymentModal('Zacatlán y Chignahuapan', 650)">
                                     Pre-venta ($200)
@@ -1164,7 +1183,7 @@
                             <div class="slider-card-footer">
                                 <div>
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">TRANSPORTE REDONDO</span>
-                                    <div class="slider-price">$890 MXN</div>
+                                    <div class="slider-price">Desde $890 MXN</div>
                                 </div>
                                 <button class="slider-card-btn" onclick="event.stopPropagation(); openPaymentModal('Ruta Queso y Vino Querétaro', 890)">
                                     Pre-venta ($200)
@@ -1185,7 +1204,7 @@
                             <div class="slider-card-footer">
                                 <div>
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">TRANSPORTE REDONDO</span>
-                                    <div class="slider-price">$820 MXN</div>
+                                    <div class="slider-price">Desde $820 MXN</div>
                                 </div>
                                 <button class="slider-card-btn" onclick="event.stopPropagation(); openPaymentModal('Cuetzalan del Progreso', 820)">
                                     Pre-venta ($200)
@@ -1206,7 +1225,7 @@
                             <div class="slider-card-footer">
                                 <div>
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">TRANSPORTE REDONDO</span>
-                                    <div class="slider-price">$980 MXN</div>
+                                    <div class="slider-price">Desde $980 MXN</div>
                                 </div>
                                 <button class="slider-card-btn" onclick="event.stopPropagation(); openPaymentModal('Bahía de Acapulco', 980)">
                                     Pre-venta ($200)
@@ -1413,7 +1432,7 @@
                             <div class="slider-card-footer">
                                 <div>
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">PAQUETE VUELO + HOTEL</span>
-                                    <div class="slider-price" style="color:#fde047;">$8,990 MXN</div>
+                                    <div class="slider-price" style="color:#fde047;">Desde $8,990 MXN</div>
                                 </div>
                                 <button class="slider-card-btn btn-gold-vip">
                                     Cotizar WhatsApp
@@ -1434,7 +1453,7 @@
                             <div class="slider-card-footer">
                                 <div>
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">PAQUETE VUELO + HOTEL</span>
-                                    <div class="slider-price" style="color:#fde047;">$10,490 MXN</div>
+                                    <div class="slider-price" style="color:#fde047;">Desde $10,490 MXN</div>
                                 </div>
                                 <button class="slider-card-btn btn-gold-vip">
                                     Cotizar WhatsApp
@@ -1842,6 +1861,19 @@
                         <small style="color:var(--brand-green);">[🔧 Módulo Privado]</small>
                     </div>
                 </div>
+
+                <!-- RECORDATORIO ESTRATÉGICO: PENDIENTES CON HERMANA ALMA -->
+                <div style="margin-top:1.6rem; background:rgba(244, 63, 94, 0.08); border:1px solid rgba(244, 63, 94, 0.35); border-radius:14px; padding:1.3rem;">
+                    <strong style="color:#fda4af; font-size:1.05rem; display:block; margin-bottom:0.6rem;">
+                        👩‍💼 Hermana Alma — Pendientes por Platicar y Acordar
+                    </strong>
+                    <ul style="margin:0; padding-left:1.2rem; font-size:0.9rem; color:var(--text-body); line-height:1.7;">
+                        <li><strong>Pasarela Stripe (Tarjeta / MSI):</strong> Explicarle que Stripe México solicita obligatoriamente RFC con homoclave e INE para liberar depósitos a su cuenta Banco Azteca (<code>127180012120460272</code>). Por ahora dejamos activo únicamente pago directo por SPEI Banco Azteca hasta que ella decida si desea dar de alta su RFC en Stripe.</li>
+                        <li><strong>Revisión del Catálogo PDF estilo Revista:</strong> Mostrarle el PDF editorial de lujo una vez aprobado por ti para confirmar si desea agregar algún paquete o nota adicional antes de enviarlo por correo.</li>
+                        <li><strong>Tienda de Productos Lendan (<code>tienda.html</code> / subdominio):</strong> Confirmar precios de menudeo (clientas) y mayoreo (estilistas) para los 7 productos Lendan que envió en video.</li>
+                        <li><strong>Desglose de Servicios de la Estética:</strong> Revisar con ella los textos descriptivos que ya dejamos redactados para cada uno de sus 19 servicios y el banner de cortes sin costo de su alumna (Lun, Mié y Vie de 4 a 5 PM).</li>
+                    </ul>
+                </div>
             </div>
 
             <!-- PIN Settings View -->
@@ -1950,8 +1982,8 @@
 
             <!-- CUPÓN DE DESCUENTO (ALMA / ESTÉTICA) -->
             <div style="margin-bottom:1rem; background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:12px; padding:10px 14px;">
-                <div style="font-size:0.8rem; font-weight:700; color:var(--text-muted); margin-bottom:6px;">
-                    ¿Tienes cupón de descuento? (ej. <span style="color:var(--brand-red);">ESTETICA10</span>)
+                <div style="font-size:0.82rem; font-weight:700; color:var(--text-muted); margin-bottom:6px; line-height:1.45;">
+                    ¿Tienes cupón de Estudio de Belleza "Alma"? (ej. <span style="color:var(--brand-red);">ESTETICA10</span> — válido en Diseño de Color, Alisados, Paq. Faciales, XV Años y Novias)
                 </div>
                 <div style="display:flex; gap:8px;">
                     <input type="text" id="checkout-coupon-input" placeholder="Ingresa código..." style="flex:1; padding:8px 12px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-card); color:var(--text-title); font-size:0.88rem; font-weight:700; text-transform:uppercase;">
@@ -1961,16 +1993,19 @@
             </div>
 
             <div class="payment-tabs">
-                <div class="pay-tab active" onclick="setPayMethod('spei', this)">SPEI / BBVA</div>
+                <div class="pay-tab active" onclick="setPayMethod('spei', this)" style="flex:1; text-align:center;">Transferencia SPEI (Banco Azteca)</div>
+                <!-- Stripe y OXXO deshabilitados temporalmente hasta que Hermana Alma decida alta con RFC/INE:
                 <div class="pay-tab" onclick="setPayMethod('oxxo', this)">Depósito OXXO</div>
                 <div class="pay-tab" onclick="setPayMethod('stripe', this)">Tarjeta (Stripe)</div>
+                -->
             </div>
 
-            <div id="pay-details-box" style="background:var(--bg-subtle); border-radius:10px; padding:1.2rem; margin-bottom:1.2rem; font-size:0.88rem;">
-                <strong style="color:var(--brand-cyan); display:block; margin-bottom:4px;">Transferencia Interbancaria SPEI:</strong>
-                <div><strong>Banco:</strong> BBVA México</div>
-                <div><strong>CLABE:</strong> 012 650 01548796541 2</div>
-                <div><strong>Beneficiario:</strong> Alma Rosa</div>
+            <div id="pay-details-box" style="background:var(--bg-subtle); border-radius:10px; padding:1.2rem; margin-bottom:1.2rem; font-size:0.94rem; line-height:1.65; border:1px solid rgba(56,189,248,0.25);">
+                <strong style="color:var(--brand-cyan); display:block; margin-bottom:6px;"><i class="fas fa-university"></i> Transferencia Interbancaria SPEI Directa:</strong>
+                <div><strong>Banco:</strong> Banco Azteca</div>
+                <div><strong>CLABE Interbancaria (18 dígitos):</strong> <code style="color:#fde047; font-weight:800; font-size:1rem; letter-spacing:0.5px;">127180012120460272</code></div>
+                <div><strong>Beneficiario:</strong> Alma Luis</div>
+                <div style="font-size:0.8rem; color:var(--text-muted); margin-top:6px;">💡 Concepto sugerido: Tu Nombre + Destino. Envía tu comprobante en el botón de abajo.</div>
             </div>
 
             <button class="btn-search-main" onclick="sendPaymentWhatsApp()">
@@ -2003,7 +2038,7 @@
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:1.2rem;">
                 <div>
                     <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:4px;">Fecha Estimada:</label>
-                    <input type="date" id="custom-quote-date" value="2026-10-24" style="width:100%; padding:10px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-subtle);">
+                    <input type="date" id="custom-quote-date" value="2026-11-14" style="width:100%; padding:10px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-subtle);">
                 </div>
                 <div>
                     <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:4px;">Pasajeros:</label>
@@ -2417,27 +2452,22 @@
 
         function setPayMethod(method, tabBtn) {
             document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
-            tabBtn.classList.add('active');
+            if (tabBtn) tabBtn.classList.add('active');
 
             const detailsBox = document.getElementById('pay-details-box');
             if(method === 'spei') {
                 detailsBox.innerHTML = `
-                    <strong style="color:var(--brand-cyan); display:block; margin-bottom:4px;">Transferencia Interbancaria SPEI:</strong>
-                    <div><strong>Banco:</strong> BBVA México</div>
-                    <div><strong>CLABE:</strong> 012 650 01548796541 2</div>
-                    <div><strong>Beneficiario:</strong> Alma Rosa</div>
-                `;
-            } else if(method === 'oxxo') {
-                detailsBox.innerHTML = `
-                    <strong style="color:var(--brand-gold); display:block; margin-bottom:4px;">Depósito en Tiendas OXXO:</strong>
-                    <div><strong>Número de Tarjeta Spin/OXXO:</strong> 4152 3138 9984 1205</div>
-                    <div><strong>Beneficiario:</strong> Alma Rosa</div>
+                    <strong style="color:var(--brand-cyan); display:block; margin-bottom:6px;"><i class="fas fa-university"></i> Transferencia Interbancaria SPEI Directa:</strong>
+                    <div><strong>Banco:</strong> Banco Azteca</div>
+                    <div><strong>CLABE Interbancaria (18 dígitos):</strong> <code style="color:#fde047; font-weight:800; font-size:1rem; letter-spacing:0.5px;">127180012120460272</code></div>
+                    <div><strong>Beneficiario:</strong> Alma Luis</div>
+                    <div style="font-size:0.8rem; color:var(--text-muted); margin-top:6px;">💡 Concepto sugerido: Tu Nombre + Destino. Envía tu comprobante en el botón de abajo.</div>
                 `;
             } else if(method === 'stripe') {
                 detailsBox.innerHTML = `
                     <strong style="color:var(--brand-green); display:block; margin-bottom:4px;">Pago Seguro con Tarjeta en Línea (Stripe Gateway):</strong>
                     <div>Tarjeta de Crédito / Débito (Opción a 3 y 6 meses sin intereses).</div>
-                    <div style="margin-top:8px; font-weight:700; color:var(--brand-cyan);">✓ Procesado de forma protegida.</div>
+                    <div style="margin-top:8px; font-weight:700; color:var(--brand-cyan);">✓ Procesado de forma protegida hacia cuenta verificada.</div>
                 `;
             }
         }
@@ -2552,9 +2582,9 @@
     </div>
 
     <!-- Base de Datos de Eventos CDMX, Gran Catálogo Maestro 1000 y Motores Interactivos -->
-    <script src="js/cdmx_events_engine.js?v=20261018b"></script>
-    <script src="js/destinos_data.js?v=20261018b"></script>
-    <script src="js/sectur_737_catalog.js?v=20261018b"></script>
-    <script src="js/app_interactive.js?v=20261018b"></script>
+    <script src="js/cdmx_events_engine.js?v=20261030c"></script>
+    <script src="js/destinos_data.js?v=20261030c"></script>
+    <script src="js/sectur_737_catalog.js?v=20261030c"></script>
+    <script src="js/app_interactive.js?v=20261030c"></script>
 </body>
 </html>

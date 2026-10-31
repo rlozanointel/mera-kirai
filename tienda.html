@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda & Distribuidora Lendan Cosmetics | Estudio de Belleza Imagen y Estilo "Alma"</title>
+    <meta name="description" content="Catálogo oficial de productos europeos Lendan Cosmetics en Puebla. Venta al público (cuidado en casa) y distribución a estilistas: PlexForte, Oil Moringa, Recovery E+B5, Activia Plant y Root Cover.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-main: #09090b;
+            --bg-card: rgba(24, 24, 27, 0.92);
+            --brand-gold: #d4af37;
+            --brand-gold-light: #fde047;
+            --brand-rose: #f43f5e;
+            --brand-rose-light: #fda4af;
+            --text-title: #ffffff;
+            --text-body: #f4f4f5;
+            --text-muted: #d4d4d8;
+            --border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        html {
+            font-size: 16.5px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg-main);
+            color: var(--text-body);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .top-bar {
+            background: linear-gradient(90deg, #78350f, #881337, #4c1d95);
+            color: #fff;
+            padding: 10px 1.5rem;
+            font-size: 0.88rem;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .top-bar a {
+            color: var(--brand-gold-light);
+            text-decoration: underline;
+            margin-left: 8px;
+        }
+
+        header {
+            background: rgba(9, 9, 11, 0.94);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0.95rem 1.8rem;
+        }
+
+        .nav-inner {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .brand-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 13px;
+            background: linear-gradient(135deg, var(--brand-gold), #b45309);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            color: #000;
+            font-weight: 900;
+        }
+
+        .brand-text strong {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            display: block;
+            line-height: 1.2;
+        }
+
+        .brand-text small {
+            font-size: 0.78rem;
+            color: var(--brand-gold-light);
+            font-weight: 700;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            border: 1px solid var(--border-color);
+            padding: 9px 15px;
+            border-radius: 22px;
+            font-size: 0.86rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255,255,255,0.16);
+            color: var(--brand-gold-light);
+        }
+
+        .hero {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 3.8rem 1.8rem 2.8rem;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(212, 175, 55, 0.16);
+            color: var(--brand-gold-light);
+            border: 1px solid rgba(212, 175, 55, 0.45);
+            padding: 7px 18px;
+            border-radius: 24px;
+            font-size: 0.86rem;
+            font-weight: 800;
+            margin-bottom: 1.1rem;
+        }
+
+        .hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.1rem, 4.5vw, 3.2rem);
+            font-weight: 900;
+            color: #fff;
+            line-height: 1.18;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, #fde047, #f43f5e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            max-width: 780px;
+            margin: 0 auto 1.8rem;
+            color: var(--text-muted);
+            font-size: 1.06rem;
+            line-height: 1.75;
+        }
+
+        .mode-switch {
+            display: inline-flex;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            padding: 5px;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .mode-btn {
+            background: transparent;
+            color: var(--text-muted);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 24px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .mode-btn.active {
+            background: var(--brand-gold);
+            color: #000;
+        }
+
+        .catalog-wrap {
+            max-width: 1240px;
+            margin: 0 auto 5rem;
+            padding: 0 1.8rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 22px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.55);
+            transition: transform 0.25s ease, border-color 0.25s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(212, 175, 55, 0.55);
+        }
+
+        .product-video-box {
+            position: relative;
+            background: #000;
+            height: 320px;
+        }
+
+        .product-video-box video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .product-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(9, 9, 11, 0.85);
+            backdrop-filter: blur(8px);
+            color: var(--brand-gold-light);
+            border: 1px solid rgba(212, 175, 55, 0.45);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.76rem;
+            font-weight: 800;
+        }
+
+        .product-body {
+            padding: 1.65rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.32rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            line-height: 1.28;
+        }
+
+        .product-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.68;
+            margin-bottom: 1rem;
+        }
+
+        .product-benefits {
+            list-style: none;
+            margin-bottom: 1.3rem;
+            background: rgba(255,255,255,0.04);
+            padding: 0.85rem 1rem;
+            border-radius: 12px;
+            font-size: 0.86rem;
+        }
+
+        .product-benefits li {
+            margin-bottom: 0.35rem;
+            color: #e4e4e7;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-order {
+            background: linear-gradient(135deg, var(--brand-gold), #eab308);
+            color: #000;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.88rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+
+        /* Floating Cart Bar */
+        .cart-dock {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: linear-gradient(135deg, #25d366, #16a34a);
+            color: #052e16;
+            padding: 13px 22px;
+            border-radius: 30px;
+            font-weight: 900;
+            font-size: 0.94rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 1.5rem 5rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            html { font-size: 16px; }
+            header { padding: 0.75rem 1rem; }
+            .nav-inner { flex-direction: column; align-items: stretch; }
+            .brand { justify-content: center; }
+            .nav-actions { justify-content: center; }
+            .nav-btn { flex: 1 1 auto; justify-content: center; font-size: 0.78rem; padding: 8px 10px; }
+            .hero, .catalog-wrap { padding-left: 1.15rem; padding-right: 1.15rem; }
+            .products-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <span>🛍️ <strong>Distribuidora Oficial Lendan Cosmetics en Puebla</strong> • Estudio de Belleza Imagen y Estilo "Alma"</span>
+        <div>
+            <a href="estetica.html">🌸 Volver al Salón de Belleza</a>
+            <a href="https://mera-kirai.com">✈️ Viajes La Ruta del Águila</a>
+        </div>
+    </div>
+
+    <header>
+        <div class="nav-inner">
+            <a href="estetica.html" class="brand">
+                <div class="brand-icon">🛍️</div>
+                <div class="brand-text">
+                    <strong>TIENDA LENDAN • ESTUDIO "ALMA"</strong>
+                    <small>Alta Cosmética Capilar Europea • San Manuel, Puebla</small>
+                </div>
+            </a>
+            <div class="nav-actions">
+                <a href="estetica.html" class="nav-btn">
+                    <i class="fas fa-spa"></i> Servicios del Salón (19)
+                </a>
+                <a href="ra.html" class="nav-btn">
+                    <i class="fas fa-cube"></i> Letrero 3D (AR)
+                </a>
+                <a href="https://mera-kirai.com" class="nav-btn">
+                    <i class="fas fa-plane"></i> Viajes
+                </a>
+                <a href="https://wa.me/522228016244?text=Hola%20Alma,%20me%20interesa%20pedir%20productos%20profesionales%20Lendan" target="_blank" class="nav-btn" style="background:#25d366; color:#052e16; border:none; font-weight:800;">
+                    <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-badge">
+            <i class="fas fa-certificate"></i> Distribuidora Autorizada • Más de 30 Años de Experiencia
+        </div>
+        <h1>Líneas Profesionales <span>Lendan Cosmetics</span></h1>
+        <p>
+            Lleva el tratamiento del salón a tu hogar o equipa tu estética con tecnología capilar española de grado profesional. Entrega directa en nuestro estudio en <strong>Jardines de San Manuel, Puebla</strong> o envío coordinado.
+        </p>
+
+        <div class="mode-switch">
+            <button type="button" class="mode-btn active" id="btn-b2c" onclick="setStoreMode('b2c')">
+                🏡 Cuidado en Casa (Público General)
+            </button>
+            <button type="button" class="mode-btn" id="btn-b2b" onclick="setStoreMode('b2b')">
+                ✂️ Precio Especial a Estilistas / Mayoreo
+            </button>
+        </div>
+    </section>
+
+    <section class="catalog-wrap">
+        <div class="products-grid">
+            <!-- Producto 1: PlexForte N°6 Bond Filler Oil -->
+            <div class="product-card">
+                <div class="product-video-box">
+                    <span class="product-tag">⭐ Best Seller Reconstrucción</span>
+                    <video controls preload="metadata" poster="img/salon/thumb_lendan_plexforte_oil.jpg">
+                        <source src="video/salon/lendan_plexforte_oil.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="product-body">
+                    <div>
+                        <h3 class="product-title">1. Lendan PlexForte N°6 Bond Filler Oil</h3>
+                        <p class="product-desc">Aceite reparador concentrado de enlaces capilares. Repara puntas abiertas, controla el frizz y aporta protección térmica hasta 230°C con brillo espejo.</p>
+                        <ul class="product-benefits">
+                            <li>✓ Sella la cutícula sin aportar peso ni grasa</li>
+                            <li>✓ Protege el color y multiplica la fuerza capilar</li>
+                            <li>✓ Ideal para uso diario después del baño o antes de planchar</li>
+                        </ul>
+                    </div>
+                    <div class="product-footer">
+                        <span class="mode-price-label" style="font-weight:800; color:var(--brand-gold-light); font-size:0.9rem;">Disponible en Estudio</span>
+                        <button type="button" onclick="addItemToOrder('PlexForte N°6 Bond Filler Oil')" class="btn-order">
+                            <i class="fab fa-whatsapp"></i> Cotizar / Apartar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 2: Aceite de Moringa Oil Essences -->
+            <div class="product-card">
+                <div class="product-video-box">
+                    <span class="product-tag">🌿 El Árbol de la Vida</span>
+                    <video controls preload="metadata" poster="img/salon/thumb_lendan_oil_moringa.jpg">
+                        <source src="video/salon/lendan_oil_moringa.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="product-body">
+                    <div>
+                        <h3 class="product-title">2. Lendan Oil Essences — Aceite de Moringa</h3>
+                        <p class="product-desc">Elixir nutritivo formulado con aceite puro de semilla de Moringa.Rico en antioxidantes, minerales y vitaminas A, C y E para cabellos secos o maltratados.</p>
+                        <ul class="product-benefits">
+                            <li>✓ Nutrición profunda desde el interior de la hebra</li>
+                            <li>✓ Sedosidad instantánea y desenredo suave</li>
+                            <li>✓ Aroma envolvente de alta perfumería capilar</li>
+                        </ul>
+                    </div>
+                    <div class="product-footer">
+                        <span class="mode-price-label" style="font-weight:800; color:var(--brand-gold-light); font-size:0.9rem;">Disponible en Estudio</span>
+                        <button type="button" onclick="addItemToOrder('Lendan Oil Essences Aceite de Moringa')" class="btn-order">
+                            <i class="fab fa-whatsapp"></i> Cotizar / Apartar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 3: Vitaminas E+B5 Recovery Antiox -->
+            <div class="product-card">
+                <div class="product-video-box">
+                    <span class="product-tag">💊 Escudo Antioxidante</span>
+                    <video controls preload="metadata" poster="img/salon/lendan_recovery_antiox.mp4" poster="img/salon/thumb_lendan_recovery.jpg">
+                        <source src="video/salon/lendan_recovery_antiox.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="product-body">
+                    <div>
+                        <h3 class="product-title">3. Lendan Vitaminas E+B5 Recovery Antiox</h3>
+                        <p class="product-desc">Tratamiento revitalizante con Provitamina B5 y Vitamina E que combate los radicales libres, hidrata intensamente y devuelve la elasticidad natural.</p>
+                        <ul class="product-benefits">
+                            <li>✓ Previene el envejecimiento prematuro de la fibra capilar</li>
+                            <li>✓ Repara daños por sol, plancha y procesos químicos</li>
+                            <li>✓ Brillo sedoso desde la primera aplicación</li>
+                        </ul>
+                    </div>
+                    <div class="product-footer">
+                        <span class="mode-price-label" style="font-weight:800; color:var(--brand-gold-light); font-size:0.9rem;">Disponible en Estudio</span>
+                        <button type="button" onclick="addItemToOrder('Lendan Vitaminas E+B5 Recovery Antiox')" class="btn-order">
+                            <i class="fab fa-whatsapp"></i> Cotizar / Apartar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 4: Hair To Go Root Cover -->
+            <div class="product-card">
+                <div class="product-video-box">
+                    <span class="product-tag">⚡ Retoque de Raíz en 3 Segundos</span>
+                    <video controls preload="metadata" poster="img/salon/thumb_lendan_root_cover.jpg">
+                        <source src="video/salon/lendan_root_cover.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="product-body">
+                    <div>
+                        <h3 class="product-title">4. Lendan Hair To Go — Root Cover</h3>
+                        <p class="product-desc">Spray corrector instantáneo de efecto raíz y canas. Cubre el crecimiento en segundos con acabado natural aterciopelado que se retira con el lavado.</p>
+                        <ul class="product-benefits">
+                            <li>✓ Secado rápido sin manchar la piel ni dejar residuo</li>
+                            <li>✓ Ideal para emergencias entre cita y cita de tinte</li>
+                            <li>✓ Disponible en diversos tonos naturales</li>
+                        </ul>
+                    </div>
+                    <div class="product-footer">
+                        <span class="mode-price-label" style="font-weight:800; color:var(--brand-gold-light); font-size:0.9rem;">Disponible en Estudio</span>
+                        <button type="button" onclick="addItemToOrder('Lendan Hair To Go Root Cover (Spray Retoque de Raíz)')" class="btn-order">
+                            <i class="fab fa-whatsapp"></i> Cotizar / Apartar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 5: PlexForte Bond Color -->
+            <div class="product-card">
+                <div class="product-video-box">
+                    <span class="product-tag">🎨 Coloración + Tecnología Plex</span>
+                    <video controls preload="metadata" poster="img/salon/thumb_lendan_plexforte_color.jpg">
+                        <source src="video/salon/lendan_plexforte_bond_color.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="product-body">
+                    <div>
+                        <h3 class="product-title">5. Lendan PlexForte Bond Color</h3>
+                        <p class="product-desc">Sistema de coloración permanente y demi-permanente con tecnología Plex integrada que fortalece los enlaces internos mientras deposita color de alta definición.</p>
+                        <ul class="product-benefits">
+                            <li>✓ Hasta 3 veces más resistencia a la rotura capilar</li>
+                            <li>✓ Máxima fidelidad cromática y reflejos luminosos</li>
+                            <li>✓ Disponible para aplicación en salón o distribución a estilistas</li>
+                        </ul>
+                    </div>
+                    <div class="product-footer">
+                        <span class="mode-price-label" style="font-weight:800; color:var(--brand-gold-light); font-size:0.9rem;">Salón & Estilistas</span>
+                        <button type="button" onclick="addItemToOrder('Lendan PlexForte Bond Color')" class="btn-order">
+                            <i class="fab fa-whatsapp"></i> Cotizar / Apartar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 6: Activia Plant -->
+            <div class="product-card">
+                <div class="product-video-box">
+                    <span class="product-tag">🌱 Con Extractos Naturales</span>
+                    <video controls preload="metadata" poster="img/salon/thumb_lendan_activia_plant.jpg">
+                        <source src="video/salon/lendan_activia_plant.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="product-body">
+                    <div>
+                        <h3 class="product-title">6. Lendan Activia Plant</h3>
+                        <p class="product-desc">Coloración en crema enriquecida con glucosamina y ácido hialurónico. Máximo respeto al cuero cabelludo sensible y cobertura perfecta de canas.</p>
+                        <ul class="product-benefits">
+                            <li>✓ Hidratación profunda durante el proceso de color</li>
+                            <li>✓ Amplia carta de tonos naturales, cobrizos y rubios</li>
+                            <li>✓ Venta a profesionales de la belleza y aplicación en estudio</li>
+                        </ul>
+                    </div>
+                    <div class="product-footer">
+                        <span class="mode-price-label" style="font-weight:800; color:var(--brand-gold-light); font-size:0.9rem;">Salón & Estilistas</span>
+                        <button type="button" onclick="addItemToOrder('Lendan Activia Plant Coloración')" class="btn-order">
+                            <i class="fab fa-whatsapp"></i> Cotizar / Apartar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 7: Activia Absolutes -->
+            <div class="product-card">
+                <div class="product-video-box">
+                    <span class="product-tag">👑 Cobertura Total & Anti-Age</span>
+                    <video controls preload="metadata" poster="img/salon/thumb_lendan_activia_absolutes.jpg">
+                        <source src="video/salon/lendan_activia_absolutes.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="product-body">
+                    <div>
+                        <h3 class="product-title">7. Lendan Activia Absolutes</h3>
+                        <p class="product-desc">Línea especializada para cabellos maduros o con cana rebelde. Incorpora Ácido Hialurónico y complejo nutritivo sin necesidad de mezclar con tono base.</p>
+                        <ul class="product-benefits">
+                            <li>✓ 100% cobertura de cana con reflejo de moda intenso</li>
+                            <li>✓ Efecto rejuvenecedor y mayor densidad capilar</li>
+                            <li>✓ Ideal para clientas exigentes y salones profesionales</li>
+                        </ul>
+                    </div>
+                    <div class="product-footer">
+                        <span class="mode-price-label" style="font-weight:800; color:var(--brand-gold-light); font-size:0.9rem;">Salón & Estilistas</span>
+                        <button type="button" onclick="addItemToOrder('Lendan Activia Absolutes')" class="btn-order">
+                            <i class="fab fa-whatsapp"></i> Cotizar / Apartar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <button type="button" class="cart-dock" onclick="sendCartWhatsApp()">
+        <i class="fab fa-whatsapp" style="font-size:1.25rem;"></i>
+        <span id="cart-label">Solicitar Catálogo / Pedido Lendan por WhatsApp</span>
+    </button>
+
+    <footer>
+        <p>© 2026 <strong>Estudio de Belleza Imagen y Estilo "Alma"</strong> • Distribuidora Oficial Lendan en Puebla.</p>
+        <p style="margin-top:6px;">Calle Río Nexapa #6101, Col. Jardines de San Manuel, Puebla • WhatsApp: 222 801 6244</p>
+    </footer>
+
+    <script>
+        let currentMode = 'b2c';
+        let selectedProducts = [];
+
+        function setStoreMode(mode) {
+            currentMode = mode;
+            document.getElementById('btn-b2c').classList.toggle('active', mode === 'b2c');
+            document.getElementById('btn-b2b').classList.toggle('active', mode === 'b2b');
+            document.querySelectorAll('.mode-price-label').forEach(el => {
+                el.textContent = mode === 'b2b' ? '✂️ Precio Especial Estilista' : '🏡 Venta al Público en Estudio';
+            });
+        }
+
+        function addItemToOrder(prodName) {
+            if (!selectedProducts.includes(prodName)) {
+                selectedProducts.push(prodName);
+            }
+            const tipoCliente = currentMode === 'b2b' ? 'Soy Estilista / Salón (Mayoreo)' : 'Para Cuidado en Casa';
+            const lista = selectedProducts.join(', ');
+            document.getElementById('cart-label').textContent = `Enviar Pedido (${selectedProducts.length}): ${prodName}`;
+            const msg = `Hola Alma, vi la Tienda Lendan en la web (${tipoCliente}). Me interesa cotizar/apartar: ${lista}`;
+            window.open('https://wa.me/522228016244?text=' + encodeURIComponent(msg), '_blank');
+        }
+
+        function sendCartWhatsApp() {
+            const tipoCliente = currentMode === 'b2b' ? 'Soy Estilista / Salón (Mayoreo)' : 'Para Cuidado en Casa';
+            const lista = selectedProducts.length > 0 ? selectedProducts.join(', ') : 'Línea de productos Lendan Cosmetics';
+            const msg = `Hola Alma, vi la Tienda Lendan en la web (${tipoCliente}). Me gustaría pedir información y precios de: ${lista}`;
+            window.open('https://wa.me/522228016244?text=' + encodeURIComponent(msg), '_blank');
+        }
+    </script>
+</body>
+</html>
