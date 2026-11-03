@@ -2275,19 +2275,7 @@
         justify-content: center !important;
     }
     .ai-orb-trigger {
-        position: fixed !important;
-        bottom: 80px !important;
-        right: 16px !important;
-        left: auto !important;
-        top: auto !important;
-        width: 52px !important;
-        height: 52px !important;
-        z-index: 9999 !important;
-        border-radius: 50% !important;
-        box-shadow: 0 8px 24px rgba(2, 132, 199, 0.55) !important;
-    }
-    .ai-orb-trigger i {
-        font-size: 1.3rem !important;
+        display: none !important; /* En móviles se oculta el orbe flotante para no invadir la pantalla; se accede desde la barra superior */
     }
     .whatsapp-float {
         position: fixed !important;

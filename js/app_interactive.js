@@ -446,8 +446,7 @@ function openWhatsAppChoiceModal(name, state) {
         activeDestino.nombre = name;
         if (state) activeDestino.estado = state;
     }
-    const modal = document.getElementById('whatsapp-choice-modal');
-    if (modal) modal.classList.add('active');
+    sendWhatsAppDirect('alma');
 }
 
 function closeWhatsAppChoiceModal() {
@@ -460,27 +459,16 @@ function sendWhatsAppDirect(target) {
     const dState = activeDestino && activeDestino.estado ? ` (${activeDestino.estado})` : '';
     const dPrice = activeDestino && activeDestino.precio_texto ? ` [${activeDestino.precio_texto}]` : '';
     
-    const msg = `Hola, me interesa información y cotización para el viaje a: *${dName}${dState}*${dPrice} con salida desde San Manuel, Puebla. ¿Tienen disponibilidad y fechas programadas?`;
+    const msg = `Hola Alma, me interesa apartar el viaje a: *${dName}${dState}*${dPrice} saliendo desde San Manuel, Puebla. ¿Tienen disponibilidad y fechas programadas?`;
 
-    if (target === 'alma') {
-        window.open(`https://wa.me/522228016244?text=${encodeURIComponent(msg)}`, '_blank');
-    } else if (target === 'rogerman') {
-        window.open(`https://wa.me/353877665536?text=${encodeURIComponent(msg)}`, '_blank');
-    } else if (target === 'ambos') {
-        window.open(`https://wa.me/522228016244?text=${encodeURIComponent(msg)}`, '_blank');
-        setTimeout(() => {
-            window.open(`https://wa.me/353877665536?text=${encodeURIComponent(msg)}`, '_blank');
-        }, 400);
-    }
+    window.open(`https://wa.me/522228016244?text=${encodeURIComponent(msg)}`, '_blank');
     closeWhatsAppChoiceModal();
 }
 
-function bookActiveDestinoWhatsApp(targetNumber) {
+function bookActiveDestinoWhatsApp() {
     if (!activeDestino) return;
-    const phone = targetNumber || '522228016244';
-    const contactName = phone === '353877665536' ? 'Rogerman' : 'Alma';
-    const msg = `Hola ${contactName}, me interesa apartar mi lugar para: *${activeDestino.nombre}* (${activeDestino.precio_texto}). ¿Tienen disponibilidad para el próximo viaje saliendo de San Manuel?`;
-    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+    const msg = `Hola Alma, me interesa apartar mi lugar para: *${activeDestino.nombre}* (${activeDestino.precio_texto || ''}). ¿Tienen disponibilidad para el próximo viaje saliendo de San Manuel?`;
+    window.open(`https://wa.me/522228016244?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
 function openRutaSatelital3D(id) { openSharedElementModal(id); }
@@ -1329,7 +1317,7 @@ function openCatalogDetailModal(itemId) {
         <li><i class="fas fa-check-circle" style="color:var(--brand-green);"></i> Chofer sobrio profesional y combustible incluido</li>
         <li><i class="fas fa-check-circle" style="color:var(--brand-green);"></i> Seguro de cobertura amplia de viajero a bordo</li>
         <li><i class="fas fa-check-circle" style="color:var(--brand-green);"></i> Apartado en Pre-venta con solo $200 MXN por persona</li>
-        <li><i class="fas fa-check-circle" style="color:var(--brand-green);"></i> Atención directa y personalizada con Alma Luis (222 801 6244) y soporte internacional Rogerman (+353 8 77 66 55 36)</li>
+        <li><i class="fas fa-check-circle" style="color:var(--brand-green);"></i> Atención directa y personalizada con Hermana Alma (WhatsApp 222 801 6244)</li>
     `;
 
     activeDestino = {
