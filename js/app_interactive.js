@@ -748,35 +748,35 @@ function generateLocalAlmaResponse(question, matchedContext = []) {
 
     // 1.5. PREGUNTAS POÉTICAS, CURIOSAS O INFORMALES (Nubes, sentido de la vida, etc.)
     if (q.includes('nube') || q.includes('nubes') || q.includes('olor a nube') || q.includes('olor de las nubes') || q.includes('filosof') || q.includes('sentido de la vida')) {
-        return `☁️✨ ¡Huelen a aire puro, libertad y a ese primer respiro fresco cuando vas en carretera saliendo de la ciudad!\n\nEn *La Ruta del Águila* nos fascina llevarte a donde el cielo se toca con las montañas (como Cuetzalan, Zacatlán de las Manzanas o Real del Monte). ¿Listo para escaparte a despejar la mente este fin de semana?`;
+        return `☁️✨ ¡Huelen a aire puro, libertad y a ese primer respiro fresco cuando vas en carretera saliendo de la ciudad!\n\nEn *Ruta del Águila by Fraveo* nos fascina llevarte a donde el cielo se toca con las montañas (como Cuetzalan, Zacatlán de las Manzanas o Real del Monte). ¿Listo para escaparte a despejar la mente este fin de semana?`;
     }
 
     // 1.6. GRANDES EXPEDICIONES NACIONALES Y LUNA DE MIEL (El Chepe, Barrancas, Cancún, Los Cabos, fraVEO)
     if (q.includes('chepe') || q.includes('barrancas') || q.includes('luna de miel') || q.includes('cancun') || q.includes('cancún') || q.includes('cabos') || q.includes('riviera maya') || q.includes('huasteca potosina') || q.includes('avion') || q.includes('avión')) {
-        return `✈️ ¡Hola! Soy **Alma** de *La Ruta del Águila*.\nPara grandes expediciones como **El Tren Chepe (Barrancas del Cobre)** o viajes de **Luna de Miel / Playa**, operamos en alianza oficial con **fraVEO** para armarte un **Paquete Integral a la Medida** (vuelos redondos, traslados ejecutivos, noches de hotel seleccionadas y boletos turísticos).\n\nTe preparamos tu **cotización formal desglosada en PDF en un lapso de 24 a 48 horas hábiles**:\n1. ¿Para cuántas personas y cuántos días sería el viaje?\n2. ¿En qué mes o fecha tentativa tienen planeado viajar?\n3. ¿Prefieres recibir la propuesta detallada por **WhatsApp** o por **correo electrónico**?`;
+        return `✈️ ¡Hola! Soy **Alma** de *Ruta del Águila by Fraveo*.\nPara grandes expediciones como **El Tren Chepe (Barrancas del Cobre)** o viajes de **Luna de Miel / Playa**, operamos en alianza oficial con **fraVEO** para armarte un **Paquete Integral a la Medida** (vuelos redondos, traslados ejecutivos, noches de hotel seleccionadas y boletos turísticos).\n\nTe preparamos tu **cotización formal desglosada en PDF en un lapso de 24 a 48 horas hábiles**:\n1. ¿Para cuántas personas y cuántos días sería el viaje?\n2. ¿En qué mes o fecha tentativa tienen planeado viajar?\n3. ¿Prefieres recibir la propuesta detallada por **WhatsApp** o por **correo electrónico**?`;
     }
 
     // 1.7. CONCIERTOS CDMX Y SODA STEREO (Kit Concierto: Botana + Agua + Gafete + Seguro)
     if (q.includes('soda stereo') || q.includes('soda estereo') || q.includes('cerati') || q.includes('pata de perro') || q.includes('kit concierto')) {
-        return `🎸 ¡Hola! Soy **Alma** de *La Ruta del Águila*.\n¡Tenemos transporte ejecutivo redondo a conciertos en CDMX con la mejor experiencia de Puebla!\n\n🎁 **Todas nuestras salidas a conciertos incluyen el Kit Concierto Ejecutivo:**\n- **Snack Pack de cortesía:** Botana/galleta + Agua fría embotellada.\n- **Gafete Conmemorativo de Colección** del concierto.\n- **Seguro de Cobertura Amplia de Viajero a Bordo**.\n- **Chofer sobrio asignado** que te deja en la puerta del recinto y te espera hasta el final de la última canción.\n\n*Nota:* El transporte es independiente de la boletera (llevas tu boleto en la zona que tú elijas). Apartas con solo **$200 MXN** y tienes 10% de descuento con el cupón **ESTETICA10**. ¿Te apartamos lugares?`;
+        return `🎸 ¡Hola! Soy **Alma** de *Ruta del Águila by Fraveo*.\n¡Tenemos transporte ejecutivo redondo a conciertos en CDMX con la mejor experiencia de Puebla!\n\n🎁 **Todas nuestras salidas a conciertos incluyen el Kit Concierto Ejecutivo:**\n- **Snack Pack de cortesía:** Botana/galleta + Agua fría embotellada.\n- **Gafete Conmemorativo de Colección** del concierto.\n- **Seguro de Cobertura Amplia de Viajero a Bordo**.\n- **Chofer sobrio asignado** que te deja en la puerta del recinto y te espera hasta el final de la última canción.\n\n*Nota:* El transporte es independiente de la boletera (llevas tu boleto en la zona que tú elijas). Apartas con solo **$200 MXN**. ¿Te apartamos lugares?`;
     }
 
     // 2. ARTISTAS FALLECIDOS (José José, Juan Gabriel, Jenni Rivera, etc.)
     if (q.includes('jose jose') || q.includes('josé josé') || q.includes('juan gabriel') || q.includes('jenni rivera') || q.includes('valentin elizalde') || q.includes('joan sebastian')) {
-        return `🕊️ ¡Hola! Soy **Alma** de *La Ruta del Águila*.\nLamentablemente ese gran artista ya falleció, por lo que no existen conciertos en vivo suyos. Sin embargo, cuando se presentan **homenajes sinfónicos oficiales o tributos en CDMX** (en recintos como el Auditorio Nacional, Bellas Artes o Teatro Metropólitan), organizamos **transporte ejecutivo redondo desde San Manuel, Puebla** desde **$549 MXN**.\n\n¿Te gustaría que te avise cuando haya un concierto sinfónico u homenaje en CDMX?`;
+        return `🕊️ ¡Hola! Soy **Alma** de *Ruta del Águila by Fraveo*.\nLamentablemente ese gran artista ya falleció, por lo que no existen conciertos en vivo suyos. Sin embargo, cuando se presentan **homenajes sinfónicos oficiales o tributos en CDMX** (en recintos como el Auditorio Nacional, Bellas Artes o Teatro Metropólitan), organizamos **transporte ejecutivo redondo desde San Manuel, Puebla** desde **$549 MXN**.\n\n¿Te gustaría que te avise cuando haya un concierto sinfónico u homenaje en CDMX?`;
     }
 
     // 3. SHOWS INFANTILES Y FAMILIARES (Tatiana, Bely y Beto, Luli Pampín)
     if (q.includes('tatiana') || q.includes('bely') || q.includes('luli pampin') || q.includes('infantil') || q.includes('niños')) {
-        return `🎠 ¡Hola! Soy **Alma** de *La Ruta del Águila*.\n¡Claro que sí! Para los shows familiares e infantiles como **Tatiana** en **Arena CDMX, Auditorio Nacional o Teatro Metropólitan**, organizamos salidas ejecutivas seguras desde San Manuel, Puebla (transporte redondo desde **$549 a $580 MXN** por persona con seguro de viajero y espera al terminar la función, o bien en **modalidad privada familiar**).\n\nRecuerda que apartas con **$200 MXN** y puedes usar el cupón **ESTETICA10** (10% de descuento). ¿Para qué fecha o cuántos lugares familiares te gustaría cotizar?`;
+        return `🎠 ¡Hola! Soy **Alma** de *Ruta del Águila by Fraveo*.\n¡Claro que sí! Para los shows familiares e infantiles como **Tatiana** en **Arena CDMX, Auditorio Nacional o Teatro Metropólitan**, organizamos salidas ejecutivas seguras desde San Manuel, Puebla (transporte redondo desde **$549 a $580 MXN** por persona con seguro de viajero y espera al terminar la función, o bien en **modalidad privada familiar**).\n\nRecuerda que apartas con solo **$200 MXN**. ¿Para qué fecha o cuántos lugares familiares te gustaría cotizar?`;
     }
 
     if (q.includes('veronica castro') || q.includes('verónica castro')) {
-        return `🎭 ¡Hola! Soy **Alma** de *La Ruta del Águila*.\nActualmente **Verónica Castro** no tiene presentaciones de teatro ni conciertos confirmados en la cartelera oficial de CDMX (se encuentra retirada temporalmente de los escenarios y giras).\n\nSin embargo, en cuanto se anuncie cualquier obra, homenaje o gala en recintos de CDMX, contaremos con **salida ejecutiva redonda** desde San Manuel, Puebla.\n¿Te gustaría consultar por alguna otra obra de teatro o concierto en CDMX?`;
+        return `🎭 ¡Hola! Soy **Alma** de *Ruta del Águila by Fraveo*.\nActualmente **Verónica Castro** no tiene presentaciones de teatro ni conciertos confirmados en la cartelera oficial de CDMX (se encuentra retirada temporalmente de los escenarios y giras).\n\nSin embargo, en cuanto se anuncie cualquier obra, homenaje o gala en recintos de CDMX, contaremos con **salida ejecutiva redonda** desde San Manuel, Puebla.\n¿Te gustaría consultar por alguna otra obra de teatro o concierto en CDMX?`;
     }
 
     if (q.includes('luis miguel') || q.includes('luismiguel') || q.includes('el sol')) {
-        return `☀️ ¡Hola! Soy **Alma** de *La Ruta del Águila*.\nActualmente en la cartelera oficial de recintos CDMX (Arena CDMX, Estadio GNP, Auditorio Nacional) no hay fechas próximas confirmadas para Luis Miguel (sus fechas recientes en Arena CDMX ya concluyeron).\n\nEn cuanto se anuncie una nueva fecha o preventa, organizaremos **transporte ejecutivo redondo** desde San Manuel, Puebla (desde **$549 MXN**). ¿Te gustaría que te registremos en la lista prioritaria por WhatsApp?`;
+        return `☀️ ¡Hola! Soy **Alma** de *Ruta del Águila by Fraveo*.\nActualmente en la cartelera oficial de recintos CDMX (Arena CDMX, Estadio GNP, Auditorio Nacional) no hay fechas próximas confirmadas para Luis Miguel (sus fechas recientes en Arena CDMX ya concluyeron).\n\nEn cuanto se anuncie una nueva fecha o preventa, organizaremos **transporte ejecutivo redondo** desde San Manuel, Puebla (desde **$549 MXN**). ¿Te gustaría que te registremos en la lista prioritaria por WhatsApp?`;
     }
 
     if (q.includes('shakira') || q.includes('chayanne') || q.includes('temerarios') || q.includes('morat') || q.includes('zayn') || q.includes('weeknd')) {
@@ -806,15 +806,15 @@ function generateLocalAlmaResponse(question, matchedContext = []) {
     // 4. SI HAY COINCIDENCIA EN LA BASE DE DATOS DE 908 DESTINOS Y EVENTOS (MUSEOS, GASTRONOMÍA Y TARIFAS)
     if (Array.isArray(matchedContext) && matchedContext.length > 0) {
         const top = matchedContext[0];
-        let detail = `🦅 ¡Hola! Soy **Alma** de *La Ruta del Águila*.\nSobre **${top.name}** (${top.state}):\n- ${top.desc}\n`;
+        let detail = `🦅 ¡Hola! Soy **Alma** de *Ruta del Águila by Fraveo*.\nSobre **${top.name}** (${top.state}):\n- ${top.desc}\n`;
         if (top.attractions) detail += `- 🏛️ **Lugares y museos por visitar:** ${top.attractions}.\n`;
         if (top.gastronomy) detail += `- 🍽️ **Platillos típicos imperdibles:** ${top.gastronomy}.\n`;
         if (top.price_ref) detail += `- 💰 **Tarifa estimada:** ${top.price_ref}.\n`;
-        detail += `\nRecuerda que apartas con **$200 MXN**, liquidas 48-24h antes de salir y tienes **10% de descuento** con el cupón **ESTETICA10**. ¿Para cuántas personas y qué fecha te gustaría cotizar?`;
+        detail += `\nRecuerda que apartas tu lugar con solo **$200 MXN** y liquidas 48-24h antes de salir. ¿Para cuántas personas y en qué fecha te gustaría viajar?`;
         return detail;
     }
 
-    return `🦅 ¡Hola! Soy **Alma**, tu asesora en *La Ruta del Águila* (San Manuel, Puebla).\nRespecto a tu consulta sobre **"${escapeHtml(raw)}"**, podemos organizarlo tanto en **salida grupal programada** (con mínimo 12 interesados de nuestro catálogo de **908 destinos de México y eventos CDMX**) como en **traslado privado a tu medida**.\n\nRecuerda que apartas cualquier viaje con **$200 MXN**, liquidas 48-24h antes de salir y tienes **10% de descuento** con el cupón **ESTETICA10**. ¿En qué fecha aproximada y para cuántas personas te gustaría viajar?`;
+    return `🦅 ¡Hola! Soy **Alma**, tu asesora en *Ruta del Águila by Fraveo* (San Manuel, Puebla).\nRespecto a tu consulta sobre **"${escapeHtml(raw)}"**, podemos organizarlo tanto en **salida grupal programada** (con mínimo 12 interesados de nuestro catálogo de **908 destinos de México y eventos CDMX**) como en **traslado privado a tu medida**.\n\nRecuerda que apartas cualquier viaje con solo **$200 MXN** y liquidas 48-24h antes de salir. ¿En qué fecha aproximada y para cuántas personas te gustaría viajar?`;
 }
 
 /* =========================================================================
@@ -1140,7 +1140,7 @@ function buildAlmaContextualQuoteGreeting(nombre, estado) {
         highlight = ', un destino excelente para viajar con toda la tranquilidad y comodidad desde San Manuel, Puebla.';
     }
 
-    return `¡Hola! Soy **Alma** de *La Ruta del Águila* 🦅.\nVeo que te interesa viajar a **${nombre} (${estado})**${highlight}\n\n¿Te gustaría visitarlo pronto? Cuéntame: ¿para cuántas personas sería el viaje y aproximadamente en qué fecha o cuántos días tienes pensado viajar?`;
+    return `¡Hola! Soy **Alma** de *Ruta del Águila by Fraveo* 🦅.\nVeo que te interesa viajar a **${nombre} (${estado})**${highlight}\n\n¿Te gustaría visitarlo pronto? Cuéntame: ¿para cuántas personas sería el viaje y aproximadamente en qué fecha o cuántos días tienes pensado viajar?`;
 }
 
 function quoteWithAI(nombre, estado, ev) {
@@ -1501,7 +1501,7 @@ function applyCheckoutCoupon() {
         appliedCouponCode = code;
         msg.style.display = 'block';
         msg.style.color = 'var(--brand-green)';
-        msg.innerHTML = `✅ ¡Cupón <strong>${code}</strong> aplicado! 10% de descuento en el total de tu viaje.`;
+        msg.innerHTML = `✅ ¡Código <strong>${code}</strong> verificado! 10% de descuento aplicado en el total de tu viaje por cortesía de Estudio de Belleza Imagen y Estilo "Alma".`;
         const amtEl = document.getElementById('modal-pkg-amount');
         if (amtEl && typeof currentModalPkgAmount === 'number') {
             const discounted = Math.round(currentModalPkgAmount * 0.90);
@@ -1511,7 +1511,7 @@ function applyCheckoutCoupon() {
     } else if (code) {
         msg.style.display = 'block';
         msg.style.color = 'var(--brand-red)';
-        msg.innerHTML = `❌ El cupón <strong>${escapeHtml(code)}</strong> no es válido o ha expirado.`;
+        msg.innerHTML = `❌ El código <strong>${escapeHtml(code)}</strong> no es válido. Recuerda que la Maestra Alma entrega tu cupón exclusivo al realizarte servicios mayores en el salón.`;
     }
 }
 
