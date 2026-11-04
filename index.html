@@ -89,10 +89,10 @@
         },
         {
           "@type": "Question",
-          "name": "¿El cupón ESTETICA10 de 10% de descuento está abierto para todos?",
+          "name": "¿Cómo aplico mi 10% de descuento preferencial en viajes?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Sí, el cupón promocional ESTETICA10 otorga 10% de descuento directo en el calculador de pago y está abierto para todos los viajeros como promoción cruzada con Estética Alma en Calle Río Nexapa #6101, Col. San Manuel, Puebla."
+            "text": "El cupón preferencial del 10% de descuento se entrega a las clientas de Estudio de Belleza Alma al realizarse Diseño de Color, Alisados Progresivos, Paquete de Faciales, XV Años o Novia en Calle Río Nexapa #6101, Col. San Manuel, Puebla, e ingresarse en el formulario de reservación."
           }
         }
       ]
@@ -717,16 +717,16 @@
 <body>
 
     <!-- Top Utility / Sister Brand Announcement -->
-    <div style="background: linear-gradient(90deg, #18181b, #27272a); color: #e4e4e7; padding: 8px 5%; font-size: 0.86rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); z-index: 1001; position: relative; flex-wrap: wrap; gap: 8px; line-height: 1.5;">
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <span style="color: #fb7185;">🌸</span>
-            <span>🎁 <strong>Alianza Estudio de Belleza Imagen y Estilo "Alma":</strong> Obtén <strong>10% de descuento en tus viajes</strong> (<code style="background:rgba(244,63,94,0.25); color:#fda4af; padding:2px 7px; border-radius:4px; font-weight:800; letter-spacing:0.5px;">ESTETICA10</code>) al realizarte Diseño de Color, Alisado Progresivo, Paquete Facial, XV Años o Novia.</span>
+    <div class="top-sister-banner">
+        <div class="top-sister-content">
+            <span class="top-sister-icon">🌸</span>
+            <span>🎁 <strong>Alianza Estudio de Belleza "Alma":</strong> Recibe <strong>10% de descuento preferencial en tus viajes</strong> al realizarte Diseño de Color, Alisado Progresivo, Paquete Facial, XV Años o Novia en el salón.</span>
         </div>
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <a href="estetica.html" style="color: #fda4af; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 5px; padding: 4px 12px; border-radius: 12px; background: rgba(244,63,94,0.14); border: 1px solid rgba(244,63,94,0.3);">
+        <div class="top-sister-actions">
+            <a href="estetica.html" class="top-sister-btn btn-estetica">
                 🌸 Estudio de Belleza <i class="fas fa-arrow-right" style="font-size: 0.7rem;"></i>
             </a>
-            <a href="tienda.html" style="color: #fde047; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 5px; padding: 4px 12px; border-radius: 12px; background: rgba(253,224,71,0.12); border: 1px solid rgba(253,224,71,0.3);">
+            <a href="tienda.html" class="top-sister-btn btn-tienda">
                 🛍️ Productos Lendan
             </a>
         </div>
@@ -1321,7 +1321,7 @@
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">DESDE</span>
                                     <div class="slider-price" style="color:#fde047;">$1,909 USD</div>
                                 </div>
-                                <button class="slider-card-btn btn-gold-vip">
+                                <button class="slider-card-btn btn-gold-vip" onclick="event.stopPropagation(); openWaDirectQuote('Inglaterra al Completo 2026', '$1,909 USD')">
                                     Cotizar WhatsApp
                                 </button>
                             </div>
@@ -1342,28 +1342,28 @@
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">DESDE</span>
                                     <div class="slider-price" style="color:#fde047;">$1,300 USD</div>
                                 </div>
-                                <button class="slider-card-btn btn-gold-vip">
+                                <button class="slider-card-btn btn-gold-vip" onclick="event.stopPropagation(); openWaDirectQuote('Guatemala al Completo 2026', '$1,300 USD')">
                                     Cotizar WhatsApp
                                 </button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Vietnam y Camboya -->
-                    <div class="slider-card gold-card-vip" onclick="openSharedElementModal('vietnam-camboya')">
-                        <div class="slider-card-img" style="background-image: url('img/IMG-20260926-WA0006.jpg');">
-                            <span class="slider-badge" style="background:linear-gradient(135deg, #fde047, #ca8a04); color:#000; font-weight:800;">Sureste Asiático</span>
+                    <!-- Oaxaca Mágico: Hierve el Agua & Mitla -->
+                    <div class="slider-card gold-card-vip" onclick="openSharedElementModal('oaxaca-hierve-agua')">
+                        <div class="slider-card-img" style="background-image: url('img/oaxaca_hierve_agua.jpg');">
+                            <span class="slider-badge" style="background:linear-gradient(135deg, #fde047, #ca8a04); color:#000; font-weight:800;">Oaxaca Escénico</span>
                         </div>
                         <div class="slider-card-body">
-                            <div class="slider-card-date" style="color:#fde047;">11 DÍAS • HALONG Y ANGKOR</div>
-                            <div class="slider-card-title">Vietnam y Camboya al Completo</div>
-                            <div class="slider-card-desc">Bahía de Halong, templos de Angkor Wat, Hanoi y Siem Reap.</div>
+                            <div class="slider-card-date" style="color:#fde047;">FIN DE SEMANA • HIERVE EL AGUA Y MEZCAL</div>
+                            <div class="slider-card-title">Hierve el Agua & Mitla Mágico</div>
+                            <div class="slider-card-desc">Cascadas petrificadas, albercas naturales infinitas, Mitla y palenque de mezcal.</div>
                             <div class="slider-card-footer">
                                 <div>
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">DESDE</span>
-                                    <div class="slider-price" style="color:#fde047;">$2,265 USD</div>
+                                    <div class="slider-price" style="color:#fde047;">$1,450 MXN</div>
                                 </div>
-                                <button class="slider-card-btn btn-gold-vip">
+                                <button class="slider-card-btn btn-gold-vip" onclick="event.stopPropagation(); openWaDirectQuote('Hierve el Agua & Mitla Oaxaca', '$1,450 MXN')">
                                     Cotizar WhatsApp
                                 </button>
                             </div>
@@ -1384,7 +1384,7 @@
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">DESDE</span>
                                     <div class="slider-price" style="color:#fde047;">$1,432 USD</div>
                                 </div>
-                                <button class="slider-card-btn btn-gold-vip">
+                                <button class="slider-card-btn btn-gold-vip" onclick="event.stopPropagation(); openWaDirectQuote('Tailandia al Completo 2027', '$1,432 USD')">
                                     Cotizar WhatsApp
                                 </button>
                             </div>
@@ -1405,7 +1405,7 @@
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">DESDE</span>
                                     <div class="slider-price" style="color:#fde047;">$2,135 USD</div>
                                 </div>
-                                <button class="slider-card-btn btn-gold-vip">
+                                <button class="slider-card-btn btn-gold-vip" onclick="event.stopPropagation(); openWaDirectQuote('Breve Kenia & Safari 2027', '$2,135 USD')">
                                     Cotizar WhatsApp
                                 </button>
                             </div>
@@ -1426,7 +1426,7 @@
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">DESDE</span>
                                     <div class="slider-price" style="color:#fde047;">$3,565 USD</div>
                                 </div>
-                                <button class="slider-card-btn btn-gold-vip">
+                                <button class="slider-card-btn btn-gold-vip" onclick="event.stopPropagation(); openWaDirectQuote('Tanzania Esencial 2027', '$3,565 USD')">
                                     Cotizar WhatsApp
                                 </button>
                             </div>
@@ -1447,7 +1447,7 @@
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">DESDE</span>
                                     <div class="slider-price" style="color:#fde047;">$5,790 USD</div>
                                 </div>
-                                <button class="slider-card-btn btn-gold-vip">
+                                <button class="slider-card-btn btn-gold-vip" onclick="event.stopPropagation(); openWaDirectQuote('El Clásico & Tour Europa 2027', '$5,790 USD')">
                                     Cotizar WhatsApp
                                 </button>
                             </div>
@@ -1468,7 +1468,7 @@
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">PAQUETE VUELO + HOTEL</span>
                                     <div class="slider-price" style="color:#fde047;">Desde $8,990 MXN</div>
                                 </div>
-                                <button class="slider-card-btn btn-gold-vip">
+                                <button class="slider-card-btn btn-gold-vip" onclick="event.stopPropagation(); openWaDirectQuote('Cancún & Riviera Maya All-Inclusive', 'Desde $8,990 MXN')">
                                     Cotizar WhatsApp
                                 </button>
                             </div>
@@ -1489,7 +1489,7 @@
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">PAQUETE VUELO + HOTEL</span>
                                     <div class="slider-price" style="color:#fde047;">Desde $10,490 MXN</div>
                                 </div>
-                                <button class="slider-card-btn btn-gold-vip">
+                                <button class="slider-card-btn btn-gold-vip" onclick="event.stopPropagation(); openWaDirectQuote('Los Cabos & El Arco All-Inclusive', 'Desde $10,490 MXN')">
                                     Cotizar WhatsApp
                                 </button>
                             </div>
@@ -1510,7 +1510,7 @@
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">EXPEDICIÓN fraVEO</span>
                                     <div class="slider-price" style="color:#fde047;">Desde $14,850</div>
                                 </div>
-                                <button class="slider-card-btn btn-gold-vip">
+                                <button class="slider-card-btn btn-gold-vip" onclick="event.stopPropagation(); openWaDirectQuote('Barrancas del Cobre & Tren Chepe Express', 'Desde $14,850 MXN')">
                                     Cotizar WhatsApp
                                 </button>
                             </div>
@@ -1531,7 +1531,7 @@
                                     <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">DESDE</span>
                                     <div class="slider-price" style="color:#fde047;">$1,470 USD</div>
                                 </div>
-                                <button class="slider-card-btn btn-gold-vip">
+                                <button class="slider-card-btn btn-gold-vip" onclick="event.stopPropagation(); openWaDirectQuote('Fantasía de Omán 2027', '$1,470 USD')">
                                     Cotizar WhatsApp
                                 </button>
                             </div>
@@ -1778,7 +1778,7 @@
                     <div style="background:var(--bg-subtle); padding:1.1rem; border-radius:10px; border-left:4px solid #f43f5e;">
                         <small style="color:var(--text-muted); display:block; margin-bottom:4px;">Tráfico a Estética Alma</small>
                         <div style="font-size:1.6rem; font-weight:900; color:#f43f5e;" id="metric-clicks-estetica">59</div>
-                        <small style="color:var(--text-muted); font-size:0.75rem;">Cupón ESTETICA10 activo</small>
+                        <small style="color:var(--text-muted); font-size:0.75rem;">Convenio Estética activo</small>
                     </div>
                 </div>
 
@@ -2631,9 +2631,9 @@
     </div>
 
     <!-- Base de Datos de Eventos CDMX, Gran Catálogo Maestro 1000 y Motores Interactivos -->
-    <script src="js/cdmx_events_engine.js?v=20261030c"></script>
-    <script src="js/destinos_data.js?v=20261030c"></script>
-    <script src="js/sectur_737_catalog.js?v=20261030c"></script>
-    <script src="js/app_interactive.js?v=20261030c"></script>
+    <script defer src="js/cdmx_events_engine.js?v=20261030c"></script>
+    <script defer src="js/destinos_data.js?v=20261030c"></script>
+    <script defer src="js/sectur_737_catalog.js?v=20261030c"></script>
+    <script defer src="js/app_interactive.js?v=20261030c"></script>
 </body>
 </html>

@@ -471,6 +471,13 @@ function bookActiveDestinoWhatsApp() {
     window.open(`https://wa.me/522228016244?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
+function openWaDirectQuote(tourName, price) {
+    const pText = price ? ` (${price})` : '';
+    const msg = `Hola Alma, me interesa cotizar el paquete de viaje VIP: *${tourName}*${pText} vía Fraveo / La Ruta del Águila desde Puebla. ¿Podrías darme detalles de itinerario y próximas fechas de salida?`;
+    window.open(`https://wa.me/522228016244?text=${encodeURIComponent(msg)}`, '_blank');
+}
+window.openWaDirectQuote = openWaDirectQuote;
+
 function openRutaSatelital3D(id) { openSharedElementModal(id); }
 function closeRutaSatelital3D() { closeAllModals(); }
 
@@ -802,7 +809,7 @@ Nuestro tour de temporada confirmado en pre-venta es **Zacatlán & Chignahuapan 
     }
 
     if (q.includes('shakira') || q.includes('chayanne') || q.includes('temerarios') || q.includes('morat') || q.includes('zayn') || q.includes('weeknd')) {
-        return `🎶 ¡Hola! Soy **Alma**. Para los grandes conciertos en el **Estadio GNP Seguros** ($549 MXN) y **Arena CDMX** ($580 MXN):\n- Contamos con salida ejecutiva directa desde San Manuel, Puebla.\n- Te dejamos en el recinto y nuestra unidad te espera al terminar para que regreses seguro a Puebla la misma noche.\n- Apartas tu asiento con solo **$200 MXN** y tienes 10% de descuento con el cupón **ESTETICA10**. ¿Para qué artista o fecha deseas apartar?`;
+        return `🎶 ¡Hola! Soy **Alma**. Para los grandes conciertos en el **Estadio GNP Seguros** ($549 MXN) y **Arena CDMX** ($580 MXN):\n- Contamos con salida ejecutiva directa desde San Manuel, Puebla.\n- Te dejamos en el recinto y nuestra unidad te espera al terminar para que regreses seguro a Puebla la misma noche.\n- Apartas tu asiento con solo **$200 MXN** (y cuentas con 10% de descuento preferencial si tienes tu cupón exclusivo del Estudio de Belleza). ¿Para qué artista o fecha deseas apartar?`;
     }
 
     if (q.includes('hospital') || q.includes('medica') || q.includes('médica') || q.includes('doctor') || q.includes('nutricion') || q.includes('nutrición') || q.includes('compras') || q.includes('particular') || q.includes('privado') || q.includes('aeropuerto') || q.includes('aifa') || q.includes('aicm') || q.includes('visa') || q.includes('embajada')) {
@@ -822,7 +829,7 @@ Nuestro tour de temporada confirmado en pre-venta es **Zacatlán & Chignahuapan 
     }
 
     if (q.includes('estetica') || q.includes('estética') || q.includes('salon') || q.includes('salón') || q.includes('cupon') || q.includes('cupón') || q.includes('descuento') || q.includes('corte') || q.includes('tinte') || q.includes('alisado') || q.includes('nanoplastia') || q.includes('botox') || q.includes('pestañas') || q.includes('novia') || q.includes('lendan')) {
-        return `🌸 ¡Hola! Soy **Alma** de **Estudio de Belleza Imagen y Estilo "Alma"** (más de 30 años nos respaldan en Río Nexapa #6101, San Manuel).\n\n✨ **Lista Oficial de Servicios y Precios:**\n- **Corte Dama:** $200 | **Caballero:** $150 | **Planchado Express:** $200\n- **Aplicación de Tintes:** Desde $500 | **Diseños de Color (Balayage/Mechas):** Desde $1,000\n- **Alisados Progresivos:** Desde $850 (Promo especial desde $800) | **Nanoplastia:** Desde $600 | **Botox Capilar:** Desde $500 | **Sinergia Capilar:** Desde $300\n- **Peinado Social:** Desde $500 | **Maquillaje Social:** $600\n- **Paquete Novia:** $5,000 | **Paquete XV Años:** $4,000\n- **Pestañas:** Clásicas $400, Efecto Rímel $450, Volumen Tecnológico $500 | **Lifting:** $350 | **Laminado Cejas:** $200\n- **Depilaciones:** Ceja $70, Facial $250, Cera Roll-On (Piernas $650, Brazos $400, Axilas $200)\n- **Cortes sin costo (Práctica supervisada):** Lun, Mié y Vie de 4:00 a 5:00 PM.\n- 🎁 **10% de Descuento en Viajes (Cupón ESTETICA10):** Al realizarte cualquier Diseño de Color, Alisado Progresivo, Paquete de Faciales, XV Años o Novias. ¿Qué servicio te gustaría agendar?`;
+        return `🌸 ¡Hola! Soy **Alma** de **Estudio de Belleza Imagen y Estilo "Alma"** (más de 30 años nos respaldan en Río Nexapa #6101, San Manuel).\n\n✨ **Lista Oficial de Servicios y Precios:**\n- **Corte Dama:** $200 | **Caballero:** $150 | **Planchado Express:** $200\n- **Aplicación de Tintes:** Desde $500 | **Diseños de Color (Balayage/Mechas):** Desde $1,000\n- **Alisados Progresivos:** Desde $850 (Promo especial desde $800) | **Nanoplastia:** Desde $600 | **Botox Capilar:** Desde $500 | **Sinergia Capilar:** Desde $300\n- **Peinado Social:** Desde $500 | **Maquillaje Social:** $600\n- **Paquete Novia:** $5,000 | **Paquete XV Años:** $4,000\n- **Pestañas:** Clásicas $400, Efecto Rímel $450, Volumen Tecnológico $500 | **Lifting:** $350 | **Laminado Cejas:** $200\n- **Depilaciones:** Ceja $70, Facial $250, Cera Roll-On (Piernas $650, Brazos $400, Axilas $200)\n- **Cortes sin costo (Práctica supervisada):** Lun, Mié y Vie de 4:00 a 5:00 PM.\n- 🎁 **10% de Descuento en Viajes:** Al realizarte cualquier Diseño de Color, Alisado Progresivo, Paquete de Faciales, XV Años o Novias, la Maestra Alma te entrega tu cupón exclusivo al finalizar tu servicio en salón. ¿Qué servicio te gustaría agendar?`;
     }
 
     // 4. SI HAY COINCIDENCIA EN LA BASE DE DATOS DE 908 DESTINOS Y EVENTOS (MUSEOS, GASTRONOMÍA Y TARIFAS)

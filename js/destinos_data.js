@@ -388,6 +388,40 @@ const DESTINOS_DB = [
         incluye: ["Transporte redondo Puebla - Acapulco - Puebla", "Casetas Autopista del Sol", "Seguro de viajero"],
         no_incluye: ["Hospedaje (opcional paquete con hotel)", "Alimentos"]
     },
+    {
+        id: "oaxaca-hierve-agua",
+        nombre: "Hierve el Agua, Mitla & Ruta del Mezcal",
+        categoria: "pueblo_magico",
+        subcategoria: "express",
+        estado: "Oaxaca",
+        precio: 1450,
+        precio_texto: "$1,450 MXN",
+        anticipo_apartado: "Aparta con $300 MXN",
+        tipo_transporte: "Camioneta Ejecutiva / Sprinter Turística",
+        duracion: "Fin de Semana / Día Completo (05:00 a 23:00)",
+        distancia: "340 km desde Puebla",
+        tiempo_traslado: "4.5 hrs",
+        badge: "Cascadas Petrificadas & Mezcal",
+        imagen: "img/oaxaca_hierve_agua.jpg",
+        descripcion: "Maravilla natural única: manantiales de aguas templadas carbonatadas y monumentales cascadas petrificadas sobre la Sierra Mixe en Hierve el Agua. El recorrido incluye la mística zona arqueológica de Mitla con sus mosaicos geométricos de piedra labrada, el milenario Árbol del Tule y degustación guiada en un auténtico palenque de mezcal artesanal en Matatlán.",
+        coordenadas: { lat: 16.8656, lng: -96.2753 },
+        itinerario: [
+            { hora: "05:00 AM", actividad: "Salida puntual desde Río Nexapa 6101, San Manuel, Puebla vía Tehuacán-Oaxaca." },
+            { hora: "09:30 AM", actividad: "Visita al milenario Árbol del Tule y desayuno típico oaxaqueño (tlayudas y chocolate de agua)." },
+            { hora: "11:00 AM - 13:30 PM", actividad: "Hierve el Agua: caminata escénica por acantilados y baño libre en las albercas naturales infinitas." },
+            { hora: "14:15 PM - 16:00 PM", actividad: "Zona Arqueológica de Mitla ('Ciudad de los Muertos') y telares tradicionales de lana." },
+            { hora: "16:30 PM - 18:00 PM", actividad: "Santiago Matatlán: recorrido por palenque mezcalero con degustación de variedades espadín, tobalá y cremas." },
+            { hora: "18:15 PM", actividad: "Abordaje en unidad ejecutiva e inicio de retorno seguro a Puebla." },
+            { hora: "23:00 PM", actividad: "Arribo seguro a San Manuel, Puebla." }
+        ],
+        incluye: [
+            "Transporte redondo ejecutivo garantizado Puebla ↔ Oaxaca",
+            "Entradas oficiales a Hierve el Agua, Mitla y Árbol del Tule",
+            "Degustación guiada en palenque mezcalero artesanal",
+            "Casetas de autopista, combustible y seguro de viajero a bordo"
+        ],
+        no_incluye: ["Alimentos y compras de artesanías o botellas de mezcal"]
+    },
 
     // =========================================================================
     // TIER 3: DESTINOS VIP (ALIANZA fraVEO - ALTA GAMA & CIRCUITOS MUNDIALES)
