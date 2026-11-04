@@ -2275,24 +2275,7 @@
         justify-content: center !important;
     }
     .ai-orb-trigger {
-        display: flex !important;
-        position: fixed !important;
-        bottom: 78px !important;
-        right: 18px !important;
-        left: auto !important;
-        top: auto !important;
-        width: 48px !important;
-        height: 48px !important;
-        border-radius: 50% !important;
-        z-index: 9998 !important;
-        background: linear-gradient(135deg, #a855f7, #06b6d4) !important;
-        box-shadow: 0 8px 24px rgba(168, 85, 247, 0.45) !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
-    .ai-orb-trigger .ai-orb-inner i {
-        font-size: 1.25rem !important;
-        color: #ffffff !important;
+        display: none !important; /* En móviles se oculta el orbe flotante para respetar la auditoría de UX (The Thumb Zone): la IA se consulta directamente desde las tarjetas o la barra superior */
     }
     .whatsapp-float {
         position: fixed !important;

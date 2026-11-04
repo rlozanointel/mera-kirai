@@ -746,6 +746,28 @@ function generateLocalAlmaResponse(question, matchedContext = []) {
         return resp;
     }
 
+    // 1.45. TOUR CONFIRMADO EN PREVENTA: ZACATLÁN & CHIGNAHUAPAN MÁGICO (PUEBLA)
+    if (q.includes('zacatlan') || q.includes('zacatlán') || q.includes('chignahuapan') || q.includes('esfera') || q.includes('esferas') || q.includes('sidra') || q.includes('manzana')) {
+        return `🍎✨ ¡Hola! Soy **Alma** de *Ruta del Águila by Fraveo*. ¡Qué gran viaje!
+Nuestro tour de temporada confirmado en pre-venta es **Zacatlán & Chignahuapan Mágico** (Salidas en Noviembre y Diciembre 2026):
+
+🚌 **Logística & Salida:**
+- Salida puntual: **07:00 AM** desde **Calle Río Nexapa #6101, Jardines de San Manuel, Puebla**.
+- Transporte redondo en unidad ejecutiva climatizada, seguro de viajero a bordo y retorno a Puebla el mismo día (20:30 hrs aprox).
+
+🏛️ **Itinerario & Experiencias Incluidas:**
+1. **Chignahuapan:** Fábricas artesanales de esferas navideñas en vidrio soplado, Basílica de la Inmaculada Concepción (virgen monumental de 12m) y el quiosco mudéjar de madera en el zócalo.
+2. **Zacatlán de las Manzanas:** Reloj Floral monumental, Exconvento Franciscano, Paseo de la Barranca de los Jilgueros con su Mirador de Cristal y **degustación guiada de sidras y vinos frutales artesanales**.
+
+💰 **Inversión y Cómo Apartar:**
+- **Tarifa:** Desde **$650 MXN** por persona (transporte redondo ejecutivo).
+- **Apartas con solo $200 MXN** por asiento (vía Transferencia SPEI o en efectivo en cualquier OXXO / Elektra / Banco Azteca).
+- El resto se liquida 48 a 24 horas antes del viaje.
+- Si te realizaste servicios mayores en el *Estudio de Belleza Imagen y Estilo "Alma"*, tu código te otorga **10% de descuento directo**.
+
+¿Para cuántas personas te gustaría apartar o qué fecha de fin de semana prefieres?`;
+    }
+
     // 1.5. PREGUNTAS POÉTICAS, CURIOSAS O INFORMALES (Nubes, sentido de la vida, etc.)
     if (q.includes('nube') || q.includes('nubes') || q.includes('olor a nube') || q.includes('olor de las nubes') || q.includes('filosof') || q.includes('sentido de la vida')) {
         return `☁️✨ ¡Huelen a aire puro, libertad y a ese primer respiro fresco cuando vas en carretera saliendo de la ciudad!\n\nEn *Ruta del Águila by Fraveo* nos fascina llevarte a donde el cielo se toca con las montañas (como Cuetzalan, Zacatlán de las Manzanas o Real del Monte). ¿Listo para escaparte a despejar la mente este fin de semana?`;
