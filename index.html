@@ -11,7 +11,7 @@
     <meta property="og:title" content="Ruta del Águila by Fraveo | Turismo y Conciertos Puebla">
     <meta property="og:description" content="Salidas garantizadas a Pueblos Mágicos, Conciertos CDMX y circuitos nacionales desde Puebla. Aparta tu lugar con $200 MXN.">
     <meta property="og:image" content="https://mera-kirai.com/img/xochimilco_clean_card.jpg">
-    <meta property="og:url" content="https://mera-kirai.com">
+    <meta property="og:url" content="https://mera-kirai.com/">
     <meta property="og:type" content="website">
 
     <!-- Google Fonts -->
@@ -763,6 +763,81 @@
             background: var(--brand-red);
         }
 
+        /* FAQ Accordion (Alineado con FAQPage JSON-LD) */
+        .faq {
+            margin-top: 3.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.2rem 2.5rem;
+            box-shadow: var(--shadow-card);
+        }
+
+        .faq h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.65rem;
+            font-weight: 800;
+            color: var(--text-title);
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .faq-item {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            margin-bottom: 0.85rem;
+            overflow: hidden;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-item[open] {
+            border-color: var(--brand-cyan);
+        }
+
+        .faq-item summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 1.05rem 1.35rem;
+            font-weight: 700;
+            font-size: 0.98rem;
+            color: var(--text-title);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: '+';
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--brand-cyan);
+            flex-shrink: 0;
+        }
+
+        .faq-item[open] summary::after {
+            content: '−';
+        }
+
+        .faq-item p {
+            padding: 0 1.35rem 1.15rem;
+            font-size: 0.94rem;
+            line-height: 1.7;
+            color: var(--text-body);
+        }
+
         @media (max-width: 900px) {
             .hero-banner h1 { font-size: 2.1rem; }
             .search-fields-grid { grid-template-columns: 1fr; }
@@ -770,6 +845,7 @@
             .route-stops-grid { grid-template-columns: 1fr 1fr; }
             .footer-grid { grid-template-columns: 1fr; }
             .nav-links { display: none; }
+            .faq { padding: 1.5rem 1.25rem; }
         }
     </style>
 </head>
@@ -1701,6 +1777,26 @@
                     <iframe title="Ubicación oficial de salidas: Calle Río Nexapa 6101, San Manuel, Puebla" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.8687258380816!2d-98.19705022417724!3d19.004187454245648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cfc0bf72461a29%3A0xe5e13d9ea72960f5!2sR%C3%ADo%20Nexapa%206101%2C%20Jardines%20de%20San%20Manuel%2C%2072570%20Heroica%20Puebla%20de%20Zaragoza%2C%20Pue.!5e0!3m2!1ses-419!2smx!4v1727390000000!5m2!1ses-419!2smx" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
+        </section>
+
+        <!-- BLOQUE 6: ❓ PREGUNTAS FRECUENTES (PARIDAD EXACTA CON FAQPage JSON-LD) -->
+        <section class="faq" id="preguntas-frecuentes" aria-labelledby="faq-titulo">
+            <h2 id="faq-titulo">Preguntas Frecuentes</h2>
+
+            <details class="faq-item">
+                <summary>¿Con cuánto se aparta un viaje o salida a concierto desde Puebla en Ruta del Águila by Fraveo?</summary>
+                <p>Apartas cualquier viaje nacional o transporte redondo a conciertos en CDMX con solo $200 MXN por persona (o puedes abonar un monto mayor si lo prefieres). El saldo restante se liquida entre 48 y 24 horas antes de abordar.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>¿Qué pasa si no se reúne el cupo mínimo del viaje o si cancelo de última hora?</summary>
+                <p>Si 48 horas antes una salida grupal no reúne el cupo mínimo operativo, reembolsamos el 100% íntegro de tu dinero de inmediato. Si el pasajero cancela de última hora (&lt;48h) o no llega a tiempo (No-Show), no aplica reembolso, pero el boleto es 100% transferible sin costo a un familiar o amigo, y el viaje nunca se cancela para los pasajeros puntuales.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>¿Cómo aplico mi 10% de descuento preferencial en viajes?</summary>
+                <p>El cupón preferencial del 10% de descuento se entrega a las clientas de Estudio de Belleza Alma al realizarse Diseño de Color, Alisados Progresivos, Paquete de Faciales, XV Años o Novia en Calle Río Nexapa #6101, Col. San Manuel, Puebla, e ingresarse en el formulario de reservación.</p>
+            </details>
         </section>
     </main>
 
