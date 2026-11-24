@@ -865,17 +865,39 @@ function handleLiveGlobalSearch(query) {
         return;
     }
 
+    const todayIso = typeof getLocalTodayIso === 'function' ? getLocalTodayIso() : new Date().toISOString().split('T')[0];
     const matches = [];
+    const seenSearch = new Set();
     if (typeof DESTINOS_DB !== 'undefined') {
         DESTINOS_DB.forEach(d => {
+            if (d.fecha_iso && d.fecha_iso < todayIso) return;
             if (d.nombre.toLowerCase().includes(q) || d.descripcion.toLowerCase().includes(q) || d.estado.toLowerCase().includes(q) || d.categoria.toLowerCase().includes(q)) {
+                seenSearch.add(d.id);
                 matches.push({
                     id: d.id,
+                    source: 'dest',
                     nombre: d.nombre,
                     imagen: d.imagen,
                     precio: d.precio_texto,
                     badge: d.badge,
                     meta: `${d.estado} • ${d.duracion}`
+                });
+            }
+        });
+    }
+    if (typeof collectActiveConcerts === 'function') {
+        collectActiveConcerts(todayIso).forEach(ev => {
+            if (seenSearch.has(ev.id)) return;
+            if (`${ev.title} ${ev.desc} ${ev.attractions}`.toLowerCase().includes(q)) {
+                const vis = resolveConcertVisual(ev);
+                matches.push({
+                    id: ev.id,
+                    source: ev.source,
+                    nombre: ev.title,
+                    imagen: vis.img,
+                    precio: `Desde $${estimateConcertTransportPrice(ev)} MXN`,
+                    badge: ev.dateLabel,
+                    meta: `Ciudad de México • ${vis.badge}`
                 });
             }
         });
@@ -901,7 +923,7 @@ function handleLiveGlobalSearch(query) {
             Encontramos ${matches.length} salidas disponibles:
         </div>
         ${matches.slice(0, 6).map(m => `
-            <div class="live-search-item" onclick="openSharedElementModal('${m.id}'); clearLiveGlobalSearch();">
+            <div class="live-search-item" onclick="${m.source === 'catalog' ? `openCatalogDetailModal('${m.id}')` : `openSharedElementModal('${m.id}')`}; clearLiveGlobalSearch();">
                 <img src="${m.imagen}" alt="${m.nombre}" style="width:48px; height:48px; border-radius:10px; object-fit:cover; flex-shrink:0;">
                 <div style="flex:1; min-width:0;">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -1212,8 +1234,14 @@ function renderCatalogoNacionalGrid() {
 
     const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
     const lista = getCatalogo737List();
+    const todayIso = typeof getLocalTodayIso === 'function' ? getLocalTodayIso() : new Date().toISOString().split('T')[0];
+    const popularMap = window.__vromlixPopularViews || {};
 
     const filtrados = lista.filter(item => {
+        if (item.macro === 'evento_cdmx') {
+            const rawDates = `${item.attractions || ''} ${item.desc || ''}`.match(/\b(202[6-9]-\d{2}-\d{2})\b/g) || [];
+            if (rawDates.length && rawDates.slice().sort().pop() < todayIso) return false;
+        }
         const matchMacro = catalogoMacroFilter === 'todos' || item.macro === catalogoMacroFilter;
         const matchSub = catalogoSubFilter === 'todas' || item.sub === catalogoSubFilter;
         const matchState = catalogoStateFilter === 'todos' || (item.state && item.state.toLowerCase().includes(catalogoStateFilter.toLowerCase()));
@@ -1226,6 +1254,8 @@ function renderCatalogoNacionalGrid() {
             (item.gastronomy && item.gastronomy.toLowerCase().includes(query));
         return matchMacro && matchSub && matchState && matchTxt;
     });
+
+    filtrados.sort((a, b) => Number(popularMap[b.id] || 0) - Number(popularMap[a.id] || 0));
 
     const visibleItems = filtrados.slice(0, catalogoCurrentPage * CATALOGO_PAGE_SIZE);
 
@@ -1894,7 +1924,19 @@ async function renderDynamicSlidersWithViews() {
         rankExcursionsByViews(mergedViews);
     };
 
+    window.__vromlixPopularViews = viewsMap;
     paintAll(viewsMap);
+
+    // Actualizar fecha mínima/default del cotizador personalizado para nunca mostrar fechas pasadas
+    const quoteDateEl = document.getElementById('custom-quote-date');
+    if (quoteDateEl) {
+        quoteDateEl.min = todayIso;
+        if (!quoteDateEl.value || quoteDateEl.value < todayIso) {
+            const nextWeek = new Date();
+            nextWeek.setDate(nextWeek.getDate() + 7);
+            quoteDateEl.value = nextWeek.toISOString().split('T')[0];
+        }
+    }
 
     // Sincronizar vistas reales desde Cloudflare KV (/api/popular)
     try {
@@ -1909,6 +1951,7 @@ async function renderDynamicSlidersWithViews() {
                 for (const [k, v] of Object.entries(data.views)) {
                     merged[k] = Math.max(Number(merged[k] || 0), Number(v || 0));
                 }
+                window.__vromlixPopularViews = merged;
                 paintAll(merged);
             }
         }
