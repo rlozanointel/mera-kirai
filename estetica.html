@@ -32,7 +32,48 @@
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Diseños de Color & Balayage" }, "price": "1000", "priceCurrency": "MXN" },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Alisados Progresivos Termo-Activos" }, "price": "850", "priceCurrency": "MXN" },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Nanoplastia Capilar Orgánica" }, "price": "600", "priceCurrency": "MXN" },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Paquete Integral de Novia" }, "price": "5000", "priceCurrency": "MXN" }
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Paquete Integral de Novia" }, "price": "5000", "priceCurrency": "MXN" },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Paquete Integral de XV Años" }, "price": "4000", "priceCurrency": "MXN" }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cómo funcionan los cortes de cabello sin costo con alumna supervisada?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Se realizan únicamente con cita previa los días Lunes, Miércoles y Viernes de 4:00 PM a 5:00 PM bajo supervisión directa de Alma. El servicio gratuito incluye únicamente el corte de cabello (no incluye lavado, secado, planchado ni tinte)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué incluye el Paquete Integral de XV Años y cuál es su precio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El paquete completo con prueba de maquillaje y peinado cuesta $4,000 MXN (o $3,000 MXN sin prueba) e incluye: preparación de piel con sueros y cremas, perfilado y planchado de ceja y depilación de bozo/patillas en caso de requerirlo, maquillaje de alta duración, pestañas de tira, kit de retoque y uñas press on."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Por qué algunos tratamientos capilares indican 'Desde' en el precio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En tintes, diseño de color, alisados progresivos, botox y nanoplastia la inversión depende del largo y abundancia de tu cabellera. El presupuesto exacto se confirma antes de iniciar mediante valoración en salón o por WhatsApp."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Venden productos Lendan, Avyna y Crioxidil para uso en casa y estilistas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, contamos con Tienda & Distribuidora oficial en San Manuel, Puebla con líneas para cuidado en casa y precios especiales para estilistas en Lendan Cosmetics, Avyna, Crioxidil, Anqos, Platinum, Veruska y más."
+          }
+        }
       ]
     }
     </script>
@@ -1446,9 +1487,6 @@
                 <a href="tienda.html" class="btn-travel-link btn-store-link">
                     <i class="fas fa-shopping-bag"></i> Productos Lendan
                 </a>
-                <a href="ra.html" class="btn-travel-link" style="background:linear-gradient(135deg, rgba(244,63,94,0.3), rgba(212,175,55,0.3)); border-color:var(--brand-rose); color:#fff;">
-                    <i class="fas fa-cube"></i> Letrero 3D (AR)
-                </a>
                 <a href="https://mera-kirai.com" class="btn-travel-link">
                     <i class="fas fa-plane"></i> Viajes
                 </a>
@@ -1476,10 +1514,9 @@
             <button class="drawer-close-btn" onclick="toggleSalonMobileNav()" aria-label="Cerrar Menú">✕</button>
         </div>
         <ul class="salon-mobile-nav-list">
-            <li><a href="#servicios-tarifario" onclick="toggleSalonMobileNav()"><i class="fas fa-scissors"></i> Lista de Precios y Servicios</a></li>
-            <li><a href="#promos-estudio" onclick="toggleSalonMobileNav()"><i class="fas fa-percent"></i> 4 Paquetes Promocionales</a></li>
+            <li><a href="#precios-oficiales" onclick="toggleSalonMobileNav()"><i class="fas fa-scissors"></i> Lista de Precios y Servicios</a></li>
+            <li><a href="#paquetes-promocionales" onclick="toggleSalonMobileNav()"><i class="fas fa-percent"></i> Promociones Vigentes</a></li>
             <li><a href="tienda.html"><i class="fas fa-shopping-bag"></i> Distribuidora Lendan Oficial</a></li>
-            <li><a href="ra.html"><i class="fas fa-cube"></i> Letrero 3D Realidad Aumentada</a></li>
             <li><a href="https://mera-kirai.com"><i class="fas fa-plane"></i> Ruta del Águila (Viajes CDMX y Playas)</a></li>
             <li><a href="javascript:void(0)" onclick="toggleSalonMobileNav(); toggleSalonAiChat();" style="color:var(--brand-rose-light); font-weight:700;"><i class="fas fa-sparkles"></i> Consultar Asistente Alma IA</a></li>
             <li><a href="#ubicacion-citas" onclick="toggleSalonMobileNav()"><i class="fas fa-map-marker-alt"></i> Ubicación y Horarios</a></li>
@@ -1499,7 +1536,7 @@
     <section class="salon-hero">
         <div>
             <div class="hero-badge">
-                <i class="fas fa-award"></i> Más de 30 años nos respaldan • Atención por Alma Luis
+                <i class="fas fa-award"></i> Más de 30 años nos respaldan • Atención personalizada por Alma
             </div>
             <h1 class="hero-title">
                 Estudio de Belleza <span>Imagen y Estilo "Alma"</span>
@@ -1533,7 +1570,7 @@
         </div>
     </section>
 
-    <!-- Banner de Alianza Comercial con Viajes (Regla Oficial de la Hermana Alma) -->
+    <!-- Banner de Alianza Comercial con Viajes -->
     <div class="travel-promo-banner">
         <div class="travel-promo-inner">
             <div class="travel-promo-content">
@@ -1551,81 +1588,68 @@
         </div>
     </div>
 
-    <!-- Sección de los 4 Paquetes Promocionales en Video -->
+    <!-- Sección de Promociones Vigentes de Noviembre 2026 -->
     <section class="section-wrap" id="paquetes-promocionales">
         <div class="section-header">
-            <h2>🔥 4 Paquetes Promocionales Destacados</h2>
-            <p>Aprovecha nuestras promociones especiales diseñadas para consentir tu cabello, rostro y manos con productos europeos de alta cosmética.</p>
+            <h2>💜 Promociones Vigentes — Noviembre 2026</h2>
+            <p>Promociones oficiales de Estudio de Belleza Imagen y Estilo "Alma" vigentes hasta el <strong>30 de noviembre de 2026</strong>. Toca cualquier flyer para ampliarlo o apartar tu cita.</p>
         </div>
 
         <div class="promo-showcase-grid">
             <div class="promo-video-card">
-                <video controls preload="metadata" poster="img/salon/thumb_paquetes_alma.jpg">
-                    <source src="video/salon/paquetes_oct_nov_alma.mp4" type="video/mp4">
-                    Tu navegador no soporta reproducción de video.
-                </video>
+                <img src="img/salon/promos_nov_2026/promo_nov_portada.jpg" alt="Promociones Noviembre 2026 Estudio de Belleza Imagen y Estilo Alma" style="width:100%; height:auto; display:block; cursor:pointer; border-bottom:1px solid var(--border-color);" onclick="openLightbox('img/salon/promos_nov_2026/promo_nov_portada.jpg', '💜 Promociones de Noviembre 2026 — Vigentes al 30 de noviembre')">
                 <div style="padding:1.1rem 1.25rem;">
-                    <strong style="color:#fff; font-family:var(--font-serif); font-size:1.05rem; display:block;">🎥 Reel Oficial de Promociones</strong>
-                    <span style="color:var(--text-muted); font-size:0.86rem;">Conoce los 4 paquetes especiales en Estudio de Belleza Imagen y Estilo "Alma".</span>
+                    <strong style="color:#fff; font-family:var(--font-serif); font-size:1.05rem; display:block;">🍂 Promociones de Temporada — Noviembre 2026</strong>
+                    <span style="color:var(--text-muted); font-size:0.86rem;">Vigentes hasta el 30 de noviembre de 2026 en Calle Río Nexapa #6101, San Manuel.</span>
                 </div>
             </div>
 
             <div class="promo-packages-list">
-                <!-- Promo 1 -->
+                <!-- Promo 1 Noviembre -->
                 <div class="promo-pkg-card">
                     <div>
-                        <span class="promo-pkg-badge">✨ Paquete Promo 1</span>
-                        <div class="service-name">Alisado Progresivo Efecto Espejo</div>
-                        <p class="service-desc">Reducción total de frizz, alaciado sedoso, nutrición térmica y brillo espejo duradero sin maltratar la fibra capilar.</p>
+                        <img src="img/salon/promos_nov_2026/promo_nov_1_efectos_color.jpg" alt="Promoción 1: Efectos de color 10% de descuento" style="width:100%; height:170px; object-fit:cover; border-radius:12px; margin-bottom:0.85rem; cursor:pointer; border:1px solid rgba(192,132,252,0.35);" onclick="openLightbox('img/salon/promos_nov_2026/promo_nov_1_efectos_color.jpg', 'Promoción 1: Efectos de Color — 10% de Descuento (al 30 de nov 2026)')">
+                        <span class="promo-pkg-badge">🎨 Promoción 1 • Hasta 30 Nov</span>
+                        <div class="service-name">Efectos de Color — 10% de Descuento</div>
+                        <p class="service-desc">Balayage, babylights, mechas y diseño personalizado cuidando la salud capilar con líneas europeas profesionales.</p>
                         <div style="font-size:0.82rem; color:#fde047; font-weight:700; margin-bottom:1rem;">
                             🎁 Incluye Bono 10% en Ruta del Águila by Fraveo
                         </div>
                     </div>
                     <div class="service-footer">
-                        <span class="service-price"><small>Desde</small> $800 MXN</span>
-                        <button type="button" onclick="openSalonWaModal('Hola Alma, me interesa la Promo 1: Alisado Progresivo desde $800 MXN')" class="btn-book-service">Apartar Promo</button>
+                        <span class="service-price">10% <small>DTO</small></span>
+                        <button type="button" onclick="openSalonWaModal('Hola Alma, quiero apartar la Promoción 1 de Noviembre: 10% de descuento en Efectos de Color')" class="btn-book-service">Apartar Promo</button>
                     </div>
                 </div>
 
-                <!-- Promo 2 -->
+                <!-- Promo 2 Noviembre -->
                 <div class="promo-pkg-card">
                     <div>
-                        <span class="promo-pkg-badge">💆‍♀️ Paquete Promo 2</span>
-                        <div class="service-name">Coctel Capilar + Depilación 1/2 Brazos</div>
-                        <p class="service-desc">Bomba nutritiva multivitamínica para restaurar la hebra capilar + depilación suave de medios brazos con cera roll-on.</p>
-                    </div>
-                    <div class="service-footer">
-                        <span class="service-price">$600 MXN</span>
-                        <button type="button" onclick="openSalonWaModal('Hola Alma, me interesa la Promo 2: Coctel Capilar + Depilación 1/2 brazos por $600 MXN')" class="btn-book-service">Apartar Promo</button>
-                    </div>
-                </div>
-
-                <!-- Promo 3 -->
-                <div class="promo-pkg-card">
-                    <div>
-                        <span class="promo-pkg-badge">💅 Paquete Promo 3</span>
-                        <div class="service-name">Gelish Decorado + Depilación de Ceja</div>
-                        <p class="service-desc">Aplicación de Gelish de larga duración con diseño decorado en manos + perfilado y depilación de ceja con navaja.</p>
-                    </div>
-                    <div class="service-footer">
-                        <span class="service-price">$200 MXN</span>
-                        <button type="button" onclick="openSalonWaModal('Hola Alma, me interesa la Promo 3: Gelish Decorado + Depilación de Ceja por $200 MXN')" class="btn-book-service">Apartar Promo</button>
-                    </div>
-                </div>
-
-                <!-- Promo 4 -->
-                <div class="promo-pkg-card">
-                    <div>
-                        <span class="promo-pkg-badge">🧖‍♀️ Paquete Promo 4</span>
-                        <div class="service-name">Facial de Hidratación Profunda</div>
-                        <p class="service-desc">Limpieza facial profunda con exfoliación, extracción suave, mascarilla nutritiva y aparatología estética especializada.</p>
+                        <img src="img/salon/promos_nov_2026/promo_nov_2_facial_ceja.jpg" alt="Promoción 2: Limpieza facial profunda con aparatología más laminado de ceja $500" style="width:100%; height:170px; object-fit:cover; border-radius:12px; margin-bottom:0.85rem; cursor:pointer; border:1px solid rgba(192,132,252,0.35);" onclick="openLightbox('img/salon/promos_nov_2026/promo_nov_2_facial_ceja.jpg', 'Promoción 2: Limpieza facial profunda con aparatología + laminado de ceja — Paquete $500 MXN')">
+                        <span class="promo-pkg-badge">🧖‍♀️ Promoción 2 • Hasta 30 Nov</span>
+                        <div class="service-name">Limpieza Facial Profunda + Laminado de Ceja</div>
+                        <p class="service-desc">Limpieza facial profunda con aparatología estética especializada + laminado de ceja direccional para mirada definida.</p>
                         <div style="font-size:0.82rem; color:#fde047; font-weight:700; margin-bottom:1rem;">
                             🎁 Incluye Bono 10% en Ruta del Águila by Fraveo
                         </div>
                     </div>
                     <div class="service-footer">
-                        <span class="service-price">$400 MXN</span>
-                        <button type="button" onclick="openSalonWaModal('Hola Alma, me interesa la Promo 4: Facial de Hidratación Profunda con aparatología por $400 MXN')" class="btn-book-service">Apartar Promo</button>
+                        <span class="service-price">$500 <small>MXN</small></span>
+                        <button type="button" onclick="openSalonWaModal('Hola Alma, quiero apartar la Promoción 2 de Noviembre: Limpieza facial profunda con aparatología + laminado de ceja por $500 MXN')" class="btn-book-service">Apartar Promo</button>
+                    </div>
+                </div>
+
+                <!-- Promo 3 Noviembre -->
+                <div class="promo-pkg-card">
+                    <div>
+                        <img src="img/salon/promos_nov_2026/promo_nov_3_corte_ampolleta.jpg" alt="Promoción 3: Corte para dama más ampolleta $250" style="width:100%; height:170px; object-fit:cover; border-radius:12px; margin-bottom:0.85rem; cursor:pointer; border:1px solid rgba(192,132,252,0.35);" onclick="openLightbox('img/salon/promos_nov_2026/promo_nov_3_corte_ampolleta.jpg', 'Promoción 3: Corte para dama + ampolleta — Paquete por sólo $250 MXN')">
+                        <span class="promo-pkg-badge">✂️ Promoción 3 • Hasta 30 Nov</span>
+                        <div class="service-name">Corte para Dama + Ampolleta Capilar</div>
+                        <p class="service-desc">Corte estilizado personalizado según tus facciones + aplicación de ampolleta reconstructora para brillo y suavidad inmediata.</p>
+                    </div>
+                    <div class="service-footer">
+                        <span class="service-price">$250 <small>MXN</small></span>
+                        <button type="button" onclick="openSalonWaModal('Hola Alma, quiero apartar la Promoción 3 de Noviembre: Corte para dama + ampolleta por $250 MXN')" class="btn-book-service">Apartar Promo</button>
                     </div>
                 </div>
             </div>
@@ -1972,19 +1996,23 @@
                                 <span class="tufte-service-name">13. Paquete Integral de XV Años</span>
                                 <span class="tufte-perk-pill">🎁 +10% en Viajes</span>
                             </div>
-                            <p class="tufte-service-desc">Diseño de imagen juvenil y sofisticado para brillar en la misa, sesión fotográfica y recepción.</p>
-                            <details class="tufte-details">
-                                <summary><span><i class="fas fa-circle-info"></i> Qué incluye</span> <i class="fas fa-chevron-down"></i></summary>
+                            <p class="tufte-service-desc">Diseño completo para brillar todo tu evento: disponible en modalidad completa con prueba (<strong>$4,000 MXN</strong>) o mismo paquete sin prueba (<strong>$3,000 MXN</strong>).</p>
+                            <details class="tufte-details" open>
+                                <summary><span><i class="fas fa-circle-info"></i> Desglose oficial incluido ($4,000 con prueba / $3,000 sin prueba)</span> <i class="fas fa-chevron-down"></i></summary>
                                 <ul>
-                                    <li>Prueba de maquillaje y peinado acorde a vestido y temática.</li>
-                                    <li>Preparación de piel juvenil y cuidado de acabado fresco.</li>
-                                    <li>Maquillaje de larga duración, peinado de gala y colocación de tiara.</li>
+                                    <li>Preparación de la piel (sueros y cremas hidratantes).</li>
+                                    <li>Perfilado y planchado de ceja <em>(en caso de requerirlo)</em>.</li>
+                                    <li>Depilación de bozo y patillas <em>(en caso de requerirlo)</em>.</li>
+                                    <li>Maquillaje de alta duración + aplicación de pestañas de tira.</li>
+                                    <li>Kit de retoque para tu evento.</li>
+                                    <li>Uñas press on personalizadas.</li>
+                                    <li>Prueba de maquillaje y peinado previa <em>(incluida en la opción de $4,000 MXN; opcional sin prueba en $3,000 MXN)</em>.</li>
                                 </ul>
                             </details>
                         </div>
                         <div class="tufte-tariff-action">
-                            <span class="tufte-price">$4,000 MXN</span>
-                            <button type="button" onclick="openSalonWaModal('Hola Alma, quiero pedir informes y agendar el Paquete de XV Años ($4,000 MXN)')" class="tufte-btn-book">
+                            <span class="tufte-price">$3,000 – $4,000 MXN</span>
+                            <button type="button" onclick="openSalonWaModal('Hola Alma, quiero pedir informes y agendar el Paquete de XV Años ($4,000 con prueba / $3,000 sin prueba)')" class="tufte-btn-book">
                                 <i class="fab fa-whatsapp"></i> Agendar
                             </button>
                         </div>
@@ -2152,10 +2180,10 @@
                     ¿Te gustaría un Corte de Cabello Sin Costo (Gratis)?
                 </h3>
                 <p style="color:var(--text-muted); font-size:0.96rem; line-height:1.68;">
-                    Apoya el perfeccionamiento práctico de nuestra alumna en formación, quien realiza cortes básicos <strong>100% supervisada paso a paso por la Maestra Alma Luis</strong>. Disponible únicamente con cita previa los días <strong>Lunes, Miércoles y Viernes de 4:00 PM a 5:00 PM</strong> (cupo limitado a modelos por día).
+                    Apoya el perfeccionamiento práctico de nuestra alumna en formación, quien realiza cortes básicos <strong>100% supervisada paso a paso por Alma</strong>. Disponible únicamente con cita previa los días <strong>Lunes, Miércoles y Viernes de 4:00 PM a 5:00 PM</strong> (cupo limitado). <strong>Incluye corte únicamente</strong> (no incluye lavado, secado ni tinte).
                 </p>
             </div>
-            <button type="button" onclick="openSalonWaModal('Hola Alma, me gustaría anotarme como modelo para el Corte Sin Costo con tu alumna supervisada (Lun, Mié o Vie de 4:00 a 5:00 PM)')" class="btn-book-service" style="background:#10b981; color:#052e16; padding:13px 22px; font-size:0.94rem;">
+            <button type="button" onclick="openSalonWaModal('Hola Alma, me gustaría anotarme como modelo para el Corte Sin Costo con alumna supervisada (Lun, Mié o Vie de 4:00 a 5:00 PM)')" class="btn-book-service" style="background:#10b981; color:#052e16; padding:13px 22px; font-size:0.94rem;">
                 <i class="fab fa-whatsapp"></i> Solicitar Lugar como Modelo (Gratis)
             </button>
         </div>
@@ -2172,7 +2200,7 @@
                     Tienda de Productos Profesionales para Casa y Estilistas
                 </h2>
                 <p style="color:var(--text-muted); font-size:1rem; line-height:1.72; margin-bottom:1.5rem;">
-                    Adquiere en nuestro estudio o pide por WhatsApp las líneas profesionales que usamos en salón: <strong>Lendan Cosmetics, Avina, Crioxidil, Anqos, Platinum, Veruska, L' Izzo frutend's, Incantidonna</strong> y muchos productos más. Contamos con venta individual para clientas y precios especiales a estilistas.
+                    Adquiere en nuestro estudio o pide por WhatsApp las líneas profesionales que usamos en salón: <strong>Lendan Cosmetics, Avyna, Crioxidil, Anqos, Platinum, Veruska, L'Izzo Frutend's, Incantidonna</strong> y muchos productos más. Contamos con venta individual para clientas y precios especiales a estilistas.
                 </p>
                 <div style="display:flex; gap:12px; flex-wrap:wrap;">
                     <a href="tienda.html" class="btn-book-service" style="background:var(--brand-gold); color:#000; padding:13px 24px; font-size:0.96rem;">
@@ -2265,15 +2293,41 @@
         </div>
     </div>
 
+    <!-- Preguntas Frecuentes del Salón (Paridad 1:1 con FAQPage JSON-LD) -->
+    <section class="section-wrap" id="preguntas-frecuentes-estetica">
+        <div class="section-header">
+            <h2>Preguntas Frecuentes del Estudio</h2>
+            <p>Información clara sobre citas, cortes sin costo con alumna, valoraciones y productos profesionales.</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0.85rem; max-width:920px; margin:0 auto;">
+            <details class="tufte-details" style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:16px; padding:1rem 1.25rem;">
+                <summary style="color:#fff; font-weight:700; font-size:1rem;">¿Cómo funcionan los cortes de cabello sin costo con alumna supervisada? <i class="fas fa-chevron-down"></i></summary>
+                <p style="color:var(--text-muted); font-size:0.94rem; margin-top:0.6rem; line-height:1.65;">Se realizan únicamente con cita previa los días <strong>Lunes, Miércoles y Viernes de 4:00 PM a 5:00 PM</strong> bajo supervisión directa de Alma. El servicio gratuito <strong>incluye únicamente el corte de cabello</strong> (no incluye lavado, secado, planchado ni tinte; puedes cotizar complementos o aprovechar nuestras promos vigentes).</p>
+            </details>
+            <details class="tufte-details" style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:16px; padding:1rem 1.25rem;">
+                <summary style="color:#fff; font-weight:700; font-size:1rem;">¿Qué incluye el Paquete Integral de XV Años y cuál es su precio? <i class="fas fa-chevron-down"></i></summary>
+                <p style="color:var(--text-muted); font-size:0.94rem; margin-top:0.6rem; line-height:1.65;">El paquete completo con prueba de maquillaje y peinado cuesta <strong>$4,000 MXN</strong> (o <strong>$3,000 MXN</strong> sin prueba) e incluye: preparación de piel con sueros y cremas, perfilado/planchado de ceja y depilación de bozo/patillas (en caso de requerirlo), maquillaje de alta duración, pestañas de tira, kit de retoque y uñas press on.</p>
+            </details>
+            <details class="tufte-details" style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:16px; padding:1rem 1.25rem;">
+                <summary style="color:#fff; font-weight:700; font-size:1rem;">¿Por qué algunos tratamientos capilares indican "Desde" en el precio? <i class="fas fa-chevron-down"></i></summary>
+                <p style="color:var(--text-muted); font-size:0.94rem; margin-top:0.6rem; line-height:1.65;">En tintes, diseño de color, alisados progresivos, botox y nanoplastia la inversión depende del largo y abundancia de tu cabellera. El presupuesto exacto se confirma antes de iniciar mediante valoración en salón o por WhatsApp.</p>
+            </details>
+            <details class="tufte-details" style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:16px; padding:1rem 1.25rem;">
+                <summary style="color:#fff; font-weight:700; font-size:1rem;">¿Venden productos Lendan, Avyna y Crioxidil para uso en casa y estilistas? <i class="fas fa-chevron-down"></i></summary>
+                <p style="color:var(--text-muted); font-size:0.94rem; margin-top:0.6rem; line-height:1.65;">Sí, contamos con Tienda &amp; Distribuidora oficial en San Manuel, Puebla con líneas para cuidado en casa y precios especiales para estilistas en Lendan Cosmetics, Avyna, Crioxidil, Anqos, Platinum, Veruska y más. <a href="tienda.html" style="color:var(--brand-gold-light); text-decoration:underline; font-weight:700;">Ver Tienda →</a></p>
+            </details>
+        </div>
+    </section>
+
     <!-- Ubicación & Citas -->
-    <section class="section-wrap">
+    <section class="section-wrap" id="ubicacion-citas">
         <div class="location-box">
             <div>
                 <h3 style="font-family:var(--font-serif); font-size:1.85rem; color:#fff; margin-bottom:1rem;">Ubicación & Citas</h3>
                 <p style="color:var(--text-muted); margin-bottom:1.5rem; line-height:1.85; font-size:1rem;">
                     📍 <strong>Dirección:</strong> Calle Río Nexapa #6101, Col. Jardines de San Manuel, C.P. 72570, Puebla, Pue.<br>
                     📞 <strong>Teléfono / WhatsApp:</strong> <a href="https://wa.me/522228016244" target="_blank" style="color:var(--brand-rose-light); font-weight:800;">222 801 6244</a><br>
-                    🕒 <strong>Cortes Sin Costo (Alumna Supervisada):</strong> Lun, Mié y Vie de 4:00 PM a 5:00 PM (Previa cita)<br>
+                    🕒 <strong>Cortes Sin Costo (Alumna Supervisada):</strong> Lun, Mié y Vie de 4:00 PM a 5:00 PM (Previa cita • Corte únicamente)<br>
                     🕒 <strong>Horario General del Estudio:</strong> Lunes a Sábado de 10:00 AM a 7:30 PM (Con previa cita)<br>
                     🏦 <strong>Apartados / Transferencia SPEI:</strong> Banco Azteca • CLABE <code style="color:#fde047;">127180012120460272</code> (Beneficiario: Alma Luis)
                 </p>
@@ -2281,9 +2335,6 @@
                     <button type="button" onclick="openSalonWaModal('Hola Alma, me gustaría agendar una cita para esta semana')" class="btn-book-service" style="padding:12px 22px; font-size:0.95rem; border-radius:12px;">
                         <i class="fab fa-whatsapp"></i> Agendar Mi Cita Directa
                     </button>
-                    <a href="ra.html" class="btn-book-service" style="background:linear-gradient(135deg, #f43f5e, #d4af37); color:#fff; border:none; padding:12px 20px; font-size:0.95rem; border-radius:12px; box-shadow:0 4px 15px rgba(244,63,94,0.35);">
-                        <i class="fas fa-camera"></i> Ver Letrero 3D (Realidad Aumentada)
-                    </a>
                     <a href="tienda.html" class="btn-book-service" style="background:rgba(212,175,55,0.2); color:#fde047; border:1px solid rgba(212,175,55,0.5); padding:12px 20px; font-size:0.95rem; border-radius:12px;">
                         <i class="fas fa-shopping-bag"></i> Tienda Lendan
                     </a>
@@ -2317,34 +2368,34 @@
         </button>
     </div>
 
-    <!-- Ventana de Chat Asistente Alma IA (Modo Estética) -->
+    <!-- Ventana de Chat Asistente Alma IA (Modo Estética Conectado a Cloud Worker Vendedora) -->
     <div class="salon-ai-window" id="salon-ai-window">
-        <div style="background:linear-gradient(135deg, #be123c, #881337); padding:14px 16px; display:flex; justify-content:space-between; align-items:center; color:#fff;">
+        <div style="background:linear-gradient(135deg, #be123c, #6b21a8); padding:14px 16px; display:flex; justify-content:space-between; align-items:center; color:#fff;">
             <div>
-                <strong style="font-family:var(--font-serif); font-size:1.05rem; display:block;">🌸 Asistente Alma IA</strong>
-                <small style="font-size:0.76rem; color:#fecdd3;">Precios, Promos, Productos Lendan y Citas</small>
+                <strong style="font-family:var(--font-serif); font-size:1.05rem; display:block;">🌸 Alma IA — Asesora del Salón</strong>
+                <small style="font-size:0.76rem; color:#f3e8ff;">Promos Noviembre, Citas, XV Años y Productos</small>
             </div>
             <button type="button" onclick="toggleSalonAiChat()" style="background:rgba(255,255,255,0.15); border:none; color:#fff; width:30px; height:30px; border-radius:50%; cursor:pointer;">✕</button>
         </div>
         <div id="salon-ai-messages" style="flex:1; padding:14px; overflow-y:auto; display:flex; flex-direction:column; gap:10px; font-size:0.92rem;">
             <div style="background:rgba(255,255,255,0.07); padding:11px 14px; border-radius:14px; color:#fff; line-height:1.6;">
-                ¡Hola! Soy el asistente virtual del <strong>Estudio de Belleza Imagen y Estilo "Alma"</strong> (más de 30 años nos respaldan). 🌸<br><br>
-                Pregúntame por cualquiera de nuestros <strong>19 servicios</strong>, los <strong>4 paquetes promocionales</strong>, los <strong>cortes sin costo con alumna (Lun, Mié y Vie 4-5 PM)</strong> o nuestros <strong>productos Lendan</strong>.
+                ¡Hola! Soy <strong>Alma IA</strong> de <strong>Estudio de Belleza Imagen y Estilo "Alma"</strong> (más de 30 años nos respaldan). 💜<br><br>
+                Con gusto te asesoro y armo tu cita para nuestras <strong>promociones vigentes de noviembre</strong>, los <strong>19 servicios</strong>, <strong>Paquetes de XV Años ($4,000 / $3,000)</strong>, <strong>cortes sin costo con alumna</strong> o productos profesionales. ¿Qué servicio buscas hoy?
             </div>
         </div>
         <div style="padding:8px 12px; display:flex; gap:6px; overflow-x:auto; border-top:1px solid rgba(255,255,255,0.08); background:#0d0d10;">
-            <button type="button" onclick="askSalonAi('¿Cuáles son los 4 paquetes promocionales?')" style="background:rgba(244,63,94,0.18); color:#fda4af; border:1px solid rgba(244,63,94,0.35); border-radius:14px; padding:5px 10px; font-size:0.76rem; white-space:nowrap; cursor:pointer;">🔥 4 Promos</button>
-            <button type="button" onclick="askSalonAi('¿Cómo funciona el corte gratis con alumna?')" style="background:rgba(16,185,129,0.18); color:#6ee7b7; border:1px solid rgba(16,185,129,0.35); border-radius:14px; padding:5px 10px; font-size:0.76rem; white-space:nowrap; cursor:pointer;">🎓 Corte Gratis</button>
-            <button type="button" onclick="askSalonAi('¿Qué servicios dan 10% de descuento en viajes?')" style="background:rgba(212,175,55,0.18); color:#fde047; border:1px solid rgba(212,175,55,0.35); border-radius:14px; padding:5px 10px; font-size:0.76rem; white-space:nowrap; cursor:pointer;">✈️ Bono 10% Viajes</button>
+            <button type="button" onclick="askSalonAi('¿Cuáles son las promociones vigentes de noviembre?')" style="background:rgba(168,85,247,0.22); color:#e9d5ff; border:1px solid rgba(192,132,252,0.45); border-radius:14px; padding:5px 10px; font-size:0.76rem; white-space:nowrap; cursor:pointer;">💜 Promos Nov</button>
+            <button type="button" onclick="askSalonAi('¿Cómo funciona el corte gratis con alumna? ¿Incluye lavado?')" style="background:rgba(16,185,129,0.18); color:#6ee7b7; border:1px solid rgba(16,185,129,0.35); border-radius:14px; padding:5px 10px; font-size:0.76rem; white-space:nowrap; cursor:pointer;">🎓 Corte Gratis</button>
+            <button type="button" onclick="askSalonAi('¿Qué incluye el paquete de XV años de $4,000 y $3,000?')" style="background:rgba(244,63,94,0.18); color:#fda4af; border:1px solid rgba(244,63,94,0.35); border-radius:14px; padding:5px 10px; font-size:0.76rem; white-space:nowrap; cursor:pointer;">👑 XV Años</button>
+            <button type="button" onclick="askSalonAi('¿Qué servicios dan 10% de descuento en viajes?')" style="background:rgba(212,175,55,0.18); color:#fde047; border:1px solid rgba(212,175,55,0.35); border-radius:14px; padding:5px 10px; font-size:0.76rem; white-space:nowrap; cursor:pointer;">✈️ Bono 10%</button>
         </div>
         <form onsubmit="handleSalonAiSubmit(event)" style="display:flex; padding:10px; gap:8px; background:#18181b; border-top:1px solid rgba(255,255,255,0.1);">
-            <input type="text" id="salon-ai-input" placeholder="Escribe tu duda (ej. precio de balayage o novias)..." style="flex:1; background:#09090b; border:1px solid rgba(255,255,255,0.18); border-radius:12px; padding:9px 12px; color:#fff; font-size:0.9rem;">
+            <input type="text" id="salon-ai-input" placeholder="Cuéntame qué servicio o cita deseas cotizar..." style="flex:1; background:#09090b; border:1px solid rgba(255,255,255,0.18); border-radius:12px; padding:9px 12px; color:#fff; font-size:0.9rem;">
             <button type="submit" style="background:var(--brand-rose); color:#fff; border:none; border-radius:12px; padding:0 16px; font-weight:800; cursor:pointer;">Enviar</button>
         </form>
     </div>
 
-    <!-- Modal Directo a WhatsApp eliminado en favor de apertura directa sin fricción -->
-
+    <script src="js/alma_ai_widget.js?v=20261124"></script>
     <script>
         function filterSalonServices(cat, btn) {
             document.querySelectorAll('.salon-tab-btn').forEach(b => b.classList.remove('active'));
@@ -2368,7 +2419,6 @@
             }
         }
 
-        // Sincronizar dots con scroll del carrusel
         (function() {
             const track = document.getElementById('salonCarouselTrack');
             if (track) {
@@ -2402,38 +2452,20 @@
             document.getElementById('salon-ai-window').classList.toggle('active');
         }
 
+        const salonAiController = window.AlmaAiWidget.mountFloatingWidget({
+            mode: 'estetica',
+            windowId: 'salon-ai-window',
+            messagesId: 'salon-ai-messages',
+            inputId: 'salon-ai-input',
+            accentBg: 'linear-gradient(135deg,#be123c,#7e22ce)'
+        });
+
         function askSalonAi(text) {
-            document.getElementById('salon-ai-input').value = text;
-            handleSalonAiSubmit(new Event('submit'));
+            salonAiController.ask(text);
         }
 
         function handleSalonAiSubmit(e) {
-            if (e && e.preventDefault) e.preventDefault();
-            const input = document.getElementById('salon-ai-input');
-            const q = (input.value || '').trim();
-            if (!q) return;
-            input.value = '';
-            const box = document.getElementById('salon-ai-messages');
-            box.innerHTML += `<div style="align-self:flex-end; background:var(--brand-rose); color:#fff; padding:9px 13px; border-radius:14px; max-width:85%;">${q}</div>`;
-
-            const lower = q.toLowerCase();
-            let reply = '';
-            if (lower.includes('promo') || lower.includes('paquete')) {
-                reply = 'Contamos con <strong>4 Paquetes Promocionales</strong>:<br>1️⃣ <strong>Alisado Progresivo:</strong> Desde $800 MXN<br>2️⃣ <strong>Coctel Capilar + Depilación 1/2 brazos:</strong> $600 MXN<br>3️⃣ <strong>Gelish Decorado + Depilación ceja:</strong> $200 MXN<br>4️⃣ <strong>Facial Hidratación Profunda con aparatología:</strong> $400 MXN.';
-            } else if (lower.includes('gratis') || lower.includes('alumna') || lower.includes('modelo')) {
-                reply = '🎓 <strong>Cortes Sin Costo (Programa de Alumna Supervisada):</strong> Nuestra alumna realiza cortes gratuitos bajo supervisión directa de la Maestra Alma Luis los días <strong>Lunes, Miércoles y Viernes de 4:00 PM a 5:00 PM</strong> con cita previa.';
-            } else if (lower.includes('viaje') || lower.includes('10%') || lower.includes('descuento')) {
-                reply = '✈️ <strong>Bono del 10% de Descuento en Viajes:</strong> Tu cupón preferencial se te entrega en salón al realizarte cualquier <strong>Diseño de Color, Alisados Progresivos, Paquete de Faciales, Paquete de XV Años ($4,000) o Paquete de Novia ($5,000)</strong>.';
-            } else if (lower.includes('novia') || lower.includes('xv') || lower.includes('maquillaje') || lower.includes('peinado')) {
-                reply = '👰 <strong>Eventos Sociales:</strong><br>• Peinado Social: Desde $500 MXN<br>• Maquillaje Social: $600 MXN<br>• Paquete de XV Años: $4,000 MXN<br>• Paquete de Novia: $5,000 MXN.';
-            } else if (lower.includes('pestaña') || lower.includes('ceja') || lower.includes('depila')) {
-                reply = '👁️ <strong>Pestañas, Cejas y Depilación:</strong><br>• Pestañas: Clásicas $400 | Rímel $450 | Volumen $500<br>• Lifting de Pestañas: $350 | Laminado de Cejas: $200<br>• Depilación Ceja: $70 | Facial: $250<br>• Cera Roll-On: Axilas $200 | Brazos $400 | Piernas $650.';
-            } else {
-                reply = '🌸 En <strong>Estudio de Belleza Imagen y Estilo "Alma"</strong> (Río Nexapa #6101, San Manuel) tenemos Corte Dama $200, Caballero $150, Planchado Express $200, Tintes desde $500, Diseño de Color desde $1,000, Alisados desde $850, Botox desde $500, Nanoplastia desde $600 y Sinergia desde $300. <br><br><button onclick="openSalonWaModal(\'Hola Alma, tengo una consulta sobre: ' + q.replace(/'/g, '') + '\')" style="margin-top:8px; background:#25d366; color:#052e16; border:none; padding:7px 12px; border-radius:8px; font-weight:800; cursor:pointer;">Confirmar con Alma por WhatsApp →</button>';
-            }
-
-            box.innerHTML += `<div style="background:rgba(255,255,255,0.08); padding:11px 14px; border-radius:14px; color:#fff; line-height:1.6;">${reply}</div>`;
-            box.scrollTop = box.scrollHeight;
+            salonAiController.submit(e);
         }
 
         function scrollSalonCarousel(dir) {
@@ -2465,7 +2497,6 @@
             if (e.key === 'Escape') closeLightbox();
         });
 
-        // Garantizar que la barra de direcciones mantenga el subdominio limpio
         if (window.history && window.history.replaceState && window.location.pathname.indexOf('estetica.html') !== -1) {
             if (window.location.hostname.startsWith('estetica.')) {
                 window.history.replaceState(null, '', '/');

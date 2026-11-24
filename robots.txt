@@ -3,6 +3,7 @@
 User-agent: *
 Allow: /
 Disallow: /fe.html
+Disallow: /ra.html
 Disallow: /scripts/
 Disallow: /data/
 

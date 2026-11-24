@@ -7,7 +7,7 @@
     <meta name="description" content="Catálogo oficial de productos europeos Lendan Cosmetics en Puebla. Venta al público (cuidado en casa) y distribución a estilistas: PlexForte, Oil Moringa, Recovery E+B5, Activia Plant y Root Cover.">
     <link rel="canonical" href="https://mera-kirai.com/tienda.html">
     <meta property="og:title" content="Tienda & Distribuidora Lendan Cosmetics | Estudio Alma Puebla">
-    <meta property="og:description" content="Cosmética capilar europea Lendan, Avina, Crioxidil y más líneas profesionales en Jardines de San Manuel, Puebla.">
+    <meta property="og:description" content="Cosmética capilar europea Lendan, Avyna, Crioxidil y más líneas profesionales en Jardines de San Manuel, Puebla.">
     <meta property="og:url" content="https://mera-kirai.com/tienda.html">
     <meta property="og:type" content="website">
     <script type="application/ld+json">
@@ -418,9 +418,6 @@
                 <a href="estetica.html" class="nav-btn">
                     <i class="fas fa-spa"></i> Servicios del Salón (19)
                 </a>
-                <a href="ra.html" class="nav-btn">
-                    <i class="fas fa-cube"></i> Letrero 3D (AR)
-                </a>
                 <a href="https://mera-kirai.com" class="nav-btn">
                     <i class="fas fa-plane"></i> Viajes
                 </a>
@@ -437,7 +434,7 @@
         </div>
         <h1>Cosmética Capilar <span>Lendan & Multimarca</span></h1>
         <p>
-            Lleva el tratamiento profesional a tu hogar o equipa tu estética con las mejores líneas capilares: <strong>Lendan, Avina, Crioxidil, Anqos, Platinum, Veruska, L' Izzo frutend's, Incantidonna</strong> y muchos productos más. Entrega directa en nuestro estudio en <strong>Jardines de San Manuel, Puebla</strong> o envío coordinado.
+            Lleva el tratamiento profesional a tu hogar o equipa tu estética con las mejores líneas capilares: <strong>Lendan, Avyna, Crioxidil, Anqos, Platinum, Veruska, L'Izzo Frutend's, Incantidonna</strong> y muchos productos más. Entrega directa en nuestro estudio en <strong>Jardines de San Manuel, Puebla</strong> o envío coordinado.
         </p>
 
         <div class="mode-switch">
@@ -643,19 +640,73 @@
         </div>
     </section>
 
+    <button type="button" class="cart-dock" onclick="toggleStoreAiChat()" style="right:auto; left:20px; background:linear-gradient(135deg,#7e22ce,#d4af37); color:#fff;">
+        <i class="fas fa-sparkles"></i> <span>Asesoría Alma IA</span>
+    </button>
+
     <button type="button" class="cart-dock" onclick="sendCartWhatsApp()">
         <i class="fab fa-whatsapp" style="font-size:1.25rem;"></i>
         <span id="cart-label">Solicitar Catálogo / Pedido Lendan por WhatsApp</span>
     </button>
+
+    <!-- Chat Flotante Alma IA Tienda -->
+    <div id="store-ai-window" style="display:none; position:fixed; bottom:84px; left:20px; width:min(380px, calc(100vw - 32px)); height:470px; background:#09090b; border:1px solid rgba(212,175,55,0.45); border-radius:20px; box-shadow:0 20px 50px rgba(0,0,0,0.75); z-index:1100; flex-direction:column; overflow:hidden;">
+        <div style="background:linear-gradient(135deg, #581c87, #b45309); padding:13px 16px; display:flex; justify-content:space-between; align-items:center; color:#fff;">
+            <div>
+                <strong style="font-family:'Outfit',sans-serif; font-size:1rem; display:block;">🛍️ Alma IA — Tienda Profesional</strong>
+                <small style="font-size:0.74rem; color:#fef08a;">Asesoría Cuidado en Casa &amp; Mayoreo Estilistas</small>
+            </div>
+            <button type="button" onclick="toggleStoreAiChat()" style="background:rgba(255,255,255,0.18); border:none; color:#fff; width:28px; height:28px; border-radius:50%; cursor:pointer;">✕</button>
+        </div>
+        <div id="store-ai-messages" style="flex:1; padding:12px; overflow-y:auto; display:flex; flex-direction:column; gap:10px; font-size:0.9rem;">
+            <div style="background:rgba(255,255,255,0.08); padding:10px 13px; border-radius:14px; color:#fff; line-height:1.58;">
+                ¡Hola! Soy <strong>Alma IA</strong>. 💜 ¿Buscas algún producto de <strong>Lendan, Avyna o Crioxidil</strong> para uso personal en casa o precio especial de mayoreo para tu salón? Cuéntame qué necesitas tratar.
+            </div>
+        </div>
+        <div style="padding:7px 10px; display:flex; gap:6px; overflow-x:auto; border-top:1px solid rgba(255,255,255,0.08); background:#111;">
+            <button type="button" onclick="askStoreAi('¿Qué me recomiendas para puntas abiertas y frizz?')" style="background:rgba(168,85,247,0.22); color:#e9d5ff; border:1px solid rgba(192,132,252,0.4); border-radius:14px; padding:4px 10px; font-size:0.74rem; white-space:nowrap; cursor:pointer;">✨ Puntas &amp; Frizz</button>
+            <button type="button" onclick="askStoreAi('Soy estilista y me interesa precio de mayoreo')" style="background:rgba(212,175,55,0.2); color:#fde047; border:1px solid rgba(212,175,55,0.4); border-radius:14px; padding:4px 10px; font-size:0.74rem; white-space:nowrap; cursor:pointer;">✂️ Soy Estilista</button>
+        </div>
+        <form onsubmit="handleStoreAiSubmit(event)" style="display:flex; padding:9px; gap:8px; background:#18181b; border-top:1px solid rgba(255,255,255,0.1);">
+            <input type="text" id="store-ai-input" placeholder="Pregunta por líneas, tonos o pedidos..." style="flex:1; background:#09090b; border:1px solid rgba(255,255,255,0.18); border-radius:10px; padding:8px 11px; color:#fff; font-size:0.88rem;">
+            <button type="submit" style="background:var(--brand-gold); color:#000; border:none; border-radius:10px; padding:0 14px; font-weight:800; cursor:pointer;">Enviar</button>
+        </form>
+    </div>
 
     <footer>
         <p>© 2026 <strong>Estudio de Belleza Imagen y Estilo "Alma"</strong> • Distribuidora Oficial Lendan en Puebla.</p>
         <p style="margin-top:6px;">Calle Río Nexapa #6101, Col. Jardines de San Manuel, Puebla • WhatsApp: 222 801 6244</p>
     </footer>
 
+    <script src="js/alma_ai_widget.js?v=20261124"></script>
     <script>
         let currentMode = 'b2c';
         let selectedProducts = [];
+
+        function toggleStoreAiChat() {
+            const win = document.getElementById('store-ai-window');
+            if (!win) return;
+            const open = win.style.display === 'flex';
+            win.style.display = open ? 'none' : 'flex';
+        }
+
+        const storeAiController = window.AlmaAiWidget.mountFloatingWidget({
+            mode: 'tienda',
+            windowId: 'store-ai-window',
+            messagesId: 'store-ai-messages',
+            inputId: 'store-ai-input',
+            accentBg: 'linear-gradient(135deg,#6b21a8,#b45309)'
+        });
+
+        function askStoreAi(text) {
+            const win = document.getElementById('store-ai-window');
+            if (win) win.style.display = 'flex';
+            storeAiController.ask(text);
+        }
+
+        function handleStoreAiSubmit(e) {
+            storeAiController.submit(e);
+        }
 
         function setStoreMode(mode) {
             currentMode = mode;
@@ -684,7 +735,6 @@
             window.open('https://wa.me/522228016244?text=' + encodeURIComponent(msg), '_blank');
         }
 
-        // Garantizar que la barra de direcciones mantenga el subdominio limpio
         if (window.history && window.history.replaceState && window.location.pathname.indexOf('tienda.html') !== -1) {
             if (window.location.hostname.startsWith('tienda.') || window.location.hostname.startsWith('productos.')) {
                 window.history.replaceState(null, '', '/');

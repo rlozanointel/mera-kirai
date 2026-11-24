@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
     checkSubdomainRouting();
     initCoverflowShowcase('todas');
     renderDestinosCards('todas');
+    if (typeof renderDynamicSlidersWithViews === 'function') {
+        renderDynamicSlidersWithViews();
+    }
     setupMotionUI();
     initChatAssistant();
 
@@ -384,6 +387,10 @@ function openSharedElementModal(destId) {
     if (!dest) return;
     activeDestino = dest;
 
+    if (typeof recordCatalogView === 'function') {
+        recordCatalogView(dest.id, 'view_item');
+    }
+
     const modal = document.getElementById('destino-detail-modal');
     if (!modal) return;
 
@@ -592,115 +599,105 @@ async function sendChatMessage() {
     if (input) input.value = '';
 
     const typingId = showTypingIndicator();
-    const matchedContext = findRelevantCatalogContext(msg);
+    // RAG Multi-turno: combina último mensaje + últimos 2 mensajes del usuario para mantener contexto
+    const recentUserContext = chatHistory.filter(h => h.role === 'user').slice(-2).map(h => h.content).join(' ');
+    const matchedContext = findRelevantCatalogContext(`${msg} ${recentUserContext}`);
 
     if (window.__vromlixTelemetry) {
         window.__vromlixTelemetry.track('ai_chat_query', { query: msg, matches: matchedContext.length });
     }
 
-    // Construir inyección RAG desde nuestros 908 destinos/eventos o búsqueda web en vivo para grupos virales
     const augmentedHistory = chatHistory.slice(-6);
     if (matchedContext.length > 0) {
         const ragLines = matchedContext.map(item => {
             let line = `Destino/Evento: ${item.name} (${item.state} | ${item.category}). ${item.desc}`;
-            if (item.attractions) line += ` | Museos y lugares a visitar: ${item.attractions}.`;
-            if (item.gastronomy) line += ` | Platillos típicos: ${item.gastronomy}.`;
-            if (item.crafts) line += ` | Artesanías: ${item.crafts}.`;
-            if (item.price_ref) line += ` | Tarifa / Boleto: ${item.price_ref}.`;
+            if (item.attractions) line += ` | Lugares: ${item.attractions}.`;
+            if (item.gastronomy) line += ` | Gastronomía: ${item.gastronomy}.`;
+            if (item.price_ref) line += ` | Tarifa Ref.: ${item.price_ref}.`;
             return line;
         }).join(' || ');
         augmentedHistory.push({
             role: 'user',
-            content: `[DATOS DE NUESTRO CATÁLOGO DE 908 DESTINOS Y EVENTOS (NO MENCIONES LA PALABRA SECTUR): ${ragLines}. DIRECTIVAS CLAVE DE ALMA: 
-1) Si es una gran expedición nacional de larga distancia (El Chepe, Barrancas del Cobre, Cancún, Los Cabos, Riviera Maya o Luna de Miel), explica que es un Paquete Integral a la Medida operado con fraVEO (incluye vuelos, traslados, hoteles o tren turístico); no des tarifa de camioneta de $200 y pide fecha estimada, pasajeros y menciona que les enviaremos su cotización formal desglosada en PDF en un lapso de 24 a 48 horas hábiles a su WhatsApp o correo.
-2) Si es un concierto o evento CDMX, resalta que incluye Kit Concierto: Botana + Agua fría + Gafete Conmemorativo de Colección + Seguro de Viajero con chofer sobrio que espera hasta el final.
-3) Mantén respuestas concisas, juveniles y entusiastas.]`
+            content: `[CONTEXTO DEL CATÁLOGO VIGENTE: ${ragLines}. RECUERDA: No inventes precios de hotel ni reveles códigos de cupón. Actúa como vendedor consultivo y emite [LEAD_CARD] cuando aplique.]`
         });
         augmentedHistory.push({
             role: 'assistant',
-            content: 'Entendido, usaré estos datos para responder con calidez, agilidad juvenil y claridad entre salidas locales y grandes paquetes fraVEO.'
+            content: 'Entendido, usaré estos datos reales para cotizar con claridad y generar la ficha lista para WhatsApp.'
         });
     } else if (msg.length > 4) {
         const lowerMsg = msg.toLowerCase();
-        // Evitar lecciones enciclopédicas de Wikipedia para preguntas filosóficas, poéticas o curiosas
         const isPoeticOrCurious = lowerMsg.includes('nube') || lowerMsg.includes('olor') || lowerMsg.includes('filosof') || lowerMsg.includes('sentido') || lowerMsg.includes('chiste') || lowerMsg.includes('broma') || lowerMsg.includes('vuelo') || lowerMsg.includes('cielo');
-        
-        if (isPoeticOrCurious) {
-            augmentedHistory.push({
-                role: 'user',
-                content: `[DIRECTIVA DE AGILIDAD Y TONO JUVENIL: El usuario hace una pregunta poética, curiosa o informal ("${msg}"). Responde en MÁXIMO 2 a 3 líneas con chispa, encanto, calidez juvenil y simpatía, relacionándolo con la emoción de viajar, el viento fresco en carretera o salir de la rutina hacia la naturaleza (como Cuetzalan o Zacatlán). NUNCA des explicaciones científicas ni lecciones de física/meteorología.]`
-            });
-            augmentedHistory.push({
-                role: 'assistant',
-                content: 'Entendido, responderé de forma breve, fresca, poética y divertida, conectando de inmediato con las ganas de viajar.'
-            });
-        } else {
+        if (!isPoeticOrCurious) {
             const liveWiki = await fetchLiveWebContextForChat(msg);
             if (liveWiki) {
                 augmentedHistory.push({
                     role: 'user',
-                    content: `[CONTEXTO WEB EN VIVO PARA IDENTIFICAR GRUPOS VIRALES, ARTISTAS O LUGARES: ${liveWiki}. Si es un grupo musical o artista activo que aún no tiene fecha en nuestra cartelera CDMX, ofrece abrir salida ejecutiva desde San Manuel ($549-$580 MXN redondo) o armar viaje privado desde 6 personas en Suzuki Ertiga VIP con Kit Concierto incluido.]`
+                    content: `[CONTEXTO WEB EN VIVO: ${liveWiki}. Si es un concierto o lugar vigente, ofrece transporte desde San Manuel o cotización a medida y califica pasajeros y fecha.]`
                 });
                 augmentedHistory.push({
                     role: 'assistant',
-                    content: 'Entendido, responderé con este contexto actualizado de la web y ofreceré nuestras opciones de transporte.'
+                    content: 'Entendido, responderé con este contexto actualizado y guiaré al cierre.'
                 });
             }
         }
     }
 
-    // 1. Consultar Cloud AI Worker en Cloudflare Edge (24/7 en la nube, Meta Llama 3.3 70B + RAG)
-    const endpoints = [
-        '/api/chat',
-        'https://mera-kirai.com/api/chat',
-        'https://alma-ai-assistant.mera-kirai-cloud.workers.dev'
-    ];
-
-    let cloudReply = null;
-    for (const url of endpoints) {
-        try {
-            const resp = await fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    message: msg,
-                    history: augmentedHistory,
-                    context_items: matchedContext
-                })
-            });
-            if (resp.ok) {
-                const data = await resp.json();
-                if (data && data.reply) {
-                    cloudReply = data.reply;
-                    break;
+    let apiData = null;
+    if (window.AlmaAiWidget && typeof window.AlmaAiWidget.callAlmaChatWorker === 'function') {
+        apiData = await window.AlmaAiWidget.callAlmaChatWorker({
+            mode: 'viajes',
+            message: msg,
+            history: augmentedHistory,
+            context_items: matchedContext
+        });
+    } else {
+        const endpoints = ['/api/chat', 'https://mera-kirai.com/api/chat', 'https://alma-ai-assistant.mera-kirai-cloud.workers.dev'];
+        for (const url of endpoints) {
+            try {
+                const resp = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ mode: 'viajes', message: msg, history: augmentedHistory, context_items: matchedContext })
+                });
+                if (resp.ok) {
+                    const data = await resp.json();
+                    if (data && data.reply) { apiData = data; break; }
                 }
-            }
-        } catch (err) {
-            // Intenta siguiente endpoint o respaldo en navegador
+            } catch (err) {}
         }
     }
 
     removeTypingIndicator(typingId);
-    const finalReply = cloudReply || generateLocalAlmaResponse(msg, matchedContext);
+    const finalReply = (apiData && apiData.reply) ? apiData.reply : generateLocalAlmaResponse(msg, matchedContext);
+    const extraCardHtml = (apiData && apiData.leadCard && window.AlmaAiWidget)
+        ? window.AlmaAiWidget.renderAlmaLeadCardHtml(apiData.leadCard, apiData)
+        : '';
+
     chatHistory.push({ role: 'user', content: msg });
     chatHistory.push({ role: 'assistant', content: finalReply });
-    appendChatMessage('assistant', finalReply);
+    appendChatMessage('assistant', finalReply, extraCardHtml);
 }
 
 function formatChatMarkdown(text) {
+    if (window.AlmaAiWidget && typeof window.AlmaAiWidget.formatAlmaMarkdown === 'function') {
+        return window.AlmaAiWidget.formatAlmaMarkdown(text);
+    }
     return String(text || '')
+        .replace(/\[LEAD_CARD\][\s\S]*?(?:\[?\/LEAD_CARD\]|$)/gi, '')
         .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
         .replace(/\*([^*]+)\*/g, '<em>$1</em>')
         .replace(/\n/g, '<br>');
 }
 
-function appendChatMessage(role, text) {
+function appendChatMessage(role, text, extraHtml = '') {
     const body = document.getElementById('ai-chat-messages');
     if (!body) return;
 
     const div = document.createElement('div');
     div.className = `ai-chat-bubble ${role}`;
-    div.innerHTML = role === 'assistant' ? formatChatMarkdown(text) : escapeHtml(text).replace(/\n/g, '<br>');
+    div.innerHTML = role === 'assistant'
+        ? formatChatMarkdown(text) + extraHtml
+        : escapeHtml(text).replace(/\n/g, '<br>');
     body.appendChild(div);
     body.scrollTop = body.scrollHeight;
 }
@@ -828,8 +825,12 @@ Nuestro tour de temporada confirmado en pre-venta es **Zacatlán & Chignahuapan 
         return `💄 ¡Hola! Soy **Alma**. Nuestra salida del 24 al 26 de octubre a **Expo Beauty Show (EBS)** en Centro Citibanamex tuvo **CUPO AGOTADO** total.\n- Si deseas asistir a próximas exposiciones profesionales en Centro Citibanamex o WTC CDMX, organizamos **transporte redondo ejecutivo desde $700 MXN** saliendo de San Manuel, Puebla.\n- ¿Te gustaría que te registremos para la próxima expo o cotizar un traslado privado?`;
     }
 
-    if (q.includes('estetica') || q.includes('estética') || q.includes('salon') || q.includes('salón') || q.includes('cupon') || q.includes('cupón') || q.includes('descuento') || q.includes('corte') || q.includes('tinte') || q.includes('alisado') || q.includes('nanoplastia') || q.includes('botox') || q.includes('pestañas') || q.includes('novia') || q.includes('lendan')) {
-        return `🌸 ¡Hola! Soy **Alma** de **Estudio de Belleza Imagen y Estilo "Alma"** (más de 30 años nos respaldan en Río Nexapa #6101, San Manuel).\n\n✨ **Lista Oficial de Servicios y Precios:**\n- **Corte Dama:** $200 | **Caballero:** $150 | **Planchado Express:** $200\n- **Aplicación de Tintes:** Desde $500 | **Diseños de Color (Balayage/Mechas):** Desde $1,000\n- **Alisados Progresivos:** Desde $850 (Promo especial desde $800) | **Nanoplastia:** Desde $600 | **Botox Capilar:** Desde $500 | **Sinergia Capilar:** Desde $300\n- **Peinado Social:** Desde $500 | **Maquillaje Social:** $600\n- **Paquete Novia:** $5,000 | **Paquete XV Años:** $4,000\n- **Pestañas:** Clásicas $400, Efecto Rímel $450, Volumen Tecnológico $500 | **Lifting:** $350 | **Laminado Cejas:** $200\n- **Depilaciones:** Ceja $70, Facial $250, Cera Roll-On (Piernas $650, Brazos $400, Axilas $200)\n- **Cortes sin costo (Práctica supervisada):** Lun, Mié y Vie de 4:00 a 5:00 PM.\n- 🎁 **10% de Descuento en Viajes:** Al realizarte cualquier Diseño de Color, Alisado Progresivo, Paquete de Faciales, XV Años o Novias, la Maestra Alma te entrega tu cupón exclusivo al finalizar tu servicio en salón. ¿Qué servicio te gustaría agendar?`;
+    if (q.includes('acapulco')) {
+        return `🎆🌊 ¡Hola! Soy **Alma IA** de *Ruta del Águila by Fraveo*.\nPara **Acapulco Fin de Año (Gala de Pirotecnia — 31 de Diciembre)** estamos organizando salida en **autobús turístico (40–45 pax)** o **camioneta ejecutiva (12–15 pax)** desde San Manuel, Puebla.\n- *Importante:* La tarifa referencial base de fin de semana solo transporte parte desde **$980 MXN**; para Fin de Año (Solo Transporte o Paquete con Hotel 2–3 noches), Alma cotiza la tarifa exacta según noches, tipo de habitación y cantidad de personas.\n\n¿Para cuántas personas sería y prefieres solo transporte o paquete con hotel?`;
+    }
+
+    if (q.includes('estetica') || q.includes('estética') || q.includes('salon') || q.includes('salón') || q.includes('cupon') || q.includes('cupón') || q.includes('descuento') || q.includes('corte') || q.includes('tinte') || q.includes('alisado') || q.includes('nanoplastia') || q.includes('botox') || q.includes('pestañas') || q.includes('novia') || q.includes('xv') || q.includes('lendan')) {
+        return `🌸 ¡Hola! Soy **Alma IA** de **Estudio de Belleza Imagen y Estilo "Alma"** (más de 30 años nos respaldan en Río Nexapa #6101, San Manuel).\n\n✨ **Promociones Vigentes al 30 de Noviembre:**\n- **Efectos de Color:** 10% de descuento\n- **Limpieza facial profunda con aparatología + laminado de ceja:** $500 MXN\n- **Corte para dama + ampolleta:** $250 MXN\n- **Paquete XV Años:** $4,000 MXN (con prueba) / $3,000 MXN (sin prueba)\n- **Cortes sin costo (alumna supervisada por Alma):** Lun, Mié y Vie de 4:00 a 5:00 PM *(incluye corte únicamente, sin lavado ni tinte)*.\n- 🎁 **10% de Descuento en Viajes:** Beneficio que Alma entrega presencialmente en el salón al realizarte servicios participantes. ¿Qué servicio te gustaría agendar?`;
     }
 
     // 4. SI HAY COINCIDENCIA EN LA BASE DE DATOS DE 908 DESTINOS Y EVENTOS (MUSEOS, GASTRONOMÍA Y TARIFAS)
@@ -1290,6 +1291,10 @@ function openCatalogDetailModal(itemId) {
     const item = list.find(d => String(d.id) === String(itemId)) || list.find(d => d.name.toLowerCase() === String(itemId).toLowerCase());
     if (!item) return;
 
+    if (typeof recordCatalogView === 'function') {
+        recordCatalogView(item.id || item.name, 'view_item');
+    }
+
     // Check if it's already in DESTINOS_DB (curated trips with pre-configured itinerary)
     if (typeof DESTINOS_DB !== 'undefined') {
         const destExisting = DESTINOS_DB.find(d => d.id === item.id || d.nombre.toLowerCase().includes(item.name.toLowerCase()));
@@ -1304,7 +1309,7 @@ function openCatalogDetailModal(itemId) {
 
     // Rich fallback images based on category/state
     let fallbackImg = 'https://images.unsplash.com/photo-1518638150340-f706e86654de?auto=format&fit=crop&w=1200&q=80';
-    if (item.macro === 'cdmx_evento' || item.macro === 'cartelera_cdmx') {
+    if (item.macro === 'cdmx_evento' || item.macro === 'cartelera_cdmx' || item.macro === 'evento_cdmx') {
         fallbackImg = 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80';
     } else if (item.macro === 'playa_caribe' || (item.state && (item.state.includes('Quintana') || item.state.includes('Baja California') || item.state.includes('Guerrero')))) {
         fallbackImg = 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80';
@@ -1346,7 +1351,7 @@ function openCatalogDetailModal(itemId) {
         <li><i class="fas fa-check-circle" style="color:var(--brand-green);"></i> Chofer sobrio profesional y combustible incluido</li>
         <li><i class="fas fa-check-circle" style="color:var(--brand-green);"></i> Seguro de cobertura amplia de viajero a bordo</li>
         <li><i class="fas fa-check-circle" style="color:var(--brand-green);"></i> Apartado en Pre-venta con solo $200 MXN por persona</li>
-        <li><i class="fas fa-check-circle" style="color:var(--brand-green);"></i> Atención directa y personalizada con Hermana Alma (WhatsApp 222 801 6244)</li>
+        <li><i class="fas fa-check-circle" style="color:var(--brand-green);"></i> Atención directa y personalizada con Alma (WhatsApp 222 801 6244)</li>
     `;
 
     activeDestino = {
@@ -1540,7 +1545,7 @@ function applyCheckoutCoupon() {
     } else if (code) {
         msg.style.display = 'block';
         msg.style.color = 'var(--brand-red)';
-        msg.innerHTML = `❌ El código <strong>${escapeHtml(code)}</strong> no es válido. Recuerda que la Maestra Alma entrega tu cupón exclusivo al realizarte servicios mayores en el salón.`;
+        msg.innerHTML = `❌ El código <strong>${escapeHtml(code)}</strong> no es válido. Recuerda que Alma entrega tu cupón exclusivo al realizarte servicios mayores en el salón.`;
     }
 }
 
@@ -1644,5 +1649,271 @@ function subscribeMonthlyCatalog(e) {
     }
     return false;
 }
+
+/* =========================================================================
+   9. RENDERIZADO DINÁMICO DE CARTELERA VIGENTE & RANKING POR VISTAS (KV)
+   ========================================================================= */
+
+function getLocalTodayIso() {
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = String(now.getMonth() + 1).padStart(2, '0');
+    const d = String(now.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+}
+
+function recordCatalogView(itemId, eventName = 'view_item') {
+    const id = String(itemId || '').trim();
+    if (!id) return;
+    try {
+        const cache = JSON.parse(localStorage.getItem('vromlix_popular_cache') || '{}');
+        cache[id] = (Number(cache[id]) || 0) + (eventName === 'booking_open' ? 3 : eventName === 'quote_click' ? 2 : 1);
+        localStorage.setItem('vromlix_popular_cache', JSON.stringify(cache));
+    } catch (e) {}
+
+    if (window.__vromlixTelemetry && typeof window.__vromlixTelemetry.track === 'function') {
+        window.__vromlixTelemetry.track(eventName, { itemId: id });
+    }
+}
+
+function resolveConcertVisual(ev) {
+    if (ev.imagen) return { img: ev.imagen, badge: ev.badge || 'CDMX', color: ev.badgeColor || '#0284c7' };
+    const text = `${ev.name || ''} ${ev.attractions || ''} ${ev.sub || ''}`.toLowerCase();
+    if (text.includes('arena ciudad') || text.includes('arena cdmx')) {
+        return { img: 'img/IMG-20260926-WA0009.jpg', badge: 'Arena CDMX', color: '#ec4899' };
+    }
+    if (text.includes('estadio gnp') || text.includes('foro sol') || text.includes('autódromo')) {
+        return { img: 'img/IMG-20260926-WA0017.jpg', badge: 'Estadio GNP / Autódromo', color: '#16a34a' };
+    }
+    if (text.includes('palacio de los deportes')) {
+        return { img: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1000&q=80', badge: 'Palacio Deportes', color: '#7c3aed' };
+    }
+    if (text.includes('auditorio') || text.includes('metropólitan') || text.includes('metropolitan') || text.includes('bellas artes')) {
+        return { img: 'img/IMG-20260926-WA0013.jpg', badge: 'Auditorio / Teatro', color: '#0284c7' };
+    }
+    if (text.includes('estadio') || text.includes('azteca') || text.includes('nfl') || text.includes('américa')) {
+        return { img: 'img/IMG-20260926-WA0010.jpg', badge: 'Estadio CDMX', color: '#d97706' };
+    }
+    return { img: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1000&q=80', badge: 'Cartelera CDMX', color: '#0284c7' };
+}
+
+function estimateConcertTransportPrice(ev) {
+    const p = `${ev.price_ref || ''} ${ev.attractions || ''}`.toLowerCase();
+    if (ev.numericPrice) return ev.numericPrice;
+    if (p.includes('arena ciudad') || p.includes('arena cdmx')) return 590;
+    if (p.includes('citibanamex')) return 499;
+    const match = String(ev.price_ref || '').match(/transporte[^$]*\$([\d,]+)/i);
+    if (match) return parseInt(match[1].replace(/,/g, ''), 10) || 549;
+    return 549;
+}
+
+function buildConcertCardHtml(ev, viewsCount, showHotBadge) {
+    const safeId = escapeHtml(ev.id);
+    const safeTitle = escapeHtml(ev.title);
+    const safeDate = escapeHtml(ev.dateLabel);
+    const safeDesc = escapeHtml(ev.desc);
+    const visual = resolveConcertVisual(ev);
+    const priceNum = estimateConcertTransportPrice(ev);
+    const jsTitle = String(ev.title).replace(/'/g, "\\'");
+    const openCall = ev.source === 'curated'
+        ? `openSharedElementModal('${safeId}')`
+        : `openCatalogDetailModal('${safeId}')`;
+
+    const hotPill = showHotBadge
+        ? `<span style="position:absolute; top:12px; right:12px; background:rgba(15,23,42,0.88); color:#fde047; border:1px solid rgba(250,204,21,0.5); padding:4px 10px; border-radius:20px; font-size:0.72rem; font-weight:800; z-index:4;">🔥 Muy buscado (${viewsCount})</span>`
+        : '';
+
+    return `
+        <div class="slider-card" onclick="${openCall}">
+            <div class="slider-card-img" style="background-image: url('${visual.img}');">
+                <span class="slider-badge" style="background:${visual.color};">${escapeHtml(visual.badge)}</span>
+                ${hotPill}
+            </div>
+            <div class="slider-card-body">
+                <div class="slider-card-date">📅 ${safeDate} • CDMX</div>
+                <div class="slider-card-title">${safeTitle}</div>
+                <div class="slider-card-desc">${safeDesc}</div>
+                <div style="font-size:0.75rem; color:var(--brand-gold); font-weight:700; margin: 4px 0 8px;"><i class="fas fa-gift"></i> Salida San Manuel • Espera al finalizar</div>
+                <div class="slider-card-footer">
+                    <div>
+                        <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">TRANSPORTE REDONDO</span>
+                        <div class="slider-price">Desde $${priceNum.toLocaleString('es-MX')} MXN</div>
+                    </div>
+                    <button type="button" class="slider-card-btn" onclick="event.stopPropagation(); recordCatalogView('${safeId}', 'booking_open'); openPaymentModal('Transporte ${jsTitle}', ${priceNum})">
+                        Pre-venta ($200)
+                    </button>
+                </div>
+            </div>
+        </div>`;
+}
+
+function collectActiveConcerts(todayIso) {
+    const collected = [];
+    const seenKeys = new Set();
+
+    // 1. Eventos curados activos de cdmx_events_engine.js (poda automática < todayIso)
+    if (typeof EVENTOS_CDMX_MAESTRO !== 'undefined' && Array.isArray(EVENTOS_CDMX_MAESTRO)) {
+        for (const ev of EVENTOS_CDMX_MAESTRO) {
+            if (ev.fecha_iso && ev.fecha_iso < todayIso) continue;
+            const norm = String(ev.nombreEvento || '').toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 18);
+            seenKeys.add(norm);
+            const recObj = (typeof RECINTOS_CDMX !== 'undefined' && RECINTOS_CDMX[ev.recintoKey]) ? RECINTOS_CDMX[ev.recintoKey] : null;
+            const priceNum = parseInt(String(ev.precio_texto || '549').replace(/[^0-9]/g, ''), 10) || 549;
+            collected.push({
+                id: ev.id,
+                source: 'curated',
+                title: ev.nombreEvento,
+                dateLabel: ev.fecha || ev.fecha_iso || 'Próximamente',
+                dateIso: ev.fecha_iso || '2099-12-31',
+                desc: `Traslado redondo directo a ${recObj ? recObj.nombre : 'CDMX'} con espera nocturna garantizada.`,
+                attractions: recObj ? recObj.nombre : ev.badge,
+                imagen: ev.imagen,
+                badge: ev.badge,
+                numericPrice: priceNum,
+                priority: 2
+            });
+        }
+    }
+
+    // 2. Cartelera diaria vigente de MASTER_CATALOG_1000 (solo conciertos / grandes recintos)
+    const masterList = getCatalogo737List();
+    const majorVenueRx = /(arena ciudad|arena cdmx|estadio gnp|foro sol|palacio de los deportes|auditorio nacional|teatro metrop|pepsi center|autódromo|bellas artes|estadio azteca|banorte)/i;
+    for (const item of masterList) {
+        if (item.macro !== 'evento_cdmx') continue;
+        const rawDates = `${item.attractions || ''} ${item.desc || ''}`.match(/\b(202[6-9]-\d{2}-\d{2})\b/g) || [];
+        const maxDate = rawDates.length ? rawDates.slice().sort().pop() : '';
+        if (maxDate && maxDate < todayIso) continue;
+
+        const isMega = String(item.sub || '').includes('Mega Espectáculo') || majorVenueRx.test(`${item.attractions || ''} ${item.name || ''}`);
+        if (!isMega) continue;
+
+        const norm = String(item.name || '').toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 18);
+        if (!norm || seenKeys.has(norm)) continue;
+        seenKeys.add(norm);
+
+        collected.push({
+            id: item.id,
+            source: 'catalog',
+            title: item.name,
+            dateLabel: rawDates.length ? rawDates[0] : 'Temporada Activa',
+            dateIso: rawDates.length ? rawDates[0] : '2027-06-01',
+            desc: String(item.desc || '').replace(/^📍\s*/, '').slice(0, 118),
+            attractions: item.attractions || '',
+            sub: item.sub || '',
+            price_ref: item.price_ref || '',
+            priority: 1
+        });
+    }
+
+    return collected;
+}
+
+function rankExcursionsByViews(viewsMap) {
+    const track = document.getElementById('slider-pueblos');
+    if (!track) return;
+    const cards = Array.from(track.querySelectorAll('.slider-card'));
+    if (!cards.length) return;
+
+    const scored = cards.map((card, origIdx) => {
+        const oc = card.getAttribute('onclick') || '';
+        const m = oc.match(/openSharedElementModal\(['"]([^'"]+)['"]\)/);
+        const destId = m ? m[1] : '';
+        const v = Number(viewsMap[destId] || 0);
+        return { card, origIdx, views: v, destId };
+    });
+
+    const hasViews = scored.some(s => s.views > 0);
+    if (!hasViews) return;
+
+    scored.sort((a, b) => (b.views - a.views) || (a.origIdx - b.origIdx));
+    let hotMarked = 0;
+    scored.forEach(({ card, views }) => {
+        track.appendChild(card);
+        if (views > 0 && hotMarked < 3) {
+            hotMarked += 1;
+            const imgBox = card.querySelector('.slider-card-img');
+            if (imgBox && !imgBox.querySelector('.popular-view-pill')) {
+                const pill = document.createElement('span');
+                pill.className = 'popular-view-pill';
+                pill.style.cssText = 'position:absolute; top:12px; right:12px; background:rgba(15,23,42,0.88); color:#fde047; border:1px solid rgba(250,204,21,0.5); padding:4px 10px; border-radius:20px; font-size:0.72rem; font-weight:800; z-index:4;';
+                pill.innerText = `🔥 ${views} vistas`;
+                imgBox.appendChild(pill);
+            }
+        }
+    });
+}
+
+async function renderDynamicSlidersWithViews() {
+    const concertTrack = document.getElementById('slider-conciertos');
+    const todayIso = getLocalTodayIso();
+
+    let viewsMap = {};
+    try {
+        const localCache = JSON.parse(localStorage.getItem('vromlix_popular_cache') || '{}');
+        viewsMap = { ...localCache };
+    } catch (e) {}
+
+    // Pintar primero con caché local para carga instantánea sin parpadeo
+    const paintAll = (mergedViews) => {
+        if (concertTrack) {
+            const events = collectActiveConcerts(todayIso);
+            events.sort((a, b) => {
+                const va = Number(mergedViews[a.id] || 0);
+                const vb = Number(mergedViews[b.id] || 0);
+                if (vb !== va) return vb - va;
+                if (a.dateIso !== b.dateIso) return a.dateIso.localeCompare(b.dateIso);
+                return (b.priority || 0) - (a.priority || 0);
+            });
+            const topEvents = events.slice(0, 12);
+            if (topEvents.length > 0) {
+                let hotCount = 0;
+                concertTrack.innerHTML = topEvents.map(ev => {
+                    const v = Number(mergedViews[ev.id] || 0);
+                    const isHot = v > 0 && hotCount < 3;
+                    if (isHot) hotCount += 1;
+                    return buildConcertCardHtml(ev, v, isHot);
+                }).join('');
+            } else {
+                concertTrack.innerHTML = `
+                    <div class="slider-card" onclick="quoteWithAI('Próximo Concierto en CDMX', 'Ciudad de México', event)">
+                        <div class="slider-card-img" style="background-image:url('img/IMG-20260926-WA0009.jpg');">
+                            <span class="slider-badge" style="background:#0284c7;">Cartelera CDMX</span>
+                        </div>
+                        <div class="slider-card-body">
+                            <div class="slider-card-date">📅 SALIDAS DESDE SAN MANUEL</div>
+                            <div class="slider-card-title">Conciertos y Eventos a la Medida CDMX</div>
+                            <div class="slider-card-desc">Cotiza transporte redondo a Estadio GNP, Arena CDMX, Palacio de los Deportes o Auditorio Nacional.</div>
+                            <div class="slider-card-footer">
+                                <div><span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">TRANSPORTE REDONDO</span><div class="slider-price">Desde $549 MXN</div></div>
+                                <button type="button" class="slider-card-btn" onclick="event.stopPropagation(); quoteWithAI('Próximo Concierto CDMX', 'Ciudad de México', event)">Cotizar</button>
+                            </div>
+                        </div>
+                    </div>`;
+            }
+        }
+        rankExcursionsByViews(mergedViews);
+    };
+
+    paintAll(viewsMap);
+
+    // Sincronizar vistas reales desde Cloudflare KV (/api/popular)
+    try {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 2800);
+        const resp = await fetch('https://mera-kirai.com/api/popular', { signal: controller.signal });
+        clearTimeout(timer);
+        if (resp.ok) {
+            const data = await resp.json();
+            if (data && data.views && typeof data.views === 'object') {
+                const merged = { ...viewsMap };
+                for (const [k, v] of Object.entries(data.views)) {
+                    merged[k] = Math.max(Number(merged[k] || 0), Number(v || 0));
+                }
+                paintAll(merged);
+            }
+        }
+    } catch (e) {}
+}
+
 
 

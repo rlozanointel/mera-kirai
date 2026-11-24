@@ -1,6 +1,6 @@
 /**
  * Base de Datos Maestra de Destinos y Experiencias Turísticas
- * Agencia: Viajes La Ruta del Águila (Alma Luis) & Alianza Fraveo
+ * Agencia: Viajes La Ruta del Águila by Fraveo & Alianza Fraveo
  * Salidas directas desde: Río Nexapa 6101, Jardines de San Manuel, Puebla, Pue.
  * Teléfono / WhatsApp oficial: 222 801 6244
  */
@@ -283,30 +283,30 @@ const DESTINOS_DB = [
     },
     {
         id: "zacatlan-chignahuapan",
-        nombre: "Zacatlán de las Manzanas & Chignahuapan",
+        nombre: "Chignahuapan & Zacatlán Mágico: Esferas, Aguas Termales y Sidras",
         categoria: "pueblo_magico",
         subcategoria: "escapada_express",
         estado: "Puebla",
         precio: 650,
-        precio_texto: "$650 MXN",
+        precio_texto: "Desde $650 MXN",
         anticipo_apartado: "$200 MXN",
         tipo_transporte: "Camioneta Ejecutiva / Autobús Turístico",
         duracion: "Día Completo (06:30 a 20:30)",
         distancia: "128 km desde Puebla",
         tiempo_traslado: "2 hrs",
-        badge: "Sierra Norte",
+        badge: "Sierra Norte • Temporada Esferas",
         imagen: "img/zacatlan_real.jpg",
-        descripcion: "Mirador de cristal sobre la Barranca de los Jilgueros, fábrica de sidras tradicionales, Reloj Floral, Virgen Monumental y talleres artesanales de esferas navideñas en Chignahuapan.",
+        descripcion: "Compra directa en talleres de esferas navideñas en Chignahuapan, relajación en Aguas Termales (entrada/paquete a confirmar), Basílica de la Inmaculada Concepción, Reloj Floral, Mirador de Cristal de la Barranca de los Jilgueros y degustación de sidra artesanal y pan de queso.",
         coordenadas: { lat: 19.9328, lng: -97.9602 },
         itinerario: [
             { hora: "06:30 AM", actividad: "Salida desde San Manuel hacia la Sierra Norte." },
-            { hora: "08:45 AM", actividad: "Llegada a Zacatlán. Desayuno tradicional con pan de queso." },
-            { hora: "09:30 AM - 12:00 PM", actividad: "Mirador de Cristal, vitromurales y fábrica de sidra." },
-            { hora: "12:30 PM - 16:30 PM", actividad: "Chignahuapan: Taller de esferas y Virgen Monumental." },
-            { hora: "17:00 PM", actividad: "Regreso a Puebla. Llegada 20:30 PM." }
+            { hora: "08:45 AM", actividad: "Llegada a Zacatlán. Desayuno tradicional con pan relleno de queso." },
+            { hora: "09:30 AM - 12:00 PM", actividad: "Mirador de Cristal, Reloj Floral, vitromurales y degustación de sidra artesanal." },
+            { hora: "12:30 PM - 16:45 PM", actividad: "Chignahuapan: Talleres de esferas navideñas, Virgen Monumental y opción Aguas Termales." },
+            { hora: "17:15 PM", actividad: "Regreso seguro a Puebla. Llegada aprox. 20:30 PM." }
         ],
-        incluye: ["Transporte redondo", "Visitas guiadas a talleres", "Seguro de cobertura amplia"],
-        no_incluye: ["Alimentos y compras"]
+        incluye: ["Transporte redondo Puebla ⇄ Chignahuapan/Zacatlán", "Recorrido a talleres de esferas y degustación de sidra", "Seguro de cobertura amplia de viajero"],
+        no_incluye: ["Entrada a Aguas Termales (consultar opción paquete completo con Alma)", "Alimentos y compras"]
     },
     {
         id: "queretaro-queso-vino",
@@ -363,21 +363,51 @@ const DESTINOS_DB = [
         no_incluye: ["Alimentos y compras artesanales"]
     },
     {
+        id: "acapulco-fin-de-ano",
+        nombre: "Acapulco Fin de Año — Gala de Pirotecnia",
+        categoria: "pueblo_magico",
+        subcategoria: "playa",
+        estado: "Guerrero",
+        precio: 0,
+        precio_texto: "Fin de Año • Cotizar Transporte o Paquete",
+        anticipo_apartado: "Apartado por confirmar según unidad/hotel",
+        tipo_transporte: "Autobús Turístico (40–45 pax) o Camioneta 12–15 pax",
+        duracion: "Fin de Año (31 de Diciembre — 2 a 3 noches)",
+        distancia: "390 km desde Puebla",
+        tiempo_traslado: "4.5 hrs",
+        badge: "🎆 Fuegos Artificiales 31 Dic",
+        imagen: "img/acapulco_bahia_real.jpg",
+        descripcion: "Recibe el Año Nuevo frente al mar en la espectacular Gala de Pirotecnia sobre la Bahía de Acapulco. Operación en autobús turístico (meta grupo completo) o camioneta ejecutiva de 12 a 15 pasajeros. Disponible en modalidad Solo Transporte o Paquete con Hotel.",
+        coordenadas: { lat: 16.8531, lng: -99.8237 },
+        itinerario: [
+            { hora: "Noche Previa", actividad: "Salida organizada desde Calle Río Nexapa #6101, Jardines de San Manuel, Puebla." },
+            { hora: "Mañana", actividad: "Llegada a Bahía de Acapulco, instalación / tiempo libre en playa y Costera Miguel Alemán." },
+            { hora: "31 Dic (Medianoche)", actividad: "Espectáculo de Gala de Pirotecnia frente a la bahía para recibir el Año Nuevo." },
+            { hora: "Regreso", actividad: "Retorno tranquilo hacia Jardines de San Manuel, Puebla." }
+        ],
+        incluye: [
+            "Transporte redondo Puebla ↔ Acapulco por Autopista del Sol (Autobús o Camioneta 12–15 pax)",
+            "Casetas de autopista y seguro de cobertura amplia de viajero a bordo",
+            "Opción de Paquete con Hotel (cotización exacta según noches y habitación)"
+        ],
+        no_incluye: ["Hospedaje si contratas modalidad Solo Transporte", "Alimentos no especificados y gastos personales"]
+    },
+    {
         id: "acapulco-playa",
         nombre: "Bahía de Acapulco: Fin de Semana de Playa",
         categoria: "pueblo_magico",
         subcategoria: "playa",
         estado: "Guerrero",
         precio: 980,
-        precio_texto: "$980 MXN",
+        precio_texto: "Ref. Transporte desde $980 MXN",
         anticipo_apartado: "Pre-venta con $200 MXN",
-        tipo_transporte: "Transporte Terrestre Confortable",
+        tipo_transporte: "Camioneta 12–15 pax / Autobús / Ertiga VIP",
         duracion: "Fin de Semana (Salida Viernes Noche)",
         distancia: "390 km desde Puebla",
         tiempo_traslado: "4.5 hrs",
         badge: "Sol & Mar Pacífico",
         imagen: "img/acapulco_bahia_real.jpg",
-        descripcion: "Escapada directa a la Costa Dorada de Acapulco con llegada directa a la zona hotelera. Ideal para familias y grupos de descanso sin el desgaste de manejar.",
+        descripcion: "Escapada directa a la Costa Dorada de Acapulco con llegada directa a la zona hotelera. Para Fin de Año (31 de diciembre) consulta tarifa especial de temporada en transporte o paquete con hospedaje.",
         coordenadas: { lat: 16.8531, lng: -99.8237 },
         itinerario: [
             { hora: "23:00 PM (Viernes)", actividad: "Salida nocturna desde San Manuel, Puebla." },
@@ -386,7 +416,7 @@ const DESTINOS_DB = [
             { hora: "23:00 PM", actividad: "Arribo a San Manuel." }
         ],
         incluye: ["Transporte redondo Puebla - Acapulco - Puebla", "Casetas Autopista del Sol", "Seguro de viajero"],
-        no_incluye: ["Hospedaje (opcional paquete con hotel)", "Alimentos"]
+        no_incluye: ["Hospedaje (cotizar aparte si deseas paquete con hotel)", "Alimentos"]
     },
     {
         id: "oaxaca-hierve-agua",
