@@ -6,6 +6,7 @@ Disallow: /fe.html
 Disallow: /ra.html
 Disallow: /scripts/
 Disallow: /data/
+Disallow: /*.md$
 
 # Motores de búsqueda e Inteligencias Artificiales
 User-agent: Googlebot
