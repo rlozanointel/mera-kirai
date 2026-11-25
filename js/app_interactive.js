@@ -106,7 +106,7 @@ function initCoverflowShowcase(categoriaFiltro = 'todas') {
                     <span><i class="fas fa-route"></i> ${dest.tiempo_traslado}</span>
                 </div>
                 <div class="destino-actions">
-                    <button class="btn-3d-motion" onclick="event.stopPropagation(); openSharedElementModal('${dest.id}')" title="Ver Itinerario y Apartar Asiento">
+                    <button class="btn-3d-motion" onclick="event.stopPropagation(); openSharedElementModal('${dest.id}')" title="Ver Itinerario y Pre-venta de Asiento">
                         <i class="fas fa-map-marked-alt"></i> Ver Itinerario
                     </button>
                     <button class="btn-wishlist-vote" onclick="event.stopPropagation(); openWishlistModal('${dest.id}')" title="Votar por este destino semanal">
@@ -466,7 +466,7 @@ function sendWhatsAppDirect(target) {
     const dState = activeDestino && activeDestino.estado ? ` (${activeDestino.estado})` : '';
     const dPrice = activeDestino && activeDestino.precio_texto ? ` [${activeDestino.precio_texto}]` : '';
     
-    const msg = `Hola Alma, me interesa apartar el viaje a: *${dName}${dState}*${dPrice} saliendo desde San Manuel, Puebla. ¿Tienen disponibilidad y fechas programadas?`;
+    const msg = `Hola Alma, me interesa asegurar en Pre-venta el viaje a: *${dName}${dState}*${dPrice} saliendo desde San Manuel, Puebla. ¿Tienen disponibilidad y fechas programadas?`;
 
     window.open(`https://wa.me/522228016244?text=${encodeURIComponent(msg)}`, '_blank');
     closeWhatsAppChoiceModal();
@@ -474,7 +474,7 @@ function sendWhatsAppDirect(target) {
 
 function bookActiveDestinoWhatsApp() {
     if (!activeDestino) return;
-    const msg = `Hola Alma, me interesa apartar mi lugar para: *${activeDestino.nombre}* (${activeDestino.precio_texto || ''}). ¿Tienen disponibilidad para el próximo viaje saliendo de San Manuel?`;
+    const msg = `Hola Alma, me interesa asegurar mi asiento en Pre-venta para: *${activeDestino.nombre}* (${activeDestino.precio_texto || ''}). ¿Tienen disponibilidad para el próximo viaje saliendo de San Manuel?`;
     window.open(`https://wa.me/522228016244?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
@@ -739,37 +739,37 @@ function generateLocalAlmaResponse(question, matchedContext = []) {
             count++;
         }
         if (asksMasApartado) {
-            resp += `${count}. **¿Puedes dar más de apartado?**: ¡Claro que sí! Los **$200 MXN** son únicamente el anticipo mínimo por persona. Puedes abonar un monto mayor o liquidar desde el inicio si lo prefieres.\n\n`;
+            resp += `${count}. **¿Puedes dar un anticipo mayor en Pre-venta?**: ¡Claro que sí! Los **$200 MXN** son únicamente el anticipo mínimo de Pre-venta por persona. Puedes abonar un monto mayor o liquidar desde el inicio si lo prefieres.\n\n`;
             count++;
         }
         if (asksHorariosLlegada) {
-            resp += `${count}. **¿Puedes llegar a las 3:00 PM al punto de reunión?**: La salida oficial desde **Calle Río Nexapa #6101 en San Manuel** para Xochimilco es a las **14:30 hrs puntuales** (con 15 minutos de tolerancia máxima). Te recomendamos llegar a tiempo para no perder el abordaje.\n\n`;
+            resp += `${count}. **¿Puedes llegar a las 3:00 PM al punto de reunión?**: La salida oficial desde **Calle Río Nexapa #6101 en San Manuel** para excursiones vespertinas es puntual (con 15 minutos de tolerancia máxima). Te recomendamos llegar a tiempo para no perder el abordaje.\n\n`;
             count++;
         }
-        resp += `¿Te gustaría apartar tus asientos para la próxima fecha disponible?`;
+        resp += `¿Te gustaría asegurar tus asientos en Pre-venta para la próxima fecha disponible?`;
         return resp;
     }
 
     // 1.45. TOUR CONFIRMADO EN PREVENTA: ZACATLÁN & CHIGNAHUAPAN MÁGICO (PUEBLA)
     if (q.includes('zacatlan') || q.includes('zacatlán') || q.includes('chignahuapan') || q.includes('esfera') || q.includes('esferas') || q.includes('sidra') || q.includes('manzana')) {
         return `🍎✨ ¡Hola! Soy **Alma** de *Ruta del Águila by Fraveo*. ¡Qué gran viaje!
-Nuestro tour de temporada confirmado en pre-venta es **Zacatlán & Chignahuapan Mágico** (Salidas en Noviembre y Diciembre 2026):
+Nuestro tour de temporada confirmado en Pre-venta es **Zacatlán & Chignahuapan Mágico** (Salidas Noviembre y Diciembre 2026):
 
 🚌 **Logística & Salida:**
 - Salida puntual: **07:00 AM** desde **Calle Río Nexapa #6101, Jardines de San Manuel, Puebla**.
 - Transporte redondo en unidad ejecutiva climatizada, seguro de viajero a bordo y retorno a Puebla el mismo día (20:30 hrs aprox).
 
 🏛️ **Itinerario & Experiencias Incluidas:**
-1. **Chignahuapan:** Fábricas artesanales de esferas navideñas en vidrio soplado, Basílica de la Inmaculada Concepción (virgen monumental de 12m) y el quiosco mudéjar de madera en el zócalo.
-2. **Zacatlán de las Manzanas:** Reloj Floral monumental, Exconvento Franciscano, Paseo de la Barranca de los Jilgueros con su Mirador de Cristal y **degustación guiada de sidras y vinos frutales artesanales**.
+1. **Chignahuapan:** Fábricas artesanales de esferas navideñas en vidrio soplado, opción de **Aguas Termales**, Basílica de la Inmaculada Concepción y quiosco mudéjar.
+2. **Zacatlán de las Manzanas:** Reloj Floral monumental, Exconvento Franciscano, Mirador de Cristal en la Barranca de los Jilgueros y **degustación guiada de sidras artesanales**.
 
-💰 **Inversión y Cómo Apartar:**
-- **Tarifa:** Desde **$650 MXN** por persona (transporte redondo ejecutivo).
-- **Apartas con solo $200 MXN** por asiento (vía Transferencia SPEI o en efectivo en cualquier OXXO / Elektra / Banco Azteca).
+💰 **Inversión y Pre-venta:**
+- **Tarifa:** Desde **$650 MXN** por persona (transporte redondo ejecutivo; acceso a Aguas Termales u opción de paquete completo aparte).
+- **Entras en Pre-venta con solo $200 MXN** por asiento (vía Transferencia SPEI o en efectivo en OXXO / Elektra / Banco Azteca).
 - El resto se liquida 48 a 24 horas antes del viaje.
-- Si te realizaste servicios mayores en el *Estudio de Belleza Imagen y Estilo "Alma"*, tu código te otorga **10% de descuento directo**.
+- Si te realizaste servicios mayores en el *Estudio de Belleza Imagen y Estilo "Alma"*, recibes **10% de descuento directo** al confirmar con Alma.
 
-¿Para cuántas personas te gustaría apartar o qué fecha de fin de semana prefieres?`;
+¿Para cuántas personas te gustaría asegurar en Pre-venta o qué fin de semana prefieres?`;
     }
 
     // 1.5. PREGUNTAS POÉTICAS, CURIOSAS O INFORMALES (Nubes, sentido de la vida, etc.)
@@ -784,7 +784,7 @@ Nuestro tour de temporada confirmado en pre-venta es **Zacatlán & Chignahuapan 
 
     // 1.7. CONCIERTOS CDMX Y SODA STEREO (Kit Concierto: Botana + Agua + Gafete + Seguro)
     if (q.includes('soda stereo') || q.includes('soda estereo') || q.includes('cerati') || q.includes('pata de perro') || q.includes('kit concierto')) {
-        return `🎸 ¡Hola! Soy **Alma** de *Ruta del Águila by Fraveo*.\n¡Tenemos transporte ejecutivo redondo a conciertos en CDMX con la mejor experiencia de Puebla!\n\n🎁 **Todas nuestras salidas a conciertos incluyen el Kit Concierto Ejecutivo:**\n- **Snack Pack de cortesía:** Botana/galleta + Agua fría embotellada.\n- **Gafete Conmemorativo de Colección** del concierto.\n- **Seguro de Cobertura Amplia de Viajero a Bordo**.\n- **Chofer sobrio asignado** que te deja en la puerta del recinto y te espera hasta el final de la última canción.\n\n*Nota:* El transporte es independiente de la boletera (llevas tu boleto en la zona que tú elijas). Apartas con solo **$200 MXN**. ¿Te apartamos lugares?`;
+        return `🎸 ¡Hola! Soy **Alma** de *Ruta del Águila by Fraveo*.\n¡Tenemos transporte ejecutivo redondo a conciertos en CDMX con la mejor experiencia de Puebla!\n\n🎁 **Todas nuestras salidas a conciertos incluyen el Kit Concierto Ejecutivo:**\n- **Snack Pack de cortesía:** Botana/galleta + Agua fría embotellada.\n- **Gafete Conmemorativo de Colección** del concierto.\n- **Seguro de Cobertura Amplia de Viajero a Bordo**.\n- **Chofer sobrio asignado** que te deja en la puerta del recinto y te espera hasta el final de la última canción.\n\n*Nota:* El transporte es independiente de la boletera (llevas tu boleto en la zona que tú elijas). Entras en Pre-venta con solo **$200 MXN**. ¿Aseguramos tus lugares?`;
     }
 
     // 2. ARTISTAS FALLECIDOS (José José, Juan Gabriel, Jenni Rivera, etc.)
@@ -794,7 +794,7 @@ Nuestro tour de temporada confirmado en pre-venta es **Zacatlán & Chignahuapan 
 
     // 3. SHOWS INFANTILES Y FAMILIARES (Tatiana, Bely y Beto, Luli Pampín)
     if (q.includes('tatiana') || q.includes('bely') || q.includes('luli pampin') || q.includes('infantil') || q.includes('niños')) {
-        return `🎠 ¡Hola! Soy **Alma** de *Ruta del Águila by Fraveo*.\n¡Claro que sí! Para los shows familiares e infantiles como **Tatiana** en **Arena CDMX, Auditorio Nacional o Teatro Metropólitan**, organizamos salidas ejecutivas seguras desde San Manuel, Puebla (transporte redondo desde **$549 a $580 MXN** por persona con seguro de viajero y espera al terminar la función, o bien en **modalidad privada familiar**).\n\nRecuerda que apartas con solo **$200 MXN**. ¿Para qué fecha o cuántos lugares familiares te gustaría cotizar?`;
+        return `🎠 ¡Hola! Soy **Alma** de *Ruta del Águila by Fraveo*.\n¡Claro que sí! Para los shows familiares e infantiles en **Arena CDMX, Auditorio Nacional o Teatro Metropólitan**, organizamos salidas ejecutivas seguras desde San Manuel, Puebla (transporte redondo desde **$549 a $750 MXN** por persona según recinto, con seguro de viajero y espera al terminar la función, o bien en **modalidad privada familiar**).\n\nRecuerda que aseguras en Pre-venta con solo **$200 MXN**. ¿Para qué fecha o cuántos lugares familiares te gustaría cotizar?`;
     }
 
     if (q.includes('veronica castro') || q.includes('verónica castro')) {
@@ -802,11 +802,11 @@ Nuestro tour de temporada confirmado en pre-venta es **Zacatlán & Chignahuapan 
     }
 
     if (q.includes('luis miguel') || q.includes('luismiguel') || q.includes('el sol')) {
-        return `☀️ ¡Hola! Soy **Alma** de *Ruta del Águila by Fraveo*.\nActualmente en la cartelera oficial de recintos CDMX (Arena CDMX, Estadio GNP, Auditorio Nacional) no hay fechas próximas confirmadas para Luis Miguel (sus fechas recientes en Arena CDMX ya concluyeron).\n\nEn cuanto se anuncie una nueva fecha o preventa, organizaremos **transporte ejecutivo redondo** desde San Manuel, Puebla (desde **$549 MXN**). ¿Te gustaría que te registremos en la lista prioritaria por WhatsApp?`;
+        return `☀️ ¡Hola! Soy **Alma** de *Ruta del Águila by Fraveo*.\nActualmente en la cartelera oficial de recintos CDMX (Arena CDMX, Estadio GNP, Auditorio Nacional) no hay fechas próximas confirmadas para Luis Miguel (sus fechas recientes ya concluyeron).\n\nEn cuanto se anuncie una nueva fecha, organizaremos **transporte ejecutivo redondo** desde San Manuel, Puebla (desde **$549 MXN**). ¿Te gustaría que te registremos en la lista prioritaria por WhatsApp?`;
     }
 
     if (q.includes('shakira') || q.includes('chayanne') || q.includes('temerarios') || q.includes('morat') || q.includes('zayn') || q.includes('weeknd')) {
-        return `🎶 ¡Hola! Soy **Alma**. Para los grandes conciertos en el **Estadio GNP Seguros** ($549 MXN) y **Arena CDMX** ($580 MXN):\n- Contamos con salida ejecutiva directa desde San Manuel, Puebla.\n- Te dejamos en el recinto y nuestra unidad te espera al terminar para que regreses seguro a Puebla la misma noche.\n- Apartas tu asiento con solo **$200 MXN** (y cuentas con 10% de descuento preferencial si tienes tu cupón exclusivo del Estudio de Belleza). ¿Para qué artista o fecha deseas apartar?`;
+        return `🎶 ¡Hola! Soy **Alma**. Para los grandes conciertos en el **Estadio GNP Seguros**, **Arena CDMX**, **Palacio de los Deportes** o **Auditorio Nacional** (transporte redondo desde **$549 – $750 MXN** según recinto):\n- Salida ejecutiva directa desde Calle Río Nexapa #6101, San Manuel, Puebla.\n- Te dejamos en el recinto y nuestra unidad te espera al terminar para que regreses seguro la misma noche.\n- Entras en Pre-venta con solo **$200 MXN** (y aplicas 10% de descuento preferencial con tu bono del Estudio de Belleza Alma). ¿Para qué artista o fecha deseas Pre-venta?`;
     }
 
     if (q.includes('hospital') || q.includes('medica') || q.includes('médica') || q.includes('doctor') || q.includes('nutricion') || q.includes('nutrición') || q.includes('compras') || q.includes('particular') || q.includes('privado') || q.includes('aeropuerto') || q.includes('aifa') || q.includes('aicm') || q.includes('visa') || q.includes('embajada')) {
@@ -814,15 +814,15 @@ Nuestro tour de temporada confirmado en pre-venta es **Zacatlán & Chignahuapan 
     }
 
     if (asksCancelacion) {
-        return `🛡️ ¡Hola! Soy **Alma**. Nuestras **Políticas de Apartado y Cancelación** son 100% transparentes:\n1. **Reembolso 100% Garantizado**: Si un viaje grupal no reúne el cupo mínimo 48 horas antes, se te devuelve el **100% íntegro de tu dinero de inmediato**.\n2. **Cancelación de última hora (<48h) o No-Show**: No aplica reembolso porque tu asiento ya fue comprometido operativamente, pero **tu boleto es 100% transferible sin costo** a cualquier familiar o amigo, y el viaje nunca se cancela para los pasajeros puntuales.\nPuedes consultar todos los detalles en nuestra página de [Términos y Condiciones](terminos.html).`;
+        return `🛡️ ¡Hola! Soy **Alma**. Nuestras **Políticas de Pre-venta y Cancelación** son 100% transparentes:\n1. **Reembolso 100% Garantizado**: Si un viaje grupal no reúne el cupo mínimo 48 horas antes, se te devuelve el **100% íntegro de tu dinero de inmediato**.\n2. **Cancelación de última hora (<48h) o No-Show**: No aplica reembolso porque tu asiento ya fue comprometido operativamente, pero **tu boleto es 100% transferible sin costo** a cualquier familiar o amigo, y el viaje nunca se cancela para los pasajeros puntuales.\nPuedes consultar todos los detalles en nuestra página de [Términos y Condiciones](terminos.html).`;
     }
 
     if (q.includes('xochimilco') || q.includes('llorona') || q.includes('trajinera') || q.includes('muertos')) {
-        return `🎭 ¡Hola! Soy **Alma**. Nuestra primera salida confirmada a **La Llorona en Xochimilco (Cuemanco)** registró **CUPO AGOTADO** gracias a su preferencia, ¡pero estamos abriendo lista para la siguiente salida de noviembre!\n- **Paquete Completo**: **Desde $1,350 MXN** (transporte ejecutivo redondo desde San Manuel + paseo en trajinera + boleto oficial a la obra).\n- **Solo Transporte Redondo**: **Desde $650 MXN**.\n- Apartas con **$200 MXN** y el resto se liquida 48-24h antes de salir. ¿Para cuántas personas te anotamos en la próxima fecha?`;
+        return `🎭 ¡Hola! Soy **Alma**. Nuestra temporada 2026 de *La Llorona en Xochimilco* ya concluyó, pero puedes cotizar con nosotros **salidas culturales y recorridos en trajinera por Xochimilco** o viajes grupales a medida desde San Manuel, Puebla:\n- **Solo Transporte Redondo:** **Desde $650 MXN**.\n- **Pre-venta desde $200 MXN** por persona (100% reembolsable si no se reúne cupo mínimo). ¿Para cuántas personas y qué fecha te gustaría cotizar?`;
     }
 
     if (q.includes('expo') || q.includes('beauty') || q.includes('ebs') || q.includes('citibanamex')) {
-        return `💄 ¡Hola! Soy **Alma**. Nuestra salida del 24 al 26 de octubre a **Expo Beauty Show (EBS)** en Centro Citibanamex tuvo **CUPO AGOTADO** total.\n- Si deseas asistir a próximas exposiciones profesionales en Centro Citibanamex o WTC CDMX, organizamos **transporte redondo ejecutivo desde $700 MXN** saliendo de San Manuel, Puebla.\n- ¿Te gustaría que te registremos para la próxima expo o cotizar un traslado privado?`;
+        return `💄 ¡Hola! Soy **Alma**. Para próximas exposiciones profesionales y convenciones en **Centro Banamex / Citibanamex** o **WTC CDMX**, organizamos **transporte redondo ejecutivo desde $700 MXN** saliendo de San Manuel, Puebla.\n- Entras en Pre-venta con **$200 MXN** por persona o cotizamos unidad privada para tu salón/equipo.\n¿Para qué expo y cuántas personas deseas cotizar?`;
     }
 
     if (q.includes('acapulco')) {
@@ -840,11 +840,11 @@ Nuestro tour de temporada confirmado en pre-venta es **Zacatlán & Chignahuapan 
         if (top.attractions) detail += `- 🏛️ **Lugares y museos por visitar:** ${top.attractions}.\n`;
         if (top.gastronomy) detail += `- 🍽️ **Platillos típicos imperdibles:** ${top.gastronomy}.\n`;
         if (top.price_ref) detail += `- 💰 **Tarifa estimada:** ${top.price_ref}.\n`;
-        detail += `\nRecuerda que apartas tu lugar con solo **$200 MXN** y liquidas 48-24h antes de salir. ¿Para cuántas personas y en qué fecha te gustaría viajar?`;
+        detail += `\nRecuerda que entras en Pre-venta con solo **$200 MXN** y liquidas 48-24h antes de salir. ¿Para cuántas personas y en qué fecha te gustaría viajar?`;
         return detail;
     }
 
-    return `🦅 ¡Hola! Soy **Alma**, tu asesora en *Ruta del Águila by Fraveo* (San Manuel, Puebla).\nRespecto a tu consulta sobre **"${escapeHtml(raw)}"**, podemos organizarlo tanto en **salida grupal programada** (con mínimo 12 interesados de nuestro catálogo de **908 destinos de México y eventos CDMX**) como en **traslado privado a tu medida**.\n\nRecuerda que apartas cualquier viaje con solo **$200 MXN** y liquidas 48-24h antes de salir. ¿En qué fecha aproximada y para cuántas personas te gustaría viajar?`;
+    return `🦅 ¡Hola! Soy **Alma**, tu asesora en *Ruta del Águila by Fraveo* (San Manuel, Puebla).\nRespecto a tu consulta sobre **"${escapeHtml(raw)}"**, podemos organizarlo tanto en **salida grupal programada** (con mínimo 12 interesados de nuestro catálogo de **908 destinos de México y eventos CDMX**) como en **traslado privado a tu medida**.\n\nRecuerda que entras en Pre-venta en cualquier viaje con solo **$200 MXN** y liquidas 48-24h antes de salir. ¿En qué fecha aproximada y para cuántas personas te gustaría viajar?`;
 }
 
 /* =========================================================================
@@ -1380,7 +1380,7 @@ function openCatalogDetailModal(itemId) {
         <li><i class="fas fa-check-circle" style="color:var(--brand-green);"></i> Transporte ejecutivo redondo saliendo de Jardines de San Manuel, Puebla</li>
         <li><i class="fas fa-check-circle" style="color:var(--brand-green);"></i> Chofer sobrio profesional y combustible incluido</li>
         <li><i class="fas fa-check-circle" style="color:var(--brand-green);"></i> Seguro de cobertura amplia de viajero a bordo</li>
-        <li><i class="fas fa-check-circle" style="color:var(--brand-green);"></i> Apartado en Pre-venta con solo $200 MXN por persona</li>
+        <li><i class="fas fa-check-circle" style="color:var(--brand-green);"></i> Pre-venta garantizada con solo $200 MXN por persona</li>
         <li><i class="fas fa-check-circle" style="color:var(--brand-green);"></i> Atención directa y personalizada con Alma (WhatsApp 222 801 6244)</li>
     `;
 
@@ -1874,28 +1874,41 @@ function buildPromotedExcursionCard(item, views) {
     return div;
 }
 
-function rankTrackWithCatalog(trackId, viewsMap, macroAllowList, isVip) {
+const INITIAL_SLIDER_SNAPSHOTS = {};
+
+function rankTrackWithCatalog(trackId, viewsMap, macroAllowList, isVip, maxCards = 8) {
     const track = document.getElementById(trackId);
     if (!track) return;
 
-    // Eliminar tarjetas previamente promovidas en re-pintados para evitar duplicados
-    track.querySelectorAll('[data-promoted-id]').forEach(el => el.remove());
+    if (!INITIAL_SLIDER_SNAPSHOTS[trackId]) {
+        INITIAL_SLIDER_SNAPSHOTS[trackId] = Array.from(track.querySelectorAll('.slider-card:not([data-promoted-id])'));
+    }
 
-    const cards = Array.from(track.querySelectorAll('.slider-card'));
+    const todayIso = getLocalTodayIso();
+    const baseCards = INITIAL_SLIDER_SNAPSHOTS[trackId].slice();
     const existingIds = new Set();
-    const scored = cards.map((card, origIdx) => {
+    const scored = [];
+
+    baseCards.forEach((card, origIdx) => {
+        const exp = card.getAttribute('data-expire-iso');
+        if (exp && exp < todayIso) return;
         const oc = card.getAttribute('onclick') || '';
         const m = oc.match(/openSharedElementModal\(['"]([^'"]+)['"]\)/);
         const destId = m ? m[1] : '';
         if (destId) existingIds.add(destId);
-        return { card, origIdx, views: Number(viewsMap[destId] || 0), destId };
+        // Limpiar badge previo para no duplicar o mantener badges obsoletos al re-ordenar
+        card.querySelectorAll('.popular-view-pill').forEach(p => p.remove());
+        scored.push({ card, origIdx, views: Number(viewsMap[destId] || 0), destId });
     });
 
-    // Promover ítems más vistos del Gran Catálogo Maestro aunque no estuvieran fijos en el carrusel
+    // Promover ítems más vistos y vigentes del Gran Catálogo Maestro reemplazando los de menor vista sin acumular
     const masterList = getCatalogo737List();
     for (const item of masterList) {
         if (!item.id || existingIds.has(item.id)) continue;
         if (!macroAllowList.includes(item.macro)) continue;
+        const rawDates = `${item.attractions || ''} ${item.desc || ''}`.match(/\b(202[6-9]-\d{2}-\d{2})\b/g) || [];
+        const maxDate = rawDates.length ? rawDates.slice().sort().pop() : '';
+        if (maxDate && maxDate < todayIso) continue;
         const v = Number(viewsMap[item.id] || 0);
         if (v < 2) continue;
         const alreadyInNamedCard = scored.some(s => (s.card.textContent || '').toLowerCase().includes(String(item.name || '').toLowerCase().slice(0, 14)));
@@ -1905,16 +1918,20 @@ function rankTrackWithCatalog(trackId, viewsMap, macroAllowList, isVip) {
         scored.push({ card: cardEl, origIdx: 999, views: v, destId: item.id, promoted: true });
     }
 
-    if (!scored.some(s => s.views > 0)) return;
+    if (scored.some(s => s.views > 0)) {
+        scored.sort((a, b) => (b.views - a.views) || (a.origIdx - b.origIdx));
+    }
 
-    scored.sort((a, b) => (b.views - a.views) || (a.origIdx - b.origIdx));
+    const capped = scored.slice(0, maxCards);
+    track.innerHTML = '';
     let hotMarked = 0;
-    scored.forEach(({ card, views }) => {
+    capped.forEach(({ card, views }) => {
+        card.querySelectorAll('.popular-view-pill').forEach(p => p.remove());
         track.appendChild(card);
         if (views > 0 && hotMarked < 3) {
             hotMarked += 1;
             const imgBox = card.querySelector('.slider-card-img');
-            if (imgBox && !imgBox.querySelector('.popular-view-pill')) {
+            if (imgBox) {
                 const pill = document.createElement('span');
                 pill.className = 'popular-view-pill';
                 pill.style.cssText = 'position:absolute; top:12px; right:12px; background:rgba(15,23,42,0.88); color:#fde047; border:1px solid rgba(250,204,21,0.5); padding:4px 10px; border-radius:20px; font-size:0.72rem; font-weight:800; z-index:4;';
@@ -1929,8 +1946,8 @@ function rankExcursionsByViews(viewsMap) {
     rankTrackWithCatalog('slider-pueblos', viewsMap, [
         'paquete_armado', 'pueblo_magico', 'barrio_magico', 'playa_caribe',
         'bosque_montana', 'ruta_tematica', 'experiencia_comunitaria', 'patrimonio_unesco'
-    ], false);
-    rankTrackWithCatalog('slider-fraveo', viewsMap, ['vip_internacional'], true);
+    ], false, 8);
+    rankTrackWithCatalog('slider-fraveo', viewsMap, ['vip_internacional'], true, 8);
 }
 
 async function renderDynamicSlidersWithViews() {

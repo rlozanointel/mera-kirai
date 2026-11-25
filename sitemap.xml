@@ -31,6 +31,24 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://mera-kirai.com/viajes/acapulco-fin-de-ano.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://mera-kirai.com/viajes/chignahuapan-zacatlan.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://mera-kirai.com/conciertos/cdmx-desde-puebla.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://mera-kirai.com/mormon.html</loc>
     <lastmod>2026-11-24</lastmod>
     <changefreq>weekly</changefreq>

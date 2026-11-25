@@ -55,7 +55,7 @@
         if (lead.nombre) lines.push(`• Mi nombre: ${lead.nombre}`);
         if (lead.telefono) lines.push(`• Mi WhatsApp: ${lead.telefono}`);
         if (lead.notas) lines.push(`• Detalles: ${lead.notas}`);
-        lines.push('¿Me ayudas a confirmar disponibilidad y apartado?');
+        lines.push('¿Me ayudas a confirmar disponibilidad y Pre-venta?');
         return `https://wa.me/${ALMA_WA_PHONE}?text=${encodeURIComponent(lines.join('\n'))}`;
     }
 

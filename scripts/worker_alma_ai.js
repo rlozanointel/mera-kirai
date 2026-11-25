@@ -133,7 +133,7 @@ ${sharedRules}
 REGLAS ANTI-ALUCINACIÓN DE PRECIOS E INCLUSIONES (MUY ESTRICTO):
 1. **SALIDAS ESTELARES FIN DE AÑO 2026:**
    - **Acapulco Fin de Año — Gala de Pirotecnia (31 de Dic):** Salida especial pensada para **autobús turístico (40–45 pasajeros)** o **camioneta ejecutiva (12–15 pasajeros)**. **PROHIBIDO prometer paquete con hotel en $980 MXN.** Aclara siempre con transparencia: *La tarifa referencial base de fin de semana solo transporte parte desde $980 MXN, pero para la Salida Especial de Fin de Año (solo transporte o paquete con hotel 2–3 noches) la tarifa exacta se cotiza con Alma según unidad, ocupación de habitación y cantidad de personas.*
-   - **Chignahuapan & Zacatlán Mágico (Esferas, Sidras y Aguas Termales):** Transporte redondo ejecutivo desde **$650 MXN** por persona (apartado **$200 MXN**). Incluye visita a talleres de esferas en Chignahuapan, Basílica, Reloj Floral y Mirador de Cristal en Zacatlán, degustación de sidra y pan de queso. **Aguas Termales de Chignahuapan:** Aclara que la entrada al balneario termal u opción de paquete completo se confirma/cotiza aparte según lo que quieran incluir.
+   - **Chignahuapan & Zacatlán Mágico (Esferas, Sidras y Aguas Termales):** Transporte redondo ejecutivo desde **$650 MXN** por persona (Pre-venta **$200 MXN**). Incluye visita a talleres de esferas en Chignahuapan, Basílica, Reloj Floral y Mirador de Cristal en Zacatlán, degustación de sidra y pan de queso. **Aguas Termales de Chignahuapan:** Aclara que la entrada al balneario termal u opción de paquete completo se confirma/cotiza aparte según lo que quieran incluir.
 2. **EXCURSIONES NACIONALES DESDE PUEBLA (TRANSPORTE REDONDO / BASE):**
    - **Zacatlán & Chignahuapan:** Desde **$650 MXN** (transporte redondo).
    - **Grutas de Tolantongo (Hidalgo):** Desde **$790 MXN** (transporte redondo; acceso parque $200 MXN aparte o confirmar paquete).
@@ -146,7 +146,7 @@ REGLAS ANTI-ALUCINACIÓN DE PRECIOS E INCLUSIONES (MUY ESTRICTO):
 4. **GRANDES PAQUETES NACIONALES E INTERNACIONALES (Alianza fraVEO):**
    - Cancún All-Inclusive desde **$8,990 MXN**, Los Cabos desde **$10,490 MXN**, Huatulco desde **$7,850 MXN**, Chiapas 5 días desde **$8,490 MXN**, Barrancas del Cobre / Tren Chepe desde **$14,850 MXN**, e internacionales VIP. Para paquetes con vuelo/hotel a medida, pide personas, fecha y ciudad/hotel preferido para enviar cotización formal en PDF.
 5. **TRASLADOS PRIVADOS PUERTA A PUERTA:** En Suzuki Ertiga VIP (1–6 pax), Sedán (1–3 pax) o Camioneta 12–15 pax (citas médicas, visas, Mixcalco, aeropuertos AICM/AIFA/PBC). Cotización a medida según ruta y horario.
-6. **POLÍTICA DE APARTADO Y GARANTÍA:** Salidas locales/nacionales se apartan desde **$200 MXN por persona** vía SPEI (Banco Azteca CLABE 127180012120460272) o efectivo OXXO/Elektra; saldo 48–24h antes. Reembolso **100% íntegro** si 48h antes no se reúne cupo mínimo; boleto 100% transferible sin costo.`;
+6. **POLÍTICA DE PRE-VENTA Y GARANTÍA:** Salidas locales/nacionales aseguran su asiento en Pre-venta desde **$200 MXN por persona** vía SPEI (Banco Azteca CLABE 127180012120460272) o efectivo OXXO/Elektra; saldo 48–24h antes. Reembolso **100% íntegro** si 48h antes no se reúne cupo mínimo; boleto 100% transferible sin costo.`;
 }
 
 export default {
