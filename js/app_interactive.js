@@ -1838,22 +1838,74 @@ function collectActiveConcerts(todayIso) {
     return collected;
 }
 
-function rankExcursionsByViews(viewsMap) {
-    const track = document.getElementById('slider-pueblos');
-    if (!track) return;
-    const cards = Array.from(track.querySelectorAll('.slider-card'));
-    if (!cards.length) return;
+function buildPromotedExcursionCard(item, views) {
+    const safeId = escapeHtml(String(item.id));
+    const safeName = escapeHtml(item.name);
+    const safeState = escapeHtml(item.state || 'México');
+    const jsName = String(item.name).replace(/'/g, "\\'");
+    const jsState = String(item.state || 'México').replace(/'/g, "\\'");
+    let img = 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80';
+    if (item.macro === 'playa_caribe' || /guerrero|quintana|baja|oaxaca/i.test(safeState)) {
+        img = 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80';
+    }
+    const priceTxt = escapeHtml(item.price_ref || 'Desde $650 MXN');
+    const div = document.createElement('div');
+    div.className = 'slider-card';
+    div.setAttribute('data-cat', 'pueblo');
+    div.setAttribute('data-promoted-id', safeId);
+    div.setAttribute('onclick', `openCatalogDetailModal('${safeId}')`);
+    div.innerHTML = `
+        <div class="slider-card-img" style="background-image: url('${img}');">
+            <span class="slider-badge" style="background:var(--brand-green);">${escapeHtml(item.sub || 'Catálogo Popular')}</span>
+            <span class="popular-view-pill" style="position:absolute; top:12px; right:12px; background:rgba(15,23,42,0.88); color:#fde047; border:1px solid rgba(250,204,21,0.5); padding:4px 10px; border-radius:20px; font-size:0.72rem; font-weight:800; z-index:4;">🔥 ${views} vistas</span>
+        </div>
+        <div class="slider-card-body">
+            <div class="slider-card-date">${safeState.toUpperCase()} • TOP CATÁLOGO</div>
+            <div class="slider-card-title">${safeName}</div>
+            <div class="slider-card-desc">${escapeHtml(String(item.desc || '').slice(0, 105))}</div>
+            <div class="slider-card-footer">
+                <div>
+                    <span style="font-size:0.72rem; color:var(--text-muted); display:block; font-weight:700;">TARIFA REFERENCIAL</span>
+                    <div class="slider-price">${priceTxt}</div>
+                </div>
+                <button type="button" class="slider-card-btn" onclick="event.stopPropagation(); quoteWithAI('${jsName}', '${jsState}', event)">Cotizar</button>
+            </div>
+        </div>`;
+    return div;
+}
 
+function rankTrackWithCatalog(trackId, viewsMap, macroAllowList, isVip) {
+    const track = document.getElementById(trackId);
+    if (!track) return;
+
+    // Eliminar tarjetas previamente promovidas en re-pintados para evitar duplicados
+    track.querySelectorAll('[data-promoted-id]').forEach(el => el.remove());
+
+    const cards = Array.from(track.querySelectorAll('.slider-card'));
+    const existingIds = new Set();
     const scored = cards.map((card, origIdx) => {
         const oc = card.getAttribute('onclick') || '';
         const m = oc.match(/openSharedElementModal\(['"]([^'"]+)['"]\)/);
         const destId = m ? m[1] : '';
-        const v = Number(viewsMap[destId] || 0);
-        return { card, origIdx, views: v, destId };
+        if (destId) existingIds.add(destId);
+        return { card, origIdx, views: Number(viewsMap[destId] || 0), destId };
     });
 
-    const hasViews = scored.some(s => s.views > 0);
-    if (!hasViews) return;
+    // Promover ítems más vistos del Gran Catálogo Maestro aunque no estuvieran fijos en el carrusel
+    const masterList = getCatalogo737List();
+    for (const item of masterList) {
+        if (!item.id || existingIds.has(item.id)) continue;
+        if (!macroAllowList.includes(item.macro)) continue;
+        const v = Number(viewsMap[item.id] || 0);
+        if (v < 2) continue;
+        const alreadyInNamedCard = scored.some(s => (s.card.textContent || '').toLowerCase().includes(String(item.name || '').toLowerCase().slice(0, 14)));
+        if (alreadyInNamedCard) continue;
+        const cardEl = buildPromotedExcursionCard(item, v);
+        if (isVip) cardEl.classList.add('gold-card-vip');
+        scored.push({ card: cardEl, origIdx: 999, views: v, destId: item.id, promoted: true });
+    }
+
+    if (!scored.some(s => s.views > 0)) return;
 
     scored.sort((a, b) => (b.views - a.views) || (a.origIdx - b.origIdx));
     let hotMarked = 0;
@@ -1871,6 +1923,14 @@ function rankExcursionsByViews(viewsMap) {
             }
         }
     });
+}
+
+function rankExcursionsByViews(viewsMap) {
+    rankTrackWithCatalog('slider-pueblos', viewsMap, [
+        'paquete_armado', 'pueblo_magico', 'barrio_magico', 'playa_caribe',
+        'bosque_montana', 'ruta_tematica', 'experiencia_comunitaria', 'patrimonio_unesco'
+    ], false);
+    rankTrackWithCatalog('slider-fraveo', viewsMap, ['vip_internacional'], true);
 }
 
 async function renderDynamicSlidersWithViews() {

@@ -180,3 +180,19 @@ Recordatorios integrados en el panel de control (`#view-gestor`) y programados p
   - Salidas activas sincronizadas a Noviembre y Diciembre 2026.
   - Asistente Alma IA y Modal de WhatsApp Dual (Alma Puebla / Rogerman Soporte) integrados en `estetica.html`.
   - Preservado el acceso directo a Realidad Aumentada (`ra.html`) y enlaces permanentes a `✈️ Viajes` y `🛍️ Tienda` en el encabezado móvil.
+
+---
+
+### 30. Actualización Integral Noviembre 2026 & Hoja de Ruta Futura (GEO, Editorial Día 25 y Cierre de Pagos)
+- **Estado de Pagos Web Confirmado por Rogerman (sobre $6,000 MXN):**
+  - `29/Oct/2026`: `$3,000.00 MXN` (Folio `572026102995248356`).
+  - `06/Nov/2026`: `$1,000.00 MXN` (confirmado por Rogerman).
+  - `13/Nov/2026`: `$1,000.00 MXN` (Folio `3220261113162641199`).
+  - **Total recibido después de los $3,000:** `$2,000.00 MXN` (**Total web acumulado:** `$5,000.00 MXN` • **Saldo pendiente:** `$1,000.00 MXN`).
+- **Cadencia Mensual del Catálogo Editorial (`catalogo_editorial_revista.html` + PDF):**
+  - **Día 25 de cada mes** (proceso manual asistido con Alma): definir promos/destinos del mes siguiente y regenerar la edición adelantada (en noviembre se publica Diciembre; el 25 de diciembre se publica Enero, etc.).
+- **Pendiente a Futuro #1 — Guías Estáticas por Destino (SEO / GEO para IAs):**
+  - Crear páginas HTML estáticas individuales dentro de rutas/subcarpetas del mismo dominio (NO subdominios por destino para no dividir autoridad), ej.: `mera-kirai.com/viajes/acapulco-fin-de-ano.html`, `mera-kirai.com/conciertos/estadio-gnp-desde-puebla.html`, conectadas en `sitemap.xml` para responder búsquedas literales en Google, ChatGPT, Perplexity y Gemini.
+- **Pendiente a Futuro #2 — Psicología de Experiencias en Copy Web:**
+  - Refinar encabezados de tarjetas y confirmaciones en `index.html` y `estetica.html` para vender recuerdo, anticipación y experiencia (no solo "transporte redondo").
+
