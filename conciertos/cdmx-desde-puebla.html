@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../css/motion_lux.css?v=20261125">
+    <link rel="stylesheet" href="../css/motion_lux.css?v=20261125b">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -64,64 +64,118 @@
     </script>
     <style>
         *, *::before, *::after { box-sizing: border-box; }
-        html, body { margin: 0; padding: 0; overflow-x: hidden; max-width: 100%; }
-        .guide-wrap { max-width: 1020px; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
-        .guide-hero { position: relative; border-radius: 22px; overflow: hidden; min-height: 360px; display: flex; align-items: flex-end; border: 1px solid rgba(244,63,94,0.4); margin-bottom: 2rem; background: url('../img/IMG-20260926-WA0009.jpg') center/cover no-repeat; }
-        .guide-hero-overlay { position: relative; z-index: 2; width: 100%; padding: 2.2rem; background: linear-gradient(180deg, rgba(15,23,42,0.2) 0%, rgba(15,23,42,0.93) 70%); }
-        .guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; margin: 1.8rem 0; }
-        .guide-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 1.4rem; }
-        .guide-card h2, .guide-card h3 { font-family: 'Outfit'; margin-top: 0; color: var(--text-title); }
+        html, body { margin: 0; padding: 0; overflow-x: hidden; max-width: 100%; background: #070b14; color: #e2e8f0; }
+        .g-nav { background: rgba(7, 11, 20, 0.9); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 0.9rem 1.25rem; position: sticky; top: 0; z-index: 40; }
+        .g-nav-inner { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .g-brand { color: #fff; text-decoration: none; font-family: 'Outfit'; font-weight: 900; font-size: 1.08rem; display: flex; align-items: center; gap: 8px; }
+        .g-links { display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.85rem; font-weight: 700; }
+        .g-links a { text-decoration: none; }
+        .guide-wrap { max-width: 1080px; margin: 0 auto; padding: 1.8rem 1.15rem 5rem; }
+        .guide-hero { position: relative; border-radius: 24px; overflow: hidden; min-height: 410px; display: flex; align-items: flex-end; border: 1px solid rgba(244,63,94,0.4); margin-bottom: 2.2rem; background: url('../img/IMG-20260926-WA0009.jpg') center/cover no-repeat; box-shadow: 0 24px 60px rgba(190,18,60,0.25); }
+        .guide-hero-overlay { position: relative; z-index: 2; width: 100%; padding: 2.4rem 2rem 2rem; background: linear-gradient(180deg, rgba(7,11,20,0.16) 0%, rgba(7,11,20,0.85) 52%, rgba(7,11,20,0.97) 100%); }
+        .g-pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 999px; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.4px; text-transform: uppercase; margin-bottom: 0.85rem; }
+        .g-hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 1.35rem; }
+        .g-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 22px; border-radius: 14px; font-weight: 800; font-size: 0.92rem; text-decoration: none; border: none; cursor: pointer; transition: transform .2s; max-width: 100%; text-align: center; }
+        .g-btn:hover { transform: translateY(-2px); }
+        .g-btn-rose { background: linear-gradient(135deg, #be123c, #e11d48); color: #fff; box-shadow: 0 10px 26px rgba(225,29,72,0.34); }
+        .g-btn-wa { background: linear-gradient(135deg, #25d366, #16a34a); color: #052e16; }
+        .g-btn-ghost { background: rgba(255,255,255,0.08); color: #fff; border: 1px solid rgba(255,255,255,0.18); }
+        .guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin: 2rem 0; }
+        .guide-card { background: rgba(15, 23, 42, 0.78); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.09); border-radius: 18px; padding: 1.5rem; min-width: 0; }
+        .guide-card h2, .guide-card h3 { font-family: 'Outfit'; margin-top: 0; color: #fff; }
+        .kit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .kit-pill { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 14px; font-size: 0.88rem; line-height: 1.5; }
+        .salon-bridge { background: linear-gradient(135deg, rgba(244,63,94,0.14), rgba(212,175,55,0.12)); border: 1px solid rgba(244,63,94,0.38); border-radius: 20px; padding: 1.6rem; display: flex; justify-content: space-between; align-items: center; gap: 1.2rem; flex-wrap: wrap; margin: 2rem 0; }
+        .g-footer { border-top: 1px solid rgba(255,255,255,0.08); padding: 2rem 1.25rem; text-align: center; color: #94a3b8; font-size: 0.84rem; }
+        @media (max-width: 640px) {
+            .guide-hero { min-height: 360px; }
+            .guide-hero-overlay { padding: 1.6rem 1.25rem; }
+            .guide-hero-overlay h1 { font-size: 1.55rem !important; }
+            .g-btn { width: 100%; }
+        }
     </style>
 </head>
 <body>
-    <header style="background:rgba(15,23,42,0.94); border-bottom:1px solid rgba(255,255,255,0.08); padding:0.9rem 1.5rem; position:sticky; top:0; z-index:40; backdrop-filter:blur(10px);">
-        <div style="max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-            <a href="../index.html" style="color:#fff; text-decoration:none; font-family:'Outfit'; font-weight:800; font-size:1.05rem;">
-                🦅 Ruta del Águila by Fraveo
-            </a>
-            <nav style="display:flex; gap:14px; flex-wrap:wrap; font-size:0.86rem; font-weight:700;">
-                <a href="../index.html" style="color:#38bdf8; text-decoration:none;">← Cartelera en Vivo</a>
-                <a href="../viajes/acapulco-fin-de-ano.html" style="color:#38bdf8; text-decoration:none;">Acapulco Fin de Año</a>
-                <a href="../viajes/chignahuapan-zacatlan.html" style="color:#4ade80; text-decoration:none;">Chignahuapan &amp; Zacatlán</a>
-                <a href="https://estetica.mera-kirai.com" style="color:#fde047; text-decoration:none;">Estética Alma (-10%)</a>
+    <header class="g-nav">
+        <div class="g-nav-inner">
+            <a href="../index.html" class="g-brand">🦅 Ruta del Águila <span style="color:#fda4af; font-size:0.85rem; font-weight:700;">by Fraveo</span></a>
+            <nav class="g-links">
+                <a href="../index.html#bloque-conciertos" style="color:#38bdf8;">← Cartelera en Vivo</a>
+                <a href="../viajes/acapulco-fin-de-ano.html" style="color:#38bdf8;">Acapulco Fin de Año</a>
+                <a href="../viajes/chignahuapan-zacatlan.html" style="color:#4ade80;">Chignahuapan &amp; Zacatlán</a>
+                <a href="https://estetica.mera-kirai.com" style="color:#fde047;">Estética Alma (-10%)</a>
             </nav>
         </div>
     </header>
 
     <main class="guide-wrap">
-        <div class="guide-hero">
+        <section class="guide-hero">
             <div class="guide-hero-overlay">
-                <span style="display:inline-block; background:#be123c; color:#fff; padding:5px 14px; border-radius:20px; font-size:0.8rem; font-weight:800; margin-bottom:0.7rem;">🎶 TRASLADO REDONDO DESDE PUEBLA • PRE-VENTA $200 MXN</span>
-                <h1 style="font-family:'Outfit'; font-size:2.1rem; color:#fff; margin:0 0 0.5rem;">Conciertos en CDMX desde San Manuel, Puebla</h1>
-                <p style="color:#cbd5e1; max-width:720px; margin:0; line-height:1.6;">
-                    Canta hasta la última canción sin preocuparte por tráfico nocturno, tarifas dinámicas ni estacionamientos inseguros. Viaja cómodo en unidad ejecutiva y regresa seguro la misma noche.
+                <span class="g-pill" style="background:#be123c; color:#fff;">🎶 Transporte Redondo Puebla ⇄ CDMX • Pre-venta $200 MXN</span>
+                <h1 style="font-family:'Outfit'; font-size:2.3rem; line-height:1.15; color:#fff; margin:0 0 0.65rem;">Conciertos en CDMX desde San Manuel, Puebla</h1>
+                <p style="color:#cbd5e1; max-width:720px; margin:0; line-height:1.65; font-size:0.98rem;">
+                    Canta hasta la última canción sin preocuparte por tráfico nocturno, tarifas dinámicas ni estacionamientos inseguros. Viaja cómodo desde <strong>$549 – $750 MXN</strong> y regresa seguro la misma noche.
                 </p>
+                <div class="g-hero-actions">
+                    <button type="button" class="g-btn g-btn-rose" onclick="guideAi.ask('Quiero cotizar transporte redondo a un concierto en CDMX desde Puebla.')">
+                        <i class="fas fa-robot"></i> Cotizar Concierto con Alma IA
+                    </button>
+                    <a href="../index.html#bloque-conciertos" class="g-btn g-btn-ghost">
+                        <i class="fas fa-calendar-check"></i> Ver Cartelera Vigente en Vivo
+                    </a>
+                    <a href="https://wa.me/522228016244?text=Hola%20Alma,%20quiero%20asegurar%20mi%20asiento%20en%20Pre-venta%20($200)%20para%20un%20concierto%20en%20CDMX%20desde%20San%20Manuel" target="_blank" rel="noopener noreferrer" class="g-btn g-btn-wa">
+                        <i class="fab fa-whatsapp"></i> WhatsApp 222 801 6244
+                    </a>
+                </div>
             </div>
-        </div>
+        </section>
 
         <div class="guide-grid">
             <article class="guide-card">
-                <h2 style="font-size:1.25rem; color:var(--brand-cyan);"><i class="fas fa-map-pin"></i> Recintos Cubiertos</h2>
-                <p style="color:var(--text-muted); font-size:0.92rem; line-height:1.65;">
-                    Salidas programadas a <strong>Estadio GNP Seguros (Foro Sol)</strong>, <strong>Arena CDMX</strong>, <strong>Palacio de los Deportes</strong>, <strong>Auditorio Nacional</strong>, Pepsi Center WTC y Autódromo Hermanos Rodríguez desde <strong>$549 – $750 MXN</strong>.
+                <h2 style="font-size:1.22rem; color:#38bdf8;"><i class="fas fa-map-pin"></i> Recintos Cubiertos</h2>
+                <p style="color:#94a3b8; font-size:0.9rem; line-height:1.65;">
+                    Salidas ejecutivas a <strong>Estadio GNP Seguros (Foro Sol)</strong>, <strong>Arena CDMX</strong>, <strong>Palacio de los Deportes</strong>, <strong>Auditorio Nacional</strong>, Pepsi Center WTC y Autódromo Hermanos Rodríguez.
                 </p>
             </article>
-            <article class="guide-card">
-                <h2 style="font-size:1.25rem; color:var(--brand-gold);"><i class="fas fa-gift"></i> Kit Concierto Incluido</h2>
-                <p style="color:var(--text-muted); font-size:0.92rem; line-height:1.65;">
-                    Snack pack de cortesía (botana + agua fría), gafete conmemorativo del evento, seguro de viajero a bordo y espera garantizada en punto acordado hasta 40 minutos después de terminar el show.
+            <article class="guide-card" style="border-color:rgba(250,204,21,0.38);">
+                <h2 style="font-size:1.22rem; color:#fde047;"><i class="fas fa-shuttle-van"></i> Espera Garantizada</h2>
+                <p style="color:#94a3b8; font-size:0.9rem; line-height:1.65;">
+                    Chofer sobrio asignado te deja junto al recinto y te espera en punto seguro acordado hasta <strong>40 minutos después de terminar el último encore</strong> para volver directo a Puebla.
                 </p>
             </article>
-            <article class="guide-card">
-                <h2 style="font-size:1.25rem; color:var(--brand-green);"><i class="fas fa-spa"></i> Bono Salón + Pre-venta</h2>
-                <p style="color:var(--text-muted); font-size:0.92rem; line-height:1.65;">
-                    Aseguras tu lugar en <strong>Pre-venta con $200 MXN</strong> (100% reembolsable por cupo mínimo). ¿Quieres arreglarte el cabello o maquillaje antes de salir? Visita <a href="https://estetica.mera-kirai.com" style="color:#fda4af;">Estudio de Belleza Alma</a> y recibe <strong>10% de descuento</strong> en tu traslado.
+            <article class="guide-card" style="border-color:rgba(34,197,94,0.38);">
+                <h2 style="font-size:1.22rem; color:#4ade80;"><i class="fas fa-ticket-alt"></i> Pre-venta desde $200 MXN</h2>
+                <p style="color:#94a3b8; font-size:0.9rem; line-height:1.65;">
+                    Congela tu asiento hoy con <strong>$200 MXN</strong> y liquida 48–24h antes. Si el artista reprograma fecha, tu Pre-venta se transfiere sin penalización; si no se junta cupo, reembolso 100%.
                 </p>
             </article>
         </div>
 
         <section class="guide-card" style="margin-bottom:1.8rem;">
-            <h2 style="font-size:1.35rem;">Preguntas Frecuentes — Conciertos CDMX</h2>
+            <h2 style="font-size:1.3rem;"><i class="fas fa-gift" style="color:#fde047;"></i> Todas tus Salidas Incluyen el Kit Concierto</h2>
+            <div class="kit-grid">
+                <div class="kit-pill"><strong style="color:#fde047;">🥤 Snack Pack</strong><br><span style="color:#94a3b8;">Botana o galleta + botella de agua fría en tu asiento.</span></div>
+                <div class="kit-pill"><strong style="color:#fda4af;">🪪 Gafete Colección</strong><br><span style="color:#94a3b8;">Gafete conmemorativo del concierto y número de emergencia.</span></div>
+                <div class="kit-pill"><strong style="color:#38bdf8;">🛡️ Seguro a Bordo</strong><br><span style="color:#94a3b8;">Cobertura amplia de viajero en todo el trayecto Puebla ⇄ CDMX.</span></div>
+                <div class="kit-pill"><strong style="color:#4ade80;">🚐 Regreso Puerta</strong><br><span style="color:#94a3b8;">Llegada de regreso a Calle Río Nexapa #6101, San Manuel.</span></div>
+            </div>
+        </section>
+
+        <div class="salon-bridge">
+            <div style="flex:1; min-width:240px;">
+                <span style="font-size:0.78rem; font-weight:800; color:#fda4af; text-transform:uppercase; letter-spacing:0.5px;">✨ Luce Radiante en tu Concierto</span>
+                <h3 style="font-family:'Outfit'; margin:4px 0 6px; color:#fff; font-size:1.25rem;">Peinado, Maquillaje o Color en Estudio Alma (+10% en tu Viaje)</h3>
+                <p style="margin:0; font-size:0.88rem; color:#cbd5e1; line-height:1.55;">
+                    Arréglate antes de abordar en el mismo lugar de salida (Calle Río Nexapa #6101, San Manuel) y obtén un <strong>10% de descuento</strong> en tu traslado con servicios participantes.
+                </p>
+            </div>
+            <a href="https://estetica.mera-kirai.com" class="g-btn g-btn-ghost" style="border-color:rgba(244,63,94,0.5); color:#fda4af;">
+                🌸 Visitar Estudio de Belleza Alma →
+            </a>
+        </div>
+
+        <section class="guide-card">
+            <h2 style="font-size:1.3rem;">Preguntas Frecuentes — Conciertos CDMX</h2>
             <details class="faq-item" style="margin-top:0.8rem;">
                 <summary>¿El transporte incluye el boleto de entrada al concierto?</summary>
                 <p>No. Somos transporte redondo ejecutivo independiente de Ticketmaster y Superboletos: tú compras tu entrada en la zona que prefieras y nosotros te llevamos desde Jardines de San Manuel, Puebla hasta la puerta del recinto y te esperamos al terminar el show.</p>
@@ -131,24 +185,12 @@
                 <p>Todas nuestras salidas a conciertos incluyen snack pack de cortesía (botana + agua embotellada), gafete conmemorativo, seguro de viajero a bordo y espera garantizada hasta 40 minutos después de concluido el espectáculo. Entras en Pre-venta desde $200 MXN por asiento.</p>
             </details>
         </section>
-
-        <section class="guide-card" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; border-color:rgba(244,63,94,0.45);">
-            <div>
-                <h3 style="margin-bottom:0.35rem;">¿Tienes ya tu boleto o buscas próxima fecha?</h3>
-                <p style="margin:0; color:var(--text-muted); font-size:0.9rem;">Consulta la cartelera viva en nuestra portada o cotiza tu concierto con Alma IA.</p>
-            </div>
-            <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                <a href="../index.html#bloque-conciertos" class="btn-search-main" style="width:auto; padding:12px 18px; background:var(--bg-subtle); color:var(--text-title); border:1px solid var(--border-color); font-weight:800; text-decoration:none;">
-                    Ver Cartelera Activa →
-                </a>
-                <button type="button" class="btn-search-main" style="width:auto; padding:12px 20px; background:#be123c; color:#fff; border:none; font-weight:800; cursor:pointer;" onclick="guideAi.ask('Quiero cotizar transporte redondo a un concierto en CDMX desde Puebla.')">
-                    <i class="fas fa-robot"></i> Cotizar con Alma IA
-                </button>
-            </div>
-        </section>
     </main>
 
-    <!-- Widget Flotante Alma IA -->
+    <footer class="g-footer">
+        © 2026 Ruta del Águila by Fraveo • Calle Río Nexapa #6101, Jardines de San Manuel, Puebla • <a href="../terminos.html" style="color:#fda4af;">Términos y Condiciones</a>
+    </footer>
+
     <div class="ai-orb-trigger" onclick="document.getElementById('guide-ai-win').classList.toggle('active')" title="Consultar con Alma IA">
         <div class="ai-orb-inner"><i class="fas fa-comment-dots" style="font-size:1.45rem;"></i></div>
     </div>
@@ -169,7 +211,7 @@
         </div>
     </div>
 
-    <script src="../js/alma_ai_widget.js?v=20261125"></script>
+    <script src="../js/alma_ai_widget.js?v=20261125b"></script>
     <script>
         const guideAi = AlmaAiWidget.mountFloatingWidget({
             mode: 'viajes',
